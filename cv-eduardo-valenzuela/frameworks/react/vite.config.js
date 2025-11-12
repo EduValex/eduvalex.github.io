@@ -4,7 +4,7 @@ import path from 'node:path';
 
 export default defineConfig({
   plugins: [react()],
-  base: '/', // Para eduvalex.github.io (user/org page), usar '/'
+  base: '/frameworks/react/', // Ruta correcta en GitHub Pages
   build: {
     outDir: 'dist',
     emptyOutDir: true,

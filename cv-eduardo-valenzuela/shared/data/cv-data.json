@@ -1,60 +1,73 @@
 {
   "personal": {
-    "name": "Eduardo Valenzuela",
-    "title": "Full Stack Developer",
-    "email": "eduardo.valenzuela@example.com",
-    "phone": "+56 9 1234 5678",
-    "location": "Santiago, Chile",
+    "name": "Eduardo Valenzuela Milla",
+    "title": "FullStack Developer | Plataformas E-Commerce",
+    "email": "contacto@eduardovalenzuela.dev",
+    "phone": "+56 9 XXXX XXXX",
+    "location": "Temuco, Araucanía, Chile",
     "photo": "/shared/assets/images/profile.jpg",
-    "tagline": "Desarrollador apasionado por crear experiencias web excepcionales",
+    "tagline": "Desarrollador Full Stack apasionado por la construcción de soluciones digitales",
     "social": {
-      "github": "tu-usuario",
-      "linkedin": "tu-usuario",
-      "twitter": "tu-usuario",
-      "portfolio": "https://tu-portfolio.com"
+      "github": "eduvalex",
+      "linkedin": "eduardo-valenzuela-milla",
+      "twitter": "",
+      "portfolio": "https://eduvalex.github.io"
     }
   },
 
-  "about": "Desarrollador Full Stack con experiencia en la creación de aplicaciones web modernas y escalables. Apasionado por las nuevas tecnologías y las mejores prácticas de desarrollo. Me especializo en React, Vue y Node.js, con un enfoque en arquitectura de software limpia y mantenible.",
+  "about": "Soy un Desarrollador Full Stack apasionado por la construcción de soluciones digitales. Disfruto el desafío de transformar una idea compleja en una aplicación web funcional, intuitiva y eficiente, siempre enfocado en aportar valor real al negocio.\n\nMi stack principal se centra en el ecosistema de JavaScript, con un fuerte dominio de React para la creación de interfaces dinámicas y Node.js con Express para el desarrollo de APIs RESTful robustas. Complemento esto con una sólida experiencia en Python (Django, Flask) y una base profunda en el ecosistema PHP, incluyendo frameworks como Yii y plataformas líderes como WordPress y Shopify.\n\nEsta diversidad técnica me permite adaptarme y elegir la mejor herramienta para cada desafío, ya sea construyendo desde cero o integrando soluciones en otros entornos tecnológicos como Angular o Java.\n\nSiempre estoy en busca de nuevos desafíos que me permitan no solo aplicar mi conocimiento técnico, sino también crecer en un equipo dinámico y colaborativo.",
 
   "experience": [
     {
-      "company": "Tech Company SA",
-      "position": "Senior Full Stack Developer",
-      "period": "Ene 2023 - Presente",
-      "location": "Santiago, Chile",
-      "description": "Desarrollo de aplicaciones web full-stack utilizando React, Node.js y PostgreSQL. Liderazgo de equipo técnico y mentoría de desarrolladores junior.",
-      "technologies": ["React", "Node.js", "PostgreSQL", "AWS", "Docker"],
+      "company": "Desarrollador Independiente",
+      "position": "Desarrollador Web Full Stack",
+      "period": "Abr 2022 - Actualidad",
+      "location": "Chile (Híbrido)",
+      "description": "Desarrollo de soluciones web a medida para diversos clientes y emprendimientos, abarcando el ciclo completo desde la conceptualización y diseño hasta el despliegue, optimización y posicionamiento SEO.",
+      "technologies": ["WordPress", "React", "Node.js", "SEO", "PHP"],
       "achievements": [
-        "Mejoré el rendimiento de la aplicación principal en un 40%",
-        "Implementé arquitectura de microservicios que redujo el tiempo de deploy en 60%",
-        "Lideré equipo de 5 desarrolladores en proyecto crítico"
+        "Lideré el desarrollo completo del sitio corporativo creasmile.cl con WordPress",
+        "Implementé estrategia de SEO On-Page completa, mejorando el posicionamiento orgánico",
+        "Optimización de rendimiento reduciendo el tiempo de carga en más de un 50%"
       ]
     },
     {
-      "company": "Startup Innovadora",
-      "position": "Full Stack Developer",
-      "period": "Jun 2021 - Dic 2022",
-      "location": "Santiago, Chile",
-      "description": "Desarrollo de MVP y features para plataforma SaaS. Trabajo directo con fundadores y equipo de producto.",
-      "technologies": ["Vue.js", "Express", "MongoDB", "Firebase"],
+      "company": "Grant Solutions",
+      "position": "Desarrollo Web",
+      "period": "Feb 2025 - Jul 2025",
+      "location": "España (Remoto)",
+      "description": "Desarrollé y mantuve múltiples sitios web para clientes utilizando WordPress, integrando Zoho CRM para mejorar la gestión de relaciones con clientes.",
+      "technologies": ["WordPress", "Zoho CRM", "SEO", "PHP"],
       "achievements": [
-        "Desarrollé desde cero el sistema de autenticación y permisos",
-        "Implementé integración con APIs de terceros (Stripe, SendGrid)",
-        "Contribuí a crecer la base de usuarios de 0 a 10,000+"
+        "Integración exitosa de Zoho CRM en múltiples sitios web",
+        "Optimización SEO On-Page para aumentar visibilidad de clientes",
+        "Mantenimiento y actualización de portafolio de sitios corporativos"
       ]
     },
     {
-      "company": "Agencia Digital",
-      "position": "Junior Frontend Developer",
-      "period": "Ene 2020 - May 2021",
-      "location": "Santiago, Chile",
-      "description": "Desarrollo de sitios web y aplicaciones para clientes. Trabajo en equipo multidisciplinario con diseñadores y project managers.",
-      "technologies": ["JavaScript", "React", "HTML/CSS", "WordPress"],
+      "company": "Enlanubelab",
+      "position": "Desarrollador de WordPress",
+      "period": "Abr 2015 - Dic 2015",
+      "location": "Temuco, Araucanía, Chile",
+      "description": "Desarrollo de aplicación web full-stack con Ruby on Rails para catálogo de hierbas medicinales y mantenimiento de sitios WordPress.",
+      "technologies": ["Ruby on Rails", "WordPress", "PHP", "MySQL"],
       "achievements": [
-        "Entregué 15+ proyectos exitosos para clientes",
-        "Mejoré el proceso de desarrollo con automatización",
-        "Recibí reconocimiento por calidad de código"
+        "Desarrollé aplicación web full-stack con Ruby on Rails desde concepto hasta despliegue",
+        "Mantuve más de 12 sitios de clientes basados en WordPress",
+        "Aseguré correcto funcionamiento y actualización de plataformas"
+      ]
+    },
+    {
+      "company": "Anacondaweb",
+      "position": "Alumno Practicante",
+      "period": "Ene 2014 - Mar 2014",
+      "location": "Temuco, Araucanía, Chile",
+      "description": "Colaboré en el desarrollo de Intranet corporativa con PHP y Yii Framework, digitalizando procesos internos de la empresa.",
+      "technologies": ["PHP", "Yii Framework", "MySQL", "JavaScript"],
+      "achievements": [
+        "Contribuí al desarrollo de Intranet corporativa con Yii Framework",
+        "Ayudé a digitalizar y centralizar procesos internos",
+        "Mejoré la eficiencia del equipo mediante soluciones web"
       ]
     }
   ],
@@ -114,34 +127,34 @@
 
   "skills": {
     "frontend": [
-      { "name": "React", "level": 95 },
-      { "name": "Vue.js", "level": 85 },
+      { "name": "React.js", "level": 90 },
       { "name": "JavaScript/ES6+", "level": 95 },
-      { "name": "TypeScript", "level": 80 },
       { "name": "HTML/CSS", "level": 95 },
-      { "name": "Tailwind CSS", "level": 90 },
-      { "name": "Redux/Vuex", "level": 80 },
-      { "name": "Next.js", "level": 75 }
+      { "name": "Tailwind CSS", "level": 85 },
+      { "name": "WordPress", "level": 90 },
+      { "name": "Shopify", "level": 80 },
+      { "name": "Angular", "level": 70 },
+      { "name": "Vue.js", "level": 75 }
     ],
     "backend": [
-      { "name": "Node.js", "level": 85 },
-      { "name": "Express", "level": 85 },
-      { "name": "Python", "level": 70 },
-      { "name": "PostgreSQL", "level": 80 },
-      { "name": "MongoDB", "level": 75 },
-      { "name": "Firebase", "level": 80 },
-      { "name": "REST APIs", "level": 90 },
-      { "name": "GraphQL", "level": 65 }
+      { "name": "Node.js", "level": 90 },
+      { "name": "Express", "level": 90 },
+      { "name": "Python", "level": 85 },
+      { "name": "Django", "level": 85 },
+      { "name": "Flask", "level": 80 },
+      { "name": "Ruby on Rails", "level": 85 },
+      { "name": "PHP", "level": 90 },
+      { "name": "Yii Framework", "level": 75 }
     ],
     "tools": [
       { "name": "Git", "level": 90 },
-      { "name": "Docker", "level": 75 },
-      { "name": "AWS", "level": 70 },
-      { "name": "CI/CD", "level": 75 },
-      { "name": "Jest/Vitest", "level": 80 },
-      { "name": "Webpack/Vite", "level": 85 },
-      { "name": "Figma", "level": 70 },
-      { "name": "Agile/Scrum", "level": 85 }
+      { "name": "PostgreSQL", "level": 85 },
+      { "name": "MySQL", "level": 85 },
+      { "name": "SEO", "level": 85 },
+      { "name": "Zoho CRM", "level": 75 },
+      { "name": "REST APIs", "level": 90 },
+      { "name": "Docker", "level": 70 },
+      { "name": "AWS", "level": 65 }
     ]
   },
 

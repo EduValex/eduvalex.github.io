@@ -55,6 +55,13 @@ if (fs.existsSync(sharedAssets)) {
   fs.cpSync(sharedAssets, sharedDeploy, { recursive: true });
 }
 
+// Copy shared data (cv-data.json)
+const sharedData = path.join(__dirname, 'shared/data');
+const dataDeploy = path.join(deployDir, 'shared/data');
+if (fs.existsSync(sharedData)) {
+  fs.cpSync(sharedData, dataDeploy, { recursive: true });
+}
+
 console.log('✅ Files copied\n');
 
 // Step 4: Deploy to gh-pages
