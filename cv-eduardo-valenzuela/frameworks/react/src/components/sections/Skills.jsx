@@ -22,6 +22,7 @@ import {
   SiPhp,
   SiPostgresql,
   SiMysql,
+    SiMongodb,
   SiGit,
   SiDocker,
   SiOpenai,
@@ -65,6 +66,7 @@ const SKILL_ICON_MAP = {
   'PHP': { Comp: SiPhp, color: '#777BB4' },
   'PostgreSQL': { Comp: SiPostgresql, color: '#4169E1' },
   'MySQL': { Comp: SiMysql, color: '#4479A1' },
+    'MongoDB': { Comp: SiMongodb, color: '#47A248' },
   'Git': { Comp: SiGit, color: '#F05033' },
   'Docker': { Comp: SiDocker, color: '#2496ED' },
   'ChatGPT': { Comp: SiOpenai, color: '#10A37F' },
@@ -117,6 +119,8 @@ const SKILL_URLS = {
   'Docker': 'https://www.docker.com',
   'PostgreSQL': 'https://www.postgresql.org',
   'MySQL': 'https://www.mysql.com',
+    'MongoDB': 'https://www.mongodb.com',
+    'Grok': 'https://grok.x.ai',
 };
 
 function RenderSkillIcon({ name }) {
@@ -136,6 +140,8 @@ function RenderSkillIcon({ name }) {
       'HTML/CSS': '🎨',
       'Google Trends': '📈',
       'Asistentes IA Personalizados': '🛠️',
+        'Grok': '🤖',
+        'Beaver Builder': '🦫',
     };
     const emoji = FALLBACK_EMOJI[name];
     return emoji ? <span aria-hidden="true">{emoji}</span> : null;
@@ -206,8 +212,13 @@ export function SkillsSection() {
       <div className="grid gap-6 md:grid-cols-2">
         <SkillGroup title={t('skills.frontend')} list={data.skills.frontend} index={0} />
         <SkillGroup title={t('skills.backend')} list={data.skills.backend} index={1} />
-        <SkillGroup title={t('skills.tools')} list={data.skills.tools} index={2} />
-        <SkillGroup title={t('skills.ai')} list={data.skills.ai} index={3} />
+        {/* Tools subcategorías */}
+        <SkillGroup title={`${t('skills.tools')} · ${t('skills.databases')}`} list={data.skills.tools.databases} index={2} />
+        <SkillGroup title={`${t('skills.tools')} · ${t('skills.projectManagement')}`} list={data.skills.tools.projectManagement} index={3} />
+        <SkillGroup title={`${t('skills.tools')} · ${t('skills.seoAnalytics')}`} list={data.skills.tools.seoAnalytics} index={4} />
+        <SkillGroup title={`${t('skills.tools')} · ${t('skills.deployment')}`} list={data.skills.tools.deployment} index={5} />
+        <SkillGroup title={`${t('skills.tools')} · ${t('skills.devTools')}`} list={data.skills.tools.devTools} index={6} />
+        <SkillGroup title={t('skills.ai')} list={data.skills.ai} index={7} />
       </div>
     </section>
   );

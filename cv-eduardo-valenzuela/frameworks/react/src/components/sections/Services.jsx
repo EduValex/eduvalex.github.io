@@ -29,9 +29,9 @@ const SERVICES = [
     icon: '🔌',
     titleES: 'Integraciones & Plugins',
     titleEN: 'Integrations & Plugins',
-    descES: 'Desarrollo de plugins WordPress personalizados, conexiones con CRM (Zoho), APIs externas (Google, Instagram, Drive), pasarelas de pago y sistemas de terceros.',
-    descEN: 'Custom WordPress plugin development, CRM connections (Zoho), external APIs (Google, Instagram, Drive), payment gateways and third-party systems.',
-    tags: ['WordPress Plugins', 'APIs', 'Zoho CRM', 'Webhooks']
+    descES: 'Desarrollo de plugins WordPress personalizados, conexiones con APIs externas (Google, Instagram, Drive), pasarelas de pago y automatizaciones con webhooks.',
+    descEN: 'Custom WordPress plugin development, external API connections (Google, Instagram, Drive), payment gateways and webhook automations.',
+    tags: ['WordPress Plugins', 'APIs', 'Google Drive', 'Webhooks']
   }
 ];
 

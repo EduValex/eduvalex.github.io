@@ -8,7 +8,7 @@ const __dirname = fileURLToPath(new URL('.', import.meta.url));
 
 export default defineConfig({
   plugins: [react()],
-  base: '/frameworks/react/', // Ruta correcta en GitHub Pages
+  base: '/', // Servir en la raíz del dominio
   build: {
     outDir: 'dist',
     emptyOutDir: true,

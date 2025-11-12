@@ -12,17 +12,68 @@ export function Hero() {
   const typedText = useTypingEffect(roles, 100, 50, 2000);
   
   const cvUrl = '/shared/assets/cv-eduardo-valenzuela.pdf';
-  const handleGeneratePDF = () => {
-    // Usa el diálogo de impresión del navegador (Guardar como PDF)
-    try { window.print(); } catch (e) {
-      if (import.meta.env.DEV) {
-        console.warn('Print dialog failed:', e);
-      }
+  const [showPdfModal, setShowPdfModal] = React.useState(false);
+  const [pdfOptions, setPdfOptions] = React.useState({
+    sections: {
+      hero: true,
+      about: true,
+      services: true,
+      experience: true,
+      projects: true,
+      skills: true,
+      contact: true,
+    },
+    style: 'styled', // 'styled' | 'plain'
+  });
+
+  // Utilidad: aplica/remueve clases para impresión selectiva
+  const applyPrintConfig = (apply) => {
+    const body = document.body;
+    const ids = Object.keys(pdfOptions.sections);
+    if (apply) {
+      // Estilo
+      body.classList.toggle('print-plain', pdfOptions.style === 'plain');
+      body.classList.toggle('print-styled', pdfOptions.style === 'styled');
+      // Secciones a ocultar
+      ids.forEach((id) => {
+        const el = document.getElementById(id);
+        if (!el) return;
+        if (!pdfOptions.sections[id]) {
+          el.classList.add('print-hide');
+        }
+      });
+    } else {
+      body.classList.remove('print-plain');
+      body.classList.remove('print-styled');
+      ids.forEach((id) => {
+        const el = document.getElementById(id);
+        if (!el) return;
+        el.classList.remove('print-hide');
+      });
+    }
+  };
+
+  const handleConfirmPdf = () => {
+    setShowPdfModal(false);
+    // Aplica configuración y abre diálogo de impresión
+    applyPrintConfig(true);
+    const cleanup = () => {
+      applyPrintConfig(false);
+      window.removeEventListener('afterprint', cleanup);
+    };
+    window.addEventListener('afterprint', cleanup);
+    try {
+      window.print();
+    } catch (e) {
+      if (import.meta.env.DEV) console.warn('Print dialog failed:', e);
+      cleanup();
+      // Fallback descarga
+      window.location.href = cvUrl;
     }
   };
 
   return (
-    <section className="panel p-6 mt-6 flex flex-col md:flex-row items-center gap-6 animate-fade-in relative overflow-hidden">
+  <section id="hero" className="panel p-6 mt-6 flex flex-col md:flex-row items-center gap-6 animate-fade-in relative overflow-hidden">
       {/* Efecto de gradiente animado de fondo */}
       <div className="absolute inset-0 opacity-5 dark:opacity-10 pointer-events-none">
         <div className="absolute inset-0 bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 animate-gradient-shift" 
@@ -50,26 +101,14 @@ export function Hero() {
         
         <div className="flex flex-wrap gap-3 mt-4 justify-center md:justify-start">
           <button
-            onClick={handleGeneratePDF}
-            className="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg bg-primary text-white font-medium hover:bg-primary-dark transition-all hover-lift shadow-md print:hidden"
-            title={t('hero.generatePDF')}
+            onClick={() => setShowPdfModal(true)}
+              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg bg-primary text-white font-medium hover:bg-primary-dark transition-all hover-lift shadow-md"
+              title="Generar y Descargar PDF"
           >
-            <span>🖨️</span>
-            {t('hero.generatePDF')}
+              <span>�</span>
+              Generar y Descargar PDF
           </button>
 
-          <a
-            href={cvUrl}
-            download
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg bg-primary text-white font-medium hover:bg-primary-dark transition-all hover-lift shadow-md"
-            title={t('hero.downloadCV')}
-          >
-            <span className="animate-bounce">📄</span>
-            {t('hero.downloadCV')}
-          </a>
-          
           <a
             href="#contact"
             className="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg border-2 border-primary text-primary font-medium hover:bg-primary hover:text-white transition-all hover-lift shadow-md"
@@ -79,6 +118,74 @@ export function Hero() {
           </a>
         </div>
       </div>
+      {/* Modal configuración PDF */}
+      {showPdfModal && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4 no-print" role="dialog" aria-modal="true">
+          <div className="w-full max-w-lg rounded-xl bg-white dark:bg-slate-900 shadow-xl p-5">
+            <h3 className="text-lg font-semibold flex items-center gap-2 mb-3">
+              <span>🧾</span>
+              Configurar PDF
+            </h3>
+            <p className="text-sm text-slate-600 dark:text-slate-300 mb-4">Elige qué secciones incluir y el estilo del PDF.</p>
+
+            <div className="grid grid-cols-2 gap-3">
+              {[
+                { id: 'hero', label: 'Header' },
+                { id: 'about', label: 'Sobre mí' },
+                { id: 'services', label: 'Servicios' },
+                { id: 'experience', label: 'Experiencia' },
+                { id: 'projects', label: 'Proyectos' },
+                { id: 'skills', label: 'Skills' },
+                { id: 'contact', label: 'Contacto' },
+              ].map((s) => (
+                <label key={s.id} className="flex items-center gap-2 text-sm">
+                  <input
+                    type="checkbox"
+                    className="accent-primary"
+                    checked={pdfOptions.sections[s.id]}
+                    onChange={(e) => setPdfOptions((prev) => ({
+                      ...prev,
+                      sections: { ...prev.sections, [s.id]: e.target.checked },
+                    }))}
+                  />
+                  {s.label}
+                </label>
+              ))}
+            </div>
+
+            <div className="mt-4">
+              <div className="text-sm font-medium mb-2">Estilo</div>
+              <div className="flex gap-4 text-sm">
+                <label className="flex items-center gap-2">
+                  <input
+                    type="radio"
+                    name="pdf-style"
+                    className="accent-primary"
+                    checked={pdfOptions.style === 'styled'}
+                    onChange={() => setPdfOptions((p) => ({ ...p, style: 'styled' }))}
+                  />
+                  Con estilos y colores
+                </label>
+                <label className="flex items-center gap-2">
+                  <input
+                    type="radio"
+                    name="pdf-style"
+                    className="accent-primary"
+                    checked={pdfOptions.style === 'plain'}
+                    onChange={() => setPdfOptions((p) => ({ ...p, style: 'plain' }))}
+                  />
+                  Blanco y negro (simple)
+                </label>
+              </div>
+            </div>
+
+            <div className="mt-5 flex justify-end gap-2">
+              <button onClick={() => setShowPdfModal(false)} className="px-4 py-2 rounded-lg border border-slate-300 dark:border-slate-700">Cancelar</button>
+              <button onClick={handleConfirmPdf} className="px-4 py-2 rounded-lg bg-primary text-white font-medium hover:bg-primary-dark">Generar PDF</button>
+            </div>
+          </div>
+        </div>
+      )}
     </section>
   );
 }

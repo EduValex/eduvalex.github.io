@@ -36,17 +36,9 @@ console.log('📁 Created temporary deploy directory\n');
 // Step 3: Copy files to deploy directory
 console.log('📋 Copying files...');
 
-// Copy root index.html (switcher)
-fs.copyFileSync(
-  path.join(__dirname, 'index.html'),
-  path.join(deployDir, 'index.html')
-);
-
-// Copy React build
+// Copy React build to root
 const reactDist = path.join(__dirname, 'frameworks/react/dist');
-const reactDeploy = path.join(deployDir, 'frameworks/react');
-fs.mkdirSync(path.join(deployDir, 'frameworks'), { recursive: true });
-fs.cpSync(reactDist, reactDeploy, { recursive: true });
+fs.cpSync(reactDist, deployDir, { recursive: true });
 
 // Copy shared assets
 const sharedAssets = path.join(__dirname, 'shared/assets');

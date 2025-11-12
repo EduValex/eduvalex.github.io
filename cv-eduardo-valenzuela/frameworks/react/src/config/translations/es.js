@@ -52,8 +52,13 @@ export const es = {
   skills: {
     frontend: 'Frontend',
     backend: 'Backend',
-     tools: 'Tools',
-     ai: 'IA & Asistentes'
+      tools: 'Herramientas & Plataformas',
+      databases: 'Bases de Datos',
+      projectManagement: 'Gestión de Proyectos',
+      seoAnalytics: 'SEO & Analytics',
+      deployment: 'Deployment',
+      devTools: 'Herramientas de Desarrollo',
+      ai: 'IA & Asistentes'
   },
   
   // Contact
