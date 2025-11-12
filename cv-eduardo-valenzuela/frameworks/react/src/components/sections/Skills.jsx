@@ -29,6 +29,12 @@ import {
   SiGoogle,
   SiJira,
   SiTrello,
+  SiPostman,
+  SiSemrush,
+  SiWix,
+  SiGoogleanalytics,
+  SiGooglesearchconsole,
+  SiPagespeedinsights,
 } from 'react-icons/si';
 
 const SKILL_ICON_MAP = {
@@ -59,9 +65,16 @@ const SKILL_ICON_MAP = {
   'Docker': { Comp: SiDocker, color: '#2496ED' },
   'ChatGPT': { Comp: SiOpenai, color: '#10A37F' },
   'GitHub Copilot': { Comp: SiGithub, color: '#181717' },
+  'GitHub': { Comp: SiGithub, color: '#181717' },
   'Google Gemini': { Comp: SiGoogle, color: '#4285F4' },
   'Jira': { Comp: SiJira, color: '#0052CC' },
   'Trello': { Comp: SiTrello, color: '#0052CC' },
+  'Postman': { Comp: SiPostman, color: '#FF6C37' },
+  'SEMrush': { Comp: SiSemrush, color: '#FF642D' },
+  'Wix': { Comp: SiWix, color: '#0C6EFC' },
+  'Google Analytics': { Comp: SiGoogleanalytics, color: '#E37400' },
+  'Google Search Console': { Comp: SiGooglesearchconsole, color: '#458CF5' },
+  'PageSpeed Insights': { Comp: SiPagespeedinsights, color: '#4285F4' },
 };
 
 function RenderSkillIcon({ name }) {
@@ -71,6 +84,7 @@ function RenderSkillIcon({ name }) {
       'REST API': '🔗',
       'REST APIs': '🔗',
       'SEO': '🔍',
+      'SEO Audits': '🧪',
       'Yii Framework': '🎴',
       'Zoho CRM': '📇',
       'AWS': '☁️',
@@ -78,6 +92,8 @@ function RenderSkillIcon({ name }) {
       'Loveable AI': '💖',
       'Monday': '📋',
       'HTML/CSS': '🎨',
+      'Google Trends': '📈',
+      'Asistentes IA Personalizados': '🛠️',
     };
     const emoji = FALLBACK_EMOJI[name];
     return emoji ? <span aria-hidden="true">{emoji}</span> : null;
