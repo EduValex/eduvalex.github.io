@@ -91,15 +91,31 @@ export function ContactSection() {
             <li className="flex items-center gap-3">
               <span className="text-xl">📱</span>
               <div>
-                <strong className="block text-xs text-slate-500 dark:text-slate-400">Teléfono</strong>
-                <span className="text-slate-700 dark:text-slate-200">{personal.phone}</span>
+                <strong className="block text-xs text-slate-500 dark:text-slate-400">Teléfono / WhatsApp</strong>
+                <a 
+                  href={`https://wa.me/${personal.phone.replace(/\D/g, '')}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-primary hover:text-primary-light transition-colors inline-flex items-center gap-1"
+                >
+                  {personal.phone}
+                  <span className="text-xs">💬</span>
+                </a>
               </div>
             </li>
             <li className="flex items-center gap-3">
               <span className="text-xl">📍</span>
               <div>
                 <strong className="block text-xs text-slate-500 dark:text-slate-400">Ubicación</strong>
-                <span className="text-slate-700 dark:text-slate-200">{personal.location}</span>
+                <a
+                  href="https://www.google.com/maps/place/Temuco,+Regi%C3%B3n+de+la+Araucan%C3%ADa,+Chile"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-primary hover:text-primary-light transition-colors inline-flex items-center gap-1"
+                >
+                  {personal.location}
+                  <span className="text-xs">🗺️</span>
+                </a>
               </div>
             </li>
           </ul>

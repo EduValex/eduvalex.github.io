@@ -35,6 +35,10 @@ import {
   SiGoogleanalytics,
   SiGooglesearchconsole,
   SiPagespeedinsights,
+  SiVercel,
+  SiRender,
+  SiRailway,
+  SiHeroku,
 } from 'react-icons/si';
 
 const SKILL_ICON_MAP = {
@@ -75,6 +79,44 @@ const SKILL_ICON_MAP = {
   'Google Analytics': { Comp: SiGoogleanalytics, color: '#E37400' },
   'Google Search Console': { Comp: SiGooglesearchconsole, color: '#458CF5' },
   'PageSpeed Insights': { Comp: SiPagespeedinsights, color: '#4285F4' },
+  'Vercel': { Comp: SiVercel, color: '#000000' },
+  'Render': { Comp: SiRender, color: '#46E3B7' },
+  'Railway': { Comp: SiRailway, color: '#0B0D0E' },
+  'Heroku': { Comp: SiHeroku, color: '#430098' },
+};
+
+// URLs para skills clickeables
+const SKILL_URLS = {
+  'React': 'https://react.dev',
+  'React.js': 'https://react.dev',
+  'Vue.js': 'https://vuejs.org',
+  'Angular': 'https://angular.io',
+  'Node.js': 'https://nodejs.org',
+  'Django': 'https://www.djangoproject.com',
+  'Flask': 'https://flask.palletsprojects.com',
+  'Ruby on Rails': 'https://rubyonrails.org',
+  'WordPress': 'https://wordpress.org',
+  'Tailwind CSS': 'https://tailwindcss.com',
+  'Bootstrap': 'https://getbootstrap.com',
+  'Vercel': 'https://vercel.com',
+  'Render': 'https://render.com',
+  'Railway': 'https://railway.app',
+  'Heroku': 'https://www.heroku.com',
+  'ChatGPT': 'https://chat.openai.com',
+  'Claude AI': 'https://claude.ai',
+  'GitHub Copilot': 'https://github.com/features/copilot',
+  'Google Gemini': 'https://gemini.google.com',
+  'Loveable AI': 'https://loveable.dev',
+  'SEMrush': 'https://www.semrush.com',
+  'Postman': 'https://www.postman.com',
+  'Google Analytics': 'https://analytics.google.com',
+  'Google Search Console': 'https://search.google.com/search-console',
+  'PageSpeed Insights': 'https://pagespeed.web.dev',
+  'Wix': 'https://www.wix.com',
+  'GitHub': 'https://github.com',
+  'Docker': 'https://www.docker.com',
+  'PostgreSQL': 'https://www.postgresql.org',
+  'MySQL': 'https://www.mysql.com',
 };
 
 function RenderSkillIcon({ name }) {
@@ -113,26 +155,40 @@ function SkillGroup({ title, list, index }) {
         {title}
       </h3>
       <ul className="flex flex-wrap gap-2">
-        {list.map((s, idx) => (
-          <li 
-            key={s.name} 
-            className="flex items-center gap-2 hover-scale transition-transform"
-            style={{ animationDelay: `${idx * 50}ms` }}
-          >
+        {list.map((s, idx) => {
+          const url = SKILL_URLS[s.name];
+          const SkillContent = (
             <span className="code relative overflow-hidden group inline-flex items-center gap-1.5">
               <RenderSkillIcon name={s.name} />
               <span className="relative z-10">{s.name}</span>
+              {url && <span className="text-xs opacity-0 group-hover:opacity-100 transition-opacity">🔗</span>}
               {/* Progress bar basado en level */}
               <div 
                 className="absolute bottom-0 left-0 h-0.5 bg-primary transition-all duration-500 group-hover:h-full group-hover:opacity-10"
                 style={{ width: `${s.level}%` }}
               ></div>
             </span>
-            <span className="text-xs font-semibold text-primary dark:text-blue-400">
-              {s.level}%
-            </span>
-          </li>
-        ))}
+          );
+
+          return (
+            <li 
+              key={s.name} 
+              className="flex items-center gap-2 hover-scale transition-transform"
+              style={{ animationDelay: `${idx * 50}ms` }}
+            >
+              {url ? (
+                <a href={url} target="_blank" rel="noopener noreferrer" className="no-underline">
+                  {SkillContent}
+                </a>
+              ) : (
+                SkillContent
+              )}
+              <span className="text-xs font-semibold text-primary dark:text-blue-400">
+                {s.level}%
+              </span>
+            </li>
+          );
+        })}
       </ul>
     </div>
   );

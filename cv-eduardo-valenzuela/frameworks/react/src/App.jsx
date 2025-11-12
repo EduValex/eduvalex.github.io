@@ -4,6 +4,7 @@ import { AboutSection } from './components/sections/About.jsx';
 import { ExperienceSection } from './components/sections/Experience.jsx';
 import { ProjectsSection } from './components/sections/Projects.jsx';
 import { SkillsSection } from './components/sections/Skills.jsx';
+import { ServicesSection } from './components/sections/Services.jsx';
 import { ContactSection } from './components/sections/Contact.jsx';
 import { CursorEffect } from './components/CursorEffect.jsx';
 import { ScrollProgress } from './components/ScrollProgress.jsx';
@@ -22,6 +23,7 @@ function App() {
         {/* Contenedor con márgenes laterales desde "Sobre mí" hacia abajo */}
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
           <AboutSection />
+          <ServicesSection />
           <ExperienceSection />
           <ProjectsSection />
           <SkillsSection />
