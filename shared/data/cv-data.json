@@ -257,7 +257,11 @@
       { "name": "Google Analytics", "level": 85 },
       { "name": "Google Search Console", "level": 80 },
       { "name": "PageSpeed Insights", "level": 80 },
-      { "name": "Google Trends", "level": 75 }
+      { "name": "Google Trends", "level": 75 },
+      { "name": "Vercel", "level": 80 },
+      { "name": "Render", "level": 75 },
+      { "name": "Railway", "level": 70 },
+      { "name": "Heroku", "level": 75 }
       ],
       "ai": [
         { "name": "ChatGPT", "level": 95 },
