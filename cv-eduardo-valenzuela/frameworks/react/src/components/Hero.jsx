@@ -14,16 +14,7 @@ export function Hero() {
   ];
   const typedText = useTypingEffect(roles, 100, 50, 2000);
   
-  const handleDownloadCV = () => {
-    // Placeholder: cuando tengas el PDF, colócalo en /shared/assets/cv-eduardo-valenzuela.pdf
-    const cvUrl = '/shared/assets/cv-eduardo-valenzuela.pdf';
-    const link = document.createElement('a');
-    link.href = cvUrl;
-    link.download = 'CV-Eduardo-Valenzuela.pdf';
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
-  };
+  const cvUrl = '/shared/assets/cv-eduardo-valenzuela.pdf';
 
   return (
     <section className="panel p-6 mt-6 flex flex-col md:flex-row items-center gap-6 animate-fade-in relative overflow-hidden">
@@ -53,14 +44,17 @@ export function Hero() {
         <p className="mt-2 text-slate-600 dark:text-slate-300">{personal.tagline}</p>
         
         <div className="flex flex-wrap gap-3 mt-4 justify-center md:justify-start">
-          <button
-            onClick={handleDownloadCV}
+          <a
+            href={cvUrl}
+            download
+            target="_blank"
+            rel="noopener noreferrer"
             className="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg bg-primary text-white font-medium hover:bg-primary-dark transition-all hover-lift shadow-md"
             title="Descargar CV en PDF"
           >
             <span className="animate-bounce">📄</span>
             Descargar CV
-          </button>
+          </a>
           
           <a
             href="#contact"

@@ -1,5 +1,39 @@
 import data from '@data/cv-data.json';
 
+const skillIcons = {
+  'HTML': '🟧',
+  'CSS': '🟦',
+  'JavaScript/ES6+': '🟨',
+  'JavaScript': '🟨',
+  'TypeScript': '🔷',
+  'React.js': '⚛️',
+  'React': '⚛️',
+  'Vue.js': '💚',
+  'Angular': '🅰️',
+  'Tailwind CSS': '🎨',
+  'Bootstrap': '🅱️',
+  'WordPress': '🧩',
+  'Shopify': '🛍️',
+  'Node.js': '🟢',
+  'Express': '🚂',
+  'Python': '🐍',
+  'Django': '🟩',
+  'Flask': '🧪',
+  'Ruby on Rails': '💎',
+  'Ruby': '💎',
+  'PHP': '💜',
+  'Yii Framework': '🎴',
+  'PostgreSQL': '🐘',
+  'MySQL': '🐬',
+  'Git': '🔧',
+  'AWS': '☁️',
+  'Docker': '🐳',
+  'REST APIs': '🔗',
+  'REST API': '🔗',
+  'SEO': '🔍',
+  'Zoho CRM': '📇',
+};
+
 function SkillGroup({ title, list, index }) {
   return (
     <div 
@@ -17,7 +51,10 @@ function SkillGroup({ title, list, index }) {
             className="flex items-center gap-2 hover-scale transition-transform"
             style={{ animationDelay: `${idx * 50}ms` }}
           >
-            <span className="code relative overflow-hidden group">
+            <span className="code relative overflow-hidden group inline-flex items-center gap-1">
+              {skillIcons[s.name] && (
+                <span aria-hidden="true">{skillIcons[s.name]}</span>
+              )}
               <span className="relative z-10">{s.name}</span>
               {/* Progress bar basado en level */}
               <div 

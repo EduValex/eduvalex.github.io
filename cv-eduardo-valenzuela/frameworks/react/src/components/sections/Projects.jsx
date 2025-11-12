@@ -1,23 +1,41 @@
 import { useMemo, useState } from 'react';
 import data from '@data/cv-data.json';
 
-// Iconos simples por tecnología
+// Iconos simples por tecnología (emoji/lightweight)
 const techIcons = {
+  'HTML': '🟧',
+  'CSS': '🟦',
+  'JavaScript': '🟨',
+  'TypeScript': '🔷',
   'React': '⚛️',
   'Vue.js': '💚',
+  'Angular': '🅰️',
   'Node.js': '🟢',
-  'PostgreSQL': '🐘',
-  'TypeScript': '🔷',
-  'JavaScript': '🟨',
-  'Tailwind CSS': '🎨',
   'Express': '�',
-  'Python': '�',
-  'Docker': '�',
-  'AWS': '☁️',
-  'Nuxt.js': '�',
-  'Ruby on Rails': '�',
+  'Tailwind CSS': '🎨',
   'Bootstrap': '🅱️',
-  'WooCommerce': '🛒',
+  'WordPress': '🧩',
+  'WooCommerce': '�',
+  'Shopify': '�️',
+  'PHP': '💜',
+  'Ruby': '💎',
+  'Ruby on Rails': '💎',
+  'Python': '🐍',
+  'Django': '🟩',
+  'Flask': '🧪',
+  'Nuxt.js': '🟩',
+  'PostgreSQL': '🐘',
+  'MySQL': '🐬',
+  'Redis': '🔴',
+  'Celery': '🥬',
+  'JWT': '🔑',
+  'REST API': '🔗',
+  'CORS': '🛡️',
+  'Docker': '🐳',
+  'AWS': '☁️',
+  'Google Analytics': '📈',
+  'Instagram API': '📸',
+  'React Router': '🧭',
 };
 
 // Iconos por categoría

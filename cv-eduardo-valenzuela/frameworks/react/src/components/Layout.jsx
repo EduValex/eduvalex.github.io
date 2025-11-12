@@ -41,7 +41,7 @@ export function Layout({ children }) {
   return (
     <div className="min-h-screen flex flex-col">
       <header className="sticky top-0 z-40 backdrop-blur bg-white/75 dark:bg-slate-900/75 border-b border-slate-200 dark:border-slate-700">
-        <div className="container-responsive py-3 flex items-center justify-between">
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-3 flex items-center justify-between">
           <div className="flex items-center gap-3" aria-label={personal?.name || 'Portfolio'}>
             <div className="w-9 h-9 rounded-full bg-primary text-white flex items-center justify-center font-bold" title={personal?.name}>
               {initials}
@@ -58,7 +58,8 @@ export function Layout({ children }) {
           </div>
         </div>
       </header>
-      <main className="flex-1 container-responsive py-10 flex flex-col gap-12">
+      {/* El contenido principal se envuelve (desde About en adelante) en App.jsx */}
+      <main className="flex-1 py-10 flex flex-col gap-12">
         {children}
       </main>
       <footer className="mt-16 py-8 text-center text-sm text-slate-500 dark:text-slate-400">

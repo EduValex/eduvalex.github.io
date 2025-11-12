@@ -19,11 +19,14 @@ function App() {
       
       <Layout>
         <Hero />
-        <AboutSection />
-        <ExperienceSection />
-        <ProjectsSection />
-        <SkillsSection />
-        <ContactSection />
+        {/* Contenedor con márgenes laterales desde "Sobre mí" hacia abajo */}
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+          <AboutSection />
+          <ExperienceSection />
+          <ProjectsSection />
+          <SkillsSection />
+          <ContactSection />
+        </div>
       </Layout>
     </>
   );
