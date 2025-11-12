@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Eduardo Valenzuela - CV Multi-Framework</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        
+        .container {
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            padding: 60px 40px;
+            max-width: 800px;
+            width: 100%;
+            text-align: center;
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+            color: #2d3748;
+            margin-bottom: 10px;
+        }
+        
+        .subtitle {
+            font-size: 1.25rem;
+            color: #718096;
+            margin-bottom: 40px;
+        }
+        
+        .description {
+            color: #4a5568;
+            margin-bottom: 50px;
+            line-height: 1.6;
+        }
+        
+        .frameworks {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+        
+        .framework-card {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 30px 20px;
+            border-radius: 15px;
+            cursor: pointer;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            text-decoration: none;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .framework-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.4);
+        }
+        
+        .framework-card.react {
+            background: linear-gradient(135deg, #61dafb 0%, #282c34 100%);
+        }
+        
+        .framework-card.vue {
+            background: linear-gradient(135deg, #42b983 0%, #35495e 100%);
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+        
+        .framework-card.vanilla {
+            background: linear-gradient(135deg, #f7df1e 0%, #323330 100%);
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+        
+        .framework-icon {
+            font-size: 3rem;
+        }
+        
+        .framework-name {
+            font-size: 1.25rem;
+            font-weight: bold;
+        }
+        
+        .framework-status {
+            font-size: 0.875rem;
+            opacity: 0.9;
+        }
+        
+        .footer {
+            margin-top: 40px;
+            color: #718096;
+            font-size: 0.875rem;
+        }
+        
+        .footer a {
+            color: #667eea;
+            text-decoration: none;
+        }
+        
+        .footer a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Eduardo Valenzuela</h1>
+        <p class="subtitle">Full Stack Developer</p>
+        
+        <p class="description">
+            Este CV está construido con múltiples frameworks para demostrar versatilidad técnica. 
+            Selecciona tu framework preferido para ver el mismo contenido en diferentes tecnologías.
+        </p>
+        
+        <div class="frameworks">
+            <a href="./frameworks/react/index.html" class="framework-card react">
+                <div class="framework-icon">⚛️</div>
+                <div class="framework-name">React</div>
+                <div class="framework-status">✅ Disponible</div>
+            </a>
+            
+            <div class="framework-card vue">
+                <div class="framework-icon">💚</div>
+                <div class="framework-name">Vue.js</div>
+                <div class="framework-status">🚧 Próximamente</div>
+            </div>
+            
+            <div class="framework-card vanilla">
+                <div class="framework-icon">📜</div>
+                <div class="framework-name">Vanilla JS</div>
+                <div class="framework-status">🚧 Próximamente</div>
+            </div>
+        </div>
+        
+        <div class="footer">
+            <p>Hecho con ❤️ por Eduardo Valenzuela</p>
+            <p>
+                <a href="https://github.com/eduvalex" target="_blank">GitHub</a> · 
+                <a href="https://linkedin.com/in/eduardo-valenzuela" target="_blank">LinkedIn</a>
+            </p>
+        </div>
+    </div>
+    
+    <script>
+        // Auto-redirect si ya hay una preferencia guardada
+        const preferredFramework = localStorage.getItem('preferred-framework');
+        if (preferredFramework && preferredFramework === 'react') {
+            // Esperar 2 segundos antes de redirect para que vean el switcher
+            setTimeout(() => {
+                window.location.href = './frameworks/react/index.html';
+            }, 2000);
+        }
+    </script>
+</body>
+</html>
