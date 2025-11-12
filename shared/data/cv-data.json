@@ -221,6 +221,7 @@
       { "name": "JavaScript/ES6+", "level": 95 },
       { "name": "HTML/CSS", "level": 95 },
       { "name": "Tailwind CSS", "level": 85 },
+      { "name": "Bootstrap", "level": 80 },
       { "name": "WordPress", "level": 90 },
       { "name": "Shopify", "level": 80 },
       { "name": "Angular", "level": 70 },
@@ -238,23 +239,33 @@
     ],
     "tools": [
       { "name": "Git", "level": 90 },
+      { "name": "GitHub", "level": 90 },
       { "name": "PostgreSQL", "level": 85 },
       { "name": "MySQL", "level": 85 },
       { "name": "SEO", "level": 85 },
+      { "name": "SEO Audits", "level": 85 },
       { "name": "Zoho CRM", "level": 75 },
         { "name": "REST APIs", "level": 90 },
         { "name": "Docker", "level": 70 },
         { "name": "AWS", "level": 65 },
         { "name": "Jira", "level": 80 },
         { "name": "Trello", "level": 85 },
-        { "name": "Monday", "level": 75 }
+      { "name": "Monday", "level": 75 },
+      { "name": "Postman", "level": 85 },
+      { "name": "SEMrush", "level": 80 },
+      { "name": "Wix", "level": 70 },
+      { "name": "Google Analytics", "level": 85 },
+      { "name": "Google Search Console", "level": 80 },
+      { "name": "PageSpeed Insights", "level": 80 },
+      { "name": "Google Trends", "level": 75 }
       ],
       "ai": [
         { "name": "ChatGPT", "level": 95 },
         { "name": "Claude AI", "level": 95 },
         { "name": "GitHub Copilot", "level": 90 },
         { "name": "Google Gemini", "level": 85 },
-        { "name": "Loveable AI", "level": 80 }
+      { "name": "Loveable AI", "level": 80 },
+      { "name": "Asistentes IA Personalizados", "level": 85 }
     ]
   },
 
