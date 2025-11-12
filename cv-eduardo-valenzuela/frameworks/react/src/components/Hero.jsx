@@ -1,23 +1,24 @@
 import data from '@data/cv-data.json';
 import { LazyImage } from './LazyImage.jsx';
 import { useTypingEffect } from '../hooks/useTypingEffect.js';
+import { useTranslation } from '../hooks/useTranslation.js';
 
 export function Hero() {
   const { personal } = data;
+  const { t } = useTranslation();
   
   // Efecto de typing para el título
-  const roles = [
-    personal.title,
-    'Full Stack Developer',
-    'WordPress Expert',
-    'UI/UX Enthusiast'
-  ];
+  const roles = t('hero.roles');
   const typedText = useTypingEffect(roles, 100, 50, 2000);
   
   const cvUrl = '/shared/assets/cv-eduardo-valenzuela.pdf';
   const handleGeneratePDF = () => {
     // Usa el diálogo de impresión del navegador (Guardar como PDF)
-    try { window.print(); } catch {}
+    try { window.print(); } catch (e) {
+      if (import.meta.env.DEV) {
+        console.warn('Print dialog failed:', e);
+      }
+    }
   };
 
   return (
@@ -51,10 +52,10 @@ export function Hero() {
           <button
             onClick={handleGeneratePDF}
             className="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg bg-primary text-white font-medium hover:bg-primary-dark transition-all hover-lift shadow-md print:hidden"
-            title="Generar PDF desde la página"
+            title={t('hero.generatePDF')}
           >
             <span>🖨️</span>
-            Generar PDF
+            {t('hero.generatePDF')}
           </button>
 
           <a
@@ -63,10 +64,10 @@ export function Hero() {
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg bg-primary text-white font-medium hover:bg-primary-dark transition-all hover-lift shadow-md"
-            title="Descargar CV en PDF"
+            title={t('hero.downloadCV')}
           >
             <span className="animate-bounce">📄</span>
-            Descargar CV
+            {t('hero.downloadCV')}
           </a>
           
           <a
@@ -74,7 +75,7 @@ export function Hero() {
             className="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg border-2 border-primary text-primary font-medium hover:bg-primary hover:text-white transition-all hover-lift shadow-md"
           >
             <span>💬</span>
-            Contactar
+            {t('hero.contact')}
           </a>
         </div>
       </div>

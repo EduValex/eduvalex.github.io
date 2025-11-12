@@ -21,7 +21,9 @@
 - 📊 **Data-Driven**: Toda la información en `shared/data/cv-data.json`
 - 📧 **Formulario Contacto**: Integración con EmailJS (sin backend)
 - 🎬 **Animaciones**: Scroll reveal y transiciones suaves
-- � **SEO Optimizado**: Meta tags, Open Graph, sitemap
+- 🌐 **SEO Optimizado**: Meta tags, Open Graph, sitemap
+- 🌍 **i18n**: Español/Inglés con switch en navbar
+- 🧩 **Íconos oficiales**: Logos de tecnologías (Simple Icons) en Skills, Projects y Experience
 - ♿ **Accesible**: Semántica HTML correcta
 
 ## 🚀 Quick Start
@@ -224,6 +226,10 @@ npm run deploy
 - [x] Animaciones y transiciones
 - [x] Lazy loading de imágenes
 - [x] Deploy a GitHub Pages
+- [x] i18n ES/EN y Language Toggle
+- [x] Íconos de tecnologías y empresas en Experience
+- [x] Card de IA (ChatGPT, Claude, Copilot, Gemini, Loveable)
+- [x] Orden de proyectos: Full Stack primero, luego WordPress (y destacados primero por categoría)
 
 ### 🚧 En progreso
 - [ ] Agregar assets (fotos, imágenes de proyectos)
@@ -269,7 +275,7 @@ MIT License - ve [LICENSE](LICENSE) para más detalles.
 
 ---
 
-## � Documentación Adicional
+## 📚 Documentación Adicional
 
 - [Guía EmailJS](./docs/GUIA_EMAILJS_RAPIDA.md) - Configuración paso a paso
 - [Mejoras Implementadas](./docs/MEJORAS_IMPLEMENTADAS.md) - Changelog detallado

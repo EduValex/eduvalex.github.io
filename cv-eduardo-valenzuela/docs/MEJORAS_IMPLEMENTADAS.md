@@ -1,6 +1,18 @@
 # ✅ Mejoras Implementadas - CV Eduardo Valenzuela
 
-## 🎉 ¿Qué se agregó?
+## � Cambios recientes (Nov 2025)
+
+1. 🌍 i18n completo ES/EN con Language Toggle en navbar.
+2. 🧩 Íconos oficiales (Simple Icons) en Skills, Projects y Experience; fallbacks con emojis cuando aplica.
+3. 🧠 Nueva card "IA & Asistentes" en Skills: ChatGPT, Claude, GitHub Copilot, Google Gemini, Loveable.
+4. 🧱 Grid de Skills ajustado a 2x2 (mejor equilibrio visual).
+5. 🧭 Proyectos: en "Todos" ahora aparecen primero Full Stack y luego WordPress; dentro de cada categoría, los destacados arriba.
+6. 🛠️ Experience: chips de tecnologías ahora muestran ícono (WordPress, PHP, MySQL, Rails, etc.).
+7. 📝 Sobre mí: lectura en 1 columna con highlights con iconos.
+8. 🗂️ Proyectos ajustados: creasmile/creabord como catálogos (sin WooCommerce) y textos actualizados.
+9. 📇 Contacto actualizado: valenzuela.edo@gmail.com y +56929646969.
+
+## �🎉 ¿Qué se agregó?
 
 ### 1. 📧 Formulario de Contacto Funcional
 **Ubicación:** `frameworks/react/src/components/sections/Contact.jsx`

@@ -4,73 +4,14 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Eduardo Valenzuela - Full Stack Developer</title>
-    <style>
-      * { margin: 0; padding: 0; box-sizing: border-box; }
-      body {
-        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-        min-height: 100vh; display: flex; align-items: center; justify-content: center; padding: 20px;
-      }
-      .container { background: white; border-radius: 20px; box-shadow: 0 20px 60px rgba(0,0,0,0.3); padding: 60px 40px; max-width: 800px; width: 100%; text-align: center; }
-      h1 { font-size: 2.2rem; color: #2d3748; margin-bottom: 10px; }
-      .subtitle { font-size: 1.1rem; color: #718096; margin-bottom: 30px; }
-      .description { color: #4a5568; margin-bottom: 40px; line-height: 1.6; }
-      .frameworks { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; margin-bottom: 30px; }
-      .framework-card { background: linear-gradient(135deg, #61dafb 0%, #282c34 100%); color: white; padding: 26px 18px; border-radius: 15px; cursor: pointer; transition: transform .2s, box-shadow .2s; text-decoration: none; display: flex; flex-direction: column; align-items: center; gap: 10px; }
-      .framework-card:hover { transform: translateY(-3px); box-shadow: 0 10px 30px rgba(0,0,0,.25); }
-      .framework-card.vue { background: linear-gradient(135deg, #42b983 0%, #35495e 100%); opacity: .45; cursor: not-allowed; }
-      .framework-card.vanilla { background: linear-gradient(135deg, #f7df1e 0%, #323330 100%); opacity: .45; cursor: not-allowed; }
-      .framework-icon { font-size: 2.4rem; }
-      .framework-name { font-size: 1.1rem; font-weight: 700; }
-      .framework-status { font-size: .85rem; opacity: .9; }
-      .footer { margin-top: 20px; color: #718096; font-size: .9rem; }
-      .footer a { color: #667eea; text-decoration: none; }
-      .footer a:hover { text-decoration: underline; }
-    </style>
+    <meta http-equiv="refresh" content="0; url=./frameworks/react/index.html">
+    <script>
+      // Redirect inmediato a React
+      window.location.replace('./frameworks/react/index.html');
+    </script>
   </head>
   <body>
-    <div class="container">
-      <h1>Eduardo Valenzuela</h1>
-      <p class="subtitle">Full Stack Developer</p>
-      <p class="description">Este CV está construido con múltiples frameworks para demostrar versatilidad técnica. Selecciona tu framework preferido.</p>
-      <div class="frameworks">
-        <a id="go-react" href="./frameworks/react/index.html" class="framework-card react" title="Abrir versión React">
-          <div class="framework-icon">⚛️</div>
-          <div class="framework-name">React</div>
-          <div class="framework-status">✅ Disponible</div>
-        </a>
-        <div class="framework-card vue" title="Próximamente">
-          <div class="framework-icon">💚</div>
-          <div class="framework-name">Vue.js</div>
-          <div class="framework-status">🚧 Próximamente</div>
-        </div>
-        <div class="framework-card vanilla" title="Próximamente">
-          <div class="framework-icon">📜</div>
-          <div class="framework-name">Vanilla JS</div>
-          <div class="framework-status">🚧 Próximamente</div>
-        </div>
-      </div>
-      <div class="footer">
-        <p>Hecho con ❤️ por Eduardo Valenzuela</p>
-        <p>
-          <a href="https://github.com/eduvalex" target="_blank" rel="noreferrer">GitHub</a>
-          ·
-          <a href="https://linkedin.com/in/eduardo-valenzuela" target="_blank" rel="noreferrer">LinkedIn</a>
-        </p>
-      </div>
-    </div>
-    <script>
-      // Guardar preferencia al elegir React
-      document.getElementById('go-react')?.addEventListener('click', () => {
-        try { localStorage.setItem('preferred-framework', 'react'); } catch {}
-      });
-      // Auto-redirect si ya hay preferencia guardada
-      try {
-        const preferred = localStorage.getItem('preferred-framework');
-        if (preferred === 'react') {
-          setTimeout(() => { window.location.href = './frameworks/react/index.html'; }, 800);
-        }
-      } catch {}
-    </script>
+    <p>Redirigiendo a la aplicación React...</p>
+    <p>Si no se redirige automáticamente, <a href="./frameworks/react/index.html">haz clic aquí</a>.</p>
   </body>
 </html>
