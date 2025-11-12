@@ -74,53 +74,77 @@
 
   "education": [
     {
-      "institution": "Universidad de Chile",
-      "degree": "Ingeniería Civil en Computación",
-      "field": "Computer Science",
-      "period": "2016 - 2021",
-      "description": "Especialización en desarrollo de software y algoritmos. Proyecto de título: Sistema de recomendación con Machine Learning."
+      "institution": "Fondo Talento Digital para Chile",
+      "degree": "Desarrollo Ruby on Rails para Emprendimientos de Tipo Start-Up",
+      "field": "Ingeniería Informática",
+      "period": "Abr 2023 - Ago 2024",
+      "description": "Programa intensivo de desarrollo Full Stack con Ruby on Rails."
+    },
+    {
+      "institution": "edutecno",
+      "degree": "Desarrollo de Aplicaciones Full Stack Python Trainee",
+      "field": "Desarrollo Web",
+      "period": "May 2023 - Oct 2023",
+      "description": "Curso de capacitación de 393 horas en desarrollo Full Stack con Python, Django, PostgreSQL."
+    },
+    {
+      "institution": "Duoc UC",
+      "degree": "Ingeniería en Informática",
+      "field": "Desarrollo de Software",
+      "period": "2012 - 2016",
+      "description": "Formación en desarrollo de software, bases de datos y arquitectura de sistemas."
     }
   ],
 
   "projects": [
     {
-      "name": "E-Commerce Platform",
-      "description": "Plataforma completa de comercio electrónico con carrito, pagos y admin panel",
-      "longDescription": "Desarrollo full-stack de plataforma e-commerce escalable con React, Node.js, PostgreSQL y Stripe. Incluye sistema de inventario, procesamiento de pagos, panel de administración y analytics.",
-      "image": "/shared/assets/images/projects/ecommerce.jpg",
-      "technologies": ["React", "Node.js", "PostgreSQL", "Stripe", "Redux", "Tailwind CSS"],
-      "github": "https://github.com/tu-usuario/ecommerce-platform",
-      "demo": "https://demo-ecommerce.vercel.app",
+      "name": "CV Multi-Framework Portfolio",
+      "description": "Portfolio interactivo que se puede visualizar en múltiples frameworks (React, Vue, Vanilla JS) con una única fuente de datos",
+      "longDescription": "Proyecto arquitectónico que demuestra versatilidad técnica mediante la implementación del mismo CV en diferentes tecnologías. Utiliza principio de Single Source of Truth con datos centralizados en JSON, deploy automatizado con GitHub Actions y diseño responsive con Tailwind CSS.",
+      "image": "/shared/assets/images/projects/cv-multi.jpg",
+      "technologies": ["React", "Vue.js", "Vite", "Tailwind CSS", "GitHub Pages", "JavaScript"],
+      "github": "https://github.com/eduvalex/eduvalex.github.io",
+      "demo": "https://eduvalex.github.io",
       "featured": true
     },
     {
-      "name": "Task Management App",
-      "description": "Aplicación de gestión de tareas colaborativa en tiempo real",
-      "longDescription": "App tipo Trello/Asana con drag & drop, colaboración en tiempo real con WebSockets, notificaciones y sistema de permisos. Built with Vue.js y Firebase.",
-      "image": "/shared/assets/images/projects/task-app.jpg",
-      "technologies": ["Vue.js", "Firebase", "Vuex", "WebSockets", "Tailwind CSS"],
-      "github": "https://github.com/tu-usuario/task-manager",
-      "demo": "https://task-manager-demo.web.app",
+      "name": "creasmile.cl - Sitio Corporativo",
+      "description": "Desarrollo completo de plataforma web corporativa con WordPress, optimización SEO y mejora de rendimiento del 50%",
+      "longDescription": "Lideré el desarrollo completo de la plataforma web utilizando WordPress, entregando un sitio moderno, autoadministrable y escalable. Implementé estrategia de SEO On-Page completa desde investigación de palabras clave hasta optimización de contenido. Realicé optimización exhaustiva reduciendo tiempo de carga en más de 50%.",
+      "image": "/shared/assets/images/projects/creasmile.jpg",
+      "technologies": ["WordPress", "PHP", "SEO", "MySQL", "JavaScript", "CSS"],
+      "github": "",
+      "demo": "https://creasmile.cl",
       "featured": true
     },
     {
-      "name": "Weather Dashboard",
-      "description": "Dashboard meteorológico con visualización de datos y pronósticos",
-      "longDescription": "Dashboard interactivo que consume API de OpenWeather para mostrar clima actual, pronósticos y datos históricos con gráficos. Progressive Web App con funcionalidad offline.",
-      "image": "/shared/assets/images/projects/weather.jpg",
-      "technologies": ["React", "Chart.js", "OpenWeather API", "Service Workers", "PWA"],
-      "github": "https://github.com/tu-usuario/weather-dashboard",
-      "demo": "https://weather-dash.netlify.app",
-      "featured": false
+      "name": "Plugin WordPress Personalizado",
+      "description": "Plugin WordPress para prueba técnica WPMUDEV con integración de Google Drive API y React",
+      "longDescription": "Plugin WordPress profesional desarrollado como prueba técnica. Incluye interfaz React moderna con i18n, sistema completo de autenticación OAuth 2.0 con Google Drive API, manejo de archivos (upload/download/list), dark mode, REST API endpoints, y procesamiento en background. Implementa WPCS (WordPress Coding Standards), arquitectura PSR-4, y optimización de paquetes.",
+      "image": "/shared/assets/images/projects/wp-plugin.jpg",
+      "technologies": ["WordPress", "React", "PHP", "Google Drive API", "OAuth 2.0", "REST API", "Webpack", "SCSS"],
+      "github": "https://github.com/EduValex/wpmudev-plugin-test",
+      "demo": "",
+      "featured": true
     },
     {
-      "name": "Blog Engine",
-      "description": "Motor de blog con Markdown, CMS headless y SEO optimizado",
-      "longDescription": "Sistema de blog completo con editor Markdown, generación de sitios estáticos, CMS headless con Contentful, y optimizaciones SEO. Desplegado en Vercel con regeneración incremental.",
-      "image": "/shared/assets/images/projects/blog.jpg",
-      "technologies": ["Next.js", "Contentful", "MDX", "Vercel", "SEO", "Analytics"],
-      "github": "https://github.com/tu-usuario/blog-engine",
-      "demo": "https://blog-demo.vercel.app",
+      "name": "Sorteo San Valentín - CTS Turismo",
+      "description": "Sistema Full Stack de gestión de sorteos con autenticación JWT, verificación de email, panel admin y procesamiento asíncrono con Celery",
+      "longDescription": "Sistema Full Stack para gestionar sorteos con registro de participantes, verificación de email mediante tokens, y panel administrativo. Backend Django REST con autenticación JWT, procesamiento asíncrono de emails con Celery + Redis (modo síncrono fallback), suite completa de 40+ tests unitarios y de integración. Frontend Nuxt.js 3 con TypeScript, Tailwind CSS, SweetAlert2 y efectos confetti. Implementa arquitectura desacoplada, graceful degradation para emails, y flujo completo desde registro hasta notificación de ganadores.",
+      "image": "/shared/assets/images/projects/sorteo-sv.jpg",
+      "technologies": ["Django", "Python", "Nuxt.js", "TypeScript", "Celery", "Redis", "PostgreSQL", "JWT", "Tailwind CSS", "REST API"],
+      "github": "https://github.com/EduValex/sorteo-san-valentin",
+      "demo": "https://sorteo-san-valentin.vercel.app",
+      "featured": true
+    },
+    {
+      "name": "Catálogo de Hierbas Medicinales",
+      "description": "Aplicación web full-stack con Ruby on Rails para catálogo interactivo de plantas medicinales",
+      "longDescription": "Desarrollé aplicación web completa desde concepto inicial hasta despliegue. Sistema CRUD con Ruby on Rails, base de datos PostgreSQL, autenticación de usuarios y panel de administración. Diseño responsive y búsqueda avanzada de plantas.",
+      "image": "/shared/assets/images/projects/hierbas.jpg",
+      "technologies": ["Ruby on Rails", "PostgreSQL", "Bootstrap", "JavaScript", "Heroku"],
+      "github": "",
+      "demo": "",
       "featured": false
     }
   ],
@@ -166,16 +190,20 @@
 
   "certifications": [
     {
-      "name": "AWS Certified Developer - Associate",
-      "issuer": "Amazon Web Services",
-      "date": "Mar 2023",
-      "url": "https://aws.amazon.com/certification/"
+      "name": "Desarrollo de Aplicaciones Full Stack Python Trainee V2.0",
+      "issuer": "Sence Chile",
+      "date": "Nov 2024",
+      "credentialId": "B8B5682B-3316-47EE-836A-68D0111EE883",
+      "url": "",
+      "skills": ["Python", "PostgreSQL", "Django", "HTML", "CSS", "JavaScript"]
     },
     {
-      "name": "React - The Complete Guide",
-      "issuer": "Udemy - Maximilian Schwarzmüller",
-      "date": "Ene 2022",
-      "url": "https://www.udemy.com/course/react-the-complete-guide/"
+      "name": "Desarrollo Ruby on Rails para Emprendimientos de Tipo Start-Up",
+      "issuer": "Talento Digital para Chile",
+      "date": "Feb 2024",
+      "credentialId": "60ba72cc-b541-4328-a633-0e21af1a14fc",
+      "url": "",
+      "skills": ["Ruby on Rails", "PostgreSQL", "JavaScript"]
     }
   ],
 
