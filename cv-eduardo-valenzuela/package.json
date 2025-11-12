@@ -1,0 +1,29 @@
+{
+  "name": "eduvalex-portfolio",
+  "version": "1.0.0",
+  "description": "CV Eduardo Valenzuela - Multi-Framework Portfolio",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "cd frameworks/react && npm run dev",
+    "build": "cd frameworks/react && npm run build",
+    "preview": "cd frameworks/react && npm run preview",
+    "deploy": "npm run build && gh-pages -d frameworks/react/dist",
+    "predeploy": "npm run build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/eduvalex/eduvalex.github.io.git"
+  },
+  "keywords": [
+    "cv",
+    "portfolio",
+    "react",
+    "multi-framework"
+  ],
+  "author": "Eduardo Valenzuela",
+  "license": "MIT",
+  "devDependencies": {
+    "gh-pages": "^6.1.1"
+  }
+}

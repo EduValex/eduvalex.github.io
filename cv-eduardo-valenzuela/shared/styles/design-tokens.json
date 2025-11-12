@@ -1,0 +1,148 @@
+{
+  "colors": {
+    "primary": "#3b82f6",
+    "primaryDark": "#2563eb",
+    "primaryLight": "#60a5fa",
+    
+    "secondary": "#8b5cf6",
+    "secondaryDark": "#7c3aed",
+    "secondaryLight": "#a78bfa",
+    
+    "accent": "#06b6d4",
+    "accentDark": "#0891b2",
+    "accentLight": "#22d3ee",
+    
+    "success": "#10b981",
+    "warning": "#f59e0b",
+    "error": "#ef4444",
+    "info": "#3b82f6",
+    
+    "light": {
+      "background": "#ffffff",
+      "backgroundAlt": "#f9fafb",
+      "surface": "#ffffff",
+      "surfaceAlt": "#f3f4f6",
+      "border": "#e5e7eb",
+      "text": {
+        "primary": "#1f2937",
+        "secondary": "#6b7280",
+        "tertiary": "#9ca3af",
+        "inverse": "#ffffff"
+      }
+    },
+    
+    "dark": {
+      "background": "#0f172a",
+      "backgroundAlt": "#1e293b",
+      "surface": "#1e293b",
+      "surfaceAlt": "#334155",
+      "border": "#334155",
+      "text": {
+        "primary": "#f1f5f9",
+        "secondary": "#cbd5e1",
+        "tertiary": "#94a3b8",
+        "inverse": "#0f172a"
+      }
+    }
+  },
+
+  "typography": {
+    "fontFamily": {
+      "heading": "'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif",
+      "body": "'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif",
+      "mono": "'Fira Code', 'Courier New', monospace"
+    },
+    "fontSize": {
+      "xs": "0.75rem",
+      "sm": "0.875rem",
+      "base": "1rem",
+      "lg": "1.125rem",
+      "xl": "1.25rem",
+      "2xl": "1.5rem",
+      "3xl": "1.875rem",
+      "4xl": "2.25rem",
+      "5xl": "3rem",
+      "6xl": "3.75rem"
+    },
+    "fontWeight": {
+      "normal": 400,
+      "medium": 500,
+      "semibold": 600,
+      "bold": 700,
+      "extrabold": 800
+    },
+    "lineHeight": {
+      "tight": 1.25,
+      "normal": 1.5,
+      "relaxed": 1.75
+    }
+  },
+
+  "spacing": {
+    "unit": "0.25rem",
+    "xs": "0.5rem",
+    "sm": "0.75rem",
+    "md": "1rem",
+    "lg": "1.5rem",
+    "xl": "2rem",
+    "2xl": "3rem",
+    "3xl": "4rem",
+    "4xl": "6rem"
+  },
+
+  "borderRadius": {
+    "none": "0",
+    "sm": "0.25rem",
+    "md": "0.5rem",
+    "lg": "0.75rem",
+    "xl": "1rem",
+    "2xl": "1.5rem",
+    "full": "9999px"
+  },
+
+  "shadows": {
+    "sm": "0 1px 2px 0 rgba(0, 0, 0, 0.05)",
+    "md": "0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)",
+    "lg": "0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05)",
+    "xl": "0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)",
+    "2xl": "0 25px 50px -12px rgba(0, 0, 0, 0.25)",
+    "inner": "inset 0 2px 4px 0 rgba(0, 0, 0, 0.06)"
+  },
+
+  "transitions": {
+    "fast": "150ms",
+    "normal": "300ms",
+    "slow": "500ms",
+    "easings": {
+      "default": "cubic-bezier(0.4, 0, 0.2, 1)",
+      "in": "cubic-bezier(0.4, 0, 1, 1)",
+      "out": "cubic-bezier(0, 0, 0.2, 1)",
+      "inOut": "cubic-bezier(0.4, 0, 0.2, 1)"
+    }
+  },
+
+  "breakpoints": {
+    "sm": "640px",
+    "md": "768px",
+    "lg": "1024px",
+    "xl": "1280px",
+    "2xl": "1536px"
+  },
+
+  "zIndex": {
+    "base": 0,
+    "dropdown": 10,
+    "sticky": 20,
+    "fixed": 30,
+    "overlay": 40,
+    "modal": 50,
+    "popover": 60,
+    "tooltip": 70
+  },
+
+  "maxWidth": {
+    "container": "1280px",
+    "content": "1024px",
+    "text": "65ch"
+  }
+}

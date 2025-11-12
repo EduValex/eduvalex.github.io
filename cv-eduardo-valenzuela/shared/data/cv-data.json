@@ -1,0 +1,177 @@
+{
+  "personal": {
+    "name": "Eduardo Valenzuela",
+    "title": "Full Stack Developer",
+    "email": "eduardo.valenzuela@example.com",
+    "phone": "+56 9 1234 5678",
+    "location": "Santiago, Chile",
+    "photo": "/shared/assets/images/profile.jpg",
+    "tagline": "Desarrollador apasionado por crear experiencias web excepcionales",
+    "social": {
+      "github": "tu-usuario",
+      "linkedin": "tu-usuario",
+      "twitter": "tu-usuario",
+      "portfolio": "https://tu-portfolio.com"
+    }
+  },
+
+  "about": "Desarrollador Full Stack con experiencia en la creación de aplicaciones web modernas y escalables. Apasionado por las nuevas tecnologías y las mejores prácticas de desarrollo. Me especializo en React, Vue y Node.js, con un enfoque en arquitectura de software limpia y mantenible.",
+
+  "experience": [
+    {
+      "company": "Tech Company SA",
+      "position": "Senior Full Stack Developer",
+      "period": "Ene 2023 - Presente",
+      "location": "Santiago, Chile",
+      "description": "Desarrollo de aplicaciones web full-stack utilizando React, Node.js y PostgreSQL. Liderazgo de equipo técnico y mentoría de desarrolladores junior.",
+      "technologies": ["React", "Node.js", "PostgreSQL", "AWS", "Docker"],
+      "achievements": [
+        "Mejoré el rendimiento de la aplicación principal en un 40%",
+        "Implementé arquitectura de microservicios que redujo el tiempo de deploy en 60%",
+        "Lideré equipo de 5 desarrolladores en proyecto crítico"
+      ]
+    },
+    {
+      "company": "Startup Innovadora",
+      "position": "Full Stack Developer",
+      "period": "Jun 2021 - Dic 2022",
+      "location": "Santiago, Chile",
+      "description": "Desarrollo de MVP y features para plataforma SaaS. Trabajo directo con fundadores y equipo de producto.",
+      "technologies": ["Vue.js", "Express", "MongoDB", "Firebase"],
+      "achievements": [
+        "Desarrollé desde cero el sistema de autenticación y permisos",
+        "Implementé integración con APIs de terceros (Stripe, SendGrid)",
+        "Contribuí a crecer la base de usuarios de 0 a 10,000+"
+      ]
+    },
+    {
+      "company": "Agencia Digital",
+      "position": "Junior Frontend Developer",
+      "period": "Ene 2020 - May 2021",
+      "location": "Santiago, Chile",
+      "description": "Desarrollo de sitios web y aplicaciones para clientes. Trabajo en equipo multidisciplinario con diseñadores y project managers.",
+      "technologies": ["JavaScript", "React", "HTML/CSS", "WordPress"],
+      "achievements": [
+        "Entregué 15+ proyectos exitosos para clientes",
+        "Mejoré el proceso de desarrollo con automatización",
+        "Recibí reconocimiento por calidad de código"
+      ]
+    }
+  ],
+
+  "education": [
+    {
+      "institution": "Universidad de Chile",
+      "degree": "Ingeniería Civil en Computación",
+      "field": "Computer Science",
+      "period": "2016 - 2021",
+      "description": "Especialización en desarrollo de software y algoritmos. Proyecto de título: Sistema de recomendación con Machine Learning."
+    }
+  ],
+
+  "projects": [
+    {
+      "name": "E-Commerce Platform",
+      "description": "Plataforma completa de comercio electrónico con carrito, pagos y admin panel",
+      "longDescription": "Desarrollo full-stack de plataforma e-commerce escalable con React, Node.js, PostgreSQL y Stripe. Incluye sistema de inventario, procesamiento de pagos, panel de administración y analytics.",
+      "image": "/shared/assets/images/projects/ecommerce.jpg",
+      "technologies": ["React", "Node.js", "PostgreSQL", "Stripe", "Redux", "Tailwind CSS"],
+      "github": "https://github.com/tu-usuario/ecommerce-platform",
+      "demo": "https://demo-ecommerce.vercel.app",
+      "featured": true
+    },
+    {
+      "name": "Task Management App",
+      "description": "Aplicación de gestión de tareas colaborativa en tiempo real",
+      "longDescription": "App tipo Trello/Asana con drag & drop, colaboración en tiempo real con WebSockets, notificaciones y sistema de permisos. Built with Vue.js y Firebase.",
+      "image": "/shared/assets/images/projects/task-app.jpg",
+      "technologies": ["Vue.js", "Firebase", "Vuex", "WebSockets", "Tailwind CSS"],
+      "github": "https://github.com/tu-usuario/task-manager",
+      "demo": "https://task-manager-demo.web.app",
+      "featured": true
+    },
+    {
+      "name": "Weather Dashboard",
+      "description": "Dashboard meteorológico con visualización de datos y pronósticos",
+      "longDescription": "Dashboard interactivo que consume API de OpenWeather para mostrar clima actual, pronósticos y datos históricos con gráficos. Progressive Web App con funcionalidad offline.",
+      "image": "/shared/assets/images/projects/weather.jpg",
+      "technologies": ["React", "Chart.js", "OpenWeather API", "Service Workers", "PWA"],
+      "github": "https://github.com/tu-usuario/weather-dashboard",
+      "demo": "https://weather-dash.netlify.app",
+      "featured": false
+    },
+    {
+      "name": "Blog Engine",
+      "description": "Motor de blog con Markdown, CMS headless y SEO optimizado",
+      "longDescription": "Sistema de blog completo con editor Markdown, generación de sitios estáticos, CMS headless con Contentful, y optimizaciones SEO. Desplegado en Vercel con regeneración incremental.",
+      "image": "/shared/assets/images/projects/blog.jpg",
+      "technologies": ["Next.js", "Contentful", "MDX", "Vercel", "SEO", "Analytics"],
+      "github": "https://github.com/tu-usuario/blog-engine",
+      "demo": "https://blog-demo.vercel.app",
+      "featured": false
+    }
+  ],
+
+  "skills": {
+    "frontend": [
+      { "name": "React", "level": 95 },
+      { "name": "Vue.js", "level": 85 },
+      { "name": "JavaScript/ES6+", "level": 95 },
+      { "name": "TypeScript", "level": 80 },
+      { "name": "HTML/CSS", "level": 95 },
+      { "name": "Tailwind CSS", "level": 90 },
+      { "name": "Redux/Vuex", "level": 80 },
+      { "name": "Next.js", "level": 75 }
+    ],
+    "backend": [
+      { "name": "Node.js", "level": 85 },
+      { "name": "Express", "level": 85 },
+      { "name": "Python", "level": 70 },
+      { "name": "PostgreSQL", "level": 80 },
+      { "name": "MongoDB", "level": 75 },
+      { "name": "Firebase", "level": 80 },
+      { "name": "REST APIs", "level": 90 },
+      { "name": "GraphQL", "level": 65 }
+    ],
+    "tools": [
+      { "name": "Git", "level": 90 },
+      { "name": "Docker", "level": 75 },
+      { "name": "AWS", "level": 70 },
+      { "name": "CI/CD", "level": 75 },
+      { "name": "Jest/Vitest", "level": 80 },
+      { "name": "Webpack/Vite", "level": 85 },
+      { "name": "Figma", "level": 70 },
+      { "name": "Agile/Scrum", "level": 85 }
+    ]
+  },
+
+  "languages": [
+    { "name": "Español", "level": "Nativo" },
+    { "name": "Inglés", "level": "Avanzado (C1)" },
+    { "name": "Portugués", "level": "Básico (A2)" }
+  ],
+
+  "certifications": [
+    {
+      "name": "AWS Certified Developer - Associate",
+      "issuer": "Amazon Web Services",
+      "date": "Mar 2023",
+      "url": "https://aws.amazon.com/certification/"
+    },
+    {
+      "name": "React - The Complete Guide",
+      "issuer": "Udemy - Maximilian Schwarzmüller",
+      "date": "Ene 2022",
+      "url": "https://www.udemy.com/course/react-the-complete-guide/"
+    }
+  ],
+
+  "interests": [
+    "Open Source",
+    "Web Performance",
+    "Clean Architecture",
+    "UI/UX Design",
+    "Tech Communities",
+    "Continuous Learning"
+  ]
+}
