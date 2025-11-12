@@ -138,6 +138,16 @@
       "featured": true
     },
     {
+      "name": "SaaS Restaurante - Sistema de Gestión",
+      "description": "Sistema Full Stack SaaS para gestión de productos y pedidos de restaurante con CRUD completo, control de stock en tiempo real y transacciones",
+      "longDescription": "Sistema de gestión de restaurante desarrollado como prueba técnica para Neural Code AI. Backend Node.js + Express con PostgreSQL, implementa CRUD completo de productos, gestión de pedidos con transacciones para integridad de datos, control automático de stock, y validaciones de negocio. Frontend React SPA con React Router, notificaciones toast, formato de moneda CLP localizado, y diseño responsive con Bootstrap 5. Arquitectura RESTful API con controladores organizados, manejo de errores robusto, y lógica de carrito de compras en tiempo real.",
+      "image": "/shared/assets/images/projects/saas-restaurant.jpg",
+      "technologies": ["React", "Node.js", "Express", "PostgreSQL", "Bootstrap", "React Router", "CORS", "REST API"],
+      "github": "https://github.com/EduValex/SaaS_Restaurant",
+      "demo": "",
+      "featured": true
+    },
+    {
       "name": "Catálogo de Hierbas Medicinales",
       "description": "Aplicación web full-stack con Ruby on Rails para catálogo interactivo de plantas medicinales",
       "longDescription": "Desarrollé aplicación web completa desde concepto inicial hasta despliegue. Sistema CRUD con Ruby on Rails, base de datos PostgreSQL, autenticación de usuarios y panel de administración. Diseño responsive y búsqueda avanzada de plantas.",
