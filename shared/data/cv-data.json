@@ -237,66 +237,53 @@
       { "name": "PHP", "level": 90 },
       { "name": "Yii Framework", "level": 75 }
     ],
-    "tools": [
-      { "name": "Git", "level": 90 },
-      { "name": "GitHub", "level": 90 },
-      { "name": "PostgreSQL", "level": 85 },
-      { "name": "MySQL", "level": 85 },
-      { "name": "SEO", "level": 85 },
-      { "name": "SEO Audits", "level": 85 },
-      { "name": "Zoho CRM", "level": 75 },
-        { "name": "REST APIs", "level": 90 },
-        { "name": "Docker", "level": 70 },
-        { "name": "AWS", "level": 65 },
-        { "name": "Jira", "level": 80 },
-        { "name": "Trello", "level": 85 },
-      { "name": "Monday", "level": 75 },
-      { "name": "Postman", "level": 85 },
-      { "name": "SEMrush", "level": 80 },
-      { "name": "Wix", "level": 70 },
-      { "name": "Google Analytics", "level": 85 },
-      { "name": "Google Search Console", "level": 80 },
-      { "name": "PageSpeed Insights", "level": 80 },
-      { "name": "Google Trends", "level": 75 },
-      { "name": "Vercel", "level": 80 },
-      { "name": "Render", "level": 75 },
-      { "name": "Railway", "level": 70 },
-      { "name": "Heroku", "level": 75 }
-      ],
+      "tools": {
+        "databases": [
+          { "name": "PostgreSQL", "level": 85 },
+          { "name": "MySQL", "level": 85 },
+          { "name": "MongoDB", "level": 85 }
+        ],
+        "projectManagement": [
+          { "name": "Jira", "level": 80 },
+          { "name": "Trello", "level": 85 },
+          { "name": "Monday", "level": 75 }
+        ],
+        "seoAnalytics": [
+          { "name": "SEO", "level": 85 },
+          { "name": "SEO Audits", "level": 85 },
+          { "name": "SEMrush", "level": 80 },
+          { "name": "Google Analytics", "level": 85 },
+          { "name": "Google Search Console", "level": 80 },
+          { "name": "PageSpeed Insights", "level": 80 },
+          { "name": "Google Trends", "level": 75 }
+        ],
+        "deployment": [
+          { "name": "Vercel", "level": 80 },
+          { "name": "Render", "level": 75 },
+          { "name": "Railway", "level": 70 },
+          { "name": "Heroku", "level": 75 }
+        ],
+        "devTools": [
+          { "name": "Git", "level": 90 },
+          { "name": "GitHub", "level": 90 },
+          { "name": "REST APIs", "level": 90 },
+          { "name": "Postman", "level": 85 },
+          { "name": "Docker", "level": 70 },
+          { "name": "AWS", "level": 65 },
+          { "name": "Wix", "level": 70 },
+          { "name": "Beaver Builder", "level": 70 }
+        ]
+      },
       "ai": [
         { "name": "ChatGPT", "level": 95 },
         { "name": "Claude AI", "level": 95 },
         { "name": "GitHub Copilot", "level": 90 },
         { "name": "Google Gemini", "level": 85 },
-      { "name": "Loveable AI", "level": 80 },
-      { "name": "Asistentes IA Personalizados", "level": 85 }
-    ]
-  },
-
-  "languages": [
-    { "name": "Español", "level": "Nativo" },
-    { "name": "Inglés", "level": "Avanzado (C1)" },
-    { "name": "Portugués", "level": "Básico (A2)" }
-  ],
-
-  "certifications": [
-    {
-      "name": "Desarrollo de Aplicaciones Full Stack Python Trainee V2.0",
-      "issuer": "Sence Chile",
-      "date": "Nov 2024",
-      "credentialId": "B8B5682B-3316-47EE-836A-68D0111EE883",
-      "url": "",
-      "skills": ["Python", "PostgreSQL", "Django", "HTML", "CSS", "JavaScript"]
+        { "name": "Loveable AI", "level": 80 },
+        { "name": "Grok", "level": 80 },
+        { "name": "Asistentes IA Personalizados", "level": 85 }
+      ]
     },
-    {
-      "name": "Desarrollo Ruby on Rails para Emprendimientos de Tipo Start-Up",
-      "issuer": "Talento Digital para Chile",
-      "date": "Feb 2024",
-      "credentialId": "60ba72cc-b541-4328-a633-0e21af1a14fc",
-      "url": "",
-      "skills": ["Ruby on Rails", "PostgreSQL", "JavaScript"]
-    }
-  ],
 
   "interests": [
     "Open Source",
