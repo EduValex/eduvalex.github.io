@@ -5,6 +5,7 @@ import { useScrollReveal } from '../hooks/useScrollReveal.js';
 import { useTranslation } from '../hooks/useTranslation.js';
 import { ThemeToggle } from './ThemeToggle.jsx';
 import { LanguageToggle } from './LanguageToggle.jsx';
+import { Navbar } from './Navbar.jsx';
 import data from '@data/cv-data.json';
 
 function FrameworkSwitcher() {
@@ -94,7 +95,10 @@ export function Layout({ children }) {
 
   return (
     <div className="min-h-screen flex flex-col">
-      <header className="sticky top-0 z-40 backdrop-blur bg-white/75 dark:bg-slate-900/75 border-b border-slate-200 dark:border-slate-700">
+      {/* Navbar flotante de navegación */}
+      <Navbar />
+      
+      <header className="sticky top-0 z-40 backdrop-blur bg-white/75 dark:bg-slate-900/75 border-b border-slate-200 dark:border-slate-700 mt-16">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-3 flex items-center justify-between">
           <div className="flex items-center gap-3" aria-label={personal?.name || 'Portfolio'}>
             <div className="w-9 h-9 rounded-full bg-primary text-white flex items-center justify-center font-bold" title={personal?.name}>

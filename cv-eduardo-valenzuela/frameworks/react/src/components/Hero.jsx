@@ -121,15 +121,15 @@ export function Hero() {
       </div>
       {/* Modal configuración PDF */}
       {showPdfModal && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4 no-print" role="dialog" aria-modal="true">
-          <div className="w-full max-w-lg rounded-xl bg-white dark:bg-slate-900 shadow-xl p-5">
-            <h3 className="text-lg font-semibold flex items-center gap-2 mb-3">
+        <div className="fixed inset-0 z-[9999] flex items-center justify-center bg-black/70 backdrop-blur-sm p-4 no-print animate-fade-in" role="dialog" aria-modal="true" onClick={() => setShowPdfModal(false)}>
+          <div className="w-full max-w-lg rounded-xl bg-white dark:bg-slate-800 shadow-2xl p-6 animate-scale-in" onClick={(e) => e.stopPropagation()}>
+            <h3 className="text-xl font-bold flex items-center gap-2 mb-2 text-slate-900 dark:text-white">
               <span>🧾</span>
               Configurar PDF
             </h3>
-            <p className="text-sm text-slate-600 dark:text-slate-300 mb-4">Elige qué secciones incluir y el estilo del PDF.</p>
+            <p className="text-sm text-slate-600 dark:text-slate-400 mb-5">Elige qué secciones incluir y el estilo del PDF.</p>
 
-            <div className="grid grid-cols-2 gap-3">
+            <div className="grid grid-cols-2 gap-3 mb-5">
               {[
                 { id: 'hero', label: 'Header' },
                 { id: 'about', label: 'Sobre mí' },
@@ -139,50 +139,60 @@ export function Hero() {
                 { id: 'skills', label: 'Skills' },
                 { id: 'contact', label: 'Contacto' },
               ].map((s) => (
-                <label key={s.id} className="flex items-center gap-2 text-sm">
+                <label key={s.id} className="flex items-center gap-2 text-sm cursor-pointer hover:bg-slate-50 dark:hover:bg-slate-700 p-2 rounded transition-colors">
                   <input
                     type="checkbox"
-                    className="accent-primary"
+                    className="accent-primary w-4 h-4"
                     checked={pdfOptions.sections[s.id]}
                     onChange={(e) => setPdfOptions((prev) => ({
                       ...prev,
                       sections: { ...prev.sections, [s.id]: e.target.checked },
                     }))}
                   />
-                  {s.label}
+                  <span className="text-slate-700 dark:text-slate-200">{s.label}</span>
                 </label>
               ))}
             </div>
 
-            <div className="mt-4">
-              <div className="text-sm font-medium mb-2">Estilo</div>
-              <div className="flex gap-4 text-sm">
-                <label className="flex items-center gap-2">
+            <div className="border-t border-slate-200 dark:border-slate-700 pt-4 mb-5">
+              <div className="text-sm font-semibold mb-3 text-slate-900 dark:text-white">Estilo de impresión</div>
+              <div className="flex flex-col gap-2 text-sm">
+                <label className="flex items-center gap-3 cursor-pointer hover:bg-slate-50 dark:hover:bg-slate-700 p-2 rounded transition-colors">
                   <input
                     type="radio"
                     name="pdf-style"
-                    className="accent-primary"
+                    className="accent-primary w-4 h-4"
                     checked={pdfOptions.style === 'styled'}
                     onChange={() => setPdfOptions((p) => ({ ...p, style: 'styled' }))}
                   />
-                  Con estilos y colores
+                  <span className="text-slate-700 dark:text-slate-200">Con estilos y colores</span>
                 </label>
-                <label className="flex items-center gap-2">
+                <label className="flex items-center gap-3 cursor-pointer hover:bg-slate-50 dark:hover:bg-slate-700 p-2 rounded transition-colors">
                   <input
                     type="radio"
                     name="pdf-style"
-                    className="accent-primary"
+                    className="accent-primary w-4 h-4"
                     checked={pdfOptions.style === 'plain'}
                     onChange={() => setPdfOptions((p) => ({ ...p, style: 'plain' }))}
                   />
-                  Blanco y negro (simple)
+                  <span className="text-slate-700 dark:text-slate-200">Blanco y negro (simple)</span>
                 </label>
               </div>
             </div>
 
-            <div className="mt-5 flex justify-end gap-2">
-              <button onClick={() => setShowPdfModal(false)} className="px-4 py-2 rounded-lg border border-slate-300 dark:border-slate-700">Cancelar</button>
-              <button onClick={handleConfirmPdf} className="px-4 py-2 rounded-lg bg-primary text-white font-medium hover:bg-primary-dark">Generar PDF</button>
+            <div className="flex justify-end gap-3">
+              <button 
+                onClick={() => setShowPdfModal(false)} 
+                className="px-5 py-2.5 rounded-lg border-2 border-slate-300 dark:border-slate-600 text-slate-700 dark:text-slate-200 font-medium hover:bg-slate-100 dark:hover:bg-slate-700 transition-all"
+              >
+                Cancelar
+              </button>
+              <button 
+                onClick={handleConfirmPdf} 
+                className="px-5 py-2.5 rounded-lg bg-primary text-white font-medium hover:bg-primary-dark transition-all shadow-lg hover:shadow-xl"
+              >
+                Generar PDF
+              </button>
             </div>
           </div>
         </div>
