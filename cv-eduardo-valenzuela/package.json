@@ -8,8 +8,7 @@
     "dev": "cd frameworks/react && npm run dev",
     "build": "cd frameworks/react && npm run build",
     "preview": "cd frameworks/react && npm run preview",
-    "deploy": "npm run build && gh-pages -d frameworks/react/dist",
-    "predeploy": "npm run build"
+    "deploy": "node deploy.js"
   },
   "repository": {
     "type": "git",
