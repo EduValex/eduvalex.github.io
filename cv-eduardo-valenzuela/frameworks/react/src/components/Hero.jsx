@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import data from '@data/cv-data.json';
 import { LazyImage } from './LazyImage.jsx';
 import { useTypingEffect } from '../hooks/useTypingEffect.js';
@@ -12,8 +13,8 @@ export function Hero() {
   const typedText = useTypingEffect(roles, 100, 50, 2000);
   
   const cvUrl = '/shared/assets/cv-eduardo-valenzuela.pdf';
-  const [showPdfModal, setShowPdfModal] = React.useState(false);
-  const [pdfOptions, setPdfOptions] = React.useState({
+  const [showPdfModal, setShowPdfModal] = useState(false);
+  const [pdfOptions, setPdfOptions] = useState({
     sections: {
       hero: true,
       about: true,
