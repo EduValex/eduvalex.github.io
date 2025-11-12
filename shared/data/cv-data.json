@@ -2,8 +2,8 @@
   "personal": {
     "name": "Eduardo Valenzuela Milla",
     "title": "FullStack Developer | Plataformas E-Commerce",
-    "email": "contacto@eduardovalenzuela.dev",
-    "phone": "+56 9 XXXX XXXX",
+    "email": "valenzuela.edo@gmail.com",
+    "phone": "+56929646969",
     "location": "Temuco, Araucanía, Chile",
     "photo": "/shared/assets/images/profile.jpg",
     "tagline": "Desarrollador Full Stack apasionado por la construcción de soluciones digitales",
@@ -15,7 +15,10 @@
     }
   },
 
-  "about": "Soy un Desarrollador Full Stack apasionado por la construcción de soluciones digitales. Disfruto el desafío de transformar una idea compleja en una aplicación web funcional, intuitiva y eficiente, siempre enfocado en aportar valor real al negocio.\n\nMi stack principal se centra en el ecosistema de JavaScript, con un fuerte dominio de React para la creación de interfaces dinámicas y Node.js con Express para el desarrollo de APIs RESTful robustas. Complemento esto con una sólida experiencia en Python (Django, Flask) y una base profunda en el ecosistema PHP, incluyendo frameworks como Yii y plataformas líderes como WordPress y Shopify.\n\nEsta diversidad técnica me permite adaptarme y elegir la mejor herramienta para cada desafío, ya sea construyendo desde cero o integrando soluciones en otros entornos tecnológicos como Angular o Java.\n\nSiempre estoy en busca de nuevos desafíos que me permitan no solo aplicar mi conocimiento técnico, sino también crecer en un equipo dinámico y colaborativo.",
+  "about": {
+    "es": "Mi camino en tecnología comenzó en la Universidad de La Frontera (UFRO) en Temuco, Chile, donde descubrí mi pasión por transformar ideas en soluciones digitales. Durante mi formación, realicé prácticas profesionales que marcaron mi carrera: primero en Anaconda Web, donde me sumergí en el desarrollo PHP con Yii Framework, y luego en EnLaNubeLab, donde construí una aplicación web completa con Ruby on Rails para catalogar hierbas medicinales.\n\nComo freelance, expandí mi stack desarrollando una aplicación de gestión para abogados con Python y Django. Sin embargo, en 2018 decidí explorar otra de mis pasiones: fundé Escuela Nómade Yoga, donde combino mi rol como instructor de yoga certificado con el emprendimiento. La escuela sigue activa hasta hoy.\n\nEn 2022 retomé la tecnología con fuerza, co-fundando Valex Marketing, una agencia especializada en desarrollo WordPress y SEO. Gestionamos proyectos para clientes corporativos, e-commerce y startups, entregando soluciones web completas con mantenimiento continuo.\n\nParalelamente, trabajé de forma remota para Grant Solutions en España, desarrollando y manteniendo sitios WordPress empresariales con integraciones avanzadas. Mis habilidades se consolidaron a través de pruebas técnicas complejas: creé un plugin WordPress profesional con React y Google Drive API, un sistema de sorteos Full Stack con Django y Nuxt.js, y actualmente desarrollo un SaaS multi-tenant para restaurantes.\n\nHoy combino lo mejor de ambos mundos: ayudo a empresas a crecer digitalmente mientras mantengo mi conexión con el bienestar a través del yoga. Mi enfoque siempre es el mismo: código limpio, soluciones escalables y compromiso real con cada proyecto.",
+    "en": "My journey in technology began at Universidad de La Frontera (UFRO) in Temuco, Chile, where I discovered my passion for turning ideas into digital solutions. During my studies, I completed professional internships that shaped my career: first at Anaconda Web, diving into PHP development with Yii Framework, and then at EnLaNubeLab, where I built a complete web application with Ruby on Rails for cataloging medicinal herbs.\n\nAs a freelancer, I expanded my stack by developing a management application for lawyers using Python and Django. However, in 2018 I decided to explore another passion: I founded Escuela Nómade Yoga, where I combine my role as a certified yoga instructor with entrepreneurship. The school remains active today.\n\nIn 2022 I returned to technology full force, co-founding Valex Marketing, an agency specialized in WordPress development and SEO. We manage projects for corporate clients, e-commerce, and startups, delivering complete web solutions with ongoing maintenance.\n\nSimultaneously, I worked remotely for Grant Solutions in Spain, developing and maintaining enterprise WordPress sites with advanced integrations. My skills were consolidated through complex technical challenges: I created a professional WordPress plugin with React and Google Drive API, a Full Stack raffle system with Django and Nuxt.js, and I'm currently developing a multi-tenant SaaS for restaurants.\n\nToday I combine the best of both worlds: helping businesses grow digitally while maintaining my connection to wellness through yoga. My approach remains constant: clean code, scalable solutions, and genuine commitment to every project."
+  },
 
   "experience": [
     {
@@ -27,7 +30,7 @@
       "technologies": ["WordPress", "WooCommerce", "React", "SEO", "PHP", "MySQL", "Google Analytics"],
       "achievements": [
         "Desarrollé 10+ sitios web corporativos para clientes (Dadneo Capital, Cerveza Mala Junta, CreaSmile, CreaBord, Espacio Amuleto)",
-        "Gestión de catálogo de 300+ productos para e-commerce CreaSmile con integración a compras públicas del Estado",
+        "Gestión de catálogo digital de 300+ productos para CreaSmile con integración a compras públicas del Estado",
         "Implementé integraciones con Instagram API, Google Reviews, y sistemas de gestión de contenido autoadministrables",
         "Servicio de mantención mensual y reportes SEO para cartera de clientes corporativos"
       ]
@@ -135,11 +138,11 @@
       "client": true
     },
     {
-      "name": "creasmile.cl - E-Commerce Corporativo",
+      "name": "creasmile.cl - Catálogo Corporativo",
       "description": "Plataforma WordPress para empresa de regalos corporativos y papelería gráfica con 15 años de trayectoria, optimización SEO y catálogo digital",
       "longDescription": "Desarrollo y administración completa de sitio corporativo para Creasmile, empresa de La Araucanía especializada en regalos corporativos, papelería gráfica y soportes publicitarios. Implementé catálogo digital de productos (bolígrafos, bolsas TNT, soportes gráficos), integración con compras públicas del Estado, slider de productos destacados, sección de clientes corporativos (UFRO, instituciones públicas), formularios de contacto y sistema de gestión de contenido autoadministrable. Optimización SEO On-Page completa y reducción de tiempo de carga en más de 50% mediante lazy loading y optimización de imágenes.",
       "image": "/shared/assets/images/projects/creasmile.jpg",
-      "technologies": ["WordPress", "PHP", "WooCommerce", "SEO", "MySQL", "JavaScript", "CSS", "Google Drive API"],
+      "technologies": ["WordPress", "PHP", "SEO", "MySQL", "JavaScript", "CSS", "Google Drive API"],
       "github": "",
       "demo": "https://creasmile.cl",
       "featured": true,
@@ -147,11 +150,11 @@
       "client": true
     },
     {
-      "name": "creabord.cl - E-Commerce Bordados",
-      "description": "Tienda online WordPress para bordados personalizados y ropa corporativa con catálogo de productos, integración Instagram y pasarela de pagos",
-      "longDescription": "Desarrollo y gestión completa de e-commerce para CreaBord, empresa especializada en bordados personalizados y ropa corporativa (jockeys, parkas, chaquetas, poleras). Implementé catálogo de productos por categorías, carrito de compras, sistema de productos destacados, galería de trabajos realizados con feed de Instagram, sección de clientes corporativos, optimización de imágenes de bordados, y diseño responsive. Administración de contenido, actualizaciones de productos, y mantenimiento continuo del sitio.",
+      "name": "creabord.cl - Catálogo de Bordados",
+      "description": "Sitio WordPress de catálogo para bordados personalizados y ropa corporativa, con integración Instagram y formularios de cotización",
+      "longDescription": "Desarrollo y gestión completa del sitio web para CreaBord, empresa especializada en bordados personalizados y ropa corporativa (jockeys, parkas, chaquetas, poleras). Implementé catálogo de productos por categorías, sistema de productos destacados, galería de trabajos realizados con feed de Instagram, sección de clientes corporativos, formularios de contacto y solicitud de cotización, optimización de imágenes de bordados y diseño responsive. Administración de contenido y mantenimiento continuo del sitio.",
       "image": "/shared/assets/images/projects/creabord.jpg",
-      "technologies": ["WordPress", "WooCommerce", "PHP", "Instagram API", "SEO", "MySQL", "JavaScript", "CSS"],
+      "technologies": ["WordPress", "PHP", "Instagram API", "SEO", "MySQL", "JavaScript", "CSS"],
       "github": "",
       "demo": "https://creabord.cl",
       "featured": true,
@@ -168,7 +171,8 @@
       "demo": "",
       "featured": true,
       "category": "WordPress",
-      "client": false
+      "client": false,
+      "type": "Prueba Técnica"
     },
     {
       "name": "Sorteo San Valentín - CTS Turismo",
@@ -180,7 +184,8 @@
       "demo": "https://sorteo-san-valentin.vercel.app",
       "featured": true,
       "category": "Full Stack",
-      "client": true
+      "client": false,
+      "type": "Prueba Técnica"
     },
     {
       "name": "SaaS Restaurante - Sistema de Gestión",
@@ -192,7 +197,8 @@
       "demo": "",
       "featured": true,
       "category": "Full Stack",
-      "client": false
+      "client": false,
+      "type": "Personal"
     },
     {
       "name": "Catálogo de Hierbas Medicinales",
@@ -204,7 +210,8 @@
       "demo": "",
       "featured": false,
       "category": "Full Stack",
-      "client": false
+      "client": false,
+      "type": "Prueba Técnica"
     }
   ],
 
@@ -235,9 +242,19 @@
       { "name": "MySQL", "level": 85 },
       { "name": "SEO", "level": 85 },
       { "name": "Zoho CRM", "level": 75 },
-      { "name": "REST APIs", "level": 90 },
-      { "name": "Docker", "level": 70 },
-      { "name": "AWS", "level": 65 }
+        { "name": "REST APIs", "level": 90 },
+        { "name": "Docker", "level": 70 },
+        { "name": "AWS", "level": 65 },
+        { "name": "Jira", "level": 80 },
+        { "name": "Trello", "level": 85 },
+        { "name": "Monday", "level": 75 }
+      ],
+      "ai": [
+        { "name": "ChatGPT", "level": 95 },
+        { "name": "Claude AI", "level": 95 },
+        { "name": "GitHub Copilot", "level": 90 },
+        { "name": "Google Gemini", "level": 85 },
+        { "name": "Loveable AI", "level": 80 }
     ]
   },
 
