@@ -15,6 +15,10 @@ export function Hero() {
   const typedText = useTypingEffect(roles, 100, 50, 2000);
   
   const cvUrl = '/shared/assets/cv-eduardo-valenzuela.pdf';
+  const handleGeneratePDF = () => {
+    // Usa el diálogo de impresión del navegador (Guardar como PDF)
+    try { window.print(); } catch {}
+  };
 
   return (
     <section className="panel p-6 mt-6 flex flex-col md:flex-row items-center gap-6 animate-fade-in relative overflow-hidden">
@@ -44,6 +48,15 @@ export function Hero() {
         <p className="mt-2 text-slate-600 dark:text-slate-300">{personal.tagline}</p>
         
         <div className="flex flex-wrap gap-3 mt-4 justify-center md:justify-start">
+          <button
+            onClick={handleGeneratePDF}
+            className="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg bg-primary text-white font-medium hover:bg-primary-dark transition-all hover-lift shadow-md print:hidden"
+            title="Generar PDF desde la página"
+          >
+            <span>🖨️</span>
+            Generar PDF
+          </button>
+
           <a
             href={cvUrl}
             download
