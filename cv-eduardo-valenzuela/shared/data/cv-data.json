@@ -19,16 +19,17 @@
 
   "experience": [
     {
-      "company": "Desarrollador Independiente",
-      "position": "Desarrollador Web Full Stack",
+      "company": "Valex Marketing",
+      "position": "Co-Fundador & Desarrollador Web Full Stack",
       "period": "Abr 2022 - Actualidad",
-      "location": "Chile (Híbrido)",
-      "description": "Desarrollo de soluciones web a medida para diversos clientes y emprendimientos, abarcando el ciclo completo desde la conceptualización y diseño hasta el despliegue, optimización y posicionamiento SEO.",
-      "technologies": ["WordPress", "React", "Node.js", "SEO", "PHP"],
+      "location": "Temuco, Chile (Híbrido)",
+      "description": "Co-fundé agencia de marketing digital especializada en desarrollo web, SEO y estrategias digitales. Desarrollo completo de sitios WordPress para clientes corporativos, e-commerce, y startups. Gestión de proyectos web desde concepto hasta deployment, mantención mensual y reportes de posicionamiento SEO.",
+      "technologies": ["WordPress", "WooCommerce", "React", "SEO", "PHP", "MySQL", "Google Analytics"],
       "achievements": [
-        "Lideré el desarrollo completo del sitio corporativo creasmile.cl con WordPress",
-        "Implementé estrategia de SEO On-Page completa, mejorando el posicionamiento orgánico",
-        "Optimización de rendimiento reduciendo el tiempo de carga en más de un 50%"
+        "Desarrollé 10+ sitios web corporativos para clientes (Dadneo Capital, Cerveza Mala Junta, CreaSmile, CreaBord, Espacio Amuleto)",
+        "Gestión de catálogo de 300+ productos para e-commerce CreaSmile con integración a compras públicas del Estado",
+        "Implementé integraciones con Instagram API, Google Reviews, y sistemas de gestión de contenido autoadministrables",
+        "Servicio de mantención mensual y reportes SEO para cartera de clientes corporativos"
       ]
     },
     {
@@ -108,13 +109,43 @@
       "featured": true
     },
     {
-      "name": "creasmile.cl - Sitio Corporativo",
-      "description": "Desarrollo completo de plataforma web corporativa con WordPress, optimización SEO y mejora de rendimiento del 50%",
-      "longDescription": "Lideré el desarrollo completo de la plataforma web utilizando WordPress, entregando un sitio moderno, autoadministrable y escalable. Implementé estrategia de SEO On-Page completa desde investigación de palabras clave hasta optimización de contenido. Realicé optimización exhaustiva reduciendo tiempo de carga en más de 50%.",
+      "name": "Dadneo Capital - Venture Capital",
+      "description": "Sitio corporativo WordPress para firma de capital emprendedor con 20+ años de experiencia, gestión de fondos VC e inversionistas ángeles",
+      "longDescription": "Desarrollo completo de sitio corporativo para Dadneo Capital, firma especializada en venture capital y asesorías a startups. Implementé diseño moderno y profesional, sección de servicios (Fondos VC, Asesorías 1:1, Valorizaciones), integración de blog corporativo, formularios de contacto avanzados, y optimización SEO. El sitio comunica experiencia de 20+ años en la industria, gestión de fondos, inversionistas ángeles y portfolio de startups invertidas. Cliente destacado de Valex Marketing con testimonial 5 estrellas.",
+      "image": "/shared/assets/images/projects/dadneo.jpg",
+      "technologies": ["WordPress", "PHP", "SEO", "MySQL", "JavaScript", "CSS", "Google Analytics"],
+      "github": "",
+      "demo": "https://dadneo.capital",
+      "featured": true
+    },
+    {
+      "name": "Cerveza Mala Junta - E-Commerce",
+      "description": "Sitio WordPress para cervecería artesanal de La Araucanía con catálogo de productos, integración Instagram y sistema de pedidos B2B",
+      "longDescription": "Desarrollo completo de sitio web para Cerveza Mala Junta, cervecería artesanal familiar de Labranza. Implementé catálogo de cervezas artesanales (APA, Witbier, Stout) con fichas técnicas detalladas, historia de la empresa, misión y visión, integración con feed de Instagram para mantener contenido vigente, formularios de contacto para eventos y pedidos B2B (pubs/bares), sección de ingredientes premium, y diseño responsive. Sistema autoadministrable que permite al cliente capacitado mantener el sitio. Entregado en menos de 1 mes.",
+      "image": "/shared/assets/images/projects/malajunta.jpg",
+      "technologies": ["WordPress", "PHP", "Instagram API", "SEO", "MySQL", "JavaScript", "CSS"],
+      "github": "",
+      "demo": "https://www.cervezamalajunta.cl",
+      "featured": true
+    },
+    {
+      "name": "creasmile.cl - E-Commerce Corporativo",
+      "description": "Plataforma WordPress para empresa de regalos corporativos y papelería gráfica con 15 años de trayectoria, optimización SEO y catálogo digital",
+      "longDescription": "Desarrollo y administración completa de sitio corporativo para Creasmile, empresa de La Araucanía especializada en regalos corporativos, papelería gráfica y soportes publicitarios. Implementé catálogo digital de productos (bolígrafos, bolsas TNT, soportes gráficos), integración con compras públicas del Estado, slider de productos destacados, sección de clientes corporativos (UFRO, instituciones públicas), formularios de contacto y sistema de gestión de contenido autoadministrable. Optimización SEO On-Page completa y reducción de tiempo de carga en más de 50% mediante lazy loading y optimización de imágenes.",
       "image": "/shared/assets/images/projects/creasmile.jpg",
-      "technologies": ["WordPress", "PHP", "SEO", "MySQL", "JavaScript", "CSS"],
+      "technologies": ["WordPress", "PHP", "WooCommerce", "SEO", "MySQL", "JavaScript", "CSS", "Google Drive API"],
       "github": "",
       "demo": "https://creasmile.cl",
+      "featured": true
+    },
+    {
+      "name": "creabord.cl - E-Commerce Bordados",
+      "description": "Tienda online WordPress para bordados personalizados y ropa corporativa con catálogo de productos, integración Instagram y pasarela de pagos",
+      "longDescription": "Desarrollo y gestión completa de e-commerce para CreaBord, empresa especializada en bordados personalizados y ropa corporativa (jockeys, parkas, chaquetas, poleras). Implementé catálogo de productos por categorías, carrito de compras, sistema de productos destacados, galería de trabajos realizados con feed de Instagram, sección de clientes corporativos, optimización de imágenes de bordados, y diseño responsive. Administración de contenido, actualizaciones de productos, y mantenimiento continuo del sitio.",
+      "image": "/shared/assets/images/projects/creabord.jpg",
+      "technologies": ["WordPress", "WooCommerce", "PHP", "Instagram API", "SEO", "MySQL", "JavaScript", "CSS"],
+      "github": "",
+      "demo": "https://creabord.cl",
       "featured": true
     },
     {
