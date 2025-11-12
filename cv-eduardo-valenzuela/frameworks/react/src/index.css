@@ -1,3 +1,6 @@
+/* Importar animaciones primero */
+@import './animations.css';
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -34,11 +37,6 @@ body::-webkit-scrollbar { width: 10px; }
 body::-webkit-scrollbar-track { background: var(--color-bg-alt); }
 body::-webkit-scrollbar-thumb { background: #475569; border-radius: 8px; }
 body::-webkit-scrollbar-thumb:hover { background: #334155; }
-
-/* Container utility */
-.container-responsive {
-  @apply max-w-5xl mx-auto px-4 sm:px-6 lg:px-8;
-}
 
 /* Section titles */
 .section-title {

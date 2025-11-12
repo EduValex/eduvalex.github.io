@@ -1,53 +1,52 @@
 import { useMemo, useState } from 'react';
 import data from '@data/cv-data.json';
 
-// Mapeo de tecnologías a emojis/iconos
+// Iconos simples por tecnología
 const techIcons = {
   'React': '⚛️',
   'Vue.js': '💚',
   'Node.js': '🟢',
   'PostgreSQL': '🐘',
-  'MongoDB': '🍃',
-  'Firebase': '🔥',
-  'Next.js': '▲',
   'TypeScript': '🔷',
   'JavaScript': '🟨',
   'Tailwind CSS': '🎨',
-  'Redux': '🟣',
-  'Stripe': '💳',
-  'Express': '🚂',
-  'Chart.js': '📊',
-  'Contentful': '📝',
-  'Vercel': '▲',
-  'Python': '🐍',
-  'Docker': '🐳',
+  'Express': '�',
+  'Python': '�',
+  'Docker': '�',
   'AWS': '☁️',
+  'Nuxt.js': '�',
+  'Ruby on Rails': '�',
+  'Bootstrap': '🅱️',
+  'WooCommerce': '🛒',
 };
 
-export function ProjectsSection() {
-  // Derivar categoría desde tecnologías si no existe en los datos
-  const getCategory = (project) => {
-    if (project.category) return project.category;
-    const tech = project.technologies || [];
-    const isWP = tech.includes('WordPress') || tech.includes('WooCommerce');
-    if (isWP) return 'WordPress';
-    const isFullStack = [
-      'Django','Python','Node.js','Express','Ruby on Rails','PostgreSQL','JWT','Celery','Redis','Nuxt.js'
-    ].some(t => tech.includes(t));
-    if (isFullStack) return 'Full Stack';
-    return 'Personal';
-  };
+// Iconos por categoría
+const categoryIcons = {
+  'Todos': '🗂️',
+  'WordPress': '🧩',
+  'Full Stack': '🧰',
+  'Personal': '⭐',
+};
 
-  // Construir categorías y contadores
+function getCategory(project) {
+  if (project.category) return project.category;
+  const tech = project.technologies || [];
+  if (tech.includes('WordPress') || tech.includes('WooCommerce')) return 'WordPress';
+  const isFullStack = [
+    'Django','Python','Node.js','Express','Ruby on Rails','PostgreSQL','JWT','Celery','Redis','Nuxt.js'
+  ].some(t => tech.includes(t));
+  if (isFullStack) return 'Full Stack';
+  return 'Personal';
+}
+
+export function ProjectsSection() {
   const categories = useMemo(() => {
     const counts = { Todos: data.projects.length };
     for (const p of data.projects) {
       const cat = getCategory(p);
       counts[cat] = (counts[cat] || 0) + 1;
     }
-    // Orden sugerido: Todos, WordPress, Full Stack, Personal
     const ordered = ['Todos', 'WordPress', 'Full Stack', 'Personal'];
-    // Añadir cualquier categoría adicional que pudiera existir
     const extras = Object.keys(counts).filter(k => !ordered.includes(k));
     return [...ordered, ...extras].filter(k => counts[k]);
   }, []);
@@ -55,8 +54,9 @@ export function ProjectsSection() {
   const [selected, setSelected] = useState('Todos');
 
   const filtered = useMemo(() => {
-    const list = selected === 'Todos' ? data.projects : data.projects.filter(p => getCategory(p) === selected);
-    // Mantener destacados arriba dentro del filtro
+    const list = selected === 'Todos'
+      ? data.projects
+      : data.projects.filter(p => getCategory(p) === selected);
     return [...list].sort((a, b) => Number(b.featured) - Number(a.featured));
   }, [selected]);
 
@@ -66,17 +66,18 @@ export function ProjectsSection() {
 
       {/* Filtros por categoría */}
       <div className="panel p-2 sm:p-3">
-        <div className="flex flex-wrap gap-2">
+        <div className="flex flex-wrap gap-2" role="tablist" aria-label="Filtros de proyectos">
           {categories.map((cat) => (
             <button
               key={cat}
               onClick={() => setSelected(cat)}
-              className={`px-3 py-1.5 rounded-full text-sm font-medium transition-colors border
-                ${selected === cat
-                  ? 'bg-primary text-white border-primary'
-                  : 'bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700 border-slate-200 dark:border-slate-700'}
-              `}
+              role="tab"
+              aria-selected={selected === cat}
+              className={`px-3 py-1.5 rounded-full text-sm font-medium transition-all hover-scale ${selected === cat
+                ? 'bg-primary text-white border-primary shadow-lg'
+                : 'bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700 border-slate-200 dark:border-slate-700'} border`}
             >
+              <span className="mr-1">{categoryIcons[cat] || '🏷️'}</span>
               <span className="align-middle">{cat}</span>
               <span className="ml-2 inline-flex items-center justify-center min-w-[1.5rem] h-6 px-1 rounded-full text-[11px] bg-black/10 dark:bg-white/10">
                 {cat === 'Todos' ? data.projects.length : data.projects.filter(p => getCategory(p) === cat).length}
@@ -86,9 +87,14 @@ export function ProjectsSection() {
         </div>
       </div>
 
+      {/* Lista de proyectos */}
       <div className="grid gap-6 md:grid-cols-2">
-        {filtered.map(project => (
-          <article key={project.name} className="panel p-6 flex flex-col gap-4 hover:shadow-lg transition-shadow">
+        {filtered.map((project, index) => (
+          <article 
+            key={project.name} 
+            className="panel p-6 flex flex-col gap-4 hover-lift transition-all"
+            style={{ animationDelay: `${index * 100}ms` }}
+          >
             <header>
               <div className="flex items-start justify-between gap-4">
                 <div>
@@ -97,19 +103,31 @@ export function ProjectsSection() {
                 </div>
                 <div className="flex items-center gap-2">
                   {project.featured && (
-                    <span title="Destacado" className="inline-flex items-center px-2 py-1 rounded text-xs bg-amber-100 text-amber-700 dark:bg-amber-900/40 dark:text-amber-300">⭐</span>
+                    <span 
+                      title="Destacado" 
+                      className="inline-flex items-center px-2 py-1 rounded text-xs bg-amber-100 text-amber-700 dark:bg-amber-900/40 dark:text-amber-300 animate-pulse-glow"
+                    >⭐</span>
                   )}
-                  <span className="inline-flex items-center px-2 py-1 rounded text-xs bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300">
+                  <span className="inline-flex items-center gap-1 px-2 py-1 rounded text-xs bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300">
+                    <span>{categoryIcons[getCategory(project)] || '🏷️'}</span>
                     {getCategory(project)}
                   </span>
+                  {project.client && (
+                    <span className="inline-flex items-center px-2 py-1 rounded text-xs bg-emerald-100 text-emerald-700 dark:bg-emerald-900/40 dark:text-emerald-300" title="Proyecto para cliente">
+                      Cliente
+                    </span>
+                  )}
                 </div>
               </div>
             </header>
 
             <div className="flex flex-wrap gap-2">
               {project.technologies.map(t => (
-                <span key={t} className="inline-flex items-center gap-1 px-3 py-1 rounded-full bg-slate-100 dark:bg-slate-800 text-xs font-medium text-slate-700 dark:text-slate-300">
-                  {techIcons[t] && <span>{techIcons[t]}</span>}
+                <span 
+                  key={t} 
+                  className="inline-flex items-center gap-1 px-3 py-1 rounded-full bg-slate-100 dark:bg-slate-800 text-xs font-medium text-slate-700 dark:text-slate-300 hover-scale transition-transform cursor-default"
+                >
+                  {techIcons[t] && <span className="animate-bounce" style={{ animationDelay: '1s', animationDuration: '2s' }}>{techIcons[t]}</span>}
                   {t}
                 </span>
               ))}
@@ -121,9 +139,9 @@ export function ProjectsSection() {
                   href={project.github}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-primary hover:text-primary-light font-medium transition-colors"
+                  className="inline-flex items-center gap-1 text-primary hover:text-primary-light font-medium transition-all hover-scale"
                 >
-                  💻 Código
+                  <span>💻</span> Código
                 </a>
               )}
               {project.demo && (
@@ -131,9 +149,9 @@ export function ProjectsSection() {
                   href={project.demo}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-primary hover:text-primary-light font-medium transition-colors"
+                  className="inline-flex items-center gap-1 text-primary hover:text-primary-light font-medium transition-all hover-scale"
                 >
-                  🚀 Demo
+                  <span>🚀</span> Demo
                 </a>
               )}
             </div>

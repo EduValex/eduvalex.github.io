@@ -38,18 +38,29 @@ git push -u origin main
 
 ## 3. Configurar GitHub Pages
 
+Publicaremos con la rama `gh-pages` usando el script de deploy incluido.
+
 1. Ve a tu repositorio en GitHub
 2. Click en **Settings** (arriba a la derecha)
 3. En el menú lateral, click en **Pages**
 4. En **Build and deployment**:
-   - Source: **GitHub Actions** (selecciona esto, no "Deploy from branch")
-5. Save
+   - Source: **Deploy from a branch**
+   - Branch: **gh-pages**
+   - Folder: **/** (root)
+5. Guarda la configuración
 
-## 4. ¡Listo! 🎉
+## 4. Hacer el primer deploy
 
-El workflow de GitHub Actions se ejecutará automáticamente y en ~2-3 minutos tu sitio estará en:
+Desde la raíz del proyecto, ejecuta:
 
-**https://eduvalex.github.io**
+```bash
+npm run build
+npm run deploy
+```
+
+Esto compila React y publica el contenido en la rama `gh-pages`. En ~1-2 minutos tu sitio estará disponible en:
+
+https://eduvalex.github.io
 
 ## 5. Verificar el deploy
 
@@ -59,13 +70,12 @@ El workflow de GitHub Actions se ejecutará automáticamente y en ~2-3 minutos t
 
 ## 6. Futuros cambios
 
-Cada vez que hagas push a `main`, se desplegará automáticamente:
+Para publicar nuevas versiones:
 
 ```bash
 # Hacer cambios en tu código
-git add .
-git commit -m "Descripción de tus cambios"
-git push
+npm run build
+npm run deploy
 ```
 
 ## Estructura de URLs
@@ -77,9 +87,9 @@ git push
 ## Troubleshooting
 
 ### Si el sitio no carga:
-1. Verifica que el workflow se ejecutó sin errores en Actions
-2. Revisa que en Settings > Pages esté configurado "GitHub Actions"
-3. Dale unos minutos, a veces tarda en propagar
+1. Verifica en Settings > Pages que esté configurado "Deploy from a branch" con `gh-pages / (root)`
+2. Revisa que la rama `gh-pages` exista y tenga contenido (pestaña Branches)
+3. Vuelve a ejecutar `npm run deploy` y espera ~2 minutos
 
 ### Si las imágenes no cargan:
 1. Verifica que las rutas en cv-data.json sean relativas

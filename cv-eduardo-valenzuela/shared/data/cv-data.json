@@ -106,7 +106,9 @@
       "technologies": ["React", "Vue.js", "Vite", "Tailwind CSS", "GitHub Pages", "JavaScript"],
       "github": "https://github.com/eduvalex/eduvalex.github.io",
       "demo": "https://eduvalex.github.io",
-      "featured": true
+      "featured": true,
+      "category": "Personal",
+      "client": false
     },
     {
       "name": "Dadneo Capital - Venture Capital",
@@ -116,7 +118,9 @@
       "technologies": ["WordPress", "PHP", "SEO", "MySQL", "JavaScript", "CSS", "Google Analytics"],
       "github": "",
       "demo": "https://dadneo.capital",
-      "featured": true
+      "featured": true,
+      "category": "WordPress",
+      "client": true
     },
     {
       "name": "Cerveza Mala Junta - E-Commerce",
@@ -126,7 +130,9 @@
       "technologies": ["WordPress", "PHP", "Instagram API", "SEO", "MySQL", "JavaScript", "CSS"],
       "github": "",
       "demo": "https://www.cervezamalajunta.cl",
-      "featured": true
+      "featured": true,
+      "category": "WordPress",
+      "client": true
     },
     {
       "name": "creasmile.cl - E-Commerce Corporativo",
@@ -136,7 +142,9 @@
       "technologies": ["WordPress", "PHP", "WooCommerce", "SEO", "MySQL", "JavaScript", "CSS", "Google Drive API"],
       "github": "",
       "demo": "https://creasmile.cl",
-      "featured": true
+      "featured": true,
+      "category": "WordPress",
+      "client": true
     },
     {
       "name": "creabord.cl - E-Commerce Bordados",
@@ -146,7 +154,9 @@
       "technologies": ["WordPress", "WooCommerce", "PHP", "Instagram API", "SEO", "MySQL", "JavaScript", "CSS"],
       "github": "",
       "demo": "https://creabord.cl",
-      "featured": true
+      "featured": true,
+      "category": "WordPress",
+      "client": true
     },
     {
       "name": "Plugin WordPress Personalizado",
@@ -156,7 +166,9 @@
       "technologies": ["WordPress", "React", "PHP", "Google Drive API", "OAuth 2.0", "REST API", "Webpack", "SCSS"],
       "github": "https://github.com/EduValex/wpmudev-plugin-test",
       "demo": "",
-      "featured": true
+      "featured": true,
+      "category": "WordPress",
+      "client": false
     },
     {
       "name": "Sorteo San Valentín - CTS Turismo",
@@ -166,7 +178,9 @@
       "technologies": ["Django", "Python", "Nuxt.js", "TypeScript", "Celery", "Redis", "PostgreSQL", "JWT", "Tailwind CSS", "REST API"],
       "github": "https://github.com/EduValex/sorteo-san-valentin",
       "demo": "https://sorteo-san-valentin.vercel.app",
-      "featured": true
+      "featured": true,
+      "category": "Full Stack",
+      "client": true
     },
     {
       "name": "SaaS Restaurante - Sistema de Gestión",
@@ -176,7 +190,9 @@
       "technologies": ["React", "Node.js", "Express", "PostgreSQL", "Bootstrap", "React Router", "CORS", "REST API"],
       "github": "https://github.com/EduValex/SaaS_Restaurant",
       "demo": "",
-      "featured": true
+      "featured": true,
+      "category": "Full Stack",
+      "client": false
     },
     {
       "name": "Catálogo de Hierbas Medicinales",
@@ -186,7 +202,9 @@
       "technologies": ["Ruby on Rails", "PostgreSQL", "Bootstrap", "JavaScript", "Heroku"],
       "github": "",
       "demo": "",
-      "featured": false
+      "featured": false,
+      "category": "Full Stack",
+      "client": false
     }
   ],
 

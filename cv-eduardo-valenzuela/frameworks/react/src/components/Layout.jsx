@@ -1,6 +1,8 @@
-import { useEffect } from 'react';
+import { useEffect, useMemo } from 'react';
 import { initTheme } from '../lib/theme.js';
+import { useScrollReveal } from '../hooks/useScrollReveal.js';
 import { ThemeToggle } from './ThemeToggle.jsx';
+import data from '@data/cv-data.json';
 
 function FrameworkSwitcherPlaceholder() {
   return (
@@ -21,13 +23,34 @@ export function Layout({ children }) {
     initTheme();
   }, []);
 
+  // Hook para animaciones de scroll
+  useScrollReveal();
+
+  const personal = data.personal;
+  const initials = useMemo(() => {
+    if (!personal?.name) return 'EV';
+    return personal.name
+      .split(' ')
+      .filter(Boolean)
+      .map(n => n[0])
+      .slice(0, 2)
+      .join('')
+      .toUpperCase();
+  }, [personal?.name]);
+
   return (
     <div className="min-h-screen flex flex-col">
       <header className="sticky top-0 z-40 backdrop-blur bg-white/75 dark:bg-slate-900/75 border-b border-slate-200 dark:border-slate-700">
         <div className="container-responsive py-3 flex items-center justify-between">
-          <div className="flex items-center gap-3">
-            <span className="text-lg font-semibold tracking-tight">Eduardo Valenzuela</span>
-            <span className="text-sm text-slate-500 dark:text-slate-400">Full Stack Developer</span>
+          <div className="flex items-center gap-3" aria-label={personal?.name || 'Portfolio'}>
+            <div className="w-9 h-9 rounded-full bg-primary text-white flex items-center justify-center font-bold" title={personal?.name}>
+              {initials}
+            </div>
+            {personal?.title && (
+              <span className="text-sm md:text-base text-slate-700 dark:text-slate-200 font-medium">
+                {personal.title}
+              </span>
+            )}
           </div>
           <div className="flex items-center gap-3">
             <ThemeToggle />

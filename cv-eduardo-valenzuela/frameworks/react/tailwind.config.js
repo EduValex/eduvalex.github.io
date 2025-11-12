@@ -1,12 +1,16 @@
 import fs from 'node:fs';
 import path from 'node:path';
+import { fileURLToPath } from 'node:url';
+
+// Emular __dirname en ESM
+const __dirname = fileURLToPath(new URL('.', import.meta.url));
 
 // Load design tokens (simple parse; if fails we fallback)
 let tokens = {};
 try {
   const tokenPath = path.resolve(__dirname, '../../shared/styles/design-tokens.json');
   tokens = JSON.parse(fs.readFileSync(tokenPath, 'utf-8'));
-} catch (e) {
+} catch {
   console.warn('⚠️ Could not load design-tokens.json, using minimal defaults.');
 }
 
