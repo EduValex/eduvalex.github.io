@@ -35,9 +35,45 @@
     <!-- Preconnect para optimización -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <script type="module" crossorigin src="/assets/index-C_nBVwV1.js"></script>
-    <link rel="modulepreload" crossorigin href="/assets/react-vendor-fmhPxr0O.js">
-    <link rel="stylesheet" crossorigin href="/assets/index-BeV-LJyq.css">
+    
+      <!-- Aplicar tema dark inmediatamente para evitar flash -->
+      <script>
+        (function() {
+          const theme = localStorage.getItem('cv_theme') || 'dark';
+          if (theme === 'dark') {
+            document.documentElement.classList.add('dark');
+          }
+        })();
+      </script>
+    
+    <!-- Theme color for mobile address bar -->
+    <meta name="theme-color" content="#0f172a" />
+    
+    <!-- Structured Data: Person -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "name": "Eduardo Valenzuela Milla",
+      "jobTitle": "Full Stack Developer",
+      "url": "https://eduvalex.github.io/",
+      "email": "mailto:valenzuela.edo@gmail.com",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Temuco",
+        "addressRegion": "Araucanía",
+        "addressCountry": "CL"
+      },
+      "sameAs": [
+        "https://github.com/eduvalex",
+        "https://www.linkedin.com/in/eduardo-valenzuela-milla/"
+      ]
+    }
+    </script>
+    <script type="module" crossorigin src="/assets/index-DCX0OeIp.js"></script>
+    <link rel="modulepreload" crossorigin href="/assets/react-vendor-fCM-a2-c.js">
+    <link rel="modulepreload" crossorigin href="/assets/emailjs-CpgQHUqy.js">
+    <link rel="stylesheet" crossorigin href="/assets/index-BgaMqaj_.css">
   </head>
   <body>
     <div id="root"></div>
