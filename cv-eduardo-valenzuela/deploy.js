@@ -25,6 +25,16 @@ try {
   process.exit(1);
 }
 
+// Step 1b: Build Astro
+console.log('📦 Building Astro app...');
+try {
+  execSync('cd frameworks/astro && npm install && npm run build', { stdio: 'inherit' });
+  console.log('✅ Astro build completed\n');
+} catch (error) {
+  console.error('❌ Astro build failed');
+  process.exit(1);
+}
+
 // Step 2: Create deploy directory
 const deployDir = path.join(__dirname, 'deploy-temp');
 if (fs.existsSync(deployDir)) {
@@ -39,6 +49,13 @@ console.log('📋 Copying files...');
 // Copy React build to root
 const reactDist = path.join(__dirname, 'frameworks/react/dist');
 fs.cpSync(reactDist, deployDir, { recursive: true });
+
+// Copy Astro build to /astro path
+const astroDist = path.join(__dirname, 'frameworks/astro/dist');
+const astroDeploy = path.join(deployDir, 'astro');
+if (fs.existsSync(astroDist)) {
+  fs.cpSync(astroDist, astroDeploy, { recursive: true });
+}
 
 // Copy shared assets
 const sharedAssets = path.join(__dirname, 'shared/assets');
