@@ -48,6 +48,8 @@ const SERVICES = [
     <title>Eduardo Valenzuela — Full Stack Developer (Astro)</title>
     <meta name="description" content="Portfolio de Eduardo Valenzuela — Full Stack Developer especializado en React, Django, WordPress y SEO" />
     <link rel="icon" href="/favicon.ico" />
+    <!-- EmailJS SDK desde CDN -->
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
     <style>
       :root { color-scheme: dark; }
       * { box-sizing: border-box; }
@@ -59,7 +61,8 @@ const SERVICES = [
       .panel:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,0,0,.3) }
       .grid { display:grid; gap:1.5rem; grid-template-columns: repeat(auto-fill,minmax(300px,1fr)); }
       .grid-2 { display:grid; gap:1.5rem; grid-template-columns:1fr 1fr }
-      @media (max-width:768px) { .grid-2 { grid-template-columns:1fr } .container { padding:1.5rem .75rem } }
+      .grid-skills { display:grid; gap:1.5rem; grid-template-columns:repeat(3,1fr) }
+      @media (max-width:768px) { .grid-2, .grid-skills { grid-template-columns:1fr } .container { padding:1.5rem .75rem } }
       .btn { display:inline-block; background:#3b82f6; color:white; padding:.75rem 1.25rem; border-radius:.75rem; font-weight:600; border:none; cursor:pointer; transition: background .2s, transform .1s }
       .btn:hover { background:#2563eb; text-decoration:none; transform: scale(1.02) }
       .btn.secondary { background:#0ea5e9 }
@@ -202,7 +205,7 @@ const SERVICES = [
           <p data-lang="es" class="active">Servicios de desarrollo y consultoría digital para empresas y emprendedores</p>
           <p data-lang="en">Development and digital consulting services for businesses and entrepreneurs</p>
         </div>
-        <div class="grid">
+        <div class="grid-2">
           {SERVICES.map(service => (
             <article class="service">
               <div class="icon-box">{service.icon}</div>
@@ -280,7 +283,7 @@ const SERVICES = [
           <span class="inline-lang active" data-lang="es">Habilidades</span>
           <span class="inline-lang" data-lang="en">Skills</span>
         </h2>
-        <div class="grid">
+        <div class="grid-skills">
           <article class="panel">
             <h3>Frontend</h3>
             <div class="badges" style="margin-top:.75rem">
@@ -411,9 +414,13 @@ const SERVICES = [
       </footer>
     </main>
 
-    <script type="module">
-      import emailjs from '@emailjs/browser';
-      import { EMAILJS_CONFIG } from '../config/emailjs.js';
+    <script>
+      // EmailJS config inline
+      const EMAILJS_CONFIG = {
+        SERVICE_ID: 'service_35dui0c',
+        TEMPLATE_ID: 'template_dlh2p8t',
+        PUBLIC_KEY: 'qZw7aS4i2gCI3Wz2B',
+      };
 
       // Language toggle
       let currentLang = 'es';
@@ -468,10 +475,9 @@ const SERVICES = [
       const form = document.getElementById('contact-form');
       const status = document.getElementById('form-status');
 
-      try {
-        emailjs.init({ publicKey: EMAILJS_CONFIG.PUBLIC_KEY });
-      } catch (e) {
-        console.error('EmailJS init error:', e);
+      // Init EmailJS from CDN
+      if (typeof emailjs !== 'undefined') {
+        emailjs.init(EMAILJS_CONFIG.PUBLIC_KEY);
       }
 
       function setStatus(type, message) {
@@ -511,6 +517,10 @@ const SERVICES = [
         submitBtn.innerHTML = currentLang === 'es' ? '⏳ Enviando...' : '⏳ Sending...';
         
         try {
+          if (typeof emailjs === 'undefined') {
+            throw new Error('EmailJS not loaded');
+          }
+          
           const result = await emailjs.sendForm(
             EMAILJS_CONFIG.SERVICE_ID,
             EMAILJS_CONFIG.TEMPLATE_ID,
