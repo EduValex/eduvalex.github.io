@@ -5,6 +5,9 @@ const projects = cv.projects;
 const experience = cv.experience;
 const skills = cv.skills;
 
+// Astro base URL para resolver assets correctamente
+const baseUrl = import.meta.env.BASE_URL;
+
 const SERVICES = [
   {
     icon: '🛠️',
@@ -47,7 +50,7 @@ const SERVICES = [
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Eduardo Valenzuela — Full Stack Developer (Astro)</title>
     <meta name="description" content="Portfolio de Eduardo Valenzuela — Full Stack Developer especializado en React, Django, WordPress y SEO" />
-    <link rel="icon" href="/favicon.ico" />
+    <link rel="icon" href={`${baseUrl}favicon.ico`} />
     <!-- EmailJS SDK desde CDN -->
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
     <style>
@@ -154,7 +157,7 @@ const SERVICES = [
       <!-- Hero -->
       <section class="panel">
         <div class="hero">
-          <img src="/favicon.ico" alt="Eduardo Valenzuela" />
+          <img src={`${baseUrl}favicon.ico`} alt="Eduardo Valenzuela" />
           <div style="flex:1">
             <h1 data-lang="es" class="active" style="display:block">Hola, soy {personal.name}</h1>
             <h1 data-lang="en" style="display:none">Hi, I'm {personal.name}</h1>
@@ -168,7 +171,7 @@ const SERVICES = [
           Full‑Stack Developer. Here's my resume in PDF ready to download.
         </p>
         <p style="margin-top:1.25rem">
-          <a class="btn" href="/CV-Eduardo-Valenzuela.pdf" download>
+          <a class="btn" href={`${baseUrl}CV-Eduardo-Valenzuela.pdf`} download>
             <span class="inline-lang active" data-lang="es">📄 Descargar CV</span>
             <span class="inline-lang" data-lang="en">📄 Download Resume</span>
           </a>

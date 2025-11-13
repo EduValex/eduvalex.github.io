@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Eduardo Valenzuela — Full Stack Developer</title>
+  <style>
+    body { margin: 0; background: #0f172a; color: #e2e8f0; font-family: system-ui, -apple-system, sans-serif; }
+    #fw-loader { display: flex; align-items: center; justify-content: center; height: 100vh; }
+    .spinner { width: 50px; height: 50px; border: 3px solid rgba(59,130,246,.2); border-top-color: #3b82f6; border-radius: 50%; animation: spin 0.8s linear infinite; }
+    @keyframes spin { to { transform: rotate(360deg); } }
+  </style>
+</head>
+<body>
+  <div id="fw-loader">
+    <div class="spinner"></div>
+  </div>
+  
+  <script>
+    // Detectar framework desde query param o localStorage
+    const urlParams = new URLSearchParams(window.location.search);
+    const fwParam = urlParams.get('fw'); // ?fw=astro o ?fw=react
+    
+    // Si hay param, guardarlo y limpiar URL
+    if (fwParam) {
+      localStorage.setItem('preferred-framework', fwParam);
+      // Limpiar query param de la URL sin recargar
+      const cleanUrl = window.location.origin + window.location.pathname;
+      window.history.replaceState({}, document.title, cleanUrl);
+    }
+    
+    // Obtener framework preferido (default: react)
+    const framework = localStorage.getItem('preferred-framework') || 'react';
+    
+    // Redirigir a la versión correcta
+    if (framework === 'astro') {
+      window.location.href = '/astro/';
+    } else {
+      window.location.href = '/'; // React en raíz
+    }
+  </script>
+</body>
+</html>
