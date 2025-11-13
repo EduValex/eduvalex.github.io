@@ -1,156 +1,239 @@
 ---
 import cv from '../../../../shared/data/cv-data.json';
 const personal = cv.personal;
-const about = cv.about.es;
 const projects = cv.projects;
 const experience = cv.experience;
 const skills = cv.skills;
+
+const SERVICES = [
+  {
+    icon: '🛠️',
+    titleES: 'Desarrollo Web & Apps',
+    titleEN: 'Web & App Development',
+    descES: 'Sitios web corporativos, e-commerce, landing pages y aplicaciones web full-stack con React, Django, Rails y WordPress. Responsive, rápidos y optimizados para conversión.',
+    descEN: 'Corporate websites, e-commerce, landing pages and full-stack web applications with React, Django, Rails and WordPress. Responsive, fast and conversion-optimized.',
+    tags: ['React', 'WordPress', 'Django', 'E-Commerce', 'SaaS']
+  },
+  {
+    icon: '🔍',
+    titleES: 'Auditorías SEO',
+    titleEN: 'SEO Audits',
+    descES: 'Análisis técnico completo de SEO on-page, velocidad de carga, estructura del sitio, Core Web Vitals y estrategia de keywords con reportes detallados y plan de acción.',
+    descEN: 'Complete technical SEO on-page analysis, page speed, site structure, Core Web Vitals and keyword strategy with detailed reports and action plan.',
+    tags: ['SEO On-Page', 'PageSpeed', 'Analytics', 'SEMrush']
+  },
+  {
+    icon: '🤖',
+    titleES: 'Asistentes IA Personalizados',
+    titleEN: 'Custom AI Assistants',
+    descES: 'Diseño e integración de chatbots inteligentes con ChatGPT, Claude AI y modelos custom para automatización, atención al cliente 24/7 y workflows empresariales.',
+    descEN: 'Design and integration of intelligent chatbots with ChatGPT, Claude AI and custom models for automation, 24/7 customer service and business workflows.',
+    tags: ['ChatGPT', 'Claude AI', 'Automation', 'Webhooks']
+  },
+  {
+    icon: '🔌',
+    titleES: 'Integraciones & Plugins',
+    titleEN: 'Integrations & Plugins',
+    descES: 'Desarrollo de plugins WordPress personalizados, conexiones con APIs externas (Google, Instagram, Drive), pasarelas de pago y automatizaciones con webhooks.',
+    descEN: 'Custom WordPress plugin development, external API connections (Google, Instagram, Drive), payment gateways and webhook automations.',
+    tags: ['WordPress Plugins', 'APIs', 'Google Drive', 'Webhooks']
+  }
+];
 ---
-<html lang="es">
+<!DOCTYPE html>
+<html lang="es" id="html-root">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Eduardo Valenzuela — Portfolio (Astro)</title>
-    <meta name="description" content="Portfolio de Eduardo Valenzuela — Full Stack Developer" />
+    <title>Eduardo Valenzuela — Full Stack Developer (Astro)</title>
+    <meta name="description" content="Portfolio de Eduardo Valenzuela — Full Stack Developer especializado en React, Django, WordPress y SEO" />
     <link rel="icon" href="/favicon.ico" />
     <style>
       :root { color-scheme: dark; }
-      body { margin: 0; font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, Helvetica Neue, Arial, "Apple Color Emoji", "Segoe UI Emoji"; background:#0f172a; color:#e2e8f0; }
+      * { box-sizing: border-box; }
+      body { margin: 0; font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, Helvetica Neue, Arial, "Apple Color Emoji", "Segoe UI Emoji"; background:#0f172a; color:#e2e8f0; transition: opacity .3s }
       a { color:#60a5fa; text-decoration:none }
       a:hover { text-decoration:underline }
-      .container { max-width: 1040px; margin: 0 auto; padding: 2rem; }
-      .panel { background: rgba(15,23,42,.6); border:1px solid rgba(148,163,184,.2); border-radius: 14px; padding: 1.25rem; }
-      .grid { display:grid; gap:1rem; grid-template-columns: repeat(auto-fill,minmax(260px,1fr)); }
-      .btn { display:inline-block; background:#3b82f6; color:white; padding:.75rem 1rem; border-radius:.75rem; font-weight:600; }
-      .btn:hover { background:#2563eb }
+      .container { max-width: 1100px; margin: 0 auto; padding: 2rem 1rem; }
+      .panel { background: rgba(15,23,42,.6); border:1px solid rgba(148,163,184,.2); border-radius: 14px; padding: 1.5rem; margin-bottom:2rem; transition: transform .2s, box-shadow .2s }
+      .panel:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,0,0,.3) }
+      .grid { display:grid; gap:1.5rem; grid-template-columns: repeat(auto-fill,minmax(300px,1fr)); }
+      .grid-2 { display:grid; gap:1.5rem; grid-template-columns:1fr 1fr }
+      @media (max-width:768px) { .grid-2 { grid-template-columns:1fr } .container { padding:1.5rem .75rem } }
+      .btn { display:inline-block; background:#3b82f6; color:white; padding:.75rem 1.25rem; border-radius:.75rem; font-weight:600; border:none; cursor:pointer; transition: background .2s, transform .1s }
+      .btn:hover { background:#2563eb; text-decoration:none; transform: scale(1.02) }
       .btn.secondary { background:#0ea5e9 }
-      h1 { font-size: clamp(1.8rem, 3.5vw, 2.4rem); margin:0 0 .5rem }
-      h2 { font-size: clamp(1.3rem, 2.5vw, 1.6rem); margin:1.5rem 0 .75rem }
-      p { line-height:1.7 }
-      header { display:flex; align-items:center; gap:1rem; margin-bottom:1.25rem }
-      header img { width:84px; height:84px; border-radius:16px; object-fit:cover; }
-      small { color:#94a3b8 }
-      nav { position: sticky; top:0; z-index:50; backdrop-filter: blur(8px); background: rgba(15,23,42,.7); border-bottom:1px solid rgba(148,163,184,.2); }
-      nav .inner { display:flex; gap:.75rem; align-items:center; justify-content:space-between; max-width:1040px; margin:0 auto; padding:.6rem 2rem; }
-      nav a { color:#cbd5e1; text-decoration:none; padding:.35rem .6rem; border-radius:.5rem }
-      nav a:hover { background: rgba(148,163,184,.12) }
-      .badges { display:flex; flex-wrap:wrap; gap:.5rem }
-      .badge { background:#1f2937; border:1px solid rgba(148,163,184,.25); color:#e5e7eb; padding:.25rem .6rem; border-radius:999px; font-size:.8rem }
-      /* Form styles */
-      .field { display:flex; flex-direction:column; gap:.5rem }
-      .label { font-size:.9rem; color:#cbd5e1 }
-      .input, .textarea { width:100%; padding:.65rem .8rem; border-radius:.6rem; border:1px solid rgba(148,163,184,.3); background:#0b1220; color:#e2e8f0; outline:none }
-      .input:focus, .textarea:focus { border-color:#3b82f6; box-shadow:0 0 0 3px rgba(59,130,246,.25) }
-      .textarea { resize:vertical; min-height:140px }
-      .actions { display:flex; align-items:center; gap:.75rem; flex-wrap:wrap }
-      .alert { border-radius:.6rem; padding:.75rem .9rem; font-size:.9rem }
-      .alert.success { background:rgba(16,185,129,.12); color:#34d399; border:1px solid rgba(16,185,129,.3) }
-      .alert.error { background:rgba(239,68,68,.12); color:#f87171; border:1px solid rgba(239,68,68,.3) }
+      .btn.secondary:hover { background:#0284c7 }
+      h1 { font-size: clamp(1.8rem, 4vw, 2.6rem); margin:0 0 .5rem; font-weight:800; line-height:1.2 }
+      h2 { font-size: clamp(1.4rem, 3vw, 1.9rem); margin:0 0 1.25rem; font-weight:700; display:flex; align-items:center; gap:.6rem }
+      h3 { font-size: 1.15rem; font-weight:600; margin:0; color:#f1f5f9 }
+      p { line-height:1.7; margin:.5rem 0; color:#cbd5e1 }
+      .hero { display:flex; align-items:center; gap:1.5rem; flex-wrap:wrap }
+      .hero img { width:90px; height:90px; border-radius:18px; object-fit:cover; flex-shrink:0; box-shadow:0 4px 12px rgba(0,0,0,.3) }
+      small { color:#94a3b8; font-size:.9rem }
+      nav { position: sticky; top:0; z-index:50; backdrop-filter: blur(12px); background: rgba(15,23,42,.9); border-bottom:1px solid rgba(148,163,184,.2); box-shadow:0 2px 8px rgba(0,0,0,.2) }
+      nav .inner { display:flex; gap:.75rem; align-items:center; justify-content:space-between; max-width:1100px; margin:0 auto; padding:.75rem 1rem; flex-wrap:wrap }
+      nav a { color:#cbd5e1; text-decoration:none; padding:.4rem .7rem; border-radius:.5rem; font-size:.9rem; transition: background .15s; white-space:nowrap }
+      nav a:hover { background: rgba(148,163,184,.15); text-decoration:none }
+      .badges { display:flex; flex-wrap:wrap; gap:.5rem; align-items:center }
+      .badge { background:#1e293b; border:1px solid rgba(148,163,184,.25); color:#e5e7eb; padding:.3rem .75rem; border-radius:999px; font-size:.8rem; white-space:nowrap; transition: background .2s }
+      .badge:hover { background:#334155 }
+      .lang-toggle { background:#1e293b; border:1px solid rgba(148,163,184,.3); border-radius:.5rem; padding:.25rem; display:flex; gap:.25rem }
+      .lang-toggle button { background:transparent; border:none; color:#94a3b8; padding:.35rem .75rem; border-radius:.4rem; cursor:pointer; font-size:.85rem; transition: all .2s; font-weight:500 }
+      .lang-toggle button.active { background:#3b82f6; color:white }
+      .lang-toggle button:hover:not(.active) { background:rgba(148,163,184,.15); color:#cbd5e1 }
+      /* Form */
+      .field { display:flex; flex-direction:column; gap:.5rem; margin-bottom:1rem }
+      .label { font-size:.9rem; color:#cbd5e1; font-weight:500 }
+      .input, .textarea { width:100%; padding:.75rem .9rem; border-radius:.6rem; border:1px solid rgba(148,163,184,.3); background:#0b1220; color:#e2e8f0; outline:none; font-family:inherit; font-size:.95rem; transition: border-color .2s, box-shadow .2s }
+      .input:focus, .textarea:focus { border-color:#3b82f6; box-shadow:0 0 0 3px rgba(59,130,246,.2) }
+      .textarea { resize:vertical; min-height:140px; line-height:1.6 }
+      .alert { border-radius:.6rem; padding:.85rem 1rem; font-size:.9rem; margin:.75rem 0 }
+      .alert.success { background:rgba(16,185,129,.15); color:#34d399; border:1px solid rgba(16,185,129,.35) }
+      .alert.error { background:rgba(239,68,68,.15); color:#f87171; border:1px solid rgba(239,68,68,.35) }
       /* Services */
-      .service { display:flex; flex-direction:column; gap:.6rem }
-      .service h3 { margin:.25rem 0 0; font-size:1.05rem }
-      .service .icon { font-size:1.25rem }
+      .service { position:relative; overflow:hidden; border-radius:12px; background: rgba(15,23,42,.6); border:1px solid rgba(148,163,184,.2); padding:1.75rem; transition: transform .2s, box-shadow .2s }
+      .service:hover { transform: translateY(-4px); box-shadow: 0 12px 32px rgba(0,0,0,.4) }
+      .service .icon-box { width:68px; height:68px; border-radius:16px; background: linear-gradient(135deg, rgba(59,130,246,.15), rgba(14,165,233,.15)); display:flex; align-items:center; justify-content:center; font-size:2.2rem; margin-bottom:1rem; transition: transform .3s }
+      .service:hover .icon-box { transform: scale(1.1) rotate(5deg) }
+      .service h3 { margin-bottom:.75rem; font-size:1.15rem }
+      .service p { font-size:.9rem; color:#cbd5e1; line-height:1.65; margin-bottom:1.25rem }
+      /* Contact info */
+      .contact-info { list-style:none; padding:0; margin:0; display:flex; flex-direction:column; gap:1.25rem }
+      .contact-info li { display:flex; align-items:start; gap:1rem }
+      .contact-info li .icon { font-size:1.4rem; flex-shrink:0; line-height:1 }
+      .contact-info li .detail { flex:1 }
+      .contact-info li .detail strong { display:block; font-size:.75rem; text-transform:uppercase; letter-spacing:.5px; color:#64748b; margin-bottom:.25rem }
+      .contact-info li a { color:#60a5fa; transition: color .2s }
+      .contact-info li a:hover { color:#93c5fd; text-decoration:none }
+      /* Section header */
+      .section-header { text-align:center; max-width:650px; margin:0 auto 2rem }
+      .section-header h2 { justify-content:center }
+      .section-header p { color:#94a3b8; font-size:.95rem }
+      /* Experience & Projects */
+      .exp-card, .proj-card { background: rgba(15,23,42,.6); border:1px solid rgba(148,163,184,.2); border-radius:12px; padding:1.5rem; transition: transform .2s, box-shadow .2s }
+      .exp-card:hover, .proj-card:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,0,0,.3) }
+      .exp-card h3, .proj-card h3 { margin-bottom:.5rem }
+      .exp-card small, .proj-card small { color:#94a3b8; font-size:.85rem }
+      .exp-card p, .proj-card p { margin:.75rem 0; font-size:.9rem; line-height:1.65 }
+      .proj-card .actions { display:flex; gap:.75rem; margin-top:1rem; flex-wrap:wrap }
+      .proj-card .actions .btn { padding:.5rem .9rem; font-size:.85rem }
+      /* Hidden lang content */
+      [data-lang] { display:none }
+      [data-lang].active { display:block }
+      .inline-lang { display:none }
+      .inline-lang.active { display:inline }
     </style>
   </head>
   <body>
     <nav>
       <div class="inner">
         <div class="badges">
-          <a href="#about">Sobre mí</a>
-          <a href="#experience">Experiencia</a>
-          <a href="#projects">Proyectos</a>
-          <a href="#skills">Habilidades</a>
-          <a href="#contact">Contacto</a>
+          <a href="#about" data-nav-es="Sobre mí" data-nav-en="About">Sobre mí</a>
+          <a href="#services" data-nav-es="Servicios" data-nav-en="Services">Servicios</a>
+          <a href="#experience" data-nav-es="Experiencia" data-nav-en="Experience">Experiencia</a>
+          <a href="#projects" data-nav-es="Proyectos" data-nav-en="Projects">Proyectos</a>
+          <a href="#skills" data-nav-es="Habilidades" data-nav-en="Skills">Habilidades</a>
+          <a href="#contact" data-nav-es="Contacto" data-nav-en="Contact">Contacto</a>
         </div>
         <div class="badges">
-          <a href="/" title="Ver versión React">⚛️ React</a>
-          <a href="/astro/" title="Esta página" class="badge">⭐ Astro</a>
+          <div class="lang-toggle">
+            <button data-lang-btn="es" class="active">ES</button>
+            <button data-lang-btn="en">EN</button>
+          </div>
+          <a href="/" title="React version">⚛️ React</a>
+          <a href="/astro/" title="Astro version" class="badge">⭐ Astro</a>
         </div>
       </div>
     </nav>
+
     <main class="container">
+      <!-- Hero -->
       <section class="panel">
-        <header>
-          <img src="/favicon.ico" alt="Logo" />
-          <div>
-            <h1>Hola, soy {personal.name}</h1>
+        <div class="hero">
+          <img src="/favicon.ico" alt="Eduardo Valenzuela" />
+          <div style="flex:1">
+            <h1 data-lang="es" class="active">Hola, soy {personal.name}</h1>
+            <h1 data-lang="en">Hi, I'm {personal.name}</h1>
             <small>{personal.location}</small>
           </div>
-        </header>
-        <p>
+        </div>
+        <p data-lang="es" class="active" style="margin-top:1rem">
           Desarrollador Full‑Stack. Aquí tienes mi CV en PDF listo para descargar.
         </p>
-        <p>
-          <a class="btn" href="/CV-Eduardo-Valenzuela.pdf" download>Descargar CV</a>
+        <p data-lang="en" style="margin-top:1rem">
+          Full‑Stack Developer. Here's my resume in PDF ready to download.
+        </p>
+        <p style="margin-top:1.25rem">
+          <a class="btn" href="/CV-Eduardo-Valenzuela.pdf" download>
+            <span class="inline-lang active" data-lang="es">📄 Descargar CV</span>
+            <span class="inline-lang" data-lang="en">📄 Download Resume</span>
+          </a>
+          <a class="btn secondary" href="#contact" style="margin-left:.75rem">
+            <span class="inline-lang active" data-lang="es">💬 Contacto</span>
+            <span class="inline-lang" data-lang="en">💬 Contact</span>
+          </a>
         </p>
       </section>
-      <section id="about" class="panel">
-        <h2>Sobre mí</h2>
-        {about.split('\n\n').map(par => (<p>{par}</p>))}
-      </section>
 
-      <section id="services" class="panel">
-        <h2>🚀 Qué hago</h2>
-        <p style="margin:.25rem 0 1rem;opacity:.9">Desarrollo y consultoría digital para negocios y emprendedores</p>
-        <div class="grid">
-          <article class="panel service">
-            <div class="icon">🛠️</div>
-            <h3>Desarrollo Web & Apps</h3>
-            <p>Web corporativa, e‑commerce y apps full‑stack con React, Django, Rails y WordPress. Rápidas, responsive y orientadas a conversión.</p>
-            <div class="badges">
-              <span class="badge">React</span>
-              <span class="badge">WordPress</span>
-              <span class="badge">Django</span>
-              <span class="badge">SaaS</span>
-            </div>
-          </article>
-          <article class="panel service">
-            <div class="icon">🔍</div>
-            <h3>Auditorías SEO</h3>
-            <p>SEO técnico on‑page, velocidad, estructura del sitio, Core Web Vitals y estrategia de keywords con plan de acción.</p>
-            <div class="badges">
-              <span class="badge">SEO On‑Page</span>
-              <span class="badge">PageSpeed</span>
-              <span class="badge">Analytics</span>
-              <span class="badge">SEMrush</span>
-            </div>
-          </article>
-          <article class="panel service">
-            <div class="icon">🤖</div>
-            <h3>Asistentes de IA</h3>
-            <p>Diseño e integración de chatbots inteligentes con ChatGPT/Claude y modelos a medida para automatización y soporte 24/7.</p>
-            <div class="badges">
-              <span class="badge">ChatGPT</span>
-              <span class="badge">Claude</span>
-              <span class="badge">Automation</span>
-              <span class="badge">Webhooks</span>
-            </div>
-          </article>
-          <article class="panel service">
-            <div class="icon">🔌</div>
-            <h3>Integraciones & Plugins</h3>
-            <p>Plugins WordPress, conexiones a APIs externas (Google, Instagram, Drive), pasarelas de pago y automatizaciones.</p>
-            <div class="badges">
-              <span class="badge">WP Plugins</span>
-              <span class="badge">APIs</span>
-              <span class="badge">Google Drive</span>
-              <span class="badge">Webhooks</span>
-            </div>
-          </article>
+      <!-- About -->
+      <section id="about" class="panel">
+        <h2>
+          <span>👨‍💻</span>
+          <span class="inline-lang active" data-lang="es">Sobre mí</span>
+          <span class="inline-lang" data-lang="en">About Me</span>
+        </h2>
+        <div data-lang="es" class="active">
+          {cv.about.es.split('\n\n').map((par: string) => <p>{par}</p>)}
+        </div>
+        <div data-lang="en">
+          {cv.about.en.split('\n\n').map((par: string) => <p>{par}</p>)}
         </div>
       </section>
 
-      <section id="experience" class="panel">
-        <h2>Experiencia</h2>
+      <!-- Services -->
+      <section id="services">
+        <div class="section-header">
+          <h2>
+            <span>🚀</span>
+            <span class="inline-lang active" data-lang="es">¿Qué hago?</span>
+            <span class="inline-lang" data-lang="en">What I Do</span>
+          </h2>
+          <p data-lang="es" class="active">Servicios de desarrollo y consultoría digital para empresas y emprendedores</p>
+          <p data-lang="en">Development and digital consulting services for businesses and entrepreneurs</p>
+        </div>
+        <div class="grid">
+          {SERVICES.map(service => (
+            <article class="service">
+              <div class="icon-box">{service.icon}</div>
+              <h3 data-lang="es" class="active">{service.titleES}</h3>
+              <h3 data-lang="en">{service.titleEN}</h3>
+              <p data-lang="es" class="active">{service.descES}</p>
+              <p data-lang="en">{service.descEN}</p>
+              <div class="badges">
+                {service.tags.map(tag => <span class="badge">{tag}</span>)}
+              </div>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <!-- Experience -->
+      <section id="experience">
+        <h2>
+          <span>💼</span>
+          <span class="inline-lang active" data-lang="es">Experiencia</span>
+          <span class="inline-lang" data-lang="en">Experience</span>
+        </h2>
         <div class="grid">
           {experience.map(exp => (
-            <article class="panel" style="padding:1rem">
-              <h3 style="margin:.25rem 0 0">{exp.position}</h3>
+            <article class="exp-card">
+              <h3>{exp.position}</h3>
               <small>{exp.company} · {exp.period} · {exp.location}</small>
-              <p style="margin:.75rem 0">{exp.description}</p>
+              <p>{exp.description}</p>
               {exp.technologies && (
                 <div class="badges">
-                  {exp.technologies.map(t => (<span class="badge">{t}</span>))}
+                  {exp.technologies.map(t => <span class="badge">{t}</span>)}
                 </div>
               )}
             </article>
@@ -158,114 +241,237 @@ const skills = cv.skills;
         </div>
       </section>
 
-      <section class="panel">
-        <h2>Proyectos destacados</h2>
+      <!-- Projects -->
+      <section id="projects">
+        <h2>
+          <span>🚀</span>
+          <span class="inline-lang active" data-lang="es">Proyectos destacados</span>
+          <span class="inline-lang" data-lang="en">Featured Projects</span>
+        </h2>
         <div class="grid">
           {projects.map(p => (
-            <article class="panel" style="padding:1rem">
-              <h3 style="margin:.25rem 0 0">{p.name}</h3>
+            <article class="proj-card">
+              <h3>{p.name}</h3>
               <small>{p.technologies?.slice(0,4).join(', ')}</small>
-              <p style="margin:.75rem 0">{p.description}</p>
-              <div style="display:flex; gap:.75rem; flex-wrap:wrap">
-                {p.github && <a href={p.github} target="_blank" rel="noreferrer" class="btn" style="padding:.4rem .7rem">Código</a>}
-                {p.demo && <a href={p.demo} target="_blank" rel="noreferrer" class="btn" style="padding:.4rem .7rem; background:#0ea5e9">Demo</a>}
-                {!p.github && !p.demo && <span style="opacity:.7">🔒 Privado</span>}
+              <p>{p.description}</p>
+              <div class="actions">
+                {p.github && <a href={p.github} target="_blank" rel="noreferrer" class="btn">
+                  <span class="inline-lang active" data-lang="es">💻 Código</span>
+                  <span class="inline-lang" data-lang="en">💻 Code</span>
+                </a>}
+                {p.demo && <a href={p.demo} target="_blank" rel="noreferrer" class="btn secondary">
+                  <span class="inline-lang active" data-lang="es">🚀 Demo</span>
+                  <span class="inline-lang" data-lang="en">🚀 Demo</span>
+                </a>}
+                {!p.github && !p.demo && <span style="opacity:.7">
+                  <span class="inline-lang active" data-lang="es">🔒 Privado</span>
+                  <span class="inline-lang" data-lang="en">🔒 Private</span>
+                </span>}
               </div>
             </article>
           ))}
         </div>
       </section>
 
-      <section id="skills" class="panel">
-        <h2>Habilidades</h2>
+      <!-- Skills -->
+      <section id="skills">
+        <h2>
+          <span>💡</span>
+          <span class="inline-lang active" data-lang="es">Habilidades</span>
+          <span class="inline-lang" data-lang="en">Skills</span>
+        </h2>
         <div class="grid">
           <article class="panel">
             <h3>Frontend</h3>
-            <div class="badges">
-              {skills.frontend.map(s => (<span class="badge" title={`${s.level}%`}>{s.name}</span>))}
+            <div class="badges" style="margin-top:.75rem">
+              {skills.frontend.map(s => <span class="badge" title={`${s.level}%`}>{s.name}</span>)}
             </div>
           </article>
           <article class="panel">
             <h3>Backend</h3>
-            <div class="badges">
-              {skills.backend.map(s => (<span class="badge" title={`${s.level}%`}>{s.name}</span>))}
+            <div class="badges" style="margin-top:.75rem">
+              {skills.backend.map(s => <span class="badge" title={`${s.level}%`}>{s.name}</span>)}
             </div>
           </article>
           <article class="panel">
-            <h3>Herramientas · Bases de datos</h3>
-            <div class="badges">
-              {skills.tools.databases.map(s => (<span class="badge" title={`${s.level}%`}>{s.name}</span>))}
+            <h3 data-lang="es" class="active">Herramientas · Bases de datos</h3>
+            <h3 data-lang="en">Tools · Databases</h3>
+            <div class="badges" style="margin-top:.75rem">
+              {skills.tools.databases.map(s => <span class="badge" title={`${s.level}%`}>{s.name}</span>)}
             </div>
           </article>
           <article class="panel">
-            <h3>Herramientas · SEO & Analytics</h3>
-            <div class="badges">
-              {skills.tools.seoAnalytics.map(s => (<span class="badge" title={`${s.level}%`}>{s.name}</span>))}
+            <h3>SEO & Analytics</h3>
+            <div class="badges" style="margin-top:.75rem">
+              {skills.tools.seoAnalytics.map(s => <span class="badge" title={`${s.level}%`}>{s.name}</span>)}
             </div>
           </article>
           <article class="panel">
-            <h3>Herramientas · Dev & Deploy</h3>
-            <div class="badges">
-              {skills.tools.devTools.map(s => (<span class="badge" title={`${s.level}%`}>{s.name}</span>))}
+            <h3 data-lang="es" class="active">Herramientas · Dev & Deploy</h3>
+            <h3 data-lang="en">Tools · Dev & Deploy</h3>
+            <div class="badges" style="margin-top:.75rem">
+              {skills.tools.devTools.map(s => <span class="badge" title={`${s.level}%`}>{s.name}</span>)}
             </div>
           </article>
           <article class="panel">
             <h3>IA</h3>
-            <div class="badges">
-              {skills.ai.map(s => (<span class="badge" title={`${s.level}%`}>{s.name}</span>))}
+            <div class="badges" style="margin-top:.75rem">
+              {skills.ai.map(s => <span class="badge" title={`${s.level}%`}>{s.name}</span>)}
             </div>
           </article>
         </div>
       </section>
 
-      <section id="contact" class="panel">
-        <h2>Contacto</h2>
-        <div class="grid">
+      <!-- Contact -->
+      <section id="contact">
+        <h2>
+          <span>📬</span>
+          <span class="inline-lang active" data-lang="es">Contacto</span>
+          <span class="inline-lang" data-lang="en">Contact</span>
+        </h2>
+        <div class="grid-2">
+          <!-- Contact info -->
           <div class="panel">
-            <h3 style="margin-top:0">Información</h3>
-            <ul style="list-style:none; padding:0; margin:0; display:flex; flex-direction:column; gap:.75rem">
-              <li class="badges" style="align-items:center"><span>📧</span><a href={`mailto:${personal.email}`}>{personal.email}</a></li>
-              <li class="badges" style="align-items:center"><span>📱</span><a href={`https://wa.me/${personal.phone.replace(/\D/g,'')}`} target="_blank" rel="noreferrer">{personal.phone} 💬</a></li>
-              <li class="badges" style="align-items:center"><span>📍</span><a href="https://www.google.com/maps/place/Temuco,+Regi%C3%B3n+de+la+Araucan%C3%ADa,+Chile" target="_blank" rel="noreferrer">{personal.location} 🗺️</a></li>
+            <h3 data-lang="es" class="active">Información</h3>
+            <h3 data-lang="en">Information</h3>
+            <ul class="contact-info" style="margin-top:1.25rem">
+              <li>
+                <span class="icon">📧</span>
+                <div class="detail">
+                  <strong>Email</strong>
+                  <a href={`mailto:${personal.email}`}>{personal.email}</a>
+                </div>
+              </li>
+              <li>
+                <span class="icon">📱</span>
+                <div class="detail">
+                  <strong data-lang="es" class="active">Teléfono / WhatsApp</strong>
+                  <strong data-lang="en">Phone / WhatsApp</strong>
+                  <a href={`https://wa.me/${personal.phone.replace(/\D/g,'')}`} target="_blank" rel="noreferrer">
+                    {personal.phone} 💬
+                  </a>
+                </div>
+              </li>
+              <li>
+                <span class="icon">📍</span>
+                <div class="detail">
+                  <strong data-lang="es" class="active">Ubicación</strong>
+                  <strong data-lang="en">Location</strong>
+                  <a href="https://www.google.com/maps/place/Temuco,+Regi%C3%B3n+de+la+Araucan%C3%ADa,+Chile" target="_blank" rel="noreferrer">
+                    {personal.location} 🗺️
+                  </a>
+                </div>
+              </li>
             </ul>
           </div>
+
+          <!-- Contact form -->
           <div class="panel">
-            <h3 style="margin-top:0">Envíame un mensaje</h3>
-            <form id="contact-form" class="flex" style="display:flex; flex-direction:column; gap:1rem">
+            <h3 data-lang="es" class="active">Envíame un mensaje</h3>
+            <h3 data-lang="en">Send me a message</h3>
+            <form id="contact-form" style="margin-top:1.25rem">
               <input type="hidden" name="title" value="Portfolio" />
               <div class="field">
-                <label for="name" class="label">Nombre *</label>
-                <input id="name" name="name" type="text" class="input" placeholder="Tu nombre" required />
+                <label for="name" class="label">
+                  <span class="inline-lang active" data-lang="es">Nombre *</span>
+                  <span class="inline-lang" data-lang="en">Name *</span>
+                </label>
+                <input id="name" name="name" type="text" class="input" placeholder="" required />
               </div>
               <div class="field">
                 <label for="email" class="label">Email *</label>
                 <input id="email" name="email" type="email" class="input" placeholder="tu@email.com" required />
               </div>
               <div class="field">
-                <label for="message" class="label">Mensaje *</label>
-                <textarea id="message" name="message" class="textarea" placeholder="Cuéntame sobre tu proyecto o idea..." required></textarea>
+                <label for="message" class="label">
+                  <span class="inline-lang active" data-lang="es">Mensaje *</span>
+                  <span class="inline-lang" data-lang="en">Message *</span>
+                </label>
+                <textarea id="message" name="message" class="textarea" placeholder="" required></textarea>
               </div>
               <div id="form-status" role="status" aria-live="polite"></div>
-              <div class="actions">
-                <button type="submit" class="btn"><span>📨</span> Enviar Mensaje</button>
-              </div>
+              <button type="submit" class="btn" style="margin-top:.5rem">
+                <span class="inline-lang active" data-lang="es">📨 Enviar Mensaje</span>
+                <span class="inline-lang" data-lang="en">📨 Send Message</span>
+              </button>
             </form>
           </div>
         </div>
       </section>
+
+      <!-- Footer -->
+      <footer style="text-align:center; padding:2rem 0; color:#64748b; font-size:.85rem">
+        <p>© 2025 Eduardo Valenzuela — <span class="inline-lang active" data-lang="es">Hecho con</span><span class="inline-lang" data-lang="en">Built with</span> ⭐ Astro</p>
+        <p style="margin-top:.5rem">
+          <a href="/" style="color:#60a5fa">
+            <span class="inline-lang active" data-lang="es">Ver versión React</span>
+            <span class="inline-lang" data-lang="en">View React version</span>
+          </a>
+        </p>
+      </footer>
     </main>
+
     <script type="module">
       import emailjs from '@emailjs/browser';
       import { EMAILJS_CONFIG } from '../config/emailjs.js';
 
+      // Language toggle
+      let currentLang = 'es';
+      const langButtons = document.querySelectorAll('[data-lang-btn]');
+      const langContents = document.querySelectorAll('[data-lang]');
+      const inlineLangs = document.querySelectorAll('.inline-lang');
+      const navLinks = document.querySelectorAll('nav a[data-nav-es]');
+
+      function setLanguage(lang) {
+        currentLang = lang;
+        localStorage.setItem('astro-lang', lang);
+        
+        // Toggle buttons
+        langButtons.forEach(btn => {
+          btn.classList.toggle('active', btn.dataset.langBtn === lang);
+        });
+        
+        // Toggle content blocks
+        langContents.forEach(el => {
+          el.classList.toggle('active', el.dataset.lang === lang);
+        });
+        
+        // Toggle inline spans
+        inlineLangs.forEach(el => {
+          el.classList.toggle('active', el.dataset.lang === lang);
+        });
+
+        // Update nav links
+        navLinks.forEach(link => {
+          const text = lang === 'es' ? link.dataset.navEs : link.dataset.navEn;
+          if (text) link.textContent = text;
+        });
+
+        // Update form placeholders
+        const nameInput = document.getElementById('name');
+        const messageInput = document.getElementById('message');
+        if (nameInput) nameInput.placeholder = lang === 'es' ? 'Tu nombre' : 'Your name';
+        if (messageInput) messageInput.placeholder = lang === 'es' ? 'Cuéntame sobre tu proyecto o idea...' : 'Tell me about your project or idea...';
+      }
+
+      langButtons.forEach(btn => {
+        btn.addEventListener('click', () => setLanguage(btn.dataset.langBtn));
+      });
+
+      // Restore saved language
+      const savedLang = localStorage.getItem('astro-lang');
+      if (savedLang && savedLang !== 'es') {
+        setLanguage(savedLang);
+      }
+
+      // EmailJS form
       const form = document.getElementById('contact-form');
       const status = document.getElementById('form-status');
 
-      // Init EmailJS
       try {
         emailjs.init({ publicKey: EMAILJS_CONFIG.PUBLIC_KEY });
       } catch (e) {
-        // silent
+        console.error('EmailJS init error:', e);
       }
 
       function setStatus(type, message) {
@@ -277,8 +483,16 @@ const skills = cv.skills;
         const name = formData.get('name')?.trim();
         const email = formData.get('email')?.trim();
         const message = formData.get('message')?.trim();
-        if (!name || !email || !message) return 'Por favor completa todos los campos';
-        if (!/\S+@\S+\.\S+/.test(email)) return 'Por favor ingresa un email válido';
+        if (!name || !email || !message) {
+          return currentLang === 'es' 
+            ? 'Por favor completa todos los campos' 
+            : 'Please fill in all fields';
+        }
+        if (!/\S+@\S+\.\S+/.test(email)) {
+          return currentLang === 'es' 
+            ? 'Por favor ingresa un email válido' 
+            : 'Please enter a valid email';
+        }
         return '';
       }
 
@@ -292,9 +506,10 @@ const skills = cv.skills;
         }
         setStatus('', '');
         const submitBtn = form.querySelector('button[type="submit"]');
-        const prevText = submitBtn.textContent;
+        const prevHTML = submitBtn.innerHTML;
         submitBtn.disabled = true;
-        submitBtn.textContent = '⏳ Enviando...';
+        submitBtn.innerHTML = currentLang === 'es' ? '⏳ Enviando...' : '⏳ Sending...';
+        
         try {
           const result = await emailjs.sendForm(
             EMAILJS_CONFIG.SERVICE_ID,
@@ -302,16 +517,26 @@ const skills = cv.skills;
             form
           );
           if (result.text === 'OK') {
-            setStatus('success', '¡Mensaje enviado! Te responderé pronto 🚀');
+            setStatus('success', currentLang === 'es' 
+              ? '¡Mensaje enviado! Te responderé pronto 🚀' 
+              : 'Message sent! I\'ll reply soon 🚀'
+            );
             form.reset();
           } else {
-            setStatus('error', 'Hubo un problema al enviar. Intenta nuevamente.');
+            setStatus('error', currentLang === 'es' 
+              ? 'Hubo un problema al enviar. Intenta nuevamente.' 
+              : 'There was a problem sending. Please try again.'
+            );
           }
         } catch (err) {
-          setStatus('error', 'Hubo un error al enviar el mensaje. Contáctame directamente por email.');
+          console.error('EmailJS error:', err);
+          setStatus('error', currentLang === 'es' 
+            ? 'Hubo un error al enviar el mensaje. Contáctame directamente por email.' 
+            : 'There was an error sending the message. Contact me directly via email.'
+          );
         } finally {
           submitBtn.disabled = false;
-          submitBtn.textContent = prevText;
+          submitBtn.innerHTML = prevHTML;
         }
       });
     </script>
