@@ -122,10 +122,10 @@ const SERVICES = [
       .proj-card .actions { display:flex; gap:.75rem; margin-top:1rem; flex-wrap:wrap }
       .proj-card .actions .btn { padding:.5rem .9rem; font-size:.85rem }
       /* Hidden lang content */
-      [data-lang] { display:none }
-      [data-lang].active { display:block }
-      .inline-lang { display:none }
-      .inline-lang.active { display:inline }
+      [data-lang]:not(.active) { display:none !important }
+      [data-lang].active { display:block !important }
+      .inline-lang:not(.active) { display:none !important }
+      .inline-lang.active { display:inline !important }
     </style>
   </head>
   <body>
@@ -156,15 +156,15 @@ const SERVICES = [
         <div class="hero">
           <img src="/favicon.ico" alt="Eduardo Valenzuela" />
           <div style="flex:1">
-            <h1 data-lang="es" class="active">Hola, soy {personal.name}</h1>
-            <h1 data-lang="en">Hi, I'm {personal.name}</h1>
+            <h1 data-lang="es" class="active" style="display:block">Hola, soy {personal.name}</h1>
+            <h1 data-lang="en" style="display:none">Hi, I'm {personal.name}</h1>
             <small>{personal.location}</small>
           </div>
         </div>
-        <p data-lang="es" class="active" style="margin-top:1rem">
+        <p data-lang="es" class="active" style="margin-top:1rem; display:block">
           Desarrollador Full‑Stack. Aquí tienes mi CV en PDF listo para descargar.
         </p>
-        <p data-lang="en" style="margin-top:1rem">
+        <p data-lang="en" style="margin-top:1rem; display:none">
           Full‑Stack Developer. Here's my resume in PDF ready to download.
         </p>
         <p style="margin-top:1.25rem">
@@ -186,10 +186,10 @@ const SERVICES = [
           <span class="inline-lang active" data-lang="es">Sobre mí</span>
           <span class="inline-lang" data-lang="en">About Me</span>
         </h2>
-        <div data-lang="es" class="active">
+        <div data-lang="es" class="active" style="display:block">
           {cv.about.es.split('\n\n').map((par: string) => <p>{par}</p>)}
         </div>
-        <div data-lang="en">
+        <div data-lang="en" style="display:none">
           {cv.about.en.split('\n\n').map((par: string) => <p>{par}</p>)}
         </div>
       </section>
@@ -203,16 +203,16 @@ const SERVICES = [
             <span class="inline-lang" data-lang="en">What I Do</span>
           </h2>
           <p data-lang="es" class="active">Servicios de desarrollo y consultoría digital para empresas y emprendedores</p>
-          <p data-lang="en">Development and digital consulting services for businesses and entrepreneurs</p>
+          <p data-lang="en" style="display:none">Development and digital consulting services for businesses and entrepreneurs</p>
         </div>
         <div class="grid-2">
           {SERVICES.map(service => (
             <article class="service">
               <div class="icon-box">{service.icon}</div>
-              <h3 data-lang="es" class="active">{service.titleES}</h3>
-              <h3 data-lang="en">{service.titleEN}</h3>
-              <p data-lang="es" class="active">{service.descES}</p>
-              <p data-lang="en">{service.descEN}</p>
+              <h3 data-lang="es" class="active" style="display:block">{service.titleES}</h3>
+              <h3 data-lang="en" style="display:none">{service.titleEN}</h3>
+              <p data-lang="es" class="active" style="display:block">{service.descES}</p>
+              <p data-lang="en" style="display:none">{service.descEN}</p>
               <div class="badges">
                 {service.tags.map(tag => <span class="badge">{tag}</span>)}
               </div>
@@ -438,14 +438,18 @@ const SERVICES = [
           btn.classList.toggle('active', btn.dataset.langBtn === lang);
         });
         
-        // Toggle content blocks
+        // Toggle content blocks - usar style.display para SSR
         langContents.forEach(el => {
-          el.classList.toggle('active', el.dataset.lang === lang);
+          const isActive = el.dataset.lang === lang;
+          el.classList.toggle('active', isActive);
+          el.style.display = isActive ? 'block' : 'none';
         });
         
         // Toggle inline spans
         inlineLangs.forEach(el => {
-          el.classList.toggle('active', el.dataset.lang === lang);
+          const isActive = el.dataset.lang === lang;
+          el.classList.toggle('active', isActive);
+          el.style.display = isActive ? 'inline' : 'none';
         });
 
         // Update nav links
