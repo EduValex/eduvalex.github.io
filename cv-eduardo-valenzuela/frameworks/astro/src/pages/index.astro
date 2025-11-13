@@ -1,11 +1,11 @@
 ---
-import cv from '../../../shared/data/cv-data.json';
+import cv from '../../../../shared/data/cv-data.json';
 const personal = cv.personal;
 const about = cv.about.es;
 const projects = cv.projects;
 const experience = cv.experience;
 const skills = cv.skills;
-
+---
 <html lang="es">
   <head>
     <meta charset="utf-8" />
@@ -23,6 +23,7 @@ const skills = cv.skills;
       .grid { display:grid; gap:1rem; grid-template-columns: repeat(auto-fill,minmax(260px,1fr)); }
       .btn { display:inline-block; background:#3b82f6; color:white; padding:.75rem 1rem; border-radius:.75rem; font-weight:600; }
       .btn:hover { background:#2563eb }
+      .btn.secondary { background:#0ea5e9 }
       h1 { font-size: clamp(1.8rem, 3.5vw, 2.4rem); margin:0 0 .5rem }
       h2 { font-size: clamp(1.3rem, 2.5vw, 1.6rem); margin:1.5rem 0 .75rem }
       p { line-height:1.7 }
@@ -35,6 +36,20 @@ const skills = cv.skills;
       nav a:hover { background: rgba(148,163,184,.12) }
       .badges { display:flex; flex-wrap:wrap; gap:.5rem }
       .badge { background:#1f2937; border:1px solid rgba(148,163,184,.25); color:#e5e7eb; padding:.25rem .6rem; border-radius:999px; font-size:.8rem }
+      /* Form styles */
+      .field { display:flex; flex-direction:column; gap:.5rem }
+      .label { font-size:.9rem; color:#cbd5e1 }
+      .input, .textarea { width:100%; padding:.65rem .8rem; border-radius:.6rem; border:1px solid rgba(148,163,184,.3); background:#0b1220; color:#e2e8f0; outline:none }
+      .input:focus, .textarea:focus { border-color:#3b82f6; box-shadow:0 0 0 3px rgba(59,130,246,.25) }
+      .textarea { resize:vertical; min-height:140px }
+      .actions { display:flex; align-items:center; gap:.75rem; flex-wrap:wrap }
+      .alert { border-radius:.6rem; padding:.75rem .9rem; font-size:.9rem }
+      .alert.success { background:rgba(16,185,129,.12); color:#34d399; border:1px solid rgba(16,185,129,.3) }
+      .alert.error { background:rgba(239,68,68,.12); color:#f87171; border:1px solid rgba(239,68,68,.3) }
+      /* Services */
+      .service { display:flex; flex-direction:column; gap:.6rem }
+      .service h3 { margin:.25rem 0 0; font-size:1.05rem }
+      .service .icon { font-size:1.25rem }
     </style>
   </head>
   <body>
@@ -72,6 +87,57 @@ const skills = cv.skills;
       <section id="about" class="panel">
         <h2>Sobre mí</h2>
         {about.split('\n\n').map(par => (<p>{par}</p>))}
+      </section>
+
+      <section id="services" class="panel">
+        <h2>🚀 Qué hago</h2>
+        <p style="margin:.25rem 0 1rem;opacity:.9">Desarrollo y consultoría digital para negocios y emprendedores</p>
+        <div class="grid">
+          <article class="panel service">
+            <div class="icon">🛠️</div>
+            <h3>Desarrollo Web & Apps</h3>
+            <p>Web corporativa, e‑commerce y apps full‑stack con React, Django, Rails y WordPress. Rápidas, responsive y orientadas a conversión.</p>
+            <div class="badges">
+              <span class="badge">React</span>
+              <span class="badge">WordPress</span>
+              <span class="badge">Django</span>
+              <span class="badge">SaaS</span>
+            </div>
+          </article>
+          <article class="panel service">
+            <div class="icon">🔍</div>
+            <h3>Auditorías SEO</h3>
+            <p>SEO técnico on‑page, velocidad, estructura del sitio, Core Web Vitals y estrategia de keywords con plan de acción.</p>
+            <div class="badges">
+              <span class="badge">SEO On‑Page</span>
+              <span class="badge">PageSpeed</span>
+              <span class="badge">Analytics</span>
+              <span class="badge">SEMrush</span>
+            </div>
+          </article>
+          <article class="panel service">
+            <div class="icon">🤖</div>
+            <h3>Asistentes de IA</h3>
+            <p>Diseño e integración de chatbots inteligentes con ChatGPT/Claude y modelos a medida para automatización y soporte 24/7.</p>
+            <div class="badges">
+              <span class="badge">ChatGPT</span>
+              <span class="badge">Claude</span>
+              <span class="badge">Automation</span>
+              <span class="badge">Webhooks</span>
+            </div>
+          </article>
+          <article class="panel service">
+            <div class="icon">🔌</div>
+            <h3>Integraciones & Plugins</h3>
+            <p>Plugins WordPress, conexiones a APIs externas (Google, Instagram, Drive), pasarelas de pago y automatizaciones.</p>
+            <div class="badges">
+              <span class="badge">WP Plugins</span>
+              <span class="badge">APIs</span>
+              <span class="badge">Google Drive</span>
+              <span class="badge">Webhooks</span>
+            </div>
+          </article>
+        </div>
       </section>
 
       <section id="experience" class="panel">
@@ -154,11 +220,100 @@ const skills = cv.skills;
 
       <section id="contact" class="panel">
         <h2>Contacto</h2>
-        <p>
-          Escríbeme a <a href={`mailto:${personal.email}`}>{personal.email}</a> o por WhatsApp:
-          <a href={`https://wa.me/${personal.phone.replace(/\D/g,'')}`} target="_blank" rel="noreferrer"> {personal.phone}</a>
-        </p>
+        <div class="grid">
+          <div class="panel">
+            <h3 style="margin-top:0">Información</h3>
+            <ul style="list-style:none; padding:0; margin:0; display:flex; flex-direction:column; gap:.75rem">
+              <li class="badges" style="align-items:center"><span>📧</span><a href={`mailto:${personal.email}`}>{personal.email}</a></li>
+              <li class="badges" style="align-items:center"><span>📱</span><a href={`https://wa.me/${personal.phone.replace(/\D/g,'')}`} target="_blank" rel="noreferrer">{personal.phone} 💬</a></li>
+              <li class="badges" style="align-items:center"><span>📍</span><a href="https://www.google.com/maps/place/Temuco,+Regi%C3%B3n+de+la+Araucan%C3%ADa,+Chile" target="_blank" rel="noreferrer">{personal.location} 🗺️</a></li>
+            </ul>
+          </div>
+          <div class="panel">
+            <h3 style="margin-top:0">Envíame un mensaje</h3>
+            <form id="contact-form" class="flex" style="display:flex; flex-direction:column; gap:1rem">
+              <input type="hidden" name="title" value="Portfolio" />
+              <div class="field">
+                <label for="name" class="label">Nombre *</label>
+                <input id="name" name="name" type="text" class="input" placeholder="Tu nombre" required />
+              </div>
+              <div class="field">
+                <label for="email" class="label">Email *</label>
+                <input id="email" name="email" type="email" class="input" placeholder="tu@email.com" required />
+              </div>
+              <div class="field">
+                <label for="message" class="label">Mensaje *</label>
+                <textarea id="message" name="message" class="textarea" placeholder="Cuéntame sobre tu proyecto o idea..." required></textarea>
+              </div>
+              <div id="form-status" role="status" aria-live="polite"></div>
+              <div class="actions">
+                <button type="submit" class="btn"><span>📨</span> Enviar Mensaje</button>
+              </div>
+            </form>
+          </div>
+        </div>
       </section>
     </main>
+    <script type="module">
+      import emailjs from '@emailjs/browser';
+      import { EMAILJS_CONFIG } from '../config/emailjs.js';
+
+      const form = document.getElementById('contact-form');
+      const status = document.getElementById('form-status');
+
+      // Init EmailJS
+      try {
+        emailjs.init({ publicKey: EMAILJS_CONFIG.PUBLIC_KEY });
+      } catch (e) {
+        // silent
+      }
+
+      function setStatus(type, message) {
+        status.className = `alert ${type}`;
+        status.textContent = message;
+      }
+
+      function validate(formData) {
+        const name = formData.get('name')?.trim();
+        const email = formData.get('email')?.trim();
+        const message = formData.get('message')?.trim();
+        if (!name || !email || !message) return 'Por favor completa todos los campos';
+        if (!/\S+@\S+\.\S+/.test(email)) return 'Por favor ingresa un email válido';
+        return '';
+      }
+
+      form?.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const formData = new FormData(form);
+        const error = validate(formData);
+        if (error) {
+          setStatus('error', error);
+          return;
+        }
+        setStatus('', '');
+        const submitBtn = form.querySelector('button[type="submit"]');
+        const prevText = submitBtn.textContent;
+        submitBtn.disabled = true;
+        submitBtn.textContent = '⏳ Enviando...';
+        try {
+          const result = await emailjs.sendForm(
+            EMAILJS_CONFIG.SERVICE_ID,
+            EMAILJS_CONFIG.TEMPLATE_ID,
+            form
+          );
+          if (result.text === 'OK') {
+            setStatus('success', '¡Mensaje enviado! Te responderé pronto 🚀');
+            form.reset();
+          } else {
+            setStatus('error', 'Hubo un problema al enviar. Intenta nuevamente.');
+          }
+        } catch (err) {
+          setStatus('error', 'Hubo un error al enviar el mensaje. Contáctame directamente por email.');
+        } finally {
+          submitBtn.disabled = false;
+          submitBtn.textContent = prevText;
+        }
+      });
+    </script>
   </body>
 </html>
