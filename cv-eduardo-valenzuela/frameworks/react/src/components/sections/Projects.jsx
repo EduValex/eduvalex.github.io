@@ -255,6 +255,14 @@ export function ProjectsSection() {
                   <span>🚀</span> Demo
                 </a>
               )}
+              {!project.github && !project.demo && (
+                <span
+                  className="inline-flex items-center gap-1 px-2 py-1 rounded bg-slate-200/60 dark:bg-slate-700/60 text-slate-700 dark:text-slate-300 cursor-default"
+                  title="Repositorio privado"
+                >
+                  <span>🔒</span> Privado
+                </span>
+              )}
             </div>
           </article>
         ))}

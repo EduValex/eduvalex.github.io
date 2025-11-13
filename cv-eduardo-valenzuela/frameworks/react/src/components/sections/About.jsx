@@ -30,8 +30,8 @@ export function AboutSection() {
           ))}
         </div>
         
-        {/* Key highlights with icons */}
-        <div className="mt-6 pt-6 border-t border-slate-200 dark:border-slate-700 relative z-10">
+  {/* Key highlights with icons (no print) */}
+  <div className="mt-6 pt-6 border-t border-slate-200 dark:border-slate-700 relative z-10 print-hide">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
             <div className="flex flex-col items-center gap-2">
               <span className="text-2xl">🎓</span>

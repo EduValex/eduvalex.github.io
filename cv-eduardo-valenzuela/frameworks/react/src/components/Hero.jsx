@@ -1,4 +1,7 @@
 import { useState } from 'react';
+import { createPortal } from 'react-dom';
+import jsPDF from 'jspdf';
+import html2canvas from 'html2canvas';
 import data from '@data/cv-data.json';
 import { LazyImage } from './LazyImage.jsx';
 import { useTypingEffect } from '../hooks/useTypingEffect.js';
@@ -14,6 +17,7 @@ export function Hero() {
   
   const cvUrl = '/shared/assets/cv-eduardo-valenzuela.pdf';
   const [showPdfModal, setShowPdfModal] = useState(false);
+  const [isGenerating, setIsGenerating] = useState(false);
   const [pdfOptions, setPdfOptions] = useState({
     sections: {
       hero: true,
@@ -27,49 +31,81 @@ export function Hero() {
     style: 'styled', // 'styled' | 'plain'
   });
 
-  // Utilidad: aplica/remueve clases para impresión selectiva
-  const applyPrintConfig = (apply) => {
-    const body = document.body;
-    const ids = Object.keys(pdfOptions.sections);
-    if (apply) {
-      // Estilo
-      body.classList.toggle('print-plain', pdfOptions.style === 'plain');
-      body.classList.toggle('print-styled', pdfOptions.style === 'styled');
-      // Secciones a ocultar
-      ids.forEach((id) => {
-        const el = document.getElementById(id);
-        if (!el) return;
-        if (!pdfOptions.sections[id]) {
-          el.classList.add('print-hide');
-        }
-      });
-    } else {
-      body.classList.remove('print-plain');
-      body.classList.remove('print-styled');
-      ids.forEach((id) => {
-        const el = document.getElementById(id);
-        if (!el) return;
-        el.classList.remove('print-hide');
-      });
-    }
-  };
-
-  const handleConfirmPdf = () => {
+  const handleConfirmPdf = async () => {
     setShowPdfModal(false);
-    // Aplica configuración y abre diálogo de impresión
-    applyPrintConfig(true);
-    const cleanup = () => {
-      applyPrintConfig(false);
-      window.removeEventListener('afterprint', cleanup);
-    };
-    window.addEventListener('afterprint', cleanup);
+    setIsGenerating(true);
+
     try {
-      window.print();
-    } catch (e) {
-      if (import.meta.env.DEV) console.warn('Print dialog failed:', e);
-      cleanup();
-      // Fallback descarga
-      window.location.href = cvUrl;
+      // Crear contenedor temporal para renderizar lo que vamos a exportar
+      const printContainer = document.createElement('div');
+      printContainer.id = 'pdf-export-container';
+      printContainer.style.position = 'absolute';
+      printContainer.style.left = '-9999px';
+      printContainer.style.width = '210mm'; // A4 width
+      printContainer.style.padding = '20px';
+      printContainer.style.background = 'white';
+      printContainer.style.fontFamily = 'Arial, sans-serif';
+      document.body.appendChild(printContainer);
+
+      // Clonar secciones seleccionadas
+      const order = ['hero', 'about', 'services', 'experience', 'projects', 'skills', 'contact'];
+      for (const id of order) {
+        if (!pdfOptions.sections[id]) continue;
+        const section = document.getElementById(id);
+        if (!section) continue;
+        
+        const clone = section.cloneNode(true);
+        // Limpiar clases y estilos innecesarios
+        clone.querySelectorAll('.no-print, button, .fixed, .sticky').forEach(el => el.remove());
+        clone.style.marginBottom = '20px';
+        clone.style.padding = '10px';
+        
+        printContainer.appendChild(clone);
+      }
+
+      // Generar canvas del contenedor
+      const canvas = await html2canvas(printContainer, {
+        scale: 2,
+        useCORS: true,
+        backgroundColor: pdfOptions.style === 'plain' ? '#ffffff' : null,
+        logging: false,
+      });
+
+      // Crear PDF
+      const pdf = new jsPDF('p', 'mm', 'a4');
+      const imgWidth = 210; // A4 width in mm
+      const imgHeight = (canvas.height * imgWidth) / canvas.width;
+      const pageHeight = 297; // A4 height in mm
+      let heightLeft = imgHeight;
+      let position = 0;
+
+      // Agregar imagen del canvas al PDF
+      const imgData = canvas.toDataURL('image/png');
+      pdf.addImage(imgData, 'PNG', 0, position, imgWidth, imgHeight);
+      heightLeft -= pageHeight;
+
+      // Si necesita más páginas
+      while (heightLeft > 0) {
+        position = heightLeft - imgHeight;
+        pdf.addPage();
+        pdf.addImage(imgData, 'PNG', 0, position, imgWidth, imgHeight);
+        heightLeft -= pageHeight;
+      }
+
+      // Descargar PDF
+      pdf.save('CV-Eduardo-Valenzuela.pdf');
+
+      // Limpiar
+      document.body.removeChild(printContainer);
+    } catch (error) {
+      console.error('Error generando PDF:', error);
+      // Fallback: descargar PDF estático
+      const link = document.createElement('a');
+      link.href = cvUrl;
+      link.download = 'CV-Eduardo-Valenzuela.pdf';
+      link.click();
+    } finally {
+      setIsGenerating(false);
     }
   };
 
@@ -103,11 +139,24 @@ export function Hero() {
         <div className="flex flex-wrap gap-3 mt-4 justify-center md:justify-start">
           <button
             onClick={() => setShowPdfModal(true)}
-              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg bg-primary text-white font-medium hover:bg-primary-dark transition-all hover-lift shadow-md"
-              title="Generar y Descargar PDF"
+            disabled={isGenerating}
+            className="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg bg-primary text-white font-medium hover:bg-primary-dark transition-all hover-lift shadow-md disabled:opacity-50 disabled:cursor-not-allowed"
+            title={isGenerating ? "Generando PDF..." : "Generar y Descargar PDF"}
           >
-              <span>�</span>
-              Generar y Descargar PDF
+            {isGenerating ? (
+              <>
+                <svg className="animate-spin h-5 w-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                  <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                  <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                </svg>
+                Generando...
+              </>
+            ) : (
+              <>
+                <span>📄</span>
+                Generar y Descargar PDF
+              </>
+            )}
           </button>
 
           <a
@@ -120,9 +169,14 @@ export function Hero() {
         </div>
       </div>
       {/* Modal configuración PDF */}
-      {showPdfModal && (
-        <div className="fixed inset-0 z-[9999] flex items-center justify-center bg-black/70 backdrop-blur-sm p-4 no-print animate-fade-in" role="dialog" aria-modal="true" onClick={() => setShowPdfModal(false)}>
-          <div className="w-full max-w-lg rounded-xl bg-white dark:bg-slate-800 shadow-2xl p-6 animate-scale-in" onClick={(e) => e.stopPropagation()}>
+      {showPdfModal && createPortal(
+        <div
+          className="fixed inset-0 z-[9999] flex items-center justify-center bg-black/70 backdrop-blur-sm p-4 no-print animate-fade-in overflow-y-auto"
+          role="dialog"
+          aria-modal="true"
+          onClick={() => setShowPdfModal(false)}
+        >
+          <div className="w-full max-w-lg rounded-xl bg-white dark:bg-slate-800 shadow-2xl p-6 animate-scale-in my-8" onClick={(e) => e.stopPropagation()}>
             <h3 className="text-xl font-bold flex items-center gap-2 mb-2 text-slate-900 dark:text-white">
               <span>🧾</span>
               Configurar PDF
@@ -195,7 +249,8 @@ export function Hero() {
               </button>
             </div>
           </div>
-        </div>
+        </div>,
+        document.body
       )}
     </section>
   );

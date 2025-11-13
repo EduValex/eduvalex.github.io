@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CV - Eduardo Valenzuela Milla</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: white;
+            padding: 40px 20px;
+            max-width: 210mm;
+            margin: 0 auto;
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 3px solid #2563eb;
+        }
+        
+        .header h1 {
+            font-size: 32px;
+            color: #1e293b;
+            margin-bottom: 8px;
+        }
+        
+        .header .title {
+            font-size: 18px;
+            color: #2563eb;
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+        
+        .contact-info {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            font-size: 14px;
+            color: #64748b;
+        }
+        
+        .contact-info span {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        
+        .section {
+            margin-bottom: 30px;
+            page-break-inside: avoid;
+        }
+        
+        .section-title {
+            font-size: 20px;
+            color: #1e293b;
+            margin-bottom: 15px;
+            padding-bottom: 8px;
+            border-bottom: 2px solid #e2e8f0;
+            font-weight: 700;
+        }
+        
+        .about {
+            text-align: justify;
+            color: #475569;
+            font-size: 14px;
+            line-height: 1.8;
+        }
+        
+        .experience-item, .education-item, .project-item {
+            margin-bottom: 20px;
+            padding-left: 15px;
+            border-left: 3px solid #2563eb;
+        }
+        
+        .experience-item h3, .education-item h3, .project-item h3 {
+            font-size: 16px;
+            color: #1e293b;
+            margin-bottom: 5px;
+        }
+        
+        .company, .institution {
+            font-weight: 600;
+            color: #2563eb;
+        }
+        
+        .period {
+            font-size: 13px;
+            color: #64748b;
+            font-style: italic;
+            margin-bottom: 8px;
+        }
+        
+        .description {
+            font-size: 14px;
+            color: #475569;
+            margin-bottom: 10px;
+            text-align: justify;
+        }
+        
+        .technologies {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 10px;
+        }
+        
+        .tech-tag {
+            background: #eff6ff;
+            color: #2563eb;
+            padding: 4px 10px;
+            border-radius: 12px;
+            font-size: 12px;
+            font-weight: 500;
+        }
+        
+        .achievements {
+            margin-top: 10px;
+            padding-left: 20px;
+        }
+        
+        .achievements li {
+            font-size: 13px;
+            color: #475569;
+            margin-bottom: 5px;
+        }
+        
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+        }
+        
+        .skill-category {
+            margin-bottom: 15px;
+        }
+        
+        .skill-category h4 {
+            font-size: 14px;
+            color: #1e293b;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+        
+        .skill-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 8px;
+            font-size: 13px;
+        }
+        
+        .skill-name {
+            color: #475569;
+        }
+        
+        .skill-bar-container {
+            width: 60%;
+            height: 6px;
+            background: #e2e8f0;
+            border-radius: 3px;
+            overflow: hidden;
+        }
+        
+        .skill-bar {
+            height: 100%;
+            background: linear-gradient(90deg, #2563eb, #7c3aed);
+            border-radius: 3px;
+        }
+        
+        .footer {
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 2px solid #e2e8f0;
+            text-align: center;
+            font-size: 12px;
+            color: #64748b;
+        }
+        
+        @media print {
+            @page {
+                margin: 0;
+                size: A4;
+            }
+            body {
+                padding: 20px;
+                margin: 0;
+            }
+            .section {
+                page-break-inside: avoid;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>Eduardo Valenzuela Milla</h1>
+        <div class="title">FullStack Developer | Plataformas E-Commerce</div>
+        <div class="contact-info">
+            <span>📧 valenzuela.edo@gmail.com</span>
+            <span>📱 +56929646969</span>
+            <span>📍 Temuco, Araucanía, Chile</span>
+            <span>🔗 github.com/eduvalex</span>
+            <span>💼 linkedin.com/in/eduardo-valenzuela-milla</span>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2 class="section-title">Sobre Mí</h2>
+        <p class="about">
+            Mi camino en tecnología comenzó en la Universidad de La Frontera (UFRO) en Temuco, Chile, donde descubrí mi pasión por transformar ideas en soluciones digitales. Durante mi formación, realicé prácticas profesionales que marcaron mi carrera: primero en Anaconda Web, donde me sumergí en el desarrollo PHP con Yii Framework, y luego en EnLaNubeLab, donde construí una aplicación web completa con Ruby on Rails para catalogar hierbas medicinales.
+        </p>
+        <p class="about" style="margin-top: 10px;">
+            Como freelance, expandí mi stack desarrollando una aplicación de gestión para abogados con Python y Django. Sin embargo, en 2018 decidí explorar otra de mis pasiones: fundé Escuela Nómade Yoga, donde combino mi rol como instructor de yoga certificado con el emprendimiento. La escuela sigue activa hasta hoy.
+        </p>
+        <p class="about" style="margin-top: 10px;">
+            En 2022 retomé la tecnología con fuerza, co-fundando Valex Marketing, una agencia especializada en desarrollo WordPress y SEO. Gestionamos proyectos para clientes corporativos, e-commerce y startups, entregando soluciones web completas con mantenimiento continuo.
+        </p>
+        <p class="about" style="margin-top: 10px;">
+            Paralelamente, trabajé de forma remota para Grant Solutions en España, desarrollando y manteniendo sitios WordPress empresariales con integraciones avanzadas. Mis habilidades se consolidaron a través de pruebas técnicas complejas: creé un plugin WordPress profesional con React y Google Drive API, un sistema de sorteos Full Stack con Django y Nuxt.js, y actualmente desarrollo un SaaS multi-tenant para restaurantes.
+        </p>
+    </div>
+
+    <div class="section">
+        <h2 class="section-title">Experiencia Profesional</h2>
+        
+        <div class="experience-item">
+            <h3><span class="company">Valex Marketing</span> - Co-Fundador & Desarrollador Web Full Stack</h3>
+            <div class="period">Abr 2022 - Actualidad | Temuco, Chile (Híbrido)</div>
+            <p class="description">
+                Co-fundé agencia de marketing digital especializada en desarrollo web, SEO y estrategias digitales. Desarrollo completo de sitios WordPress para clientes corporativos, e-commerce, y startups. Gestión de proyectos web desde concepto hasta deployment, mantención mensual y reportes de posicionamiento SEO.
+            </p>
+            <div class="technologies">
+                <span class="tech-tag">WordPress</span>
+                <span class="tech-tag">WooCommerce</span>
+                <span class="tech-tag">React</span>
+                <span class="tech-tag">SEO</span>
+                <span class="tech-tag">PHP</span>
+                <span class="tech-tag">MySQL</span>
+                <span class="tech-tag">Google Analytics</span>
+            </div>
+            <ul class="achievements">
+                <li>Desarrollé 10+ sitios web corporativos para clientes (Dadneo Capital, Cerveza Mala Junta, CreaSmile, CreaBord, Espacio Amuleto)</li>
+                <li>Gestión de catálogo digital de 300+ productos para CreaSmile con integración a compras públicas del Estado</li>
+                <li>Implementé integraciones con Instagram API, Google Reviews, y sistemas de gestión de contenido autoadministrables</li>
+                <li>Servicio de mantención mensual y reportes SEO para cartera de clientes corporativos</li>
+            </ul>
+        </div>
+
+        <div class="experience-item">
+            <h3><span class="company">Grant Solutions</span> - Desarrollo Web</h3>
+            <div class="period">Feb 2025 - Jul 2025 | España (Remoto)</div>
+            <p class="description">
+                Desarrollé y mantuve múltiples sitios web para clientes utilizando WordPress, integrando Zoho CRM para mejorar la gestión de relaciones con clientes.
+            </p>
+            <div class="technologies">
+                <span class="tech-tag">WordPress</span>
+                <span class="tech-tag">Zoho CRM</span>
+                <span class="tech-tag">SEO</span>
+                <span class="tech-tag">PHP</span>
+            </div>
+            <ul class="achievements">
+                <li>Integración exitosa de Zoho CRM en múltiples sitios web</li>
+                <li>Optimización SEO On-Page para aumentar visibilidad de clientes</li>
+                <li>Mantenimiento y actualización de portafolio de sitios corporativos</li>
+            </ul>
+        </div>
+
+        <div class="experience-item">
+            <h3><span class="company">Enlanubelab</span> - Desarrollador de WordPress</h3>
+            <div class="period">Abr 2015 - Dic 2015 | Temuco, Araucanía, Chile</div>
+            <p class="description">
+                Desarrollo de aplicación web full-stack con Ruby on Rails para catálogo de hierbas medicinales y mantenimiento de sitios WordPress.
+            </p>
+            <div class="technologies">
+                <span class="tech-tag">Ruby on Rails</span>
+                <span class="tech-tag">WordPress</span>
+                <span class="tech-tag">PHP</span>
+                <span class="tech-tag">MySQL</span>
+            </div>
+        </div>
+
+        <div class="experience-item">
+            <h3><span class="company">Anacondaweb</span> - Alumno Practicante</h3>
+            <div class="period">Ene 2014 - Mar 2014 | Temuco, Araucanía, Chile</div>
+            <p class="description">
+                Colaboré en el desarrollo de Intranet corporativa con PHP y Yii Framework, digitalizando procesos internos de la empresa.
+            </p>
+            <div class="technologies">
+                <span class="tech-tag">PHP</span>
+                <span class="tech-tag">Yii Framework</span>
+                <span class="tech-tag">MySQL</span>
+                <span class="tech-tag">JavaScript</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2 class="section-title">Proyectos Destacados</h2>
+        
+        <div class="project-item">
+            <h3>Plugin WordPress Personalizado - Prueba Técnica WPMUDEV</h3>
+            <p class="description">
+                Plugin WordPress profesional desarrollado como prueba técnica. Incluye interfaz React moderna con i18n, sistema completo de autenticación OAuth 2.0 con Google Drive API, manejo de archivos (upload/download/list), dark mode, REST API endpoints, y procesamiento en background. Implementa WPCS (WordPress Coding Standards), arquitectura PSR-4, y optimización de paquetes.
+            </p>
+            <div class="technologies">
+                <span class="tech-tag">WordPress</span>
+                <span class="tech-tag">React</span>
+                <span class="tech-tag">PHP</span>
+                <span class="tech-tag">Google Drive API</span>
+                <span class="tech-tag">OAuth 2.0</span>
+                <span class="tech-tag">REST API</span>
+                <span class="tech-tag">Webpack</span>
+            </div>
+        </div>
+
+        <div class="project-item">
+            <h3>Sorteo San Valentín - CTS Turismo</h3>
+            <p class="description">
+                Sistema Full Stack para gestionar sorteos con registro de participantes, verificación de email mediante tokens, y panel administrativo. Backend Django REST con autenticación JWT, procesamiento asíncrono de emails con Celery + Redis. Frontend Nuxt.js 3 con TypeScript, Tailwind CSS, SweetAlert2 y efectos confetti. Suite completa de 40+ tests unitarios y de integración.
+            </p>
+            <div class="technologies">
+                <span class="tech-tag">Django</span>
+                <span class="tech-tag">Python</span>
+                <span class="tech-tag">Nuxt.js</span>
+                <span class="tech-tag">TypeScript</span>
+                <span class="tech-tag">Celery</span>
+                <span class="tech-tag">Redis</span>
+                <span class="tech-tag">PostgreSQL</span>
+                <span class="tech-tag">JWT</span>
+            </div>
+        </div>
+
+        <div class="project-item">
+            <h3>SaaS Restaurante - Sistema de Gestión</h3>
+            <p class="description">
+                Sistema de gestión de restaurante desarrollado como prueba técnica. Backend Node.js + Express con PostgreSQL, implementa CRUD completo de productos, gestión de pedidos con transacciones para integridad de datos, control automático de stock, y validaciones de negocio. Frontend React SPA con React Router, notificaciones toast, formato de moneda CLP localizado, y diseño responsive con Bootstrap 5.
+            </p>
+            <div class="technologies">
+                <span class="tech-tag">React</span>
+                <span class="tech-tag">Node.js</span>
+                <span class="tech-tag">Express</span>
+                <span class="tech-tag">PostgreSQL</span>
+                <span class="tech-tag">Bootstrap</span>
+                <span class="tech-tag">REST API</span>
+            </div>
+        </div>
+
+        <div class="project-item">
+            <h3>Dadneo Capital - Venture Capital</h3>
+            <p class="description">
+                Desarrollo completo de sitio corporativo para firma especializada en venture capital. Implementé diseño moderno y profesional, sección de servicios (Fondos VC, Asesorías 1:1, Valorizaciones), integración de blog corporativo, formularios de contacto avanzados, y optimización SEO. Cliente destacado de Valex Marketing con testimonial 5 estrellas.
+            </p>
+            <div class="technologies">
+                <span class="tech-tag">WordPress</span>
+                <span class="tech-tag">PHP</span>
+                <span class="tech-tag">SEO</span>
+                <span class="tech-tag">MySQL</span>
+                <span class="tech-tag">Google Analytics</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2 class="section-title">Educación</h2>
+        
+        <div class="education-item">
+            <h3><span class="institution">Fondo Talento Digital para Chile</span></h3>
+            <div class="period">Abr 2023 - Ago 2024</div>
+            <p class="description">
+                Desarrollo Ruby on Rails para Emprendimientos de Tipo Start-Up - Programa intensivo de desarrollo Full Stack con Ruby on Rails.
+            </p>
+        </div>
+
+        <div class="education-item">
+            <h3><span class="institution">edutecno</span></h3>
+            <div class="period">May 2023 - Oct 2023</div>
+            <p class="description">
+                Desarrollo de Aplicaciones Full Stack Python Trainee - Curso de capacitación de 393 horas en desarrollo Full Stack con Python, Django, PostgreSQL.
+            </p>
+        </div>
+
+        <div class="education-item">
+            <h3><span class="institution">Duoc UC</span></h3>
+            <div class="period">2012 - 2016</div>
+            <p class="description">
+                Ingeniería en Informática - Formación en desarrollo de software, bases de datos y arquitectura de sistemas.
+            </p>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2 class="section-title">Habilidades Técnicas</h2>
+        <div class="skills-grid">
+            <div>
+                <div class="skill-category">
+                    <h4>Frontend</h4>
+                    <div class="skill-item">
+                        <span class="skill-name">JavaScript/ES6+</span>
+                        <div class="skill-bar-container"><div class="skill-bar" style="width: 95%"></div></div>
+                    </div>
+                    <div class="skill-item">
+                        <span class="skill-name">React.js</span>
+                        <div class="skill-bar-container"><div class="skill-bar" style="width: 90%"></div></div>
+                    </div>
+                    <div class="skill-item">
+                        <span class="skill-name">HTML/CSS</span>
+                        <div class="skill-bar-container"><div class="skill-bar" style="width: 95%"></div></div>
+                    </div>
+                    <div class="skill-item">
+                        <span class="skill-name">Tailwind CSS</span>
+                        <div class="skill-bar-container"><div class="skill-bar" style="width: 85%"></div></div>
+                    </div>
+                    <div class="skill-item">
+                        <span class="skill-name">WordPress</span>
+                        <div class="skill-bar-container"><div class="skill-bar" style="width: 90%"></div></div>
+                    </div>
+                </div>
+
+                <div class="skill-category">
+                    <h4>Backend</h4>
+                    <div class="skill-item">
+                        <span class="skill-name">Node.js</span>
+                        <div class="skill-bar-container"><div class="skill-bar" style="width: 90%"></div></div>
+                    </div>
+                    <div class="skill-item">
+                        <span class="skill-name">PHP</span>
+                        <div class="skill-bar-container"><div class="skill-bar" style="width: 90%"></div></div>
+                    </div>
+                    <div class="skill-item">
+                        <span class="skill-name">Python</span>
+                        <div class="skill-bar-container"><div class="skill-bar" style="width: 85%"></div></div>
+                    </div>
+                    <div class="skill-item">
+                        <span class="skill-name">Django</span>
+                        <div class="skill-bar-container"><div class="skill-bar" style="width: 85%"></div></div>
+                    </div>
+                    <div class="skill-item">
+                        <span class="skill-name">Ruby on Rails</span>
+                        <div class="skill-bar-container"><div class="skill-bar" style="width: 85%"></div></div>
+                    </div>
+                </div>
+            </div>
+
+            <div>
+                <div class="skill-category">
+                    <h4>Bases de Datos</h4>
+                    <div class="skill-item">
+                        <span class="skill-name">PostgreSQL</span>
+                        <div class="skill-bar-container"><div class="skill-bar" style="width: 85%"></div></div>
+                    </div>
+                    <div class="skill-item">
+                        <span class="skill-name">MySQL</span>
+                        <div class="skill-bar-container"><div class="skill-bar" style="width: 85%"></div></div>
+                    </div>
+                    <div class="skill-item">
+                        <span class="skill-name">MongoDB</span>
+                        <div class="skill-bar-container"><div class="skill-bar" style="width: 85%"></div></div>
+                    </div>
+                </div>
+
+                <div class="skill-category">
+                    <h4>SEO & Analytics</h4>
+                    <div class="skill-item">
+                        <span class="skill-name">SEO</span>
+                        <div class="skill-bar-container"><div class="skill-bar" style="width: 85%"></div></div>
+                    </div>
+                    <div class="skill-item">
+                        <span class="skill-name">Google Analytics</span>
+                        <div class="skill-bar-container"><div class="skill-bar" style="width: 85%"></div></div>
+                    </div>
+                    <div class="skill-item">
+                        <span class="skill-name">SEMrush</span>
+                        <div class="skill-bar-container"><div class="skill-bar" style="width: 80%"></div></div>
+                    </div>
+                </div>
+
+                <div class="skill-category">
+                    <h4>DevTools & AI</h4>
+                    <div class="skill-item">
+                        <span class="skill-name">Git</span>
+                        <div class="skill-bar-container"><div class="skill-bar" style="width: 90%"></div></div>
+                    </div>
+                    <div class="skill-item">
+                        <span class="skill-name">REST APIs</span>
+                        <div class="skill-bar-container"><div class="skill-bar" style="width: 90%"></div></div>
+                    </div>
+                    <div class="skill-item">
+                        <span class="skill-name">ChatGPT/Claude AI</span>
+                        <div class="skill-bar-container"><div class="skill-bar" style="width: 95%"></div></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer">
+        <p>Desarrollador Full Stack apasionado por la construcción de soluciones digitales</p>
+        <p style="margin-top: 5px;">🌐 Portfolio: https://eduvalex.github.io</p>
+    </div>
+</body>
+</html>
