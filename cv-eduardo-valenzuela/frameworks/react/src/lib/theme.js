@@ -6,8 +6,8 @@ const STORAGE_KEY = 'cv_theme';
 export function getInitialTheme() {
   const stored = localStorage.getItem(STORAGE_KEY);
   if (stored === 'dark' || stored === 'light') return stored;
-  // Fallback to system preference
-  return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+  // Default to dark mode
+  return 'dark';
 }
 
 export function applyTheme(theme) {

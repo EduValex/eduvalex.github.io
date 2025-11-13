@@ -53,14 +53,6 @@ section:first-of-type {
   padding-top: 0;
 }
 
-/* Quitar padding en impresión */
-@media print {
-  section {
-    padding-top: 0 !important;
-    margin-top: 0 !important;
-  }
-}
-
 /* Glass panel */
 .panel {
   @apply rounded-xl border border-slate-200/50 dark:border-slate-700/60 bg-white/70 dark:bg-slate-800/50 backdrop-blur shadow-md dark:shadow-none transition-colors;
@@ -71,102 +63,4 @@ section:first-of-type {
   @apply font-mono text-sm bg-slate-100 dark:bg-slate-800/70 px-1.5 py-0.5 rounded;
 }
 
-/* =====================
-   Print styles (PDF)
-   ===================== */
-@media print {
-  html, body { 
-    -webkit-print-color-adjust: exact; 
-    print-color-adjust: exact;
-    background: white !important;
-  }
-  
-  /* Ocultar todo lo que NO es contenido */
-  nav, header, footer, .no-print, 
-  .fixed, .sticky, button, 
-  .ThemeToggle, .LanguageToggle,
-  [class*="Toggle"] { 
-    display: none !important; 
-  }
 
-  
-  /* Ocultar secciones marcadas */
-  .print-hide { 
-    display: none !important; 
-  }
-  
-  /* Evitar cortes en tarjetas, permitir que las secciones largas fluyan */
-  .panel, article {
-    break-inside: avoid;
-    page-break-inside: avoid;
-  }
-  section { 
-    break-inside: auto; 
-    page-break-inside: auto; 
-  }
-  
-  /* Sin animaciones */
-  * { 
-    animation: none !important; 
-    transition: none !important; 
-  }
-  
-  /* Márgenes de página */
-  @page { 
-    margin: 15mm; 
-    size: A4;
-  }
-  
-  /* Ajustar spacing general para PDF */
-  main { padding: 0 !important; }
-  section { 
-    padding-top: 0 !important; 
-    padding-bottom: 0 !important;
-    margin: 0 !important;
-  }
-  .section-title { 
-    margin-top: 0 !important; 
-    margin-bottom: 8pt !important;
-    padding-top: 0 !important;
-  }
-  
-  /* Panels más compactos */
-  .panel {
-    margin-bottom: 10pt !important;
-    padding: 12pt !important;
-    box-shadow: none !important;
-  }
-  
-  /* Evitar huérfanos/viudas y cortes tras títulos */
-  h1, h2, h3 { page-break-after: avoid; orphans: 3; widows: 3; }
-}
-
-/* Modo con estilos (por defecto) */
-@media print {
-  body.print-styled .panel {
-    background: white !important;
-    border: 1px solid #e5e7eb !important;
-  }
-}
-
-/* Modo blanco y negro (simple) */
-@media print {
-  body.print-plain,
-  body.print-plain * { 
-    background: #ffffff !important; 
-    box-shadow: none !important;
-    color: #000000 !important;
-  }
-  
-  body.print-plain .panel { 
-    border: 1px solid #cccccc !important;
-    background: white !important;
-  }
-  
-  body.print-plain .text-primary,
-  body.print-plain [class*="text-"] {
-    color: #000000 !important;
-  }
-}
-
-/* (Se removió el modo clonado para evitar páginas en blanco) */

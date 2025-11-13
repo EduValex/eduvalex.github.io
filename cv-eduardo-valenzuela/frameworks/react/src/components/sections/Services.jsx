@@ -2,7 +2,7 @@ import { useTranslation } from '../../hooks/useTranslation.js';
 
 const SERVICES = [
   {
-    icon: '�',
+    icon: '🛠️',
     titleES: 'Desarrollo Web & Apps',
     titleEN: 'Web & App Development',
     descES: 'Sitios web corporativos, e-commerce, landing pages y aplicaciones web full-stack con React, Django, Rails y WordPress. Responsive, rápidos y optimizados para conversión.',
@@ -10,7 +10,7 @@ const SERVICES = [
     tags: ['React', 'WordPress', 'Django', 'E-Commerce', 'SaaS']
   },
   {
-    icon: '�',
+    icon: '🔍',
     titleES: 'Auditorías SEO',
     titleEN: 'SEO Audits',
     descES: 'Análisis técnico completo de SEO on-page, velocidad de carga, estructura del sitio, Core Web Vitals y estrategia de keywords con reportes detallados y plan de acción.',

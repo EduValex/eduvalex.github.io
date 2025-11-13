@@ -1,7 +1,3 @@
-import { useState } from 'react';
-import { createPortal } from 'react-dom';
-import jsPDF from 'jspdf';
-import html2canvas from 'html2canvas';
 import data from '@data/cv-data.json';
 import { LazyImage } from './LazyImage.jsx';
 import { useTypingEffect } from '../hooks/useTypingEffect.js';
@@ -15,99 +11,7 @@ export function Hero() {
   const roles = t('hero.roles');
   const typedText = useTypingEffect(roles, 100, 50, 2000);
   
-  const cvUrl = '/shared/assets/cv-eduardo-valenzuela.pdf';
-  const [showPdfModal, setShowPdfModal] = useState(false);
-  const [isGenerating, setIsGenerating] = useState(false);
-  const [pdfOptions, setPdfOptions] = useState({
-    sections: {
-      hero: true,
-      about: true,
-      services: true,
-      experience: true,
-      projects: true,
-      skills: true,
-      contact: true,
-    },
-    style: 'styled', // 'styled' | 'plain'
-  });
-
-  const handleConfirmPdf = async () => {
-    setShowPdfModal(false);
-    setIsGenerating(true);
-
-    try {
-      // Crear contenedor temporal para renderizar lo que vamos a exportar
-      const printContainer = document.createElement('div');
-      printContainer.id = 'pdf-export-container';
-      printContainer.style.position = 'absolute';
-      printContainer.style.left = '-9999px';
-      printContainer.style.width = '210mm'; // A4 width
-      printContainer.style.padding = '20px';
-      printContainer.style.background = 'white';
-      printContainer.style.fontFamily = 'Arial, sans-serif';
-      document.body.appendChild(printContainer);
-
-      // Clonar secciones seleccionadas
-      const order = ['hero', 'about', 'services', 'experience', 'projects', 'skills', 'contact'];
-      for (const id of order) {
-        if (!pdfOptions.sections[id]) continue;
-        const section = document.getElementById(id);
-        if (!section) continue;
-        
-        const clone = section.cloneNode(true);
-        // Limpiar clases y estilos innecesarios
-        clone.querySelectorAll('.no-print, button, .fixed, .sticky').forEach(el => el.remove());
-        clone.style.marginBottom = '20px';
-        clone.style.padding = '10px';
-        
-        printContainer.appendChild(clone);
-      }
-
-      // Generar canvas del contenedor
-      const canvas = await html2canvas(printContainer, {
-        scale: 2,
-        useCORS: true,
-        backgroundColor: pdfOptions.style === 'plain' ? '#ffffff' : null,
-        logging: false,
-      });
-
-      // Crear PDF
-      const pdf = new jsPDF('p', 'mm', 'a4');
-      const imgWidth = 210; // A4 width in mm
-      const imgHeight = (canvas.height * imgWidth) / canvas.width;
-      const pageHeight = 297; // A4 height in mm
-      let heightLeft = imgHeight;
-      let position = 0;
-
-      // Agregar imagen del canvas al PDF
-      const imgData = canvas.toDataURL('image/png');
-      pdf.addImage(imgData, 'PNG', 0, position, imgWidth, imgHeight);
-      heightLeft -= pageHeight;
-
-      // Si necesita más páginas
-      while (heightLeft > 0) {
-        position = heightLeft - imgHeight;
-        pdf.addPage();
-        pdf.addImage(imgData, 'PNG', 0, position, imgWidth, imgHeight);
-        heightLeft -= pageHeight;
-      }
-
-      // Descargar PDF
-      pdf.save('CV-Eduardo-Valenzuela.pdf');
-
-      // Limpiar
-      document.body.removeChild(printContainer);
-    } catch (error) {
-      console.error('Error generando PDF:', error);
-      // Fallback: descargar PDF estático
-      const link = document.createElement('a');
-      link.href = cvUrl;
-      link.download = 'CV-Eduardo-Valenzuela.pdf';
-      link.click();
-    } finally {
-      setIsGenerating(false);
-    }
-  };
+  const cvUrl = '/CV-Eduardo-Valenzuela.pdf';
 
   return (
   <section id="hero" className="panel p-6 mt-6 flex flex-col md:flex-row items-center gap-6 animate-fade-in relative overflow-hidden">
@@ -137,27 +41,15 @@ export function Hero() {
         <p className="mt-2 text-slate-600 dark:text-slate-300">{personal.tagline}</p>
         
         <div className="flex flex-wrap gap-3 mt-4 justify-center md:justify-start">
-          <button
-            onClick={() => setShowPdfModal(true)}
-            disabled={isGenerating}
-            className="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg bg-primary text-white font-medium hover:bg-primary-dark transition-all hover-lift shadow-md disabled:opacity-50 disabled:cursor-not-allowed"
-            title={isGenerating ? "Generando PDF..." : "Generar y Descargar PDF"}
+          <a
+            href={cvUrl}
+            download="CV-Eduardo-Valenzuela.pdf"
+            className="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg bg-primary text-white font-medium hover:bg-primary-dark transition-all hover-lift shadow-md"
+            title="Descargar CV"
           >
-            {isGenerating ? (
-              <>
-                <svg className="animate-spin h-5 w-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                  <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
-                  <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
-                </svg>
-                Generando...
-              </>
-            ) : (
-              <>
-                <span>📄</span>
-                Generar y Descargar PDF
-              </>
-            )}
-          </button>
+            <span>📄</span>
+            Descargar CV
+          </a>
 
           <a
             href="#contact"
@@ -168,90 +60,6 @@ export function Hero() {
           </a>
         </div>
       </div>
-      {/* Modal configuración PDF */}
-      {showPdfModal && createPortal(
-        <div
-          className="fixed inset-0 z-[9999] flex items-center justify-center bg-black/70 backdrop-blur-sm p-4 no-print animate-fade-in overflow-y-auto"
-          role="dialog"
-          aria-modal="true"
-          onClick={() => setShowPdfModal(false)}
-        >
-          <div className="w-full max-w-lg rounded-xl bg-white dark:bg-slate-800 shadow-2xl p-6 animate-scale-in my-8" onClick={(e) => e.stopPropagation()}>
-            <h3 className="text-xl font-bold flex items-center gap-2 mb-2 text-slate-900 dark:text-white">
-              <span>🧾</span>
-              Configurar PDF
-            </h3>
-            <p className="text-sm text-slate-600 dark:text-slate-400 mb-5">Elige qué secciones incluir y el estilo del PDF.</p>
-
-            <div className="grid grid-cols-2 gap-3 mb-5">
-              {[
-                { id: 'hero', label: 'Header' },
-                { id: 'about', label: 'Sobre mí' },
-                { id: 'services', label: 'Servicios' },
-                { id: 'experience', label: 'Experiencia' },
-                { id: 'projects', label: 'Proyectos' },
-                { id: 'skills', label: 'Skills' },
-                { id: 'contact', label: 'Contacto' },
-              ].map((s) => (
-                <label key={s.id} className="flex items-center gap-2 text-sm cursor-pointer hover:bg-slate-50 dark:hover:bg-slate-700 p-2 rounded transition-colors">
-                  <input
-                    type="checkbox"
-                    className="accent-primary w-4 h-4"
-                    checked={pdfOptions.sections[s.id]}
-                    onChange={(e) => setPdfOptions((prev) => ({
-                      ...prev,
-                      sections: { ...prev.sections, [s.id]: e.target.checked },
-                    }))}
-                  />
-                  <span className="text-slate-700 dark:text-slate-200">{s.label}</span>
-                </label>
-              ))}
-            </div>
-
-            <div className="border-t border-slate-200 dark:border-slate-700 pt-4 mb-5">
-              <div className="text-sm font-semibold mb-3 text-slate-900 dark:text-white">Estilo de impresión</div>
-              <div className="flex flex-col gap-2 text-sm">
-                <label className="flex items-center gap-3 cursor-pointer hover:bg-slate-50 dark:hover:bg-slate-700 p-2 rounded transition-colors">
-                  <input
-                    type="radio"
-                    name="pdf-style"
-                    className="accent-primary w-4 h-4"
-                    checked={pdfOptions.style === 'styled'}
-                    onChange={() => setPdfOptions((p) => ({ ...p, style: 'styled' }))}
-                  />
-                  <span className="text-slate-700 dark:text-slate-200">Con estilos y colores</span>
-                </label>
-                <label className="flex items-center gap-3 cursor-pointer hover:bg-slate-50 dark:hover:bg-slate-700 p-2 rounded transition-colors">
-                  <input
-                    type="radio"
-                    name="pdf-style"
-                    className="accent-primary w-4 h-4"
-                    checked={pdfOptions.style === 'plain'}
-                    onChange={() => setPdfOptions((p) => ({ ...p, style: 'plain' }))}
-                  />
-                  <span className="text-slate-700 dark:text-slate-200">Blanco y negro (simple)</span>
-                </label>
-              </div>
-            </div>
-
-            <div className="flex justify-end gap-3">
-              <button 
-                onClick={() => setShowPdfModal(false)} 
-                className="px-5 py-2.5 rounded-lg border-2 border-slate-300 dark:border-slate-600 text-slate-700 dark:text-slate-200 font-medium hover:bg-slate-100 dark:hover:bg-slate-700 transition-all"
-              >
-                Cancelar
-              </button>
-              <button 
-                onClick={handleConfirmPdf} 
-                className="px-5 py-2.5 rounded-lg bg-primary text-white font-medium hover:bg-primary-dark transition-all shadow-lg hover:shadow-xl"
-              >
-                Generar PDF
-              </button>
-            </div>
-          </div>
-        </div>,
-        document.body
-      )}
     </section>
   );
 }

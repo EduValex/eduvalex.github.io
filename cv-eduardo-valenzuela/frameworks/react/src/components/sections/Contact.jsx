@@ -1,4 +1,4 @@
-import { useState, useRef } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import emailjs from '@emailjs/browser';
 import data from '@data/cv-data.json';
 import { EMAILJS_CONFIG, isEmailJSConfigured } from '../../config/emailjs.js';
@@ -13,6 +13,17 @@ export function ContactSection() {
   });
   const [status, setStatus] = useState({ type: '', message: '' });
   const [isSubmitting, setIsSubmitting] = useState(false);
+
+  // Inicializar EmailJS una vez para registrar la Public Key
+  useEffect(() => {
+    try {
+      emailjs.init({ publicKey: EMAILJS_CONFIG.PUBLIC_KEY });
+      if (import.meta.env.DEV) {
+        // Debug mínimo en desarrollo
+        // console.log('EmailJS initialized');
+      }
+    } catch {}
+  }, []);
 
   const handleChange = (e) => {
     setFormState({ ...formState, [e.target.name]: e.target.value });
@@ -45,11 +56,11 @@ export function ContactSection() {
     setStatus({ type: '', message: '' });
 
     try {
+      // Según documentación oficial: cuando usas init(), NO pasas options a sendForm
       const result = await emailjs.sendForm(
         EMAILJS_CONFIG.SERVICE_ID,
         EMAILJS_CONFIG.TEMPLATE_ID,
-        formRef.current,
-        EMAILJS_CONFIG.PUBLIC_KEY
+        formRef.current
       );
       
       if (result.text === 'OK') {
@@ -161,6 +172,8 @@ export function ContactSection() {
         <div className="panel p-6">
           <h3 className="text-lg font-semibold mb-4">Envíame un mensaje</h3>
           <form ref={formRef} onSubmit={handleSubmit} className="flex flex-col gap-4">
+            {/* Campo oculto para el subject del template: Contact Us: {{title}} */}
+            <input type="hidden" name="title" value="Portfolio" />
             <div>
               <label htmlFor="name" className="block text-sm font-medium mb-2 text-slate-700 dark:text-slate-300">
                 Nombre *

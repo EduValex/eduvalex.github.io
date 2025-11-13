@@ -35,6 +35,41 @@
     <!-- Preconnect para optimización -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    
+      <!-- Aplicar tema dark inmediatamente para evitar flash -->
+      <script>
+        (function() {
+          const theme = localStorage.getItem('cv_theme') || 'dark';
+          if (theme === 'dark') {
+            document.documentElement.classList.add('dark');
+          }
+        })();
+      </script>
+    
+    <!-- Theme color for mobile address bar -->
+    <meta name="theme-color" content="#0f172a" />
+    
+    <!-- Structured Data: Person -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "name": "Eduardo Valenzuela Milla",
+      "jobTitle": "Full Stack Developer",
+      "url": "https://eduvalex.github.io/",
+      "email": "mailto:valenzuela.edo@gmail.com",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Temuco",
+        "addressRegion": "Araucanía",
+        "addressCountry": "CL"
+      },
+      "sameAs": [
+        "https://github.com/eduvalex",
+        "https://www.linkedin.com/in/eduardo-valenzuela-milla/"
+      ]
+    }
+    </script>
   </head>
   <body>
     <div id="root"></div>
