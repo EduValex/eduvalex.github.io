@@ -1,5 +1,5 @@
 // Import CV data
-import cvData from '../../shared/data/cv-data.json';
+import cvData from '@data/cv-data.json';
 
 // State
 let currentLang = 'es';
