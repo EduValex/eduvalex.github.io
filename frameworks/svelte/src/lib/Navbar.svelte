@@ -1,0 +1,192 @@
+<script>
+  import { createEventDispatcher } from 'svelte';
+  
+  export let currentLang = 'es';
+  export let theme = 'dark';
+  
+  const dispatch = createEventDispatcher();
+</script>
+
+<nav class:light={theme === 'light'}>
+  <div class="inner">
+    <div class="badges">
+      <a href="#about">{currentLang === 'es' ? '👤 Sobre mí' : '👤 About'}</a>
+      <a href="#services">{currentLang === 'es' ? '🚀 Servicios' : '🚀 Services'}</a>
+      <a href="#experience">{currentLang === 'es' ? '💼 Experiencia' : '💼 Experience'}</a>
+      <a href="#projects">{currentLang === 'es' ? '🎨 Proyectos' : '🎨 Projects'}</a>
+      <a href="#skills">{currentLang === 'es' ? '⚡ Habilidades' : '⚡ Skills'}</a>
+      <a href="#contact">{currentLang === 'es' ? '📧 Contacto' : '📧 Contact'}</a>
+    </div>
+    <div class="badges">
+      <button 
+        class="theme-toggle" 
+        on:click={() => dispatch('toggleTheme')}
+        title={currentLang === 'es' ? 'Cambiar tema' : 'Toggle theme'}
+      >
+        {theme === 'dark' ? '🌙' : '☀️'}
+      </button>
+      <div class="lang-toggle">
+        <button 
+          class:active={currentLang === 'es'}
+          on:click={() => dispatch('changeLang', 'es')}
+        >
+          ES
+        </button>
+        <button 
+          class:active={currentLang === 'en'}
+          on:click={() => dispatch('changeLang', 'en')}
+        >
+          EN
+        </button>
+      </div>
+      <a href="/" title="React version">⚛️ React</a>
+      <a href="/astro/" title="Astro version" class="badge">⭐ Astro</a>
+      <a href="/vue/" title="Vue version" class="badge">💚 Vue</a>
+      <a href="/solid/" title="Solid version" class="badge">🔷 Solid</a>
+      <a href="/lab" title="Sobre este proyecto" class="badge">💡 Lab</a>
+    </div>
+  </div>
+</nav>
+
+<style>
+  nav {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    backdrop-filter: blur(12px);
+    background: rgba(15, 23, 42, 0.9);
+    border-bottom: 1px solid rgba(148, 163, 184, 0.2);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  }
+
+  nav.light {
+    background: rgba(255, 255, 255, 0.95);
+    border-bottom-color: rgba(203, 213, 225, 0.5);
+  }
+
+  .inner {
+    display: flex;
+    gap: 0.75rem;
+    align-items: center;
+    justify-content: space-between;
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0.75rem 1rem;
+    flex-wrap: wrap;
+  }
+
+  nav a {
+    color: #cbd5e1;
+    text-decoration: none;
+    padding: 0.4rem 0.7rem;
+    border-radius: 0.5rem;
+    font-size: 0.9rem;
+    transition: background 0.15s, transform 0.15s;
+    white-space: nowrap;
+  }
+
+  nav.light a {
+    color: #475569;
+  }
+
+  nav a:hover {
+    background: rgba(148, 163, 184, 0.15);
+    text-decoration: none;
+  }
+
+  .badges {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    align-items: center;
+  }
+
+  .badge {
+    background: #1e293b;
+    border: 1px solid rgba(148, 163, 184, 0.25);
+    color: #e5e7eb;
+    padding: 0.3rem 0.75rem;
+    border-radius: 999px;
+    font-size: 0.8rem;
+    white-space: nowrap;
+    transition: background 0.2s;
+  }
+
+  nav.light .badge {
+    background: #e2e8f0;
+    border-color: rgba(148, 163, 184, 0.3);
+    color: #334155;
+  }
+
+  .badge:hover {
+    background: #334155;
+  }
+
+  nav.light .badge:hover {
+    background: #cbd5e1;
+  }
+
+  .lang-toggle {
+    background: #1e293b;
+    border: 1px solid rgba(148, 163, 184, 0.3);
+    border-radius: 0.5rem;
+    padding: 0.25rem;
+    display: flex;
+    gap: 0.25rem;
+  }
+
+  nav.light .lang-toggle {
+    background: #e2e8f0;
+    border-color: rgba(148, 163, 184, 0.4);
+  }
+
+  .lang-toggle button {
+    background: transparent;
+    border: none;
+    color: #94a3b8;
+    padding: 0.35rem 0.75rem;
+    border-radius: 0.4rem;
+    cursor: pointer;
+    font-size: 0.85rem;
+    transition: all 0.2s;
+    font-weight: 500;
+  }
+
+  nav.light .lang-toggle button {
+    color: #64748b;
+  }
+
+  .lang-toggle button.active {
+    background: #3b82f6;
+    color: white;
+  }
+
+  .lang-toggle button:hover:not(.active) {
+    background: rgba(148, 163, 184, 0.15);
+    color: #cbd5e1;
+  }
+
+  nav.light .lang-toggle button:hover:not(.active) {
+    background: rgba(148, 163, 184, 0.2);
+    color: #334155;
+  }
+
+  .theme-toggle {
+    background: transparent;
+    border: 1px solid rgba(148, 163, 184, 0.3);
+    border-radius: 0.5rem;
+    padding: 0.35rem 0.6rem;
+    cursor: pointer;
+    font-size: 1.1rem;
+    transition: all 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 1;
+  }
+
+  .theme-toggle:hover {
+    background: rgba(148, 163, 184, 0.15);
+    border-color: rgba(148, 163, 184, 0.5);
+  }
+</style>

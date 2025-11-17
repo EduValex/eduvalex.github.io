@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tech Lab - Eduardo Valenzuela</title>
+  <meta name="description" content="Sobre el proyecto multi-framework de Eduardo Valenzuela">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background: #0f172a;
+      color: #e2e8f0;
+      min-height: 100vh;
+      padding: 2rem 1rem;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    header {
+      text-align: center;
+      margin-bottom: 3rem;
+      padding-bottom: 2rem;
+      border-bottom: 1px solid rgba(148, 163, 184, 0.2);
+    }
+
+    h1 {
+      font-size: clamp(2rem, 5vw, 2.5rem);
+      margin-bottom: 0.5rem;
+      background: linear-gradient(135deg, #60a5fa 0%, #a78bfa 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .subtitle {
+      font-size: 1.1rem;
+      color: #94a3b8;
+    }
+
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      color: #60a5fa;
+      text-decoration: none;
+      margin-bottom: 2rem;
+      transition: opacity 0.2s;
+    }
+
+    .back-link:hover {
+      opacity: 0.8;
+    }
+
+    .section {
+      background: rgba(15, 23, 42, 0.6);
+      border: 1px solid rgba(148, 163, 184, 0.2);
+      border-radius: 12px;
+      padding: 2rem;
+      margin-bottom: 2rem;
+    }
+
+    h2 {
+      font-size: 1.5rem;
+      margin-bottom: 1rem;
+      color: #f1f5f9;
+    }
+
+    p {
+      line-height: 1.7;
+      color: #cbd5e1;
+      margin-bottom: 1rem;
+    }
+
+    .framework-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1rem;
+      margin-top: 1.5rem;
+    }
+
+    .framework-card {
+      background: rgba(30, 41, 59, 0.8);
+      border: 1px solid rgba(148, 163, 184, 0.2);
+      border-radius: 8px;
+      padding: 1.5rem;
+      text-align: center;
+      transition: transform 0.2s, border-color 0.2s;
+      text-decoration: none;
+      color: inherit;
+      display: block;
+    }
+
+    .framework-card:hover:not(.disabled) {
+      transform: translateY(-4px);
+      border-color: #60a5fa;
+    }
+
+    .framework-card.disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+
+    .framework-icon {
+      font-size: 3rem;
+      margin-bottom: 0.5rem;
+      display: block;
+    }
+
+    .framework-name {
+      font-weight: 600;
+      font-size: 1.1rem;
+      margin-bottom: 0.25rem;
+    }
+
+    .framework-status {
+      font-size: 0.85rem;
+      color: #94a3b8;
+    }
+
+    .badge {
+      display: inline-block;
+      background: rgba(59, 130, 246, 0.2);
+      border: 1px solid rgba(59, 130, 246, 0.4);
+      color: #60a5fa;
+      padding: 0.25rem 0.75rem;
+      border-radius: 999px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      margin-top: 0.5rem;
+    }
+
+    .badge.soon {
+      background: rgba(148, 163, 184, 0.2);
+      border-color: rgba(148, 163, 184, 0.4);
+      color: #94a3b8;
+    }
+
+    .tech-list {
+      list-style: none;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 0.75rem;
+      margin-top: 1rem;
+    }
+
+    .tech-list li {
+      background: rgba(30, 41, 59, 0.5);
+      padding: 0.75rem 1rem;
+      border-radius: 6px;
+      font-size: 0.9rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .tech-list li::before {
+      content: '✓';
+      color: #34d399;
+      font-weight: bold;
+    }
+
+    footer {
+      text-align: center;
+      margin-top: 3rem;
+      padding-top: 2rem;
+      border-top: 1px solid rgba(148, 163, 184, 0.2);
+      color: #94a3b8;
+      font-size: 0.9rem;
+    }
+
+    footer a {
+      color: #60a5fa;
+      text-decoration: none;
+    }
+
+    footer a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <a href="/" class="back-link">
+      ← Volver al CV
+    </a>
+
+    <header>
+      <h1>💡 Tech Lab</h1>
+      <p class="subtitle">Arquitectura Multi-Framework Portfolio</p>
+    </header>
+
+    <div class="section">
+      <h2>🎯 Sobre este proyecto</h2>
+      <p>
+        Este portfolio está construido con <strong>múltiples frameworks modernos</strong> para demostrar 
+        diferentes enfoques técnicos y arquitecturas web. Cada versión muestra las fortalezas 
+        únicas de su framework mientras mantiene el mismo contenido y diseño.
+      </p>
+      <p>
+        La idea es probar que puedo adaptarme a diferentes tecnologías y entender 
+        sus trade-offs: rendimiento, SEO, interactividad, developer experience, etc.
+      </p>
+    </div>
+
+    <div class="section">
+      <h2>🚀 Versiones disponibles</h2>
+      <div class="framework-grid">
+        <a href="/" class="framework-card">
+          <span class="framework-icon">⚛️</span>
+          <div class="framework-name">React</div>
+          <div class="framework-status">Versión principal</div>
+          <span class="badge">Producción</span>
+        </a>
+
+        <a href="/astro" class="framework-card">
+          <span class="framework-icon">🚀</span>
+          <div class="framework-name">Astro</div>
+          <div class="framework-status">SSG ultra-rápido</div>
+          <span class="badge">Beta</span>
+        </a>
+
+        <div class="framework-card disabled">
+          <span class="framework-icon">💚</span>
+          <div class="framework-name">Vue</div>
+          <div class="framework-status">Composition API</div>
+          <span class="badge soon">Próximamente</span>
+        </div>
+
+        <div class="framework-card disabled">
+          <span class="framework-icon">🅰️</span>
+          <div class="framework-name">Angular</div>
+          <div class="framework-status">Enterprise-ready</div>
+          <span class="badge soon">Planeado</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="section">
+      <h2>🛠️ Stack Técnico</h2>
+      <ul class="tech-list">
+        <li>React 19.2 + Vite</li>
+        <li>Astro 4.16</li>
+        <li>Tailwind CSS</li>
+        <li>EmailJS</li>
+        <li>GitHub Actions</li>
+        <li>GitHub Pages</li>
+      </ul>
+    </div>
+
+    <div class="section">
+      <h2>🎨 Principios de Arquitectura</h2>
+      <p>
+        <strong>Single Source of Truth:</strong> Toda la información del CV está centralizada en un 
+        archivo JSON (<code>shared/data/cv-data.json</code>). Esto garantiza consistencia entre todas 
+        las versiones y facilita el mantenimiento.
+      </p>
+      <p>
+        <strong>Framework Agnostic Core:</strong> Cada framework implementa los mismos componentes 
+        (Hero, About, Experience, Projects, Skills, Contact) pero con su propia sintaxis y optimizaciones.
+      </p>
+      <p>
+        <strong>Progressive Enhancement:</strong> La versión base (React) es completamente funcional. 
+        Las otras versiones exploran diferentes enfoques: SSG (Astro), reactivity (Vue), etc.
+      </p>
+    </div>
+
+    <footer>
+      <p>
+        💻 Código open-source en 
+        <a href="https://github.com/eduvalex/eduvalex.github.io" target="_blank" rel="noopener">GitHub</a>
+      </p>
+      <p style="margin-top: 0.5rem; opacity: 0.7;">© 2025 Eduardo Valenzuela</p>
+    </footer>
+  </div>
+</body>
+</html>

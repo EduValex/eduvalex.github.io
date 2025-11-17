@@ -56,11 +56,80 @@ const SERVICES = [
     <style>
       :root { color-scheme: dark; }
       * { box-sizing: border-box; }
-      body { margin: 0; font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, Helvetica Neue, Arial, "Apple Color Emoji", "Segoe UI Emoji"; background:#0f172a; color:#e2e8f0; transition: opacity .3s }
+      
+      /* Light theme */
+      body.light {
+        background: #f1f5f9;
+        color: #1e293b;
+      }
+      body.light .panel {
+        background: rgba(255,255,255,.8);
+        border-color: rgba(203,213,225,.5);
+        box-shadow: 0 1px 3px rgba(0,0,0,.1);
+      }
+      body.light .panel:hover {
+        box-shadow: 0 8px 24px rgba(0,0,0,.15);
+      }
+      body.light nav {
+        background: rgba(255,255,255,.95);
+        border-bottom-color: rgba(203,213,225,.5);
+      }
+      body.light nav a {
+        color: #475569;
+      }
+      body.light nav a:hover {
+        background: rgba(148,163,184,.1);
+      }
+      body.light .badge {
+        background: #e2e8f0;
+        border-color: rgba(148,163,184,.3);
+        color: #334155;
+      }
+      body.light .badge:hover {
+        background: #cbd5e1;
+      }
+      body.light h3, body.light strong {
+        color: #0f172a;
+      }
+      body.light p, body.light small, body.light .label {
+        color: #475569;
+      }
+      body.light .input, body.light .textarea {
+        background: white;
+        border-color: rgba(148,163,184,.4);
+        color: #1e293b;
+      }
+      body.light .service, body.light .exp-card, body.light .proj-card {
+        background: rgba(255,255,255,.8);
+        border-color: rgba(203,213,225,.5);
+      }
+      body.light .lang-toggle {
+        background: #e2e8f0;
+        border-color: rgba(148,163,184,.4);
+      }
+      body.light .lang-toggle button {
+        color: #64748b;
+      }
+      body.light .lang-toggle button:hover:not(.active) {
+        background: rgba(148,163,184,.2);
+        color: #334155;
+      }
+      body.light .contact-info li .detail strong {
+        color: #94a3b8;
+      }
+      body.light a {
+        color: #2563eb;
+      }
+      body.light a:hover {
+        color: #1d4ed8;
+      }
+      
+      /* Dark theme (default) */
+      body { margin: 0; font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, Helvetica Neue, Arial, "Apple Color Emoji", "Segoe UI Emoji"; background:#0f172a; color:#e2e8f0; transition: background .3s, color .3s }
       a { color:#60a5fa; text-decoration:none }
       a:hover { text-decoration:underline }
       .container { max-width: 1100px; margin: 0 auto; padding: 2rem 1rem; }
-      .panel { background: rgba(15,23,42,.6); border:1px solid rgba(148,163,184,.2); border-radius: 14px; padding: 1.5rem; margin-bottom:2rem; transition: transform .2s, box-shadow .2s }
+  .panel { background: rgba(15,23,42,.6); border:1px solid rgba(148,163,184,.2); border-radius: 14px; padding: 1.5rem; margin-bottom:2rem; transition: transform .2s, box-shadow .2s }
       .panel:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,0,0,.3) }
       .grid { display:grid; gap:1.5rem; grid-template-columns: repeat(auto-fill,minmax(300px,1fr)); }
       .grid-2 { display:grid; gap:1.5rem; grid-template-columns:1fr 1fr }
@@ -74,20 +143,45 @@ const SERVICES = [
       h2 { font-size: clamp(1.4rem, 3vw, 1.9rem); margin:0 0 1.25rem; font-weight:700; display:flex; align-items:center; gap:.6rem }
       h3 { font-size: 1.15rem; font-weight:600; margin:0; color:#f1f5f9 }
       p { line-height:1.7; margin:.5rem 0; color:#cbd5e1 }
+  /* Reveal on scroll */
+  .reveal { opacity:0; transform: translateY(10px); transition: opacity .45s ease, transform .45s ease }
+  .reveal.visible { opacity:1; transform:none }
       .hero { display:flex; align-items:center; gap:1.5rem; flex-wrap:wrap }
       .hero img { width:90px; height:90px; border-radius:18px; object-fit:cover; flex-shrink:0; box-shadow:0 4px 12px rgba(0,0,0,.3) }
       small { color:#94a3b8; font-size:.9rem }
-      nav { position: sticky; top:0; z-index:50; backdrop-filter: blur(12px); background: rgba(15,23,42,.9); border-bottom:1px solid rgba(148,163,184,.2); box-shadow:0 2px 8px rgba(0,0,0,.2) }
-      nav .inner { display:flex; gap:.75rem; align-items:center; justify-content:space-between; max-width:1100px; margin:0 auto; padding:.75rem 1rem; flex-wrap:wrap }
-      nav a { color:#cbd5e1; text-decoration:none; padding:.4rem .7rem; border-radius:.5rem; font-size:.9rem; transition: background .15s; white-space:nowrap }
-      nav a:hover { background: rgba(148,163,184,.15); text-decoration:none }
-      .badges { display:flex; flex-wrap:wrap; gap:.5rem; align-items:center }
+      
+      /* Navbar de dos filas */
+      nav { position: sticky; top:0; z-index:50; backdrop-filter: blur(12px); background: rgba(15,23,42,.95); border-bottom:1px solid rgba(148,163,184,.2); box-shadow:0 2px 8px rgba(0,0,0,.2) }
+      nav .inner { max-width:1100px; margin:0 auto; padding:0 1rem }
+      
+      /* Primera fila: menu */
+      nav .menu-row { display:flex; align-items:center; justify-content:space-between; height:56px; border-bottom:1px solid rgba(148,163,184,.15) }
+      nav .logo-btn { background:transparent; border:none; cursor:pointer; font-size:1.5rem; padding:0; line-height:1; transition: transform .2s }
+      nav .logo-btn:hover { transform: scale(1.1) }
+      nav .menu-links { display:flex; gap:.5rem; flex-wrap:wrap }
+      nav .menu-links a { color:#cbd5e1; text-decoration:none; padding:.4rem .7rem; border-radius:.5rem; font-size:.85rem; transition: all .15s; white-space:nowrap; display:flex; align-items:center; gap:.4rem }
+      nav .menu-links a:hover { background: rgba(148,163,184,.15); text-decoration:none }
+      nav .menu-links a .icon { font-size:1rem }
+      
+      /* Segunda fila: frameworks */
+      nav .frameworks-row { display:flex; align-items:center; justify-content:center; height:40px; gap:.5rem; overflow-x:auto; scrollbar-width:none }
+      nav .frameworks-row::-webkit-scrollbar { display:none }
+      nav .frameworks-row a, nav .frameworks-row .badge { color:#94a3b8; text-decoration:none; padding:.3rem .7rem; border-radius:.5rem; font-size:.8rem; transition: all .2s; white-space:nowrap; background: transparent; border:1px solid rgba(148,163,184,.2) }
+      nav .frameworks-row a:hover { background: rgba(148,163,184,.15); border-color:rgba(148,163,184,.4) }
+      nav .frameworks-row a.active { background: linear-gradient(135deg, #3b82f6, #8b5cf6); color:white; border-color:transparent; box-shadow: 0 2px 8px rgba(59,130,246,.3) }
+      
+      /* Controls (theme + lang) */
+      .controls { display:flex; gap:.5rem; align-items:center }
+
       .badge { background:#1e293b; border:1px solid rgba(148,163,184,.25); color:#e5e7eb; padding:.3rem .75rem; border-radius:999px; font-size:.8rem; white-space:nowrap; transition: background .2s }
       .badge:hover { background:#334155 }
       .lang-toggle { background:#1e293b; border:1px solid rgba(148,163,184,.3); border-radius:.5rem; padding:.25rem; display:flex; gap:.25rem }
       .lang-toggle button { background:transparent; border:none; color:#94a3b8; padding:.35rem .75rem; border-radius:.4rem; cursor:pointer; font-size:.85rem; transition: all .2s; font-weight:500 }
       .lang-toggle button.active { background:#3b82f6; color:white }
       .lang-toggle button:hover:not(.active) { background:rgba(148,163,184,.15); color:#cbd5e1 }
+      /* Theme toggle */
+      .theme-toggle { background:transparent; border:1px solid rgba(148,163,184,.3); border-radius:.5rem; padding:.35rem .6rem; cursor:pointer; font-size:1.1rem; transition: all .2s; display:flex; align-items:center; justify-content:center; line-height:1 }
+      .theme-toggle:hover { background:rgba(148,163,184,.15); border-color:rgba(148,163,184,.5) }
       /* Form */
       .field { display:flex; flex-direction:column; gap:.5rem; margin-bottom:1rem }
       .label { font-size:.9rem; color:#cbd5e1; font-weight:500 }
@@ -134,28 +228,46 @@ const SERVICES = [
   <body>
     <nav>
       <div class="inner">
-        <div class="badges">
-          <a href="#about" data-nav-es="Sobre mí" data-nav-en="About">Sobre mí</a>
-          <a href="#services" data-nav-es="Servicios" data-nav-en="Services">Servicios</a>
-          <a href="#experience" data-nav-es="Experiencia" data-nav-en="Experience">Experiencia</a>
-          <a href="#projects" data-nav-es="Proyectos" data-nav-en="Projects">Proyectos</a>
-          <a href="#skills" data-nav-es="Habilidades" data-nav-en="Skills">Habilidades</a>
-          <a href="#contact" data-nav-es="Contacto" data-nav-en="Contact">Contacto</a>
-        </div>
-        <div class="badges">
-          <div class="lang-toggle">
-            <button data-lang-btn="es" class="active">ES</button>
-            <button data-lang-btn="en">EN</button>
+        <!-- FILA 1: Menu principal -->
+        <div class="menu-row">
+          <button class="logo-btn" onclick="window.scrollTo({top:0,behavior:'smooth'})">
+            👨‍💻
+          </button>
+          <div class="menu-links">
+            <a href="#about"><span class="icon">👤</span><span data-nav-es="Sobre mí" data-nav-en="About">Sobre mí</span></a>
+            <a href="#services"><span class="icon">🚀</span><span data-nav-es="Servicios" data-nav-en="Services">Servicios</span></a>
+            <a href="#experience"><span class="icon">💼</span><span data-nav-es="Experiencia" data-nav-en="Experience">Experiencia</span></a>
+            <a href="#projects"><span class="icon">🎨</span><span data-nav-es="Proyectos" data-nav-en="Projects">Proyectos</span></a>
+            <a href="#skills"><span class="icon">⚡</span><span data-nav-es="Habilidades" data-nav-en="Skills">Habilidades</span></a>
+            <a href="#contact"><span class="icon">📧</span><span data-nav-es="Contacto" data-nav-en="Contact">Contacto</span></a>
           </div>
-          <a href="/" title="React version">⚛️ React</a>
-          <a href="/astro/" title="Astro version" class="badge">⭐ Astro</a>
+          <div class="controls">
+            <button class="theme-toggle" id="theme-toggle" title="Toggle theme">
+              <span id="theme-icon">🌙</span>
+            </button>
+            <div class="lang-toggle">
+              <button data-lang-btn="es" class="active">ES</button>
+              <button data-lang-btn="en">EN</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- FILA 2: Framework switcher -->
+        <div class="frameworks-row">
+          <a href="/" title="React version">⚛️ <span class="hidden sm:inline">React</span></a>
+          <a href="/astro/" title="Astro version" class="active">🪐 <span class="hidden sm:inline">Astro</span></a>
+          <a href="/vue/" title="Vue version">💚 <span class="hidden sm:inline">Vue</span></a>
+          <a href="/svelte/" title="Svelte version">🧡 <span class="hidden sm:inline">Svelte</span></a>
+          <a href="/solid/" title="Solid version">🔷 <span class="hidden sm:inline">Solid</span></a>
+          <a href="/vanilla/" title="Vanilla JS version">⚡ <span class="hidden sm:inline">Vanilla</span></a>
+          <a href="/lab/" title="Sobre este proyecto">🧪 <span class="hidden sm:inline">Lab</span></a>
         </div>
       </div>
     </nav>
 
     <main class="container">
       <!-- Hero -->
-      <section class="panel">
+  <section class="panel reveal">
         <div class="hero">
           <img src={`${baseUrl}favicon.ico`} alt="Eduardo Valenzuela" />
           <div style="flex:1">
@@ -183,7 +295,7 @@ const SERVICES = [
       </section>
 
       <!-- About -->
-      <section id="about" class="panel">
+  <section id="about" class="panel reveal">
         <h2>
           <span>👨‍💻</span>
           <span class="inline-lang active" data-lang="es">Sobre mí</span>
@@ -198,7 +310,7 @@ const SERVICES = [
       </section>
 
       <!-- Services -->
-      <section id="services">
+  <section id="services" class="reveal">
         <div class="section-header">
           <h2>
             <span>🚀</span>
@@ -210,7 +322,7 @@ const SERVICES = [
         </div>
         <div class="grid-2">
           {SERVICES.map(service => (
-            <article class="service">
+            <article class="service reveal">
               <div class="icon-box">{service.icon}</div>
               <h3 data-lang="es" class="active" style="display:block">{service.titleES}</h3>
               <h3 data-lang="en" style="display:none">{service.titleEN}</h3>
@@ -225,7 +337,7 @@ const SERVICES = [
       </section>
 
       <!-- Experience -->
-      <section id="experience">
+  <section id="experience" class="reveal">
         <h2>
           <span>💼</span>
           <span class="inline-lang active" data-lang="es">Experiencia</span>
@@ -233,7 +345,7 @@ const SERVICES = [
         </h2>
         <div class="grid">
           {experience.map(exp => (
-            <article class="exp-card">
+            <article class="exp-card reveal">
               <h3>{exp.position}</h3>
               <small>{exp.company} · {exp.period} · {exp.location}</small>
               <p>{exp.description}</p>
@@ -248,7 +360,7 @@ const SERVICES = [
       </section>
 
       <!-- Projects -->
-      <section id="projects">
+  <section id="projects" class="reveal">
         <h2>
           <span>🚀</span>
           <span class="inline-lang active" data-lang="es">Proyectos destacados</span>
@@ -256,7 +368,7 @@ const SERVICES = [
         </h2>
         <div class="grid">
           {projects.map(p => (
-            <article class="proj-card">
+            <article class="proj-card reveal">
               <h3>{p.name}</h3>
               <small>{p.technologies?.slice(0,4).join(', ')}</small>
               <p>{p.description}</p>
@@ -280,39 +392,39 @@ const SERVICES = [
       </section>
 
       <!-- Skills -->
-      <section id="skills">
+  <section id="skills" class="reveal">
         <h2>
           <span>💡</span>
           <span class="inline-lang active" data-lang="es">Habilidades</span>
           <span class="inline-lang" data-lang="en">Skills</span>
         </h2>
         <div class="grid-skills">
-          <article class="panel">
+          <article class="panel reveal">
             <h3>Frontend</h3>
             <div class="badges" style="margin-top:.75rem">
               {skills.frontend.map(s => <span class="badge" title={`${s.level}%`}>{s.name}</span>)}
             </div>
           </article>
-          <article class="panel">
+          <article class="panel reveal">
             <h3>Backend</h3>
             <div class="badges" style="margin-top:.75rem">
               {skills.backend.map(s => <span class="badge" title={`${s.level}%`}>{s.name}</span>)}
             </div>
           </article>
-          <article class="panel">
+          <article class="panel reveal">
             <h3 data-lang="es" class="active">Herramientas · Bases de datos</h3>
             <h3 data-lang="en">Tools · Databases</h3>
             <div class="badges" style="margin-top:.75rem">
               {skills.tools.databases.map(s => <span class="badge" title={`${s.level}%`}>{s.name}</span>)}
             </div>
           </article>
-          <article class="panel">
+          <article class="panel reveal">
             <h3>SEO & Analytics</h3>
             <div class="badges" style="margin-top:.75rem">
               {skills.tools.seoAnalytics.map(s => <span class="badge" title={`${s.level}%`}>{s.name}</span>)}
             </div>
           </article>
-          <article class="panel">
+          <article class="panel reveal">
             <h3 data-lang="es" class="active">Herramientas · Dev & Deploy</h3>
             <h3 data-lang="en">Tools · Dev & Deploy</h3>
             <div class="badges" style="margin-top:.75rem">
@@ -329,7 +441,7 @@ const SERVICES = [
       </section>
 
       <!-- Contact -->
-      <section id="contact">
+  <section id="contact" class="reveal">
         <h2>
           <span>📬</span>
           <span class="inline-lang active" data-lang="es">Contacto</span>
@@ -416,14 +528,45 @@ const SERVICES = [
         </p>
       </footer>
     </main>
+      <script>
+        // Reveal-on-scroll
+        const reveals = document.querySelectorAll('.reveal');
+        const io = new IntersectionObserver((entries)=>{
+          entries.forEach((entry)=>{
+            if (entry.isIntersecting) {
+              entry.target.classList.add('visible');
+              io.unobserve(entry.target);
+            }
+          });
+        }, { threshold: 0.1 });
+        reveals.forEach(el => io.observe(el));
 
-    <script>
       // EmailJS config inline
       const EMAILJS_CONFIG = {
         SERVICE_ID: 'service_35dui0c',
         TEMPLATE_ID: 'template_dlh2p8t',
         PUBLIC_KEY: 'qZw7aS4i2gCI3Wz2B',
       };
+
+      // Theme toggle
+      const getTheme = () => localStorage.getItem('astro-theme') || 'dark';
+      const setTheme = (theme) => {
+        localStorage.setItem('astro-theme', theme);
+        document.body.classList.toggle('light', theme === 'light');
+        const icon = document.getElementById('theme-icon');
+        if (icon) icon.textContent = theme === 'light' ? '☀️' : '🌙';
+      };
+      
+      // Initialize theme on load
+      setTheme(getTheme());
+      
+      const themeToggle = document.getElementById('theme-toggle');
+      if (themeToggle) {
+        themeToggle.addEventListener('click', () => {
+          const newTheme = getTheme() === 'dark' ? 'light' : 'dark';
+          setTheme(newTheme);
+        });
+      }
 
       // Language toggle
       let currentLang = 'es';

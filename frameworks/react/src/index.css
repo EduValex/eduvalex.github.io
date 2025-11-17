@@ -5,6 +5,22 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Animation for dropdown */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fadeIn {
+  animation: fadeIn 0.2s ease-out;
+}
+
 /* Design tokens bridge (can be generated later) */
 :root {
   --color-bg: #ffffff;
@@ -61,6 +77,15 @@ section:first-of-type {
 /* Code font utility */
 .code {
   @apply font-mono text-sm bg-slate-100 dark:bg-slate-800/70 px-1.5 py-0.5 rounded;
+}
+
+/* Utility for scrollbar hide in navbar */
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
 }
 
 

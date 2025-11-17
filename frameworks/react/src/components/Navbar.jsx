@@ -4,16 +4,25 @@ import { useTranslation } from '../hooks/useTranslation.js';
 export function Navbar() {
   const [activeSection, setActiveSection] = useState('');
   const [isScrolled, setIsScrolled] = useState(false);
-  const { t } = useTranslation();
+  const { t, currentLang } = useTranslation();
 
   const sections = [
-    { id: 'hero', label: 'Inicio', icon: '🏠' },
     { id: 'about', label: t('sections.about'), icon: '👤' },
-    { id: 'services', label: '¿Qué hago?', icon: '🚀' },
+    { id: 'services', label: currentLang === 'es' ? 'Servicios' : 'Services', icon: '🚀' },
     { id: 'experience', label: t('sections.experience'), icon: '💼' },
     { id: 'projects', label: t('sections.projects'), icon: '🎨' },
     { id: 'skills', label: t('sections.skills'), icon: '⚡' },
     { id: 'contact', label: t('sections.contact'), icon: '📧' },
+  ];
+
+  const frameworks = [
+    { id: 'react', name: 'React', icon: '⚛️', url: '/', active: true },
+    { id: 'astro', name: 'Astro', icon: '🪐', url: '/astro/' },
+    { id: 'vue', name: 'Vue', icon: '💚', url: '/vue/' },
+    { id: 'svelte', name: 'Svelte', icon: '🧡', url: '/svelte/' },
+    { id: 'solid', name: 'Solid', icon: '🔷', url: '/solid/' },
+    { id: 'vanilla', name: 'Vanilla', icon: '⚡', url: '/vanilla/' },
+    { id: 'lab', name: 'Lab', icon: '🧪', url: '/lab/' },
   ];
 
   useEffect(() => {
@@ -59,18 +68,19 @@ export function Navbar() {
     <nav 
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         isScrolled 
-          ? 'bg-white/80 dark:bg-slate-900/80 backdrop-blur-lg shadow-lg' 
-          : 'bg-transparent'
+          ? 'bg-white/95 dark:bg-slate-900/95 backdrop-blur-lg shadow-lg' 
+          : 'bg-white/80 dark:bg-slate-900/80 backdrop-blur-md'
       }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-16">
-          {/* Logo/Nombre */}
+        {/* PRIMERA FILA: Menu de secciones */}
+        <div className="flex items-center justify-between h-14 border-b border-slate-200 dark:border-slate-700/50">
+          {/* Logo */}
           <button
             onClick={() => scrollToSection('hero')}
-            className="text-lg font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent hover:scale-105 transition-transform"
+            className="text-xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent hover:scale-110 transition-transform"
           >
-            EV
+            👨‍💻
           </button>
 
           {/* Menu Desktop */}
@@ -79,7 +89,7 @@ export function Navbar() {
               <button
                 key={section.id}
                 onClick={() => scrollToSection(section.id)}
-                className={`px-3 py-2 rounded-lg text-sm font-medium transition-all hover:scale-105 ${
+                className={`px-3 py-1.5 rounded-lg text-sm font-medium transition-all hover:scale-105 ${
                   activeSection === section.id
                     ? 'bg-primary text-white shadow-md'
                     : 'text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800'
@@ -108,6 +118,25 @@ export function Navbar() {
               />
             ))}
           </div>
+        </div>
+
+        {/* SEGUNDA FILA: Framework switcher */}
+        <div className="flex items-center justify-center h-10 gap-1 overflow-x-auto scrollbar-hide">
+          {frameworks.map((fw) => (
+            <a
+              key={fw.id}
+              href={fw.url}
+              className={`px-3 py-1 rounded-md text-xs font-medium transition-all hover:scale-105 whitespace-nowrap ${
+                fw.active
+                  ? 'bg-gradient-to-r from-blue-600 to-purple-600 text-white shadow-md'
+                  : 'text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800'
+              }`}
+              title={`Ver en ${fw.name}`}
+            >
+              <span className="mr-1">{fw.icon}</span>
+              <span className="hidden sm:inline">{fw.name}</span>
+            </a>
+          ))}
         </div>
       </div>
     </nav>

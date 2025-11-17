@@ -54,6 +54,58 @@ jobs:
           npm run build
 
       #############################################
+      # BUILD VUE
+      #############################################
+      - name: Install Vue dependencies
+        run: |
+          cd frameworks/vue
+          npm ci
+
+      - name: Build Vue
+        run: |
+          cd frameworks/vue
+          npm run build
+
+      #############################################
+      # BUILD SVELTE
+      #############################################
+      - name: Install Svelte dependencies
+        run: |
+          cd frameworks/svelte
+          npm ci
+
+      - name: Build Svelte
+        run: |
+          cd frameworks/svelte
+          npm run build
+
+      #############################################
+      # BUILD SOLID
+      #############################################
+      - name: Install Solid dependencies
+        run: |
+          cd frameworks/solid
+          npm ci
+
+      - name: Build Solid
+        run: |
+          cd frameworks/solid
+          npm run build
+
+      #############################################
+      # BUILD VANILLA
+      #############################################
+      - name: Install Vanilla dependencies
+        run: |
+          cd frameworks/vanilla
+          npm ci
+
+      - name: Build Vanilla
+        run: |
+          cd frameworks/vanilla
+          npm run build
+
+      #############################################
       # MERGE BUILDS INTO DEPLOY STRUCTURE
       #############################################
       - name: Create deployment structure
@@ -61,29 +113,54 @@ jobs:
           # Create output directory
           mkdir -p deploy-output
 
-          # Copy landing page
-          cp landing/index.html deploy-output/index.html
+          # Copy React build to root (main CV)
+          cp -r frameworks/react/dist/* deploy-output/
 
-          # Copy React build to /react
-          mkdir -p deploy-output/react
-          cp -r frameworks/react/dist/* deploy-output/react/
-
-          # Copy Astro build to /astro
+          # Copy Astro build to /astro subdirectory
           mkdir -p deploy-output/astro
           cp -r frameworks/astro/dist/* deploy-output/astro/
 
-          # Copy shared assets if needed
-          # mkdir -p deploy-output/shared
-          # cp -r shared/assets deploy-output/shared/
+          # Copy Vue build to /vue subdirectory
+          mkdir -p deploy-output/vue
+          cp -r frameworks/vue/dist/* deploy-output/vue/
+
+          # Copy Svelte build to /svelte subdirectory
+          mkdir -p deploy-output/svelte
+          cp -r frameworks/svelte/dist/* deploy-output/svelte/
+
+          # Copy Solid build to /solid subdirectory
+          mkdir -p deploy-output/solid
+          cp -r frameworks/solid/dist/* deploy-output/solid/
+
+          # Copy Vanilla build to /vanilla subdirectory
+          mkdir -p deploy-output/vanilla
+          cp -r frameworks/vanilla/dist/* deploy-output/vanilla/
+
+          # Copy Tech Lab page to /lab
+          mkdir -p deploy-output/lab
+          cp lab/index.html deploy-output/lab/
+
+          # Copy root redirect (fallback)
+          cp index.html deploy-output/
 
       - name: List deployment structure (debug)
         run: |
           echo "Deployment structure:"
           ls -la deploy-output/
-          echo "React:"
-          ls -la deploy-output/react/
+          echo "Root (React):"
+          ls -la deploy-output/ | head -20
           echo "Astro:"
           ls -la deploy-output/astro/
+          echo "Vue:"
+          ls -la deploy-output/vue/
+          echo "Svelte:"
+          ls -la deploy-output/svelte/
+          echo "Solid:"
+          ls -la deploy-output/solid/
+          echo "Vanilla:"
+          ls -la deploy-output/vanilla/
+          echo "Lab:"
+          ls -la deploy-output/lab/
 
       - name: Setup Pages
         uses: actions/configure-pages@v4

@@ -1,0 +1,174 @@
+{
+  "total_count": 2,
+  "jobs": [
+    {
+      "id": 55607126862,
+      "run_id": 19436079660,
+      "workflow_name": "Deploy Multi-Framework to GitHub Pages",
+      "head_branch": "main",
+      "run_url": "https://api.github.com/repos/EduValex/eduvalex.github.io/actions/runs/19436079660",
+      "run_attempt": 1,
+      "node_id": "CR_kwDOQUQ56s8AAAAM8nFrTg",
+      "head_sha": "2a81a5c2efde8793a208c9233087bef9d4dd9064",
+      "url": "https://api.github.com/repos/EduValex/eduvalex.github.io/actions/jobs/55607126862",
+      "html_url": "https://github.com/EduValex/eduvalex.github.io/actions/runs/19436079660/job/55607126862",
+      "status": "completed",
+      "conclusion": "failure",
+      "created_at": "2025-11-17T16:04:23Z",
+      "started_at": "2025-11-17T16:04:25Z",
+      "completed_at": "2025-11-17T16:04:36Z",
+      "name": "build",
+      "steps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 1,
+          "started_at": "2025-11-17T16:04:26Z",
+          "completed_at": "2025-11-17T16:04:28Z"
+        },
+        {
+          "name": "Checkout",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 2,
+          "started_at": "2025-11-17T16:04:28Z",
+          "completed_at": "2025-11-17T16:04:28Z"
+        },
+        {
+          "name": "Setup Node",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 3,
+          "started_at": "2025-11-17T16:04:28Z",
+          "completed_at": "2025-11-17T16:04:29Z"
+        },
+        {
+          "name": "Install React dependencies",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 4,
+          "started_at": "2025-11-17T16:04:29Z",
+          "completed_at": "2025-11-17T16:04:33Z"
+        },
+        {
+          "name": "Build React",
+          "status": "completed",
+          "conclusion": "failure",
+          "number": 5,
+          "started_at": "2025-11-17T16:04:33Z",
+          "completed_at": "2025-11-17T16:04:34Z"
+        },
+        {
+          "name": "Install Astro dependencies",
+          "status": "completed",
+          "conclusion": "skipped",
+          "number": 6,
+          "started_at": "2025-11-17T16:04:34Z",
+          "completed_at": "2025-11-17T16:04:34Z"
+        },
+        {
+          "name": "Build Astro",
+          "status": "completed",
+          "conclusion": "skipped",
+          "number": 7,
+          "started_at": "2025-11-17T16:04:34Z",
+          "completed_at": "2025-11-17T16:04:34Z"
+        },
+        {
+          "name": "Create deployment structure",
+          "status": "completed",
+          "conclusion": "skipped",
+          "number": 8,
+          "started_at": "2025-11-17T16:04:34Z",
+          "completed_at": "2025-11-17T16:04:34Z"
+        },
+        {
+          "name": "List deployment structure (debug)",
+          "status": "completed",
+          "conclusion": "skipped",
+          "number": 9,
+          "started_at": "2025-11-17T16:04:34Z",
+          "completed_at": "2025-11-17T16:04:34Z"
+        },
+        {
+          "name": "Setup Pages",
+          "status": "completed",
+          "conclusion": "skipped",
+          "number": 10,
+          "started_at": "2025-11-17T16:04:34Z",
+          "completed_at": "2025-11-17T16:04:34Z"
+        },
+        {
+          "name": "Upload artifact",
+          "status": "completed",
+          "conclusion": "skipped",
+          "number": 11,
+          "started_at": "2025-11-17T16:04:34Z",
+          "completed_at": "2025-11-17T16:04:34Z"
+        },
+        {
+          "name": "Post Setup Node",
+          "status": "completed",
+          "conclusion": "skipped",
+          "number": 21,
+          "started_at": "2025-11-17T16:04:34Z",
+          "completed_at": "2025-11-17T16:04:34Z"
+        },
+        {
+          "name": "Post Checkout",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 22,
+          "started_at": "2025-11-17T16:04:34Z",
+          "completed_at": "2025-11-17T16:04:34Z"
+        },
+        {
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 23,
+          "started_at": "2025-11-17T16:04:34Z",
+          "completed_at": "2025-11-17T16:04:34Z"
+        }
+      ],
+      "check_run_url": "https://api.github.com/repos/EduValex/eduvalex.github.io/check-runs/55607126862",
+      "labels": [
+        "ubuntu-latest"
+      ],
+      "runner_id": 1000000084,
+      "runner_name": "GitHub Actions 1000000084",
+      "runner_group_id": 0,
+      "runner_group_name": "GitHub Actions"
+    },
+    {
+      "id": 55607150121,
+      "run_id": 19436079660,
+      "workflow_name": "Deploy Multi-Framework to GitHub Pages",
+      "head_branch": "main",
+      "run_url": "https://api.github.com/repos/EduValex/eduvalex.github.io/actions/runs/19436079660",
+      "run_attempt": 1,
+      "node_id": "CR_kwDOQUQ56s8AAAAM8nHGKQ",
+      "head_sha": "2a81a5c2efde8793a208c9233087bef9d4dd9064",
+      "url": "https://api.github.com/repos/EduValex/eduvalex.github.io/actions/jobs/55607150121",
+      "html_url": "https://github.com/EduValex/eduvalex.github.io/actions/runs/19436079660/job/55607150121",
+      "status": "completed",
+      "conclusion": "skipped",
+      "created_at": "2025-11-17T16:04:36Z",
+      "started_at": "2025-11-17T16:04:36Z",
+      "completed_at": "2025-11-17T16:04:36Z",
+      "name": "deploy",
+      "steps": [
+
+      ],
+      "check_run_url": "https://api.github.com/repos/EduValex/eduvalex.github.io/check-runs/55607150121",
+      "labels": [
+        "ubuntu-latest"
+      ],
+      "runner_id": null,
+      "runner_name": null,
+      "runner_group_id": null,
+      "runner_group_name": null
+    }
+  ]
+}

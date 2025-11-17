@@ -6,9 +6,17 @@
   "type": "module",
   "scripts": {
     "dev": "cd frameworks/react && npm run dev",
+    "dev:react": "cd frameworks/react && npm run dev",
+    "dev:astro": "cd frameworks/astro && npm run dev",
+    "dev:all": "concurrently -n react,astro -c blue,magenta \"npm run dev:react\" \"npm run dev:astro\"",
     "build": "cd frameworks/react && npm run build",
+    "build:react": "cd frameworks/react && npm run build",
+    "build:astro": "cd frameworks/astro && npm run build",
+    "build:all": "npm run build:react && npm run build:astro",
     "preview": "cd frameworks/react && npm run preview",
-    "deploy": "node deploy.js"
+    "deploy": "node deploy.js",
+    "assemble": "node scripts/assemble.js",
+  "preview:all": "npm run assemble && node scripts/preview.js"
   },
   "repository": {
     "type": "git",
@@ -23,6 +31,8 @@
   "author": "Eduardo Valenzuela",
   "license": "MIT",
   "devDependencies": {
-    "gh-pages": "^6.1.1"
+    "gh-pages": "^6.1.1",
+    "concurrently": "^8.2.2",
+    "serve": "^14.2.4"
   }
 }

@@ -1,0 +1,296 @@
+{
+  "personal": {
+    "name": "Eduardo Valenzuela Milla",
+    "title": "FullStack Developer | Plataformas E-Commerce",
+    "email": "valenzuela.edo@gmail.com",
+    "phone": "+56929646969",
+    "location": "Temuco, Araucanía, Chile",
+    "photo": "/shared/assets/images/profile.jpg",
+    "tagline": "Desarrollador Full Stack apasionado por la construcción de soluciones digitales",
+    "social": {
+      "github": "eduvalex",
+      "linkedin": "eduardo-valenzuela-milla",
+      "twitter": "",
+      "portfolio": "https://eduvalex.github.io"
+    }
+  },
+
+  "about": {
+    "es": "Mi camino en tecnología comenzó en la Universidad de La Frontera (UFRO) en Temuco, Chile, donde descubrí mi pasión por transformar ideas en soluciones digitales. Durante mi formación, realicé prácticas profesionales que marcaron mi carrera: primero en Anaconda Web, donde me sumergí en el desarrollo PHP con Yii Framework, y luego en EnLaNubeLab, donde construí una aplicación web completa con Ruby on Rails para catalogar hierbas medicinales.\n\nComo freelance, expandí mi stack desarrollando una aplicación de gestión para abogados con Python y Django. Sin embargo, en 2018 decidí explorar otra de mis pasiones: fundé Escuela Nómade Yoga, donde combino mi rol como instructor de yoga certificado con el emprendimiento. La escuela sigue activa hasta hoy.\n\nEn 2022 retomé la tecnología con fuerza, co-fundando Valex Marketing, una agencia especializada en desarrollo WordPress y SEO. Gestionamos proyectos para clientes corporativos, e-commerce y startups, entregando soluciones web completas con mantenimiento continuo.\n\nParalelamente, trabajé de forma remota para Grant Solutions en España, desarrollando y manteniendo sitios WordPress empresariales con integraciones avanzadas. Mis habilidades se consolidaron a través de pruebas técnicas complejas: creé un plugin WordPress profesional con React y Google Drive API, un sistema de sorteos Full Stack con Django y Nuxt.js, y actualmente desarrollo un SaaS multi-tenant para restaurantes.\n\nHoy combino lo mejor de ambos mundos: ayudo a empresas a crecer digitalmente mientras mantengo mi conexión con el bienestar a través del yoga. Mi enfoque siempre es el mismo: código limpio, soluciones escalables y compromiso real con cada proyecto.",
+    "en": "My journey in technology began at Universidad de La Frontera (UFRO) in Temuco, Chile, where I discovered my passion for turning ideas into digital solutions. During my studies, I completed professional internships that shaped my career: first at Anaconda Web, diving into PHP development with Yii Framework, and then at EnLaNubeLab, where I built a complete web application with Ruby on Rails for cataloging medicinal herbs.\n\nAs a freelancer, I expanded my stack by developing a management application for lawyers using Python and Django. However, in 2018 I decided to explore another passion: I founded Escuela Nómade Yoga, where I combine my role as a certified yoga instructor with entrepreneurship. The school remains active today.\n\nIn 2022 I returned to technology full force, co-founding Valex Marketing, an agency specialized in WordPress development and SEO. We manage projects for corporate clients, e-commerce, and startups, delivering complete web solutions with ongoing maintenance.\n\nSimultaneously, I worked remotely for Grant Solutions in Spain, developing and maintaining enterprise WordPress sites with advanced integrations. My skills were consolidated through complex technical challenges: I created a professional WordPress plugin with React and Google Drive API, a Full Stack raffle system with Django and Nuxt.js, and I'm currently developing a multi-tenant SaaS for restaurants.\n\nToday I combine the best of both worlds: helping businesses grow digitally while maintaining my connection to wellness through yoga. My approach remains constant: clean code, scalable solutions, and genuine commitment to every project."
+  },
+
+  "experience": [
+    {
+      "company": "Valex Marketing",
+      "position": "Co-Fundador & Desarrollador Web Full Stack",
+      "period": "Abr 2022 - Actualidad",
+      "location": "Temuco, Chile (Híbrido)",
+      "description": "Co-fundé agencia de marketing digital especializada en desarrollo web, SEO y estrategias digitales. Desarrollo completo de sitios WordPress para clientes corporativos, e-commerce, y startups. Gestión de proyectos web desde concepto hasta deployment, mantención mensual y reportes de posicionamiento SEO.",
+      "technologies": ["WordPress", "WooCommerce", "React", "SEO", "PHP", "MySQL", "Google Analytics"],
+      "achievements": [
+        "Desarrollé 10+ sitios web corporativos para clientes (Dadneo Capital, Cerveza Mala Junta, CreaSmile, CreaBord, Espacio Amuleto)",
+        "Gestión de catálogo digital de 300+ productos para CreaSmile con integración a compras públicas del Estado",
+        "Implementé integraciones con Instagram API, Google Reviews, y sistemas de gestión de contenido autoadministrables",
+        "Servicio de mantención mensual y reportes SEO para cartera de clientes corporativos"
+      ]
+    },
+    {
+      "company": "Grant Solutions",
+      "position": "Desarrollo Web",
+      "period": "Feb 2025 - Jul 2025",
+      "location": "España (Remoto)",
+      "description": "Desarrollé y mantuve múltiples sitios web para clientes utilizando WordPress, integrando Zoho CRM para mejorar la gestión de relaciones con clientes.",
+      "technologies": ["WordPress", "Zoho CRM", "SEO", "PHP"],
+      "achievements": [
+        "Integración exitosa de Zoho CRM en múltiples sitios web",
+        "Optimización SEO On-Page para aumentar visibilidad de clientes",
+        "Mantenimiento y actualización de portafolio de sitios corporativos"
+      ]
+    },
+    {
+      "company": "Enlanubelab",
+      "position": "Desarrollador de WordPress",
+      "period": "Abr 2015 - Dic 2015",
+      "location": "Temuco, Araucanía, Chile",
+      "description": "Desarrollo de aplicación web full-stack con Ruby on Rails para catálogo de hierbas medicinales y mantenimiento de sitios WordPress.",
+      "technologies": ["Ruby on Rails", "WordPress", "PHP", "MySQL"],
+      "achievements": [
+        "Desarrollé aplicación web full-stack con Ruby on Rails desde concepto hasta despliegue",
+        "Mantuve más de 12 sitios de clientes basados en WordPress",
+        "Aseguré correcto funcionamiento y actualización de plataformas"
+      ]
+    },
+    {
+      "company": "Anacondaweb",
+      "position": "Alumno Practicante",
+      "period": "Ene 2014 - Mar 2014",
+      "location": "Temuco, Araucanía, Chile",
+      "description": "Colaboré en el desarrollo de Intranet corporativa con PHP y Yii Framework, digitalizando procesos internos de la empresa.",
+      "technologies": ["PHP", "Yii Framework", "MySQL", "JavaScript"],
+      "achievements": [
+        "Contribuí al desarrollo de Intranet corporativa con Yii Framework",
+        "Ayudé a digitalizar y centralizar procesos internos",
+        "Mejoré la eficiencia del equipo mediante soluciones web"
+      ]
+    }
+  ],
+
+  "education": [
+    {
+      "institution": "Fondo Talento Digital para Chile",
+      "degree": "Desarrollo Ruby on Rails para Emprendimientos de Tipo Start-Up",
+      "field": "Ingeniería Informática",
+      "period": "Abr 2023 - Ago 2024",
+      "description": "Programa intensivo de desarrollo Full Stack con Ruby on Rails."
+    },
+    {
+      "institution": "edutecno",
+      "degree": "Desarrollo de Aplicaciones Full Stack Python Trainee",
+      "field": "Desarrollo Web",
+      "period": "May 2023 - Oct 2023",
+      "description": "Curso de capacitación de 393 horas en desarrollo Full Stack con Python, Django, PostgreSQL."
+    },
+    {
+      "institution": "Duoc UC",
+      "degree": "Ingeniería en Informática",
+      "field": "Desarrollo de Software",
+      "period": "2012 - 2016",
+      "description": "Formación en desarrollo de software, bases de datos y arquitectura de sistemas."
+    }
+  ],
+
+  "projects": [
+    {
+      "name": "CV Multi-Framework Portfolio",
+      "description": "Portfolio interactivo que se puede visualizar en múltiples frameworks (React, Vue, Vanilla JS) con una única fuente de datos",
+      "longDescription": "Proyecto arquitectónico que demuestra versatilidad técnica mediante la implementación del mismo CV en diferentes tecnologías. Utiliza principio de Single Source of Truth con datos centralizados en JSON, deploy automatizado con GitHub Actions y diseño responsive con Tailwind CSS.",
+      "image": "/shared/assets/images/projects/cv-multi.jpg",
+      "technologies": ["React", "Vue.js", "Vite", "Tailwind CSS", "GitHub Pages", "JavaScript"],
+      "github": "https://github.com/eduvalex/eduvalex.github.io",
+      "demo": "https://eduvalex.github.io",
+      "featured": true,
+      "category": "Personal",
+      "client": false
+    },
+    {
+      "name": "Dadneo Capital - Venture Capital",
+      "description": "Sitio corporativo WordPress para firma de capital emprendedor con 20+ años de experiencia, gestión de fondos VC e inversionistas ángeles",
+      "longDescription": "Desarrollo completo de sitio corporativo para Dadneo Capital, firma especializada en venture capital y asesorías a startups. Implementé diseño moderno y profesional, sección de servicios (Fondos VC, Asesorías 1:1, Valorizaciones), integración de blog corporativo, formularios de contacto avanzados, y optimización SEO. El sitio comunica experiencia de 20+ años en la industria, gestión de fondos, inversionistas ángeles y portfolio de startups invertidas. Cliente destacado de Valex Marketing con testimonial 5 estrellas.",
+      "image": "/shared/assets/images/projects/dadneo.jpg",
+      "technologies": ["WordPress", "PHP", "SEO", "MySQL", "JavaScript", "CSS", "Google Analytics"],
+      "github": "",
+      "demo": "https://dadneo.capital",
+      "featured": true,
+      "category": "WordPress",
+      "client": true
+    },
+    {
+      "name": "Cerveza Mala Junta - E-Commerce",
+      "description": "Sitio WordPress para cervecería artesanal de La Araucanía con catálogo de productos, integración Instagram y sistema de pedidos B2B",
+      "longDescription": "Desarrollo completo de sitio web para Cerveza Mala Junta, cervecería artesanal familiar de Labranza. Implementé catálogo de cervezas artesanales (APA, Witbier, Stout) con fichas técnicas detalladas, historia de la empresa, misión y visión, integración con feed de Instagram para mantener contenido vigente, formularios de contacto para eventos y pedidos B2B (pubs/bares), sección de ingredientes premium, y diseño responsive. Sistema autoadministrable que permite al cliente capacitado mantener el sitio. Entregado en menos de 1 mes.",
+      "image": "/shared/assets/images/projects/malajunta.jpg",
+      "technologies": ["WordPress", "PHP", "Instagram API", "SEO", "MySQL", "JavaScript", "CSS"],
+      "github": "",
+      "demo": "https://www.cervezamalajunta.cl",
+      "featured": true,
+      "category": "WordPress",
+      "client": true
+    },
+    {
+      "name": "creasmile.cl - Catálogo Corporativo",
+      "description": "Plataforma WordPress para empresa de regalos corporativos y papelería gráfica con 15 años de trayectoria, optimización SEO y catálogo digital",
+      "longDescription": "Desarrollo y administración completa de sitio corporativo para Creasmile, empresa de La Araucanía especializada en regalos corporativos, papelería gráfica y soportes publicitarios. Implementé catálogo digital de productos (bolígrafos, bolsas TNT, soportes gráficos), integración con compras públicas del Estado, slider de productos destacados, sección de clientes corporativos (UFRO, instituciones públicas), formularios de contacto y sistema de gestión de contenido autoadministrable. Optimización SEO On-Page completa y reducción de tiempo de carga en más de 50% mediante lazy loading y optimización de imágenes.",
+      "image": "/shared/assets/images/projects/creasmile.jpg",
+      "technologies": ["WordPress", "PHP", "SEO", "MySQL", "JavaScript", "CSS", "Google Drive API"],
+      "github": "",
+      "demo": "https://creasmile.cl",
+      "featured": true,
+      "category": "WordPress",
+      "client": true
+    },
+    {
+      "name": "creabord.cl - Catálogo de Bordados",
+      "description": "Sitio WordPress de catálogo para bordados personalizados y ropa corporativa, con integración Instagram y formularios de cotización",
+      "longDescription": "Desarrollo y gestión completa del sitio web para CreaBord, empresa especializada en bordados personalizados y ropa corporativa (jockeys, parkas, chaquetas, poleras). Implementé catálogo de productos por categorías, sistema de productos destacados, galería de trabajos realizados con feed de Instagram, sección de clientes corporativos, formularios de contacto y solicitud de cotización, optimización de imágenes de bordados y diseño responsive. Administración de contenido y mantenimiento continuo del sitio.",
+      "image": "/shared/assets/images/projects/creabord.jpg",
+      "technologies": ["WordPress", "PHP", "Instagram API", "SEO", "MySQL", "JavaScript", "CSS"],
+      "github": "",
+      "demo": "https://creabord.cl",
+      "featured": true,
+      "category": "WordPress",
+      "client": true
+    },
+    {
+      "name": "Plugin WordPress Personalizado",
+      "description": "Plugin WordPress para prueba técnica WPMUDEV con integración de Google Drive API y React",
+      "longDescription": "Plugin WordPress profesional desarrollado como prueba técnica. Incluye interfaz React moderna con i18n, sistema completo de autenticación OAuth 2.0 con Google Drive API, manejo de archivos (upload/download/list), dark mode, REST API endpoints, y procesamiento en background. Implementa WPCS (WordPress Coding Standards), arquitectura PSR-4, y optimización de paquetes.",
+      "image": "/shared/assets/images/projects/wp-plugin.jpg",
+      "technologies": ["WordPress", "React", "PHP", "Google Drive API", "OAuth 2.0", "REST API", "Webpack", "SCSS"],
+      "github": "https://github.com/EduValex/wpmudev-plugin-test",
+      "demo": "",
+      "featured": true,
+      "category": "WordPress",
+      "client": false,
+      "type": "Prueba Técnica"
+    },
+    {
+      "name": "Sorteo San Valentín - CTS Turismo",
+      "description": "Sistema Full Stack de gestión de sorteos con autenticación JWT, verificación de email, panel admin y procesamiento asíncrono con Celery",
+      "longDescription": "Sistema Full Stack para gestionar sorteos con registro de participantes, verificación de email mediante tokens, y panel administrativo. Backend Django REST con autenticación JWT, procesamiento asíncrono de emails con Celery + Redis (modo síncrono fallback), suite completa de 40+ tests unitarios y de integración. Frontend Nuxt.js 3 con TypeScript, Tailwind CSS, SweetAlert2 y efectos confetti. Implementa arquitectura desacoplada, graceful degradation para emails, y flujo completo desde registro hasta notificación de ganadores.",
+      "image": "/shared/assets/images/projects/sorteo-sv.jpg",
+      "technologies": ["Django", "Python", "Nuxt.js", "TypeScript", "Celery", "Redis", "PostgreSQL", "JWT", "Tailwind CSS", "REST API"],
+      "github": "https://github.com/EduValex/sorteo-san-valentin",
+      "demo": "https://sorteo-san-valentin.vercel.app",
+      "featured": true,
+      "category": "Full Stack",
+      "client": false,
+      "type": "Prueba Técnica"
+    },
+    {
+      "name": "SaaS Restaurante - Sistema de Gestión",
+      "description": "Sistema Full Stack SaaS para gestión de productos y pedidos de restaurante con CRUD completo, control de stock en tiempo real y transacciones",
+      "longDescription": "Sistema de gestión de restaurante desarrollado como prueba técnica para Neural Code AI. Backend Node.js + Express con PostgreSQL, implementa CRUD completo de productos, gestión de pedidos con transacciones para integridad de datos, control automático de stock, y validaciones de negocio. Frontend React SPA con React Router, notificaciones toast, formato de moneda CLP localizado, y diseño responsive con Bootstrap 5. Arquitectura RESTful API con controladores organizados, manejo de errores robusto, y lógica de carrito de compras en tiempo real.",
+      "image": "/shared/assets/images/projects/saas-restaurant.jpg",
+      "technologies": ["React", "Node.js", "Express", "PostgreSQL", "Bootstrap", "React Router", "CORS", "REST API"],
+      "github": "",
+      "demo": "",
+      "featured": true,
+      "category": "Full Stack",
+      "client": false,
+      "type": "Personal"
+    },
+    {
+      "name": "Catálogo de Hierbas Medicinales",
+      "description": "Aplicación web full-stack con Ruby on Rails para catálogo interactivo de plantas medicinales",
+      "longDescription": "Desarrollé aplicación web completa desde concepto inicial hasta despliegue. Sistema CRUD con Ruby on Rails, base de datos PostgreSQL, autenticación de usuarios y panel de administración. Diseño responsive y búsqueda avanzada de plantas.",
+      "image": "/shared/assets/images/projects/hierbas.jpg",
+      "technologies": ["Ruby on Rails", "PostgreSQL", "Bootstrap", "JavaScript", "Heroku"],
+      "github": "",
+      "demo": "",
+      "featured": false,
+      "category": "Full Stack",
+      "client": false,
+      "type": "Prueba Técnica"
+    }
+  ],
+
+  "skills": {
+    "frontend": [
+      { "name": "React.js", "level": 90 },
+      { "name": "JavaScript/ES6+", "level": 95 },
+      { "name": "HTML/CSS", "level": 95 },
+      { "name": "Tailwind CSS", "level": 85 },
+      { "name": "Bootstrap", "level": 80 },
+      { "name": "WordPress", "level": 90 },
+      { "name": "Shopify", "level": 80 },
+      { "name": "Angular", "level": 70 },
+      { "name": "Vue.js", "level": 75 }
+    ],
+    "backend": [
+      { "name": "Node.js", "level": 90 },
+      { "name": "Express", "level": 90 },
+      { "name": "Python", "level": 85 },
+      { "name": "Django", "level": 85 },
+      { "name": "Flask", "level": 80 },
+      { "name": "Ruby on Rails", "level": 85 },
+      { "name": "PHP", "level": 90 },
+      { "name": "Yii Framework", "level": 75 }
+    ],
+      "tools": {
+        "databases": [
+          { "name": "PostgreSQL", "level": 85 },
+          { "name": "MySQL", "level": 85 },
+          { "name": "MongoDB", "level": 85 }
+        ],
+        "projectManagement": [
+          { "name": "Jira", "level": 80 },
+          { "name": "Trello", "level": 85 },
+          { "name": "Monday", "level": 75 }
+        ],
+        "seoAnalytics": [
+          { "name": "SEO", "level": 85 },
+          { "name": "SEO Audits", "level": 85 },
+          { "name": "SEMrush", "level": 80 },
+          { "name": "Google Analytics", "level": 85 },
+          { "name": "Google Search Console", "level": 80 },
+          { "name": "PageSpeed Insights", "level": 80 },
+          { "name": "Google Trends", "level": 75 }
+        ],
+        "deployment": [
+          { "name": "Vercel", "level": 80 },
+          { "name": "Render", "level": 75 },
+          { "name": "Railway", "level": 70 },
+          { "name": "Heroku", "level": 75 }
+        ],
+        "devTools": [
+          { "name": "Git", "level": 90 },
+          { "name": "GitHub", "level": 90 },
+          { "name": "REST APIs", "level": 90 },
+          { "name": "Postman", "level": 85 },
+          { "name": "Docker", "level": 70 },
+          { "name": "AWS", "level": 65 },
+          { "name": "Wix", "level": 70 },
+          { "name": "Beaver Builder", "level": 70 }
+        ]
+      },
+      "ai": [
+        { "name": "ChatGPT", "level": 95 },
+        { "name": "Claude AI", "level": 95 },
+        { "name": "GitHub Copilot", "level": 90 },
+        { "name": "Google Gemini", "level": 85 },
+        { "name": "Loveable AI", "level": 80 },
+        { "name": "Grok", "level": 80 },
+        { "name": "Asistentes IA Personalizados", "level": 85 }
+      ]
+    },
+
+  "interests": [
+    "Open Source",
+    "Web Performance",
+    "Clean Architecture",
+    "UI/UX Design",
+    "Tech Communities",
+    "Continuous Learning"
+  ]
+}

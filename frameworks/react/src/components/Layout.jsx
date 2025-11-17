@@ -5,32 +5,11 @@ import { useScrollReveal } from '../hooks/useScrollReveal.js';
 import { useTranslation } from '../hooks/useTranslation.js';
 import { ThemeToggle } from './ThemeToggle.jsx';
 import { LanguageToggle } from './LanguageToggle.jsx';
-import { Navbar } from './Navbar.jsx';
+import { TechDropdown } from './TechDropdown.jsx';
+import { TechLinksInline } from './TechLinksInline.jsx';
 import data from '@data/cv-data.json';
 
-function FrameworkSwitcher() {
-  // Conmutador simple React/Astro como enlaces
-  const isAstro = typeof window !== 'undefined' && window.location.pathname.startsWith('/astro');
-  const Link = ({ href, active, children }) => (
-    <a
-      href={href}
-      className={`px-3 py-1.5 rounded-md border text-sm font-medium transition-colors ${
-        active
-          ? 'bg-blue-600 border-blue-600 text-white'
-          : 'bg-white/70 dark:bg-slate-700/60 border-slate-300 dark:border-slate-600 text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-700'
-      }`}
-    >
-      {children}
-    </a>
-  );
-
-  return (
-    <div className="inline-flex items-center gap-2">
-      <Link href="/" active={!isAstro}>⚛️ React</Link>
-      <Link href="/astro/" active={isAstro}>⭐ Astro</Link>
-    </div>
-  );
-}
+// Eliminado FrameworkSwitcher: ahora usamos TechDropdown controlado
 
 export function Layout({ children }) {
   useEffect(() => {
@@ -53,27 +32,52 @@ export function Layout({ children }) {
       .toUpperCase();
   }, [personal?.name]);
 
+  const [techOpen, setTechOpen] = useState(false);
+  // Cierre por click fuera y tecla ESC (UX estándar)
+  useEffect(() => {
+    if (!techOpen) return;
+    const handleDocClick = (e) => {
+      const target = e.target;
+      if (target && target.closest && target.closest('[data-tech-dropdown]')) {
+        return; // click dentro del dropdown
+      }
+      setTechOpen(false);
+    };
+    const handleKey = (e) => {
+      if (e.key === 'Escape') setTechOpen(false);
+    };
+    document.addEventListener('click', handleDocClick);
+    document.addEventListener('keydown', handleKey);
+    return () => {
+      document.removeEventListener('click', handleDocClick);
+      document.removeEventListener('keydown', handleKey);
+    };
+  }, [techOpen]);
+
   return (
     <div className="min-h-screen flex flex-col">
-      {/* Navbar flotante de navegación */}
-      <Navbar />
-      
-      <header className="sticky top-0 z-40 backdrop-blur bg-white/75 dark:bg-slate-900/75 border-b border-slate-200 dark:border-slate-700 mt-16">
-        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-3 flex items-center justify-between">
-          <div className="flex items-center gap-3" aria-label={personal?.name || 'Portfolio'}>
-            <div className="w-9 h-9 rounded-full bg-primary text-white flex items-center justify-center font-bold" title={personal?.name}>
+      {/* Header principal (única barra) alineado al estilo Astro */}
+      <header className="sticky top-0 z-50 backdrop-blur-lg bg-slate-900/80 text-slate-100 dark:bg-slate-900/80 border-b border-slate-700/60 shadow-md">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-3 flex items-center justify-between gap-4">
+          {/* Izquierda: marca + navegación por secciones tipo badges */}
+          <div className="flex items-center gap-3 md:gap-5">
+            <div className="w-8 h-8 md:w-9 md:h-9 rounded-full bg-primary text-white flex items-center justify-center font-bold" title={personal?.name}>
               {initials}
             </div>
-            {personal?.title && (
-              <span className="text-sm md:text-base text-slate-700 dark:text-slate-200 font-medium">
-                {personal.title}
-              </span>
-            )}
+            <nav className="hidden sm:flex items-center flex-wrap gap-1.5 md:gap-2">
+              <a href="#about" className="px-2.5 py-1.5 rounded-md text-xs md:text-sm text-slate-200 hover:bg-slate-700/60">👤 Sobre mí</a>
+              <a href="#services" className="px-2.5 py-1.5 rounded-md text-xs md:text-sm text-slate-200 hover:bg-slate-700/60">🚀 Servicios</a>
+              <a href="#experience" className="px-2.5 py-1.5 rounded-md text-xs md:text-sm text-slate-200 hover:bg-slate-700/60">💼 Experiencia</a>
+              <a href="#projects" className="px-2.5 py-1.5 rounded-md text-xs md:text-sm text-slate-200 hover:bg-slate-700/60">🎨 Proyectos</a>
+              <a href="#skills" className="px-2.5 py-1.5 rounded-md text-xs md:text-sm text-slate-200 hover:bg-slate-700/60">⚡ Habilidades</a>
+              <a href="#contact" className="px-2.5 py-1.5 rounded-md text-xs md:text-sm text-slate-200 hover:bg-slate-700/60">📧 Contacto</a>
+            </nav>
           </div>
-          <div className="flex items-center gap-3">
+          {/* Derecha: toggles e enlaces tech, como en Astro */}
+          <div className="flex items-center gap-2 md:gap-3">
             <LanguageToggle />
             <ThemeToggle />
-            <FrameworkSwitcher />
+            <TechLinksInline />
           </div>
         </div>
       </header>
@@ -82,7 +86,7 @@ export function Layout({ children }) {
         {children}
       </main>
       <footer className="mt-16 py-8 text-center text-sm text-slate-500 dark:text-slate-400">
-        © {new Date().getFullYear()} Eduardo Valenzuela — React + Tailwind · <a className="underline hover:no-underline" href="/astro/">Ver versión Astro</a>
+        © {new Date().getFullYear()} Eduardo Valenzuela — Full Stack Developer
       </footer>
     </div>
   );
