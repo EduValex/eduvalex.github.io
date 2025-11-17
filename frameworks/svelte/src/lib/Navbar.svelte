@@ -8,6 +8,7 @@
 </script>
 
 <nav class:light={theme === 'light'}>
+  <!-- Fila 1: menú de secciones + toggles -->
   <div class="inner">
     <div class="badges">
       <a href="#about">{currentLang === 'es' ? '👤 Sobre mí' : '👤 About'}</a>
@@ -29,21 +30,25 @@
         <button 
           class:active={currentLang === 'es'}
           on:click={() => dispatch('changeLang', 'es')}
-        >
-          ES
-        </button>
+        >ES</button>
         <button 
           class:active={currentLang === 'en'}
           on:click={() => dispatch('changeLang', 'en')}
-        >
-          EN
-        </button>
+        >EN</button>
       </div>
-      <a href="/" title="React version">⚛️ React</a>
-      <a href="/astro/" title="Astro version" class="badge">⭐ Astro</a>
-      <a href="/vue/" title="Vue version" class="badge">💚 Vue</a>
-      <a href="/solid/" title="Solid version" class="badge">🔷 Solid</a>
-      <a href="/lab" title="Sobre este proyecto" class="badge">💡 Lab</a>
+    </div>
+  </div>
+
+  <!-- Fila 2: switcher de frameworks -->
+  <div class="inner frameworks">
+    <div class="badges">
+      <a href="/" title="React version" class="badge">⚛️ <span class="hide-sm">React</span></a>
+      <a href="/astro/" title="Astro version" class="badge">🪐 <span class="hide-sm">Astro</span></a>
+      <a href="/vue/" title="Vue version" class="badge">💚 <span class="hide-sm">Vue</span></a>
+      <a href="/svelte/" title="Svelte version" class="badge active">🧡 <span class="hide-sm">Svelte</span></a>
+      <a href="/solid/" title="Solid version" class="badge">🔷 <span class="hide-sm">Solid</span></a>
+      <a href="/vanilla/" title="Vanilla version" class="badge">⚡ <span class="hide-sm">Vanilla</span></a>
+      <a href="/lab/" title="Sobre este proyecto" class="badge">🧪 <span class="hide-sm">Lab</span></a>
     </div>
   </div>
 </nav>
@@ -73,6 +78,10 @@
     margin: 0 auto;
     padding: 0.75rem 1rem;
     flex-wrap: wrap;
+  }
+
+  .inner.frameworks {
+    border-top: 1px solid rgba(148, 163, 184, 0.2);
   }
 
   nav a {
@@ -110,6 +119,12 @@
     font-size: 0.8rem;
     white-space: nowrap;
     transition: background 0.2s;
+  }
+
+  .badge.active {
+    background: #2563eb;
+    border-color: #2563eb;
+    color: white;
   }
 
   nav.light .badge {
@@ -189,4 +204,7 @@
     background: rgba(148, 163, 184, 0.15);
     border-color: rgba(148, 163, 184, 0.5);
   }
+
+  .hide-sm { display: none; }
+  @media (min-width: 640px) { .hide-sm { display: inline; } }
 </style>
