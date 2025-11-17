@@ -8,6 +8,25 @@ const skills = cv.skills;
 // Astro base URL para resolver assets correctamente
 const baseUrl = import.meta.env.BASE_URL;
 
+// --- Filtros de proyectos (igual a React) ---
+const FULLSTACK_KEYS = ['Django','Python','Node.js','Express','Ruby on Rails','PostgreSQL','JWT','Celery','Redis','Nuxt.js'];
+const getCategory = (p) => {
+  if (p.category) return p.category;
+  const tech = p.technologies || [];
+  if (tech.includes('WordPress') || tech.includes('WooCommerce')) return 'WordPress';
+  const isFull = FULLSTACK_KEYS.some(t => tech.includes(t));
+  return isFull ? 'Full Stack' : 'Personal';
+};
+const categories = ['Todos','Full Stack','WordPress','Personal'].filter(k => {
+  if (k === 'Todos') return projects.length > 0;
+  return projects.some(p => getCategory(p) === k);
+});
+const categoryIcons = { 'Todos': '🗂️', 'WordPress': '🧩', 'Full Stack': '🧰', 'Personal': '⭐' };
+const categoryCounts = {};
+categories.forEach(cat => {
+  categoryCounts[cat] = cat === 'Todos' ? projects.length : projects.filter(p => getCategory(p) === cat).length;
+});
+
 const SERVICES = [
   {
     icon: '🛠️',
@@ -210,6 +229,9 @@ const SERVICES = [
       .section-header { text-align:center; max-width:650px; margin:0 auto 2rem }
       .section-header h2 { justify-content:center }
       .section-header p { color:#94a3b8; font-size:.95rem }
+      /* Scroll offset for sticky navbar */
+      section { scroll-margin-top: 100px; padding-top: 4rem; }
+      section:first-of-type { padding-top: 0; }
       /* Experience & Projects */
       .exp-card, .proj-card { background: rgba(15,23,42,.6); border:1px solid rgba(148,163,184,.2); border-radius:12px; padding:1.5rem; transition: transform .2s, box-shadow .2s }
       .exp-card:hover, .proj-card:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,0,0,.3) }
@@ -366,9 +388,25 @@ const SERVICES = [
           <span class="inline-lang active" data-lang="es">Proyectos destacados</span>
           <span class="inline-lang" data-lang="en">Featured Projects</span>
         </h2>
+        <!-- Filtros por categoría -->
+        <div class="panel" style="padding:.5rem .75rem; margin-bottom:1rem;">
+          <div style="display:flex; flex-wrap:wrap; gap:.5rem;" id="project-filters">
+            {categories.map(cat => (
+              <button 
+                class="badge filter-btn" 
+                data-category={cat}
+                data-active={cat === 'Todos' ? 'true' : 'false'}
+              >
+                <span style="margin-right:.35rem;">{categoryIcons[cat] || '🏷️'}</span>
+                {cat}
+                <span style="margin-left:.5rem; opacity:.8;">{categoryCounts[cat]}</span>
+              </button>
+            ))}
+          </div>
+        </div>
         <div class="grid">
           {projects.map(p => (
-            <article class="proj-card reveal">
+            <article class="proj-card reveal" data-project-category={getCategory(p)}>
               <h3>{p.name}</h3>
               <small>{p.technologies?.slice(0,4).join(', ')}</small>
               <p>{p.description}</p>
@@ -620,6 +658,31 @@ const SERVICES = [
       if (savedLang && savedLang !== 'es') {
         setLanguage(savedLang);
       }
+
+      // --- Project filters ---
+      let selectedCategory = 'Todos';
+      const filterBtns = document.querySelectorAll('.filter-btn');
+      const projectCards = document.querySelectorAll('.proj-card');
+
+      function applyFilter(cat) {
+        selectedCategory = cat;
+        filterBtns.forEach(btn => {
+          const isActive = btn.dataset.category === cat;
+          btn.dataset.active = isActive ? 'true' : 'false';
+          btn.style.background = isActive ? '#2563eb' : '';
+          btn.style.borderColor = isActive ? '#2563eb' : '';
+          btn.style.color = isActive ? 'white' : '';
+        });
+        projectCards.forEach(card => {
+          const cardCat = card.dataset.projectCategory;
+          const show = cat === 'Todos' || cardCat === cat;
+          card.style.display = show ? 'block' : 'none';
+        });
+      }
+
+      filterBtns.forEach(btn => {
+        btn.addEventListener('click', () => applyFilter(btn.dataset.category));
+      });
 
       // EmailJS form
       const form = document.getElementById('contact-form');

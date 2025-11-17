@@ -1,10 +1,8 @@
 <script>
-  import { createEventDispatcher } from 'svelte';
-  
   export let currentLang = 'es';
   export let theme = 'dark';
-  
-  const dispatch = createEventDispatcher();
+  export let onChangeLang = () => {};
+  export let onToggleTheme = () => {};
 </script>
 
 <nav class:light={theme === 'light'}>
@@ -21,7 +19,7 @@
     <div class="badges">
       <button 
         class="theme-toggle" 
-        onclick={() => dispatch('toggleTheme')}
+        onclick={onToggleTheme}
         title={currentLang === 'es' ? 'Cambiar tema' : 'Toggle theme'}
       >
         {theme === 'dark' ? '🌙' : '☀️'}
@@ -29,11 +27,11 @@
       <div class="lang-toggle">
         <button 
           class:active={currentLang === 'es'}
-          onclick={() => dispatch('changeLang', 'es')}
+          onclick={() => onChangeLang('es')}
         >ES</button>
         <button 
           class:active={currentLang === 'en'}
-          onclick={() => dispatch('changeLang', 'en')}
+          onclick={() => onChangeLang('en')}
         >EN</button>
       </div>
     </div>

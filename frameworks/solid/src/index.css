@@ -50,6 +50,16 @@ a:hover {
   padding: 2rem 1rem;
 }
 
+/* Scroll offset for sticky navbar */
+section {
+  scroll-margin-top: 100px;
+  padding-top: 4rem;
+}
+
+section:first-of-type {
+  padding-top: 0;
+}
+
 .panel {
   background: var(--panel-dark);
   border: 1px solid var(--border-dark);

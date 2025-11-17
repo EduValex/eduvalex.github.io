@@ -150,7 +150,7 @@
   });
 </script>
 
-<Navbar {currentLang} {theme} onchangeLang={(e) => setLanguage(e.detail)} ontoggleTheme={toggleTheme} />
+<Navbar {currentLang} {theme} onChangeLang={setLanguage} onToggleTheme={toggleTheme} />
 
 <main class="container">
   <!-- Hero -->
@@ -422,6 +422,16 @@
 </main>
 
 <style>
+  /* Scroll offset for sticky navbar */
+  :global(section) {
+    scroll-margin-top: 100px;
+    padding-top: 4rem;
+  }
+
+  :global(section:first-of-type) {
+    padding-top: 0;
+  }
+
   .service {
     position: relative;
     overflow: hidden;
