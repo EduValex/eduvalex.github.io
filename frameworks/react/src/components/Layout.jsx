@@ -5,7 +5,6 @@ import { useScrollReveal } from '../hooks/useScrollReveal.js';
 import { useTranslation } from '../hooks/useTranslation.js';
 import { ThemeToggle } from './ThemeToggle.jsx';
 import { LanguageToggle } from './LanguageToggle.jsx';
-import { TechDropdown } from './TechDropdown.jsx';
 import { TechLinksInline } from './TechLinksInline.jsx';
 import data from '@data/cv-data.json';
 
@@ -54,12 +53,22 @@ export function Layout({ children }) {
     };
   }, [techOpen]);
 
+  const frameworks = [
+    { id: 'react', name: 'React', icon: '⚛️', url: '/', active: true },
+    { id: 'astro', name: 'Astro', icon: '🪐', url: '/astro/' },
+    { id: 'vue', name: 'Vue', icon: '💚', url: '/vue/' },
+    { id: 'svelte', name: 'Svelte', icon: '🧡', url: '/svelte/' },
+    { id: 'solid', name: 'Solid', icon: '🔷', url: '/solid/' },
+    { id: 'vanilla', name: 'Vanilla', icon: '⚡', url: '/vanilla/' },
+    { id: 'lab', name: 'Lab', icon: '🧪', url: '/lab/' },
+  ];
+
   return (
     <div className="min-h-screen flex flex-col">
-      {/* Header principal (única barra) alineado al estilo Astro */}
-      <header className="sticky top-0 z-50 backdrop-blur-lg bg-slate-900/80 text-slate-100 dark:bg-slate-900/80 border-b border-slate-700/60 shadow-md">
+      {/* Header de dos filas con iconos (unificado) */}
+      <header className="sticky top-0 z-50 backdrop-blur-lg bg-slate-900/85 text-slate-100 border-b border-slate-700/60 shadow-md">
+        {/* Fila 1: menú + toggles */}
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-3 flex items-center justify-between gap-4">
-          {/* Izquierda: marca + navegación por secciones tipo badges */}
           <div className="flex items-center gap-3 md:gap-5">
             <div className="w-8 h-8 md:w-9 md:h-9 rounded-full bg-primary text-white flex items-center justify-center font-bold" title={personal?.name}>
               {initials}
@@ -73,11 +82,26 @@ export function Layout({ children }) {
               <a href="#contact" className="px-2.5 py-1.5 rounded-md text-xs md:text-sm text-slate-200 hover:bg-slate-700/60">📧 Contacto</a>
             </nav>
           </div>
-          {/* Derecha: toggles e enlaces tech, como en Astro */}
           <div className="flex items-center gap-2 md:gap-3">
             <LanguageToggle />
             <ThemeToggle />
             <TechLinksInline />
+          </div>
+        </div>
+        {/* Fila 2: switcher de frameworks */}
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pb-3">
+          <div className="flex items-center justify-center gap-1 overflow-x-auto scrollbar-hide">
+            {frameworks.map((fw) => (
+              <a
+                key={fw.id}
+                href={fw.url}
+                className={`${fw.active ? 'bg-blue-600 text-white' : 'text-slate-200 hover:bg-slate-700/60'} px-3 py-1 rounded-md text-xs font-medium transition-all hover:scale-105 whitespace-nowrap`}
+                title={`Ver en ${fw.name}`}
+              >
+                <span className="mr-1">{fw.icon}</span>
+                <span className="hidden sm:inline">{fw.name}</span>
+              </a>
+            ))}
           </div>
         </div>
       </header>

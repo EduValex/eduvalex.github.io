@@ -4,11 +4,12 @@
   import cvData from '@data/cv-data.json';
   import emailjs from '@emailjs/browser';
 
-  let currentLang = $state('es');
-  let theme = $state('dark');
-  let formData = $state({ name: '', email: '', message: '' });
-  let formStatus = $state(null);
-  let formLoading = $state(false);
+  // Avoid Svelte 5 runes for broader runtime compatibility
+  let currentLang = 'es';
+  let theme = 'dark';
+  let formData = { name: '', email: '', message: '' };
+  let formStatus = null;
+  let formLoading = false;
 
   const services = [
     {
@@ -350,7 +351,7 @@
         </ul>
       </div>
       <div>
-        <form on:submit={handleSubmit}>
+        <form onsubmit={handleSubmit}>
           <div class="field">
             <label for="name" class="label">{currentLang === 'es' ? 'Nombre *' : 'Name *'}</label>
             <input id="name" bind:value={formData.name} type="text" class="input" required />
