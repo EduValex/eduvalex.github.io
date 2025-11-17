@@ -140,8 +140,7 @@ jobs:
           mkdir -p deploy-output/lab
           cp lab/index.html deploy-output/lab/
 
-          # Copy root redirect (fallback)
-          cp index.html deploy-output/
+          # Note: React's index.html is already at root from frameworks/react/dist/
 
       - name: List deployment structure (debug)
         run: |
