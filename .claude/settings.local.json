@@ -11,7 +11,12 @@
       "Bash(gh run list:*)",
       "Bash(cat:*)",
       "Bash(curl -s https://eduvalex.github.io/)",
-      "Bash(curl:*)"
+      "Bash(curl:*)",
+      "Bash(python -m json.tool:*)",
+      "Bash(yamllint:*)",
+      "Bash(git ls-tree:*)",
+      "Bash(git rev-parse:*)",
+      "Bash(git rm:*)"
     ],
     "deny": [],
     "ask": []
