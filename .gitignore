@@ -14,9 +14,6 @@ deploy-temp/
 .env.local
 .env.*.local
 
-# EmailJS config (no subir credenciales)
-frameworks/react/src/config/emailjs.js
-
 # Editor directories
 .vscode/*
 !.vscode/settings.json
