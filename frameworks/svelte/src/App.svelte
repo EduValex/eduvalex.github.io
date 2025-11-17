@@ -46,6 +46,24 @@
     }
   ];
 
+  // --- Filtros de proyectos (igual a React) ---
+  const FULLSTACK_KEYS = ['Django','Python','Node.js','Express','Ruby on Rails','PostgreSQL','JWT','Celery','Redis','Nuxt.js'];
+  const getCategory = (p) => {
+    if (p.category) return p.category;
+    const tech = p.technologies || [];
+    if (tech.includes('WordPress') || tech.includes('WooCommerce')) return 'WordPress';
+    const isFull = FULLSTACK_KEYS.some(t => tech.includes(t));
+    return isFull ? 'Full Stack' : 'Personal';
+  };
+  let selectedCategory = 'Todos';
+  const categories = ['Todos','Full Stack','WordPress','Personal'].filter(k => {
+    if (k === 'Todos') return cvData.projects.length > 0;
+    return cvData.projects.some(p => getCategory(p) === k);
+  });
+  const categoryIcons = { 'Todos': '🗂️', 'WordPress': '🧩', 'Full Stack': '🧰', 'Personal': '⭐' };
+  const countFor = (cat) => cat === 'Todos' ? cvData.projects.length : cvData.projects.filter(p => getCategory(p) === cat).length;
+  const filteredProjects = () => selectedCategory === 'Todos' ? cvData.projects : cvData.projects.filter(p => getCategory(p) === selectedCategory);
+
     // Helper getters
     const aboutText = () => (currentLang === 'es' ? (cvData.about?.es || '') : (cvData.about?.en || ''));
     const githubUser = cvData.personal?.social?.github || '';
@@ -132,7 +150,7 @@
   });
 </script>
 
-<Navbar {currentLang} {theme} on:changeLang={(e) => setLanguage(e.detail)} on:toggleTheme={toggleTheme} />
+<Navbar {currentLang} {theme} onchangeLang={(e) => setLanguage(e.detail)} ontoggleTheme={toggleTheme} />
 
 <main class="container">
   <!-- Hero -->
@@ -223,8 +241,24 @@
       <span>🎨</span>
       <span>{currentLang === 'es' ? 'Proyectos Destacados' : 'Featured Projects'}</span>
     </h2>
+    <!-- Filtros por categoría -->
+    <div class="panel" style="padding:.5rem .75rem; margin-bottom:1rem;">
+      <div style="display:flex; flex-wrap:wrap; gap:.5rem;">
+        {#each categories as cat}
+          <button
+            class="badge {selectedCategory === cat ? 'active' : ''}"
+            aria-selected={selectedCategory === cat}
+            onclick={() => selectedCategory = cat}
+          >
+            <span style="margin-right:.35rem;">{categoryIcons[cat] || '🏷️'}</span>
+            {cat}
+            <span style="margin-left:.5rem; opacity:.8;">{countFor(cat)}</span>
+          </button>
+        {/each}
+      </div>
+    </div>
     <div class="grid">
-      {#each cvData.projects as proj}
+      {#each filteredProjects() as proj}
         <div class="proj-card">
           <h3>{proj.name}</h3>
           <small>{proj.year}</small>

@@ -21,7 +21,7 @@
     <div class="badges">
       <button 
         class="theme-toggle" 
-        on:click={() => dispatch('toggleTheme')}
+        onclick={() => dispatch('toggleTheme')}
         title={currentLang === 'es' ? 'Cambiar tema' : 'Toggle theme'}
       >
         {theme === 'dark' ? '🌙' : '☀️'}
@@ -29,11 +29,11 @@
       <div class="lang-toggle">
         <button 
           class:active={currentLang === 'es'}
-          on:click={() => dispatch('changeLang', 'es')}
+          onclick={() => dispatch('changeLang', 'es')}
         >ES</button>
         <button 
           class:active={currentLang === 'en'}
-          on:click={() => dispatch('changeLang', 'en')}
+          onclick={() => dispatch('changeLang', 'en')}
         >EN</button>
       </div>
     </div>

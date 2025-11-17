@@ -88,8 +88,25 @@
           <span>🎨</span>
           <span>{{ currentLang === 'es' ? 'Proyectos Destacados' : 'Featured Projects' }}</span>
         </h2>
+        <!-- Filtros por categoría -->
+        <div class="panel" style="padding: .5rem .75rem; margin-bottom: 1rem;">
+          <div style="display:flex; flex-wrap:wrap; gap:.5rem;">
+            <button
+              v-for="cat in categories"
+              :key="cat"
+              @click="selectedCategory = cat"
+              :aria-selected="selectedCategory === cat"
+              :class="['badge', selectedCategory === cat ? 'active' : '']"
+            >
+              <span style="margin-right:.35rem;">{{ categoryIcons[cat] || '🏷️' }}</span>
+              {{ cat }}
+              <span style="margin-left:.5rem; opacity:.8;">{{ counts[cat] }}</span>
+            </button>
+          </div>
+        </div>
+
         <div class="grid">
-          <div v-for="proj in cvData.projects" :key="proj.name" class="proj-card">
+          <div v-for="proj in filteredProjects" :key="proj.name" class="proj-card">
             <h3>{{ proj.name }}</h3>
             <small>{{ proj.year }}</small>
             <p>{{ proj.description }}</p>
@@ -247,6 +264,42 @@ export default {
     const formStatus = ref(null);
     const formLoading = ref(false);
 
+    // --- Filtros de proyectos (igual a React) ---
+    const FULLSTACK_KEYS = ['Django','Python','Node.js','Express','Ruby on Rails','PostgreSQL','JWT','Celery','Redis','Nuxt.js'];
+    const getCategory = (p) => {
+      if (p.category) return p.category;
+      const tech = p.technologies || [];
+      if (tech.includes('WordPress') || tech.includes('WooCommerce')) return 'WordPress';
+      const isFull = FULLSTACK_KEYS.some(t => tech.includes(t));
+      return isFull ? 'Full Stack' : 'Personal';
+    };
+    const counts = computed(() => {
+      const map = { 'Todos': cvData.projects.length };
+      cvData.projects.forEach(p => {
+        const c = getCategory(p);
+        map[c] = (map[c] || 0) + 1;
+      });
+      return map;
+    });
+    const categories = computed(() => {
+      const ordered = ['Todos', 'Full Stack', 'WordPress', 'Personal'];
+      const extra = Object.keys(counts.value).filter(k => !ordered.includes(k));
+      return [...ordered, ...extra].filter(k => counts.value[k]);
+    });
+    const selectedCategory = ref('Todos');
+    const filteredProjects = computed(() => {
+      const list = selectedCategory.value === 'Todos' ? cvData.projects : cvData.projects.filter(p => getCategory(p) === selectedCategory.value);
+      const priority = { 'Full Stack': 0, 'WordPress': 1, 'Personal': 2 };
+      return [...list].sort((a,b) => {
+        if (selectedCategory.value === 'Todos') {
+          const pa = priority[getCategory(a)] ?? 99; const pb = priority[getCategory(b)] ?? 99;
+          if (pa !== pb) return pa - pb;
+        }
+        return Number(b.featured) - Number(a.featured);
+      });
+    });
+    const categoryIcons = { 'Todos': '🗂️', 'WordPress': '🧩', 'Full Stack': '🧰', 'Personal': '⭐' };
+
     const services = [
       {
         icon: '🛠️',
@@ -376,7 +429,13 @@ export default {
       currentLang,
       theme,
       services,
-      aboutText,
+  aboutText,
+  // filtros
+  categories,
+  selectedCategory,
+  filteredProjects,
+  counts,
+  categoryIcons,
       formData,
       formStatus,
       formLoading,

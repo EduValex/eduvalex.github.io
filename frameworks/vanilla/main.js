@@ -200,6 +200,10 @@ function renderContent() {
         <span>🎨</span>
         <span>${t('Proyectos Destacados', 'Featured Projects')}</span>
       </h2>
+        <!-- Filtros por categoría -->
+        <div class="panel" style="padding:.5rem .75rem; margin-bottom:1rem;">
+          <div style="display:flex; flex-wrap:wrap; gap:.5rem;" id="proj-filters"></div>
+        </div>
       <div class="grid">
         ${cvData.projects.map(proj => `
           <div class="proj-card">
@@ -346,9 +350,78 @@ function renderContent() {
   
   // Re-setup reveal on scroll for new content
   setupRevealOnScroll();
+
+    // Setup project filters
+    setupProjectFilters();
 }
 
 // Setup contact form
+// Project filters (same logic as React)
+function setupProjectFilters() {
+  const FULLSTACK_KEYS = ['Django','Python','Node.js','Express','Ruby on Rails','PostgreSQL','JWT','Celery','Redis','Nuxt.js'];
+  const getCategory = (p) => {
+    if (p.category) return p.category;
+    const tech = p.technologies || [];
+    if (tech.includes('WordPress') || tech.includes('WooCommerce')) return 'WordPress';
+    return FULLSTACK_KEYS.some(t => tech.includes(t)) ? 'Full Stack' : 'Personal';
+  };
+  const categories = ['Todos','Full Stack','WordPress','Personal'].filter(k => {
+    if (k === 'Todos') return cvData.projects.length > 0;
+    return cvData.projects.some(p => getCategory(p) === k);
+  });
+  const categoryIcons = { 'Todos': '🗂️', 'WordPress': '🧩', 'Full Stack': '🧰', 'Personal': '⭐' };
+  const countFor = (cat) => cat === 'Todos' ? cvData.projects.length : cvData.projects.filter(p => getCategory(p) === cat).length;
+  let selected = 'Todos';
+
+  const filtersEl = document.getElementById('proj-filters');
+  const renderFilters = () => {
+    filtersEl.innerHTML = categories.map(cat => `
+      <button class="badge ${selected === cat ? 'active' : ''}" data-cat="${cat}" aria-selected="${selected === cat}">
+        <span style="margin-right:.35rem;">${categoryIcons[cat] || '🏷️'}</span>
+        ${cat}
+        <span style="margin-left:.5rem; opacity:.8;">${countFor(cat)}</span>
+      </button>`).join('');
+  };
+  const renderList = () => {
+    const list = selected === 'Todos' ? cvData.projects : cvData.projects.filter(p => getCategory(p) === selected);
+    const priority = { 'Full Stack': 0, 'WordPress': 1, 'Personal': 2 };
+    const sorted = [...list].sort((a,b) => {
+      if (selected === 'Todos') {
+        const pa = priority[getCategory(a)] ?? 99; const pb = priority[getCategory(b)] ?? 99;
+        if (pa !== pb) return pa - pb;
+      }
+      return Number(b.featured) - Number(a.featured);
+    });
+    const grid = document.querySelector('#projects + .grid, section#projects + .grid');
+    // Fallback: find the first grid under projects section
+    const projectsSection = document.querySelector('section#projects');
+    const gridEl = projectsSection?.querySelector('.grid');
+    if (!gridEl) return;
+    gridEl.innerHTML = sorted.map(proj => `
+      <div class="proj-card">
+        <h3>${proj.name}</h3>
+        <small>${proj.year || ''}</small>
+        <p>${proj.description}</p>
+        <div style="display:flex; flex-wrap:wrap; gap:.5rem; margin-top:.75rem;">
+          ${(proj.technologies||[]).map(tech => `<span class="badge">${tech}</span>`).join('')}
+        </div>
+        <div style="display:flex; gap:.75rem; margin-top:1rem; flex-wrap:wrap;">
+          ${proj.demo ? `<a href="${proj.demo}" target="_blank" rel="noopener" class="btn" style="padding:.5rem .9rem; font-size:.85rem;">${t('🌐 Ver Demo','🌐 View Demo')}</a>` : ''}
+          ${proj.github ? `<a href="${proj.github}" target="_blank" rel="noopener" class="btn secondary" style="padding:.5rem .9rem; font-size:.85rem;">${t('💻 Código','💻 Code')}</a>` : ''}
+        </div>
+      </div>
+    `).join('');
+  };
+  renderFilters();
+  renderList();
+  filtersEl.addEventListener('click', (e) => {
+    const btn = e.target.closest('button[data-cat]');
+    if (!btn) return;
+    selected = btn.getAttribute('data-cat');
+    renderFilters();
+    renderList();
+  });
+}
 function setupContactForm() {
   const form = document.getElementById('contact-form');
   const statusDiv = document.getElementById('form-status');

@@ -15,7 +15,7 @@
   <div class="inner">
     <!-- FILA 1: Menu principal -->
     <div class="menu-row">
-      <button class="logo-btn" on:click={scrollToTop}>
+  <button class="logo-btn" onclick={scrollToTop}>
         👨‍💻
       </button>
       <div class="menu-links">
@@ -29,7 +29,7 @@
       <div class="controls">
         <button 
           class="theme-toggle" 
-          on:click={() => dispatch('toggleTheme')}
+          onclick={() => dispatch('toggleTheme')}
           title={currentLang === 'es' ? 'Cambiar tema' : 'Toggle theme'}
         >
           {theme === 'dark' ? '🌙' : '☀️'}
@@ -37,13 +37,13 @@
         <div class="lang-toggle">
           <button 
             class:active={currentLang === 'es'}
-            on:click={() => dispatch('changeLang', 'es')}
+            onclick={() => dispatch('changeLang', 'es')}
           >
             ES
           </button>
           <button 
             class:active={currentLang === 'en'}
-            on:click={() => dispatch('changeLang', 'en')}
+            onclick={() => dispatch('changeLang', 'en')}
           >
             EN
           </button>

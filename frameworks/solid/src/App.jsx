@@ -45,6 +45,35 @@ function App() {
   const [formStatus, setFormStatus] = createSignal(null);
   const [formLoading, setFormLoading] = createSignal(false);
 
+  // Filtros de proyectos (igual a React)
+  const FULLSTACK_KEYS = ['Django','Python','Node.js','Express','Ruby on Rails','PostgreSQL','JWT','Celery','Redis','Nuxt.js'];
+  const getCategory = (p) => {
+    if (p.category) return p.category;
+    const tech = p.technologies || [];
+    if (tech.includes('WordPress') || tech.includes('WooCommerce')) return 'WordPress';
+    const isFull = FULLSTACK_KEYS.some(t => tech.includes(t));
+    return isFull ? 'Full Stack' : 'Personal';
+  };
+  const categoryIcons = { 'Todos': '🗂️', 'WordPress': '🧩', 'Full Stack': '🧰', 'Personal': '⭐' };
+  const categories = ['Todos','Full Stack','WordPress','Personal'].filter(k => {
+    if (k === 'Todos') return cvData.projects.length > 0;
+    return cvData.projects.some(p => getCategory(p) === k);
+  });
+  const [selectedCategory, setSelectedCategory] = createSignal('Todos');
+  const filteredProjects = () => {
+    const sel = selectedCategory();
+    const list = sel === 'Todos' ? cvData.projects : cvData.projects.filter(p => getCategory(p) === sel);
+    const priority = { 'Full Stack': 0, 'WordPress': 1, 'Personal': 2 };
+    return [...list].sort((a,b) => {
+      if (sel === 'Todos') {
+        const pa = priority[getCategory(a)] ?? 99; const pb = priority[getCategory(b)] ?? 99;
+        if (pa !== pb) return pa - pb;
+      }
+      return Number(b.featured) - Number(a.featured);
+    });
+  };
+  const countFor = (cat) => cat === 'Todos' ? cvData.projects.length : cvData.projects.filter(p => getCategory(p) === cat).length;
+
   const aboutParagraphs = () => {
     const text = currentLang() === 'es' ? (cvData.about?.es || '') : (cvData.about?.en || '');
     return text.split('\n\n');
@@ -228,8 +257,25 @@ function App() {
             <span>🎨</span>
             <span>{currentLang() === 'es' ? 'Proyectos Destacados' : 'Featured Projects'}</span>
           </h2>
+          <div class="panel" style={{ padding: '.5rem .75rem', 'margin-bottom': '1rem' }}>
+            <div style={{ display: 'flex', 'flex-wrap': 'wrap', gap: '.5rem' }}>
+              <For each={categories}>
+                {(cat) => (
+                  <button
+                    class={`badge ${selectedCategory() === cat ? 'active' : ''}`}
+                    aria-selected={selectedCategory() === cat}
+                    onClick={() => setSelectedCategory(cat)}
+                  >
+                    <span style={{ 'margin-right': '.35rem' }}>{categoryIcons[cat] || '🏷️'}</span>
+                    {cat}
+                    <span style={{ 'margin-left': '.5rem', opacity: 0.8 }}>{countFor(cat)}</span>
+                  </button>
+                )}
+              </For>
+            </div>
+          </div>
           <div class="grid">
-            <For each={cvData.projects}>
+            <For each={filteredProjects()}>
               {(proj) => (
                 <div class="proj-card">
                   <h3>{proj.name}</h3>
