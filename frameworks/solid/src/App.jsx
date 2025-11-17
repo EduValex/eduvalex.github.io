@@ -46,7 +46,7 @@ function App() {
   const [formLoading, setFormLoading] = createSignal(false);
 
   const aboutParagraphs = () => {
-    const text = currentLang() === 'es' ? cvData.about.es : cvData.about.en;
+    const text = currentLang() === 'es' ? (cvData.about?.es || '') : (cvData.about?.en || '');
     return text.split('\n\n');
   };
 
@@ -210,7 +210,7 @@ function App() {
                 <div class="exp-card">
                   <h3>{exp.position}</h3>
                   <small>{exp.company} • {exp.period}</small>
-                  <p>{currentLang() === 'es' ? exp.description.es : exp.description.en}</p>
+                  <p>{exp.description}</p>
                   <div style={{ display: 'flex', 'flex-wrap': 'wrap', gap: '0.5rem', 'margin-top': '1rem' }}>
                     <For each={exp.technologies}>
                       {(tech) => <span class="badge">{tech}</span>}
@@ -234,7 +234,7 @@ function App() {
                 <div class="proj-card">
                   <h3>{proj.name}</h3>
                   <small>{proj.year}</small>
-                  <p>{currentLang() === 'es' ? proj.description.es : proj.description.en}</p>
+                  <p>{proj.description}</p>
                   <div style={{ display: 'flex', 'flex-wrap': 'wrap', gap: '0.5rem', 'margin-top': '0.75rem' }}>
                     <For each={proj.technologies}>
                       {(tech) => <span class="badge">{tech}</span>}
@@ -265,18 +265,42 @@ function App() {
             <span>{currentLang() === 'es' ? 'Habilidades' : 'Skills'}</span>
           </h2>
           <div class="grid-skills">
-            <For each={cvData.skills}>
-              {(cat) => (
-                <div>
-                  <h3 style={{ 'margin-bottom': '0.75rem' }}>{cat.category}</h3>
-                  <div style={{ display: 'flex', 'flex-wrap': 'wrap', gap: '0.5rem' }}>
-                    <For each={cat.items}>
-                      {(skill) => <span class="badge">{skill}</span>}
-                    </For>
-                  </div>
-                </div>
-              )}
-            </For>
+            <article class="panel">
+              <h3>Frontend</h3>
+              <div class="badges" style={{ 'margin-top': '.75rem' }}>
+                <For each={cvData.skills.frontend}>{(s) => <span class="badge" title={`${s.level}%`}>{s.name}</span>}</For>
+              </div>
+            </article>
+            <article class="panel">
+              <h3>Backend</h3>
+              <div class="badges" style={{ 'margin-top': '.75rem' }}>
+                <For each={cvData.skills.backend}>{(s) => <span class="badge" title={`${s.level}%`}>{s.name}</span>}</For>
+              </div>
+            </article>
+            <article class="panel">
+              <h3>{currentLang() === 'es' ? 'Herramientas · Bases de datos' : 'Tools · Databases'}</h3>
+              <div class="badges" style={{ 'margin-top': '.75rem' }}>
+                <For each={cvData.skills.tools.databases}>{(s) => <span class="badge" title={`${s.level}%`}>{s.name}</span>}</For>
+              </div>
+            </article>
+            <article class="panel">
+              <h3>SEO & Analytics</h3>
+              <div class="badges" style={{ 'margin-top': '.75rem' }}>
+                <For each={cvData.skills.tools.seoAnalytics}>{(s) => <span class="badge" title={`${s.level}%`}>{s.name}</span>}</For>
+              </div>
+            </article>
+            <article class="panel">
+              <h3>{currentLang() === 'es' ? 'Herramientas · Dev & Deploy' : 'Tools · Dev & Deploy'}</h3>
+              <div class="badges" style={{ 'margin-top': '.75rem' }}>
+                <For each={cvData.skills.tools.devTools}>{(s) => <span class="badge" title={`${s.level}%`}>{s.name}</span>}</For>
+              </div>
+            </article>
+            <article class="panel">
+              <h3>IA</h3>
+              <div class="badges" style={{ 'margin-top': '.75rem' }}>
+                <For each={cvData.skills.ai}>{(s) => <span class="badge" title={`${s.level}%`}>{s.name}</span>}</For>
+              </div>
+            </article>
           </div>
         </section>
 
@@ -309,14 +333,14 @@ function App() {
                   <span class="icon">💼</span>
                   <div class="detail">
                     <strong>LinkedIn</strong>
-                    <a href={cvData.personal.linkedin} target="_blank" rel="noopener">{currentLang() === 'es' ? 'Ver perfil' : 'View profile'}</a>
+                    <a href={`https://www.linkedin.com/in/${cvData.personal?.social?.linkedin || ''}`} target="_blank" rel="noopener">{currentLang() === 'es' ? 'Ver perfil' : 'View profile'}</a>
                   </div>
                 </li>
                 <li>
                   <span class="icon">💻</span>
                   <div class="detail">
                     <strong>GitHub</strong>
-                    <a href={cvData.personal.github} target="_blank" rel="noopener">@{cvData.personal.github.split('/').pop()}</a>
+                    <a href={`https://github.com/${cvData.personal?.social?.github || ''}`} target="_blank" rel="noopener">@{cvData.personal?.social?.github || ''}</a>
                   </div>
                 </li>
               </ul>

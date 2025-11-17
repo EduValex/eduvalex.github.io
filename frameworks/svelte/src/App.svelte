@@ -45,10 +45,12 @@
     }
   ];
 
-  $effect(() => {
-    const aboutParagraphs = currentLang === 'es' ? cvData.about.es.split('\n\n') : cvData.about.en.split('\n\n');
-    return aboutParagraphs;
-  });
+    // Helper getters
+    const aboutText = () => (currentLang === 'es' ? (cvData.about?.es || '') : (cvData.about?.en || ''));
+    const githubUser = cvData.personal?.social?.github || '';
+    const githubUrl = githubUser ? `https://github.com/${githubUser}` : '#';
+    const linkedinUser = cvData.personal?.social?.linkedin || '';
+    const linkedinUrl = linkedinUser ? `https://www.linkedin.com/in/${linkedinUser}` : '#';
 
   function setLanguage(lang) {
     currentLang = lang;
@@ -160,7 +162,7 @@
       <span>👨‍💻</span>
       <span>{currentLang === 'es' ? 'Sobre mí' : 'About Me'}</span>
     </h2>
-    {#each (currentLang === 'es' ? cvData.about.es : cvData.about.en).split('\n\n') as paragraph}
+      {#each aboutText().split('\n\n') as paragraph}
       <p>{paragraph}</p>
     {/each}
   </section>
@@ -203,7 +205,7 @@
         <div class="exp-card">
           <h3>{exp.position}</h3>
           <small>{exp.company} • {exp.period}</small>
-          <p>{currentLang === 'es' ? exp.description.es : exp.description.en}</p>
+            <p>{exp.description}</p>
           <div style="display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 1rem;">
             {#each exp.technologies as tech}
               <span class="badge">{tech}</span>
@@ -225,7 +227,7 @@
         <div class="proj-card">
           <h3>{proj.name}</h3>
           <small>{proj.year}</small>
-          <p>{currentLang === 'es' ? proj.description.es : proj.description.en}</p>
+            <p>{proj.description}</p>
           <div style="display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 0.75rem;">
             {#each proj.technologies as tech}
               <span class="badge">{tech}</span>
@@ -254,18 +256,56 @@
       <span>⚡</span>
       <span>{currentLang === 'es' ? 'Habilidades' : 'Skills'}</span>
     </h2>
-    <div class="grid-skills">
-      {#each cvData.skills as cat}
-        <div>
-          <h3 style="margin-bottom: 0.75rem;">{cat.category}</h3>
-          <div style="display: flex; flex-wrap: wrap; gap: 0.5rem;">
-            {#each cat.items as skill}
-              <span class="badge">{skill}</span>
+      <div class="grid-skills">
+        <div class="panel">
+          <h3>Frontend</h3>
+          <div style="display:flex; flex-wrap:wrap; gap:.5rem; margin-top:.75rem;">
+            {#each cvData.skills.frontend as s}
+              <span class="badge" title={`${s.level}%`}>{s.name}</span>
             {/each}
           </div>
         </div>
-      {/each}
-    </div>
+        <div class="panel">
+          <h3>Backend</h3>
+          <div style="display:flex; flex-wrap:wrap; gap:.5rem; margin-top:.75rem;">
+            {#each cvData.skills.backend as s}
+              <span class="badge" title={`${s.level}%`}>{s.name}</span>
+            {/each}
+          </div>
+        </div>
+        <div class="panel">
+          <h3>{currentLang === 'es' ? 'Herramientas · Bases de datos' : 'Tools · Databases'}</h3>
+          <div style="display:flex; flex-wrap:wrap; gap:.5rem; margin-top:.75rem;">
+            {#each cvData.skills.tools.databases as s}
+              <span class="badge" title={`${s.level}%`}>{s.name}</span>
+            {/each}
+          </div>
+        </div>
+        <div class="panel">
+          <h3>SEO & Analytics</h3>
+          <div style="display:flex; flex-wrap:wrap; gap:.5rem; margin-top:.75rem;">
+            {#each cvData.skills.tools.seoAnalytics as s}
+              <span class="badge" title={`${s.level}%`}>{s.name}</span>
+            {/each}
+          </div>
+        </div>
+        <div class="panel">
+          <h3>{currentLang === 'es' ? 'Herramientas · Dev & Deploy' : 'Tools · Dev & Deploy'}</h3>
+          <div style="display:flex; flex-wrap:wrap; gap:.5rem; margin-top:.75rem;">
+            {#each cvData.skills.tools.devTools as s}
+              <span class="badge" title={`${s.level}%`}>{s.name}</span>
+            {/each}
+          </div>
+        </div>
+        <div class="panel">
+          <h3>IA</h3>
+          <div style="display:flex; flex-wrap:wrap; gap:.5rem; margin-top:.75rem;">
+            {#each cvData.skills.ai as s}
+              <span class="badge" title={`${s.level}%`}>{s.name}</span>
+            {/each}
+          </div>
+        </div>
+      </div>
   </section>
 
   <!-- Contact -->
@@ -297,14 +337,14 @@
             <span class="icon">💼</span>
             <div class="detail">
               <strong>LinkedIn</strong>
-              <a href={cvData.personal.linkedin} target="_blank" rel="noopener">{currentLang === 'es' ? 'Ver perfil' : 'View profile'}</a>
+                <a href={linkedinUrl} target="_blank" rel="noopener">{currentLang === 'es' ? 'Ver perfil' : 'View profile'}</a>
             </div>
           </li>
           <li>
             <span class="icon">💻</span>
             <div class="detail">
               <strong>GitHub</strong>
-              <a href={cvData.personal.github} target="_blank" rel="noopener">@{cvData.personal.github.split('/').pop()}</a>
+                <a href={githubUrl} target="_blank" rel="noopener">@{githubUser}</a>
             </div>
           </li>
         </ul>

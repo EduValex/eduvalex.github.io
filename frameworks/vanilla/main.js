@@ -146,7 +146,7 @@ function renderContent() {
         <span>👨‍💻</span>
         <span>${t('Sobre mí', 'About Me')}</span>
       </h2>
-      ${(currentLang === 'es' ? cvData.about.es : cvData.about.en).split('\n\n').map(p => `<p>${p}</p>`).join('')}
+  ${((currentLang === 'es' ? (cvData.about?.es || '') : (cvData.about?.en || ''))).split('\n\n').map(p => `<p>${p}</p>`).join('')}
     </section>
 
     <!-- Services -->
@@ -185,7 +185,7 @@ function renderContent() {
           <div class="exp-card">
             <h3>${exp.position}</h3>
             <small>${exp.company} • ${exp.period}</small>
-            <p>${currentLang === 'es' ? exp.description.es : exp.description.en}</p>
+            <p>${exp.description}</p>
             <div style="display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 1rem;">
               ${exp.technologies.map(tech => `<span class="badge">${tech}</span>`).join('')}
             </div>
@@ -205,7 +205,7 @@ function renderContent() {
           <div class="proj-card">
             <h3>${proj.name}</h3>
             <small>${proj.year}</small>
-            <p>${currentLang === 'es' ? proj.description.es : proj.description.en}</p>
+            <p>${proj.description}</p>
             <div style="display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 0.75rem;">
               ${proj.technologies.map(tech => `<span class="badge">${tech}</span>`).join('')}
             </div>
@@ -225,14 +225,42 @@ function renderContent() {
         <span>${t('Habilidades', 'Skills')}</span>
       </h2>
       <div class="grid-skills">
-        ${cvData.skills.map(cat => `
-          <div>
-            <h3 style="margin-bottom: 0.75rem;">${cat.category}</h3>
-            <div style="display: flex; flex-wrap: wrap; gap: 0.5rem;">
-              ${cat.items.map(skill => `<span class="badge">${skill}</span>`).join('')}
-            </div>
+        <article class="panel">
+          <h3>Frontend</h3>
+          <div class="badges" style="margin-top:.75rem">
+            ${cvData.skills.frontend.map(s => `<span class="badge" title="${s.level}%">${s.name}</span>`).join('')}
           </div>
-        `).join('')}
+        </article>
+        <article class="panel">
+          <h3>Backend</h3>
+          <div class="badges" style="margin-top:.75rem">
+            ${cvData.skills.backend.map(s => `<span class="badge" title="${s.level}%">${s.name}</span>`).join('')}
+          </div>
+        </article>
+        <article class="panel">
+          <h3>${t('Herramientas · Bases de datos', 'Tools · Databases')}</h3>
+          <div class="badges" style="margin-top:.75rem">
+            ${cvData.skills.tools.databases.map(s => `<span class="badge" title="${s.level}%">${s.name}</span>`).join('')}
+          </div>
+        </article>
+        <article class="panel">
+          <h3>SEO & Analytics</h3>
+          <div class="badges" style="margin-top:.75rem">
+            ${cvData.skills.tools.seoAnalytics.map(s => `<span class="badge" title="${s.level}%">${s.name}</span>`).join('')}
+          </div>
+        </article>
+        <article class="panel">
+          <h3>${t('Herramientas · Dev & Deploy', 'Tools · Dev & Deploy')}</h3>
+          <div class="badges" style="margin-top:.75rem">
+            ${cvData.skills.tools.devTools.map(s => `<span class="badge" title="${s.level}%">${s.name}</span>`).join('')}
+          </div>
+        </article>
+        <article class="panel">
+          <h3>IA</h3>
+          <div class="badges" style="margin-top:.75rem">
+            ${cvData.skills.ai.map(s => `<span class="badge" title="${s.level}%">${s.name}</span>`).join('')}
+          </div>
+        </article>
       </div>
     </section>
 
@@ -265,14 +293,14 @@ function renderContent() {
               <span class="icon">💼</span>
               <div class="detail">
                 <strong>LinkedIn</strong>
-                <a href="${cvData.personal.linkedin}" target="_blank" rel="noopener">${t('Ver perfil', 'View profile')}</a>
+                <a href="${cvData.personal?.social?.linkedin ? `https://www.linkedin.com/in/${cvData.personal.social.linkedin}` : '#'}" target="_blank" rel="noopener">${t('Ver perfil', 'View profile')}</a>
               </div>
             </li>
             <li>
               <span class="icon">💻</span>
               <div class="detail">
                 <strong>GitHub</strong>
-                <a href="${cvData.personal.github}" target="_blank" rel="noopener">@${cvData.personal.github.split('/').pop()}</a>
+                <a href="${cvData.personal?.social?.github ? `https://github.com/${cvData.personal.social.github}` : '#'}" target="_blank" rel="noopener">@${cvData.personal?.social?.github || ''}</a>
               </div>
             </li>
           </ul>
