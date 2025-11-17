@@ -146,6 +146,16 @@ jobs:
           cp shared/data/cv-data.json deploy-output/shared/data/
           cp -r shared/assets/* deploy-output/shared/assets/ 2>/dev/null || true
 
+          # Copy favicon to all framework subdirectories
+          cp public/favicon.ico deploy-output/astro/ 2>/dev/null || true
+          cp public/favicon.ico deploy-output/vue/ 2>/dev/null || true
+          cp public/favicon.ico deploy-output/svelte/ 2>/dev/null || true
+          cp public/favicon.ico deploy-output/solid/ 2>/dev/null || true
+          cp public/favicon.ico deploy-output/vanilla/ 2>/dev/null || true
+
+          # Create .nojekyll to disable Jekyll processing (CRITICAL for SPAs)
+          touch deploy-output/.nojekyll
+
           # Note: React's index.html is already at root from frameworks/react/dist/
 
       - name: List deployment structure (debug)
