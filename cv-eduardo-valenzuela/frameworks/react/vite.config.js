@@ -8,7 +8,7 @@ const __dirname = fileURLToPath(new URL('.', import.meta.url));
 
 export default defineConfig({
   plugins: [react()],
-  base: '/', // Servir en la raíz del dominio
+  base: '/react/', // Servir en subdirectorio /react para multi-framework deploy
   build: {
     outDir: 'dist',
     emptyOutDir: true,

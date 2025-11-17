@@ -1,4 +1,4 @@
-name: Deploy to GitHub Pages
+name: Deploy Multi-Framework to GitHub Pages
 
 on:
   push:
@@ -26,18 +26,64 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: '20'
-          cache: 'npm'
-          cache-dependency-path: frameworks/react/package-lock.json
 
-      - name: Install dependencies
+      #############################################
+      # BUILD REACT
+      #############################################
+      - name: Install React dependencies
         run: |
           cd frameworks/react
           npm ci
 
-      - name: Build
+      - name: Build React
         run: |
           cd frameworks/react
           npm run build
+
+      #############################################
+      # BUILD ASTRO
+      #############################################
+      - name: Install Astro dependencies
+        run: |
+          cd frameworks/astro
+          npm ci
+
+      - name: Build Astro
+        run: |
+          cd frameworks/astro
+          npm run build
+
+      #############################################
+      # MERGE BUILDS INTO DEPLOY STRUCTURE
+      #############################################
+      - name: Create deployment structure
+        run: |
+          # Create output directory
+          mkdir -p deploy-output
+
+          # Copy landing page
+          cp landing/index.html deploy-output/index.html
+
+          # Copy React build to /react
+          mkdir -p deploy-output/react
+          cp -r frameworks/react/dist/* deploy-output/react/
+
+          # Copy Astro build to /astro
+          mkdir -p deploy-output/astro
+          cp -r frameworks/astro/dist/* deploy-output/astro/
+
+          # Copy shared assets if needed
+          # mkdir -p deploy-output/shared
+          # cp -r shared/assets deploy-output/shared/
+
+      - name: List deployment structure (debug)
+        run: |
+          echo "Deployment structure:"
+          ls -la deploy-output/
+          echo "React:"
+          ls -la deploy-output/react/
+          echo "Astro:"
+          ls -la deploy-output/astro/
 
       - name: Setup Pages
         uses: actions/configure-pages@v4
@@ -45,7 +91,7 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: frameworks/react/dist
+          path: deploy-output
 
   deploy:
     runs-on: ubuntu-latest

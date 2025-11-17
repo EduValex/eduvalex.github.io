@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Eduardo Valenzuela - CV Multi-Framework Portfolio</title>
+  <meta name="description" content="Portfolio interactivo de Eduardo Valenzuela implementado en React, Astro, Vue y más frameworks modernos">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      padding: 2rem 1rem;
+    }
+
+    .container {
+      text-align: center;
+      max-width: 900px;
+      width: 100%;
+    }
+
+    h1 {
+      font-size: clamp(2rem, 5vw, 3.5rem);
+      margin-bottom: 0.5rem;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+      animation: fadeInDown 0.6s ease;
+    }
+
+    .subtitle {
+      font-size: clamp(1rem, 2.5vw, 1.3rem);
+      margin-bottom: 2rem;
+      opacity: 0.95;
+      animation: fadeInUp 0.6s ease 0.2s both;
+    }
+
+    .intro {
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(10px);
+      border-radius: 12px;
+      padding: 1.5rem;
+      margin-bottom: 2.5rem;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      animation: fadeIn 0.6s ease 0.4s both;
+    }
+
+    .intro p {
+      font-size: clamp(0.9rem, 2vw, 1.1rem);
+      line-height: 1.6;
+      margin-bottom: 0;
+    }
+
+    .frameworks {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 1.5rem;
+      margin-top: 2rem;
+    }
+
+    .framework-card {
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(10px);
+      border: 2px solid rgba(255, 255, 255, 0.2);
+      border-radius: 16px;
+      padding: 2rem 1.5rem;
+      text-decoration: none;
+      color: white;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      position: relative;
+      overflow: hidden;
+      animation: fadeInUp 0.6s ease both;
+    }
+
+    .framework-card:nth-child(1) { animation-delay: 0.5s; }
+    .framework-card:nth-child(2) { animation-delay: 0.6s; }
+    .framework-card:nth-child(3) { animation-delay: 0.7s; }
+    .framework-card:nth-child(4) { animation-delay: 0.8s; }
+
+    .framework-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+      transition: left 0.5s;
+    }
+
+    .framework-card:hover::before {
+      left: 100%;
+    }
+
+    .framework-card:hover {
+      transform: translateY(-8px) scale(1.02);
+      background: rgba(255, 255, 255, 0.15);
+      border-color: rgba(255, 255, 255, 0.4);
+      box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+    }
+
+    .framework-card.disabled {
+      opacity: 0.5;
+      pointer-events: none;
+      cursor: not-allowed;
+    }
+
+    .framework-icon {
+      font-size: 3.5rem;
+      margin-bottom: 1rem;
+      display: block;
+      transition: transform 0.3s;
+    }
+
+    .framework-card:hover .framework-icon {
+      transform: scale(1.15) rotate(5deg);
+    }
+
+    .framework-name {
+      font-size: 1.5rem;
+      font-weight: 700;
+      margin-bottom: 0.75rem;
+    }
+
+    .framework-desc {
+      font-size: 0.95rem;
+      opacity: 0.9;
+      line-height: 1.5;
+      margin-bottom: 1rem;
+    }
+
+    .badge {
+      display: inline-block;
+      background: rgba(255, 255, 255, 0.25);
+      padding: 0.35rem 0.85rem;
+      border-radius: 999px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .badge.production {
+      background: rgba(34, 197, 94, 0.3);
+      border: 1px solid rgba(34, 197, 94, 0.5);
+    }
+
+    .badge.beta {
+      background: rgba(59, 130, 246, 0.3);
+      border: 1px solid rgba(59, 130, 246, 0.5);
+    }
+
+    .badge.soon {
+      background: rgba(156, 163, 175, 0.3);
+      border: 1px solid rgba(156, 163, 175, 0.5);
+    }
+
+    footer {
+      margin-top: 3rem;
+      opacity: 0.8;
+      font-size: 0.9rem;
+      animation: fadeIn 1s ease 1s both;
+    }
+
+    footer a {
+      color: white;
+      text-decoration: underline;
+      transition: opacity 0.2s;
+    }
+
+    footer a:hover {
+      opacity: 0.8;
+    }
+
+    @keyframes fadeInDown {
+      from {
+        opacity: 0;
+        transform: translateY(-20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+      }
+      to {
+        opacity: 1;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .frameworks {
+        grid-template-columns: 1fr;
+      }
+
+      .intro {
+        padding: 1.25rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Eduardo Valenzuela</h1>
+    <p class="subtitle">Full Stack Developer - Multi-Framework Portfolio</p>
+
+    <div class="intro">
+      <p>
+        Este CV está implementado en <strong>múltiples frameworks modernos</strong> para demostrar diferentes enfoques técnicos y arquitecturas.
+        Cada versión muestra las fortalezas únicas de su framework. <strong>Elige tu favorito:</strong>
+      </p>
+    </div>
+
+    <div class="frameworks">
+      <a href="/react" class="framework-card">
+        <span class="framework-icon">⚛️</span>
+        <div class="framework-name">React</div>
+        <div class="framework-desc">Interactividad máxima con 35+ animaciones premium y custom hooks</div>
+        <span class="badge production">✓ Producción</span>
+      </a>
+
+      <a href="/astro" class="framework-card">
+        <span class="framework-icon">🚀</span>
+        <div class="framework-name">Astro</div>
+        <div class="framework-desc">SSG ultra rápido, SEO optimizado, 50% más ligero que React</div>
+        <span class="badge beta">⏳ Beta</span>
+      </a>
+
+      <a href="/vue" class="framework-card disabled">
+        <span class="framework-icon">💚</span>
+        <div class="framework-name">Vue</div>
+        <div class="framework-desc">Reactivity elegante con Composition API y transiciones fluidas</div>
+        <span class="badge soon">📋 Próximamente</span>
+      </a>
+
+      <a href="/angular" class="framework-card disabled">
+        <span class="framework-icon">🅰️</span>
+        <div class="framework-name">Angular</div>
+        <div class="framework-desc">Enterprise-ready con TypeScript nativo y arquitectura robusta</div>
+        <span class="badge soon">💭 Planeado</span>
+      </a>
+    </div>
+
+    <footer>
+      <p>
+        💻 Proyecto open-source ·
+        <a href="https://github.com/eduvalex/eduvalex.github.io" target="_blank" rel="noopener">Ver código en GitHub</a>
+      </p>
+      <p style="margin-top: 0.5rem; opacity: 0.7;">© 2025 Eduardo Valenzuela</p>
+    </footer>
+  </div>
+</body>
+</html>
