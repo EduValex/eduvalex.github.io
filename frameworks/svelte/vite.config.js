@@ -9,8 +9,8 @@ export default defineConfig({
   plugins: [
     svelte({
       compilerOptions: {
-        // Disable runes temporarily - effect_orphan bug in production
-        runes: false,
+        // Svelte 5 Runes enabled - using $state, $derived, $effect properly
+        runes: true,
       },
     }),
   ],

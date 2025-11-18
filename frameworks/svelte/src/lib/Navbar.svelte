@@ -1,9 +1,6 @@
 <script>
-  // Legacy mode: use export let
-  export let currentLang = 'es';
-  export let theme = 'dark';
-  export let onChangeLang = () => {};
-  export let onToggleTheme = () => {};
+  // Svelte 5 Runes mode: use $props()
+  let { currentLang = 'es', theme = 'dark', onChangeLang = () => {}, onToggleTheme = () => {} } = $props();
 </script>
 
 <nav class:light={theme === 'light'}>

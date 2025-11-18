@@ -1,17 +1,16 @@
 <script>
-  import { onMount } from 'svelte';
   import Navbar from './lib/Navbar.svelte';
   import cvData from '@data/cv-data.json';
   import emailjs from '@emailjs/browser';
 
-  // Legacy mode: use let instead of $state
-  let currentLang = 'es';
-  let theme = 'dark';
-  let name = '';
-  let email = '';
-  let message = '';
-  let formStatus = null;
-  let formLoading = false;
+  // Svelte 5 Runes mode: use $state
+  let currentLang = $state('es');
+  let theme = $state('dark');
+  let name = $state('');
+  let email = $state('');
+  let message = $state('');
+  let formStatus = $state(null);
+  let formLoading = $state(false);
 
   const services = [
     {
@@ -78,18 +77,25 @@
     const isFull = FULLSTACK_KEYS.some(t => tech.includes(t));
     return isFull ? 'Full Stack' : 'Personal';
   };
-  let selectedCategory = 'Todos';
+  let selectedCategory = $state('Todos');
   const categories = ['Todos','Full Stack','WordPress','Personal'].filter(k => {
     if (k === 'Todos') return cvData.projects.length > 0;
     return cvData.projects.some(p => getCategory(p) === k);
   });
   const categoryIcons = { 'Todos': '🗂️', 'WordPress': '🧩', 'Full Stack': '🧰', 'Personal': '⭐' };
   const countFor = (cat) => cat === 'Todos' ? cvData.projects.length : cvData.projects.filter(p => getCategory(p) === cat).length;
-  
-  // Legacy reactive statements
-  $: filteredProjects = selectedCategory === 'Todos' ? cvData.projects : cvData.projects.filter(p => getCategory(p) === selectedCategory);
-  $: aboutText = currentLang === 'es' ? (cvData.about?.es || '') : (cvData.about?.en || '');
-  
+
+  // Svelte 5 Runes: use $derived instead of $:
+  let filteredProjects = $derived(
+    selectedCategory === 'Todos'
+      ? cvData.projects
+      : cvData.projects.filter(p => getCategory(p) === selectedCategory)
+  );
+
+  let aboutText = $derived(
+    currentLang === 'es' ? (cvData.about?.es || '') : (cvData.about?.en || '')
+  );
+
   // Simple non-reactive values
   const githubUser = cvData.personal?.social?.github || '';
   const githubUrl = githubUser ? `https://github.com/${githubUser}` : '#';
@@ -150,14 +156,19 @@
     }
   }
 
-  onMount(() => {
+  // Initialize from localStorage using $effect - runs once after mount
+  $effect(() => {
     // Initialize language
     const savedLang = localStorage.getItem('svelte-lang') || 'es';
-    currentLang = savedLang;
+    if (savedLang !== currentLang) {
+      currentLang = savedLang;
+    }
 
     // Initialize theme
     const savedTheme = localStorage.getItem('svelte-theme') || 'dark';
-    theme = savedTheme;
+    if (savedTheme !== theme) {
+      theme = savedTheme;
+    }
     document.body.classList.toggle('light', savedTheme === 'light');
 
     // Reveal on scroll
@@ -174,6 +185,11 @@
     );
 
     document.querySelectorAll('.reveal').forEach((el) => observer.observe(el));
+
+    // Cleanup function
+    return () => {
+      observer.disconnect();
+    };
   });
 </script>
 
