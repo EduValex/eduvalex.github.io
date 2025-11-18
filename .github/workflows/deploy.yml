@@ -138,7 +138,7 @@ jobs:
 
           # Copy Tech Lab page to /lab
           mkdir -p deploy-output/lab
-          cp lab/index.html deploy-output/lab/
+          cp landing/index.html deploy-output/lab/
 
           # Copy shared assets and data (CRITICAL for all frameworks)
           mkdir -p deploy-output/shared/data

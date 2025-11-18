@@ -247,7 +247,7 @@
         {#each categories as cat}
           <button
             class="badge {selectedCategory === cat ? 'active' : ''}"
-            aria-selected={selectedCategory === cat}
+            aria-pressed={selectedCategory === cat}
             onclick={() => selectedCategory = cat}
           >
             <span style="margin-right:.35rem;">{categoryIcons[cat] || '🏷️'}</span>

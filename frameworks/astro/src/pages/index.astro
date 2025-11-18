@@ -150,9 +150,9 @@ const SERVICES = [
       .container { max-width: 1100px; margin: 0 auto; padding: 2rem 1rem; }
   .panel { background: rgba(15,23,42,.6); border:1px solid rgba(148,163,184,.2); border-radius: 14px; padding: 1.5rem; margin-bottom:2rem; transition: transform .2s, box-shadow .2s }
       .panel:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,0,0,.3) }
-      .grid { display:grid; gap:1.5rem; grid-template-columns: repeat(auto-fill,minmax(300px,1fr)); }
+      .grid { display:grid; gap:1.5rem; grid-template-columns:repeat(auto-fill,minmax(300px,1fr)) }
       .grid-2 { display:grid; gap:1.5rem; grid-template-columns:1fr 1fr }
-      .grid-skills { display:grid; gap:1.5rem; grid-template-columns:repeat(3,1fr) }
+      .grid-skills { display:grid; gap:1.5rem; grid-template-columns:repeat(2,1fr) }
       @media (max-width:768px) { .grid-2, .grid-skills { grid-template-columns:1fr } .container { padding:1.5rem .75rem } }
       .btn { display:inline-block; background:#3b82f6; color:white; padding:.75rem 1.25rem; border-radius:.75rem; font-weight:600; border:none; cursor:pointer; transition: background .2s, transform .1s }
       .btn:hover { background:#2563eb; text-decoration:none; transform: scale(1.02) }
@@ -450,8 +450,10 @@ const SERVICES = [
             </div>
           </article>
           <article class="panel reveal">
-            <h3 data-lang="es" class="active">Herramientas · Bases de datos</h3>
-            <h3 data-lang="en">Tools · Databases</h3>
+            <h3>
+              <span class="inline-lang active" data-lang="es">Herramientas · Bases de datos</span>
+              <span class="inline-lang" data-lang="en">Tools · Databases</span>
+            </h3>
             <div class="badges" style="margin-top:.75rem">
               {skills.tools.databases.map(s => <span class="badge" title={`${s.level}%`}>{s.name}</span>)}
             </div>
@@ -463,8 +465,10 @@ const SERVICES = [
             </div>
           </article>
           <article class="panel reveal">
-            <h3 data-lang="es" class="active">Herramientas · Dev & Deploy</h3>
-            <h3 data-lang="en">Tools · Dev & Deploy</h3>
+            <h3>
+              <span class="inline-lang active" data-lang="es">Herramientas · Dev & Deploy</span>
+              <span class="inline-lang" data-lang="en">Tools · Dev & Deploy</span>
+            </h3>
             <div class="badges" style="margin-top:.75rem">
               {skills.tools.devTools.map(s => <span class="badge" title={`${s.level}%`}>{s.name}</span>)}
             </div>

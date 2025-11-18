@@ -6,7 +6,14 @@ import path from 'path';
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 export default defineConfig({
-  plugins: [svelte()],
+  plugins: [
+    svelte({
+      compilerOptions: {
+        // Use legacy mode for maximum compatibility with current code
+        runes: false,
+      },
+    }),
+  ],
   base: '/svelte/',
   resolve: {
     alias: {
