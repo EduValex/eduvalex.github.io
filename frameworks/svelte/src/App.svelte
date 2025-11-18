@@ -1,5 +1,4 @@
 <script>
-  import { onMount } from 'svelte';
   import Navbar from './lib/Navbar.svelte';
   import cvData from '@data/cv-data.json';
   import emailjs from '@emailjs/browser';
@@ -150,7 +149,12 @@
     }
   }
 
-  onMount(() => {
+  // Client init without Svelte lifecycle to avoid effect_orphan in runes
+  let __initialized = false;
+  function initClient() {
+    if (typeof window === 'undefined' || __initialized) return;
+    __initialized = true;
+
     // Initialize language
     const savedLang = localStorage.getItem('svelte-lang') || 'es';
     currentLang = savedLang;
@@ -174,7 +178,11 @@
     );
 
     document.querySelectorAll('.reveal').forEach((el) => observer.observe(el));
-  });
+  }
+
+  if (typeof window !== 'undefined') {
+    queueMicrotask(initClient);
+  }
 </script>
 
 <Navbar {currentLang} {theme} onChangeLang={setLanguage} onToggleTheme={toggleTheme} />
