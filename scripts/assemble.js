@@ -14,7 +14,7 @@ const rootDir = path.join(__dirname, '..');
 
 const log = (msg) => console.log(msg);
 
-log('🔧 Ensamblando build multi-framework (React + Astro + Vue + Svelte + Solid + Vanilla)...');
+log('🔧 Ensamblando build multi-framework (React + Astro + Vue + Qwik + Solid + Vanilla)...');
 
 // Build React
 try {
@@ -54,17 +54,17 @@ try {
   process.exit(1);
 }
 
-// Build Svelte
+// Build Qwik
 try {
-  log('🧡 Construyendo Svelte...');
-  const svelteNodeModules = path.join(rootDir, 'frameworks/svelte/node_modules');
-  if (!fs.existsSync(svelteNodeModules)) {
-    execSync('cd frameworks/svelte && npm install', { cwd: rootDir, stdio: 'inherit' });
+  log('⚡ Construyendo Qwik...');
+  const qwikNodeModules = path.join(rootDir, 'frameworks/qwik/node_modules');
+  if (!fs.existsSync(qwikNodeModules)) {
+    execSync('cd frameworks/qwik && npm install', { cwd: rootDir, stdio: 'inherit' });
   }
-  execSync('cd frameworks/svelte && npm run build', { cwd: rootDir, stdio: 'inherit' });
-  log('✅ Svelte OK');
+  execSync('cd frameworks/qwik && npm run build', { cwd: rootDir, stdio: 'inherit' });
+  log('✅ Qwik OK');
 } catch (e) {
-  console.error('❌ Falló build Svelte');
+  console.error('❌ Falló build Qwik');
   process.exit(1);
 }
 
@@ -119,10 +119,10 @@ if (fs.existsSync(vueDist)) {
   fs.cpSync(vueDist, path.join(deployTest, 'vue'), { recursive: true });
 }
 
-// Svelte under /svelte
-const svelteDist = path.join(rootDir, 'frameworks/svelte/dist');
-if (fs.existsSync(svelteDist)) {
-  fs.cpSync(svelteDist, path.join(deployTest, 'svelte'), { recursive: true });
+// Qwik under /qwik
+const qwikDist = path.join(rootDir, 'frameworks/qwik/dist/qwik');
+if (fs.existsSync(qwikDist)) {
+  fs.cpSync(qwikDist, path.join(deployTest, 'qwik'), { recursive: true });
 }
 
 // Solid under /solid
