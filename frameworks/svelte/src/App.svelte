@@ -149,19 +149,21 @@
     }
   }
 
-  // Client init without Svelte lifecycle to avoid effect_orphan in runes
-  let __initialized = false;
-  function initClient() {
-    if (typeof window === 'undefined' || __initialized) return;
-    __initialized = true;
+  // Client init using $effect (proper Svelte 5 runes way)
+  $effect(() => {
+    if (typeof window === 'undefined') return;
 
-    // Initialize language
+    // Initialize language from localStorage
     const savedLang = localStorage.getItem('svelte-lang') || 'es';
-    currentLang = savedLang;
+    if (currentLang !== savedLang) {
+      currentLang = savedLang;
+    }
 
-    // Initialize theme
+    // Initialize theme from localStorage
     const savedTheme = localStorage.getItem('svelte-theme') || 'dark';
-    theme = savedTheme;
+    if (theme !== savedTheme) {
+      theme = savedTheme;
+    }
     document.body.classList.toggle('light', savedTheme === 'light');
 
     // Reveal on scroll
@@ -178,11 +180,12 @@
     );
 
     document.querySelectorAll('.reveal').forEach((el) => observer.observe(el));
-  }
 
-  if (typeof window !== 'undefined') {
-    queueMicrotask(initClient);
-  }
+    // Cleanup observer on component unmount
+    return () => {
+      observer.disconnect();
+    };
+  });
 </script>
 
 <Navbar {currentLang} {theme} onChangeLang={setLanguage} onToggleTheme={toggleTheme} />
