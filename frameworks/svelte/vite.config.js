@@ -9,8 +9,8 @@ export default defineConfig({
   plugins: [
     svelte({
       compilerOptions: {
-        // Use legacy mode for maximum compatibility with current code
-        runes: false,
+        // Enable Svelte 5 runes mode for modern reactivity
+        runes: true,
       },
     }),
   ],

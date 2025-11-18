@@ -4,15 +4,14 @@
   import cvData from '@data/cv-data.json';
   import emailjs from '@emailjs/browser';
 
-  // Avoid Svelte 5 runes for broader runtime compatibility
-  let currentLang = 'es';
-  let theme = 'dark';
-  // Use flat reactive fields instead of nested object bindings to avoid legacy/reactivity pitfalls
-  let name = '';
-  let email = '';
-  let message = '';
-  let formStatus = null;
-  let formLoading = false;
+  // Svelte 5 runes mode: use $state for reactive state
+  let currentLang = $state('es');
+  let theme = $state('dark');
+  let name = $state('');
+  let email = $state('');
+  let message = $state('');
+  let formStatus = $state(null);
+  let formLoading = $state(false);
 
   const services = [
     {
@@ -49,6 +48,27 @@
     }
   ];
 
+  // Iconos para skills
+  const SKILL_ICONS = {
+    'HTML': '🌐', 'CSS': '🎨', 'JavaScript': '⚡', 'JavaScript/ES6+': '⚡',
+    'TypeScript': '📘', 'React': '⚛️', 'React.js': '⚛️', 'Vue.js': '💚',
+    'Angular': '🅰️', 'Tailwind CSS': '🎨', 'Bootstrap': '🅱️',
+    'WordPress': '📰', 'Shopify': '🛒', 'Node.js': '🟢', 'Express': '⚡',
+    'Python': '🐍', 'Django': '🎸', 'Flask': '🔶', 'Ruby on Rails': '💎',
+    'Ruby': '💎', 'PHP': '🐘', 'PostgreSQL': '🐘', 'MySQL': '🐬',
+    'MongoDB': '🍃', 'Git': '🔀', 'Docker': '🐳', 'ChatGPT': '🤖',
+    'GitHub Copilot': '🤖', 'GitHub': '🐱', 'Google Gemini': '✨',
+    'Jira': '📋', 'Trello': '📋', 'Postman': '📮', 'SEMrush': '📊',
+    'Wix': '🌐', 'Google Analytics': '📊', 'Google Search Console': '🔍',
+    'PageSpeed Insights': '⚡', 'Vercel': '▲', 'Render': '🚀',
+    'Railway': '🚂', 'Heroku': '🟣', 'REST API': '🔗', 'REST APIs': '🔗',
+    'SEO': '🔍', 'SEO Audits': '🧪', 'Yii Framework': '🎴',
+    'Zoho CRM': '📇', 'AWS': '☁️', 'Claude AI': '🤖', 'Loveable AI': '💖',
+    'Monday': '📋', 'HTML/CSS': '🎨', 'Google Trends': '📈',
+    'Asistentes IA Personalizados': '🛠️', 'Grok': '🤖', 'Beaver Builder': '🦫'
+  };
+  const getSkillIcon = (skillName) => SKILL_ICONS[skillName] || '';
+
   // --- Filtros de proyectos (igual a React) ---
   const FULLSTACK_KEYS = ['Django','Python','Node.js','Express','Ruby on Rails','PostgreSQL','JWT','Celery','Redis','Nuxt.js'];
   const getCategory = (p) => {
@@ -58,21 +78,23 @@
     const isFull = FULLSTACK_KEYS.some(t => tech.includes(t));
     return isFull ? 'Full Stack' : 'Personal';
   };
-  let selectedCategory = 'Todos';
+  let selectedCategory = $state('Todos');
   const categories = ['Todos','Full Stack','WordPress','Personal'].filter(k => {
     if (k === 'Todos') return cvData.projects.length > 0;
     return cvData.projects.some(p => getCategory(p) === k);
   });
   const categoryIcons = { 'Todos': '🗂️', 'WordPress': '🧩', 'Full Stack': '🧰', 'Personal': '⭐' };
   const countFor = (cat) => cat === 'Todos' ? cvData.projects.length : cvData.projects.filter(p => getCategory(p) === cat).length;
-  const filteredProjects = () => selectedCategory === 'Todos' ? cvData.projects : cvData.projects.filter(p => getCategory(p) === selectedCategory);
-
-    // Helper getters
-    const aboutText = () => (currentLang === 'es' ? (cvData.about?.es || '') : (cvData.about?.en || ''));
-    const githubUser = cvData.personal?.social?.github || '';
-    const githubUrl = githubUser ? `https://github.com/${githubUser}` : '#';
-    const linkedinUser = cvData.personal?.social?.linkedin || '';
-    const linkedinUrl = linkedinUser ? `https://www.linkedin.com/in/${linkedinUser}` : '#';
+  
+  // Use $derived for computed values
+  const filteredProjects = $derived(selectedCategory === 'Todos' ? cvData.projects : cvData.projects.filter(p => getCategory(p) === selectedCategory));
+  const aboutText = $derived(currentLang === 'es' ? (cvData.about?.es || '') : (cvData.about?.en || ''));
+  
+  // Simple non-reactive values
+  const githubUser = cvData.personal?.social?.github || '';
+  const githubUrl = githubUser ? `https://github.com/${githubUser}` : '#';
+  const linkedinUser = cvData.personal?.social?.linkedin || '';
+  const linkedinUrl = linkedinUser ? `https://www.linkedin.com/in/${linkedinUser}` : '#';
 
   function setLanguage(lang) {
     currentLang = lang;
@@ -186,7 +208,7 @@
       <span>👨‍💻</span>
       <span>{currentLang === 'es' ? 'Sobre mí' : 'About Me'}</span>
     </h2>
-      {#each aboutText().split('\n\n') as paragraph}
+      {#each aboutText.split('\n\n') as paragraph}
       <p>{paragraph}</p>
     {/each}
   </section>
@@ -263,7 +285,7 @@
       </div>
     </div>
     <div class="grid">
-      {#each filteredProjects() as proj}
+      {#each filteredProjects as proj}
         <div class="proj-card">
           <h3>{proj.name}</h3>
           <small>{proj.year}</small>
@@ -301,7 +323,7 @@
           <h3>Frontend</h3>
           <div style="display:flex; flex-wrap:wrap; gap:.5rem; margin-top:.75rem;">
             {#each cvData.skills.frontend as s}
-              <span class="badge" title={`${s.level}%`}>{s.name}</span>
+              <span class="badge" title={`${s.level}%`}>{#if getSkillIcon(s.name)}<span style="margin-right:4px">{getSkillIcon(s.name)}</span>{/if}{s.name}</span>
             {/each}
           </div>
         </div>
@@ -309,7 +331,7 @@
           <h3>Backend</h3>
           <div style="display:flex; flex-wrap:wrap; gap:.5rem; margin-top:.75rem;">
             {#each cvData.skills.backend as s}
-              <span class="badge" title={`${s.level}%`}>{s.name}</span>
+              <span class="badge" title={`${s.level}%`}>{#if getSkillIcon(s.name)}<span style="margin-right:4px">{getSkillIcon(s.name)}</span>{/if}{s.name}</span>
             {/each}
           </div>
         </div>
@@ -317,7 +339,7 @@
           <h3>{currentLang === 'es' ? 'Herramientas · Bases de datos' : 'Tools · Databases'}</h3>
           <div style="display:flex; flex-wrap:wrap; gap:.5rem; margin-top:.75rem;">
             {#each cvData.skills.tools.databases as s}
-              <span class="badge" title={`${s.level}%`}>{s.name}</span>
+              <span class="badge" title={`${s.level}%`}>{#if getSkillIcon(s.name)}<span style="margin-right:4px">{getSkillIcon(s.name)}</span>{/if}{s.name}</span>
             {/each}
           </div>
         </div>
@@ -325,7 +347,7 @@
           <h3>SEO & Analytics</h3>
           <div style="display:flex; flex-wrap:wrap; gap:.5rem; margin-top:.75rem;">
             {#each cvData.skills.tools.seoAnalytics as s}
-              <span class="badge" title={`${s.level}%`}>{s.name}</span>
+              <span class="badge" title={`${s.level}%`}>{#if getSkillIcon(s.name)}<span style="margin-right:4px">{getSkillIcon(s.name)}</span>{/if}{s.name}</span>
             {/each}
           </div>
         </div>
@@ -333,7 +355,7 @@
           <h3>{currentLang === 'es' ? 'Herramientas · Dev & Deploy' : 'Tools · Dev & Deploy'}</h3>
           <div style="display:flex; flex-wrap:wrap; gap:.5rem; margin-top:.75rem;">
             {#each cvData.skills.tools.devTools as s}
-              <span class="badge" title={`${s.level}%`}>{s.name}</span>
+              <span class="badge" title={`${s.level}%`}>{#if getSkillIcon(s.name)}<span style="margin-right:4px">{getSkillIcon(s.name)}</span>{/if}{s.name}</span>
             {/each}
           </div>
         </div>
@@ -341,7 +363,7 @@
           <h3>IA</h3>
           <div style="display:flex; flex-wrap:wrap; gap:.5rem; margin-top:.75rem;">
             {#each cvData.skills.ai as s}
-              <span class="badge" title={`${s.level}%`}>{s.name}</span>
+              <span class="badge" title={`${s.level}%`}>{#if getSkillIcon(s.name)}<span style="margin-right:4px">{getSkillIcon(s.name)}</span>{/if}{s.name}</span>
             {/each}
           </div>
         </div>

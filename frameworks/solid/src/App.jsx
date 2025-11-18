@@ -38,6 +38,27 @@ const services = [
   }
 ];
 
+// Iconos para skills
+const SKILL_ICONS = {
+  'HTML': '🌐', 'CSS': '🎨', 'JavaScript': '⚡', 'JavaScript/ES6+': '⚡',
+  'TypeScript': '📘', 'React': '⚛️', 'React.js': '⚛️', 'Vue.js': '💚',
+  'Angular': '🅰️', 'Tailwind CSS': '🎨', 'Bootstrap': '🅱️',
+  'WordPress': '📰', 'Shopify': '🛒', 'Node.js': '🟢', 'Express': '⚡',
+  'Python': '🐍', 'Django': '🎸', 'Flask': '🔶', 'Ruby on Rails': '💎',
+  'Ruby': '💎', 'PHP': '🐘', 'PostgreSQL': '🐘', 'MySQL': '🐬',
+  'MongoDB': '🍃', 'Git': '🔀', 'Docker': '🐳', 'ChatGPT': '🤖',
+  'GitHub Copilot': '🤖', 'GitHub': '🐱', 'Google Gemini': '✨',
+  'Jira': '📋', 'Trello': '📋', 'Postman': '📮', 'SEMrush': '📊',
+  'Wix': '🌐', 'Google Analytics': '📊', 'Google Search Console': '🔍',
+  'PageSpeed Insights': '⚡', 'Vercel': '▲', 'Render': '🚀',
+  'Railway': '🚂', 'Heroku': '🟣', 'REST API': '🔗', 'REST APIs': '🔗',
+  'SEO': '🔍', 'SEO Audits': '🧪', 'Yii Framework': '🎴',
+  'Zoho CRM': '📇', 'AWS': '☁️', 'Claude AI': '🤖', 'Loveable AI': '💖',
+  'Monday': '📋', 'HTML/CSS': '🎨', 'Google Trends': '📈',
+  'Asistentes IA Personalizados': '🛠️', 'Grok': '🤖', 'Beaver Builder': '🦫'
+};
+const getSkillIcon = (name) => SKILL_ICONS[name] || '';
+
 function App() {
   const [currentLang, setCurrentLang] = createSignal('es');
   const [theme, setTheme] = createSignal('dark');
@@ -314,37 +335,37 @@ function App() {
             <article class="panel">
               <h3>Frontend</h3>
               <div class="badges" style={{ 'margin-top': '.75rem' }}>
-                <For each={cvData.skills.frontend}>{(s) => <span class="badge" title={`${s.level}%`}>{s.name}</span>}</For>
+                <For each={cvData.skills.frontend}>{(s) => <span class="badge" title={`${s.level}%`}>{getSkillIcon(s.name) && <span style={{ 'margin-right': '4px' }}>{getSkillIcon(s.name)}</span>}{s.name}</span>}</For>
               </div>
             </article>
             <article class="panel">
               <h3>Backend</h3>
               <div class="badges" style={{ 'margin-top': '.75rem' }}>
-                <For each={cvData.skills.backend}>{(s) => <span class="badge" title={`${s.level}%`}>{s.name}</span>}</For>
+                <For each={cvData.skills.backend}>{(s) => <span class="badge" title={`${s.level}%`}>{getSkillIcon(s.name) && <span style={{ 'margin-right': '4px' }}>{getSkillIcon(s.name)}</span>}{s.name}</span>}</For>
               </div>
             </article>
             <article class="panel">
               <h3>{currentLang() === 'es' ? 'Herramientas · Bases de datos' : 'Tools · Databases'}</h3>
               <div class="badges" style={{ 'margin-top': '.75rem' }}>
-                <For each={cvData.skills.tools.databases}>{(s) => <span class="badge" title={`${s.level}%`}>{s.name}</span>}</For>
+                <For each={cvData.skills.tools.databases}>{(s) => <span class="badge" title={`${s.level}%`}>{getSkillIcon(s.name) && <span style={{ 'margin-right': '4px' }}>{getSkillIcon(s.name)}</span>}{s.name}</span>}</For>
               </div>
             </article>
             <article class="panel">
               <h3>SEO & Analytics</h3>
               <div class="badges" style={{ 'margin-top': '.75rem' }}>
-                <For each={cvData.skills.tools.seoAnalytics}>{(s) => <span class="badge" title={`${s.level}%`}>{s.name}</span>}</For>
+                <For each={cvData.skills.tools.seoAnalytics}>{(s) => <span class="badge" title={`${s.level}%`}>{getSkillIcon(s.name) && <span style={{ 'margin-right': '4px' }}>{getSkillIcon(s.name)}</span>}{s.name}</span>}</For>
               </div>
             </article>
             <article class="panel">
               <h3>{currentLang() === 'es' ? 'Herramientas · Dev & Deploy' : 'Tools · Dev & Deploy'}</h3>
               <div class="badges" style={{ 'margin-top': '.75rem' }}>
-                <For each={cvData.skills.tools.devTools}>{(s) => <span class="badge" title={`${s.level}%`}>{s.name}</span>}</For>
+                <For each={cvData.skills.tools.devTools}>{(s) => <span class="badge" title={`${s.level}%`}>{getSkillIcon(s.name) && <span style={{ 'margin-right': '4px' }}>{getSkillIcon(s.name)}</span>}{s.name}</span>}</For>
               </div>
             </article>
             <article class="panel">
               <h3>IA</h3>
               <div class="badges" style={{ 'margin-top': '.75rem' }}>
-                <For each={cvData.skills.ai}>{(s) => <span class="badge" title={`${s.level}%`}>{s.name}</span>}</For>
+                <For each={cvData.skills.ai}>{(s) => <span class="badge" title={`${s.level}%`}>{getSkillIcon(s.name) && <span style={{ 'margin-right': '4px' }}>{getSkillIcon(s.name)}</span>}{s.name}</span>}</For>
               </div>
             </article>
           </div>

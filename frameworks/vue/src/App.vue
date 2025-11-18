@@ -135,37 +135,49 @@
           <article class="panel">
             <h3>Frontend</h3>
             <div class="badges" style="margin-top:.75rem">
-              <span v-for="s in cvData.skills.frontend" :key="s.name" class="badge" :title="s.level + '%'">{{ s.name }}</span>
+              <span v-for="s in cvData.skills.frontend" :key="s.name" class="badge" :title="s.level + '%'">
+                <span v-if="getSkillIcon(s.name)" style="margin-right:4px">{{ getSkillIcon(s.name) }}</span>{{ s.name }}
+              </span>
             </div>
           </article>
           <article class="panel">
             <h3>Backend</h3>
             <div class="badges" style="margin-top:.75rem">
-              <span v-for="s in cvData.skills.backend" :key="s.name" class="badge" :title="s.level + '%'">{{ s.name }}</span>
+              <span v-for="s in cvData.skills.backend" :key="s.name" class="badge" :title="s.level + '%'">
+                <span v-if="getSkillIcon(s.name)" style="margin-right:4px">{{ getSkillIcon(s.name) }}</span>{{ s.name }}
+              </span>
             </div>
           </article>
           <article class="panel">
             <h3>{{ currentLang === 'es' ? 'Herramientas · Bases de datos' : 'Tools · Databases' }}</h3>
             <div class="badges" style="margin-top:.75rem">
-              <span v-for="s in cvData.skills.tools.databases" :key="s.name" class="badge" :title="s.level + '%'">{{ s.name }}</span>
+              <span v-for="s in cvData.skills.tools.databases" :key="s.name" class="badge" :title="s.level + '%'">
+                <span v-if="getSkillIcon(s.name)" style="margin-right:4px">{{ getSkillIcon(s.name) }}</span>{{ s.name }}
+              </span>
             </div>
           </article>
           <article class="panel">
             <h3>SEO & Analytics</h3>
             <div class="badges" style="margin-top:.75rem">
-              <span v-for="s in cvData.skills.tools.seoAnalytics" :key="s.name" class="badge" :title="s.level + '%'">{{ s.name }}</span>
+              <span v-for="s in cvData.skills.tools.seoAnalytics" :key="s.name" class="badge" :title="s.level + '%'">
+                <span v-if="getSkillIcon(s.name)" style="margin-right:4px">{{ getSkillIcon(s.name) }}</span>{{ s.name }}
+              </span>
             </div>
           </article>
           <article class="panel">
             <h3>{{ currentLang === 'es' ? 'Herramientas · Dev & Deploy' : 'Tools · Dev & Deploy' }}</h3>
             <div class="badges" style="margin-top:.75rem">
-              <span v-for="s in cvData.skills.tools.devTools" :key="s.name" class="badge" :title="s.level + '%'">{{ s.name }}</span>
+              <span v-for="s in cvData.skills.tools.devTools" :key="s.name" class="badge" :title="s.level + '%'">
+                <span v-if="getSkillIcon(s.name)" style="margin-right:4px">{{ getSkillIcon(s.name) }}</span>{{ s.name }}
+              </span>
             </div>
           </article>
           <article class="panel">
             <h3>IA</h3>
             <div class="badges" style="margin-top:.75rem">
-              <span v-for="s in cvData.skills.ai" :key="s.name" class="badge" :title="s.level + '%'">{{ s.name }}</span>
+              <span v-for="s in cvData.skills.ai" :key="s.name" class="badge" :title="s.level + '%'">
+                <span v-if="getSkillIcon(s.name)" style="margin-right:4px">{{ getSkillIcon(s.name) }}</span>{{ s.name }}
+              </span>
             </div>
           </article>
         </div>
@@ -263,6 +275,28 @@ export default {
     const formData = ref({ name: '', email: '', message: '' });
     const formStatus = ref(null);
     const formLoading = ref(false);
+
+    // --- Iconos para skills ---
+    const SKILL_ICONS = {
+      'HTML': '🌐', 'CSS': '🎨', 'JavaScript': '⚡', 'JavaScript/ES6+': '⚡',
+      'TypeScript': '📘', 'React': '⚛️', 'React.js': '⚛️', 'Vue.js': '💚',
+      'Angular': '🅰️', 'Tailwind CSS': '🎨', 'Bootstrap': '🅱️',
+      'WordPress': '📰', 'Shopify': '🛒', 'Node.js': '🟢', 'Express': '⚡',
+      'Python': '🐍', 'Django': '🎸', 'Flask': '🔶', 'Ruby on Rails': '💎',
+      'Ruby': '💎', 'PHP': '🐘', 'PostgreSQL': '🐘', 'MySQL': '🐬',
+      'MongoDB': '🍃', 'Git': '🔀', 'Docker': '🐳', 'ChatGPT': '🤖',
+      'GitHub Copilot': '🤖', 'GitHub': '🐱', 'Google Gemini': '✨',
+      'Jira': '📋', 'Trello': '📋', 'Postman': '📮', 'SEMrush': '📊',
+      'Wix': '🌐', 'Google Analytics': '📊', 'Google Search Console': '🔍',
+      'PageSpeed Insights': '⚡', 'Vercel': '▲', 'Render': '🚀',
+      'Railway': '🚂', 'Heroku': '🟣', 'REST API': '🔗', 'REST APIs': '🔗',
+      'SEO': '🔍', 'SEO Audits': '🧪', 'Yii Framework': '🎴',
+      'Zoho CRM': '📇', 'AWS': '☁️', 'Claude AI': '🤖', 'Loveable AI': '💖',
+      'Monday': '📋', 'HTML/CSS': '🎨', 'Google Trends': '📈',
+      'Asistentes IA Personalizados': '🛠️', 'Grok': '🤖', 'Beaver Builder': '🦫'
+    };
+    
+    const getSkillIcon = (name) => SKILL_ICONS[name] || '';
 
     // --- Filtros de proyectos (igual a React) ---
     const FULLSTACK_KEYS = ['Django','Python','Node.js','Express','Ruby on Rails','PostgreSQL','JWT','Celery','Redis','Nuxt.js'];
@@ -429,13 +463,14 @@ export default {
       currentLang,
       theme,
       services,
-  aboutText,
-  // filtros
-  categories,
-  selectedCategory,
-  filteredProjects,
-  counts,
-  categoryIcons,
+      aboutText,
+      getSkillIcon,
+      // filtros
+      categories,
+      selectedCategory,
+      filteredProjects,
+      counts,
+      categoryIcons,
       formData,
       formStatus,
       formLoading,

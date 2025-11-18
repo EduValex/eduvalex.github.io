@@ -1,8 +1,6 @@
 <script>
-  export let currentLang = 'es';
-  export let theme = 'dark';
-  export let onChangeLang = () => {};
-  export let onToggleTheme = () => {};
+  // Svelte 5 runes: use $props() instead of export let
+  let { currentLang = $bindable('es'), theme = $bindable('dark'), onChangeLang = () => {}, onToggleTheme = () => {} } = $props();
 </script>
 
 <nav class:light={theme === 'light'}>
