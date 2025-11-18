@@ -7,7 +7,10 @@
   // Avoid Svelte 5 runes for broader runtime compatibility
   let currentLang = 'es';
   let theme = 'dark';
-  let formData = { name: '', email: '', message: '' };
+  // Use flat reactive fields instead of nested object bindings to avoid legacy/reactivity pitfalls
+  let name = '';
+  let email = '';
+  let message = '';
   let formStatus = null;
   let formLoading = false;
 
@@ -92,9 +95,9 @@
         'service_35dui0c',
         'template_dlh2p8t',
         {
-          from_name: formData.name,
-          from_email: formData.email,
-          message: formData.message
+          from_name: name,
+          from_email: email,
+          message
         },
         'qZw7aS4i2gCI3Wz2B'
       );
@@ -106,7 +109,9 @@
             ? '¡Mensaje enviado! Te responderé pronto 🚀' 
             : 'Message sent! I\'ll reply soon 🚀'
         };
-        formData = { name: '', email: '', message: '' };
+        name = '';
+        email = '';
+        message = '';
       } else {
         throw new Error('EmailJS error');
       }
@@ -388,15 +393,15 @@
         <form onsubmit={handleSubmit}>
           <div class="field">
             <label for="name" class="label">{currentLang === 'es' ? 'Nombre *' : 'Name *'}</label>
-            <input id="name" bind:value={formData.name} type="text" class="input" required />
+            <input id="name" bind:value={name} type="text" class="input" required />
           </div>
           <div class="field">
             <label for="email" class="label">Email *</label>
-            <input id="email" bind:value={formData.email} type="email" class="input" placeholder="tu@email.com" required />
+            <input id="email" bind:value={email} type="email" class="input" placeholder="tu@email.com" required />
           </div>
           <div class="field">
             <label for="message" class="label">{currentLang === 'es' ? 'Mensaje *' : 'Message *'}</label>
-            <textarea id="message" bind:value={formData.message} class="textarea" required></textarea>
+            <textarea id="message" bind:value={message} class="textarea" required></textarea>
           </div>
           {#if formStatus}
             <div class="alert {formStatus.type}">{formStatus.message}</div>
