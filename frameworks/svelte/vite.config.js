@@ -9,8 +9,8 @@ export default defineConfig({
   plugins: [
     svelte({
       compilerOptions: {
-        // Enable Svelte 5 runes mode for modern reactivity
-        runes: true,
+        // Disable runes temporarily - effect_orphan bug in production
+        runes: false,
       },
     }),
   ],

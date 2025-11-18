@@ -1,16 +1,17 @@
 <script>
+  import { onMount } from 'svelte';
   import Navbar from './lib/Navbar.svelte';
   import cvData from '@data/cv-data.json';
   import emailjs from '@emailjs/browser';
 
-  // Svelte 5 runes mode: use $state for reactive state
-  let currentLang = $state('es');
-  let theme = $state('dark');
-  let name = $state('');
-  let email = $state('');
-  let message = $state('');
-  let formStatus = $state(null);
-  let formLoading = $state(false);
+  // Legacy mode: use let instead of $state
+  let currentLang = 'es';
+  let theme = 'dark';
+  let name = '';
+  let email = '';
+  let message = '';
+  let formStatus = null;
+  let formLoading = false;
 
   const services = [
     {
@@ -77,7 +78,7 @@
     const isFull = FULLSTACK_KEYS.some(t => tech.includes(t));
     return isFull ? 'Full Stack' : 'Personal';
   };
-  let selectedCategory = $state('Todos');
+  let selectedCategory = 'Todos';
   const categories = ['Todos','Full Stack','WordPress','Personal'].filter(k => {
     if (k === 'Todos') return cvData.projects.length > 0;
     return cvData.projects.some(p => getCategory(p) === k);
@@ -85,9 +86,9 @@
   const categoryIcons = { 'Todos': '🗂️', 'WordPress': '🧩', 'Full Stack': '🧰', 'Personal': '⭐' };
   const countFor = (cat) => cat === 'Todos' ? cvData.projects.length : cvData.projects.filter(p => getCategory(p) === cat).length;
   
-  // Use $derived for computed values
-  const filteredProjects = $derived(selectedCategory === 'Todos' ? cvData.projects : cvData.projects.filter(p => getCategory(p) === selectedCategory));
-  const aboutText = $derived(currentLang === 'es' ? (cvData.about?.es || '') : (cvData.about?.en || ''));
+  // Legacy reactive statements
+  $: filteredProjects = selectedCategory === 'Todos' ? cvData.projects : cvData.projects.filter(p => getCategory(p) === selectedCategory);
+  $: aboutText = currentLang === 'es' ? (cvData.about?.es || '') : (cvData.about?.en || '');
   
   // Simple non-reactive values
   const githubUser = cvData.personal?.social?.github || '';
@@ -149,21 +150,14 @@
     }
   }
 
-  // Client init using $effect (proper Svelte 5 runes way)
-  $effect(() => {
-    if (typeof window === 'undefined') return;
-
-    // Initialize language from localStorage
+  onMount(() => {
+    // Initialize language
     const savedLang = localStorage.getItem('svelte-lang') || 'es';
-    if (currentLang !== savedLang) {
-      currentLang = savedLang;
-    }
+    currentLang = savedLang;
 
-    // Initialize theme from localStorage
+    // Initialize theme
     const savedTheme = localStorage.getItem('svelte-theme') || 'dark';
-    if (theme !== savedTheme) {
-      theme = savedTheme;
-    }
+    theme = savedTheme;
     document.body.classList.toggle('light', savedTheme === 'light');
 
     // Reveal on scroll
@@ -180,11 +174,6 @@
     );
 
     document.querySelectorAll('.reveal').forEach((el) => observer.observe(el));
-
-    // Cleanup observer on component unmount
-    return () => {
-      observer.disconnect();
-    };
   });
 </script>
 
