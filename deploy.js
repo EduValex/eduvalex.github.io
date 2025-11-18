@@ -69,7 +69,7 @@ if (fs.existsSync(astroDist)) {
 }
 
 // Copy Qwik build to /qwik path
-const qwikDist = path.join(__dirname, 'frameworks/qwik/dist');
+const qwikDist = path.join(__dirname, 'frameworks/qwik/dist/qwik');
 const qwikDeploy = path.join(deployDir, 'qwik');
 if (fs.existsSync(qwikDist)) {
   fs.cpSync(qwikDist, qwikDeploy, { recursive: true });
