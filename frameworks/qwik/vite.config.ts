@@ -5,6 +5,7 @@
 import { defineConfig, type UserConfig } from "vite";
 import { qwikVite } from "@builder.io/qwik/optimizer";
 import { qwikCity } from "@builder.io/qwik-city/vite";
+import { staticAdapter } from "@builder.io/qwik-city/adapters/static/vite";
 import tsconfigPaths from "vite-tsconfig-paths";
 import pkg from "./package.json";
 
@@ -22,7 +23,16 @@ errorOnDuplicatesPkgDeps(devDependencies, dependencies);
 export default defineConfig(({ command, mode }): UserConfig => {
   return {
     base: '/qwik/',
-    plugins: [qwikCity(), qwikVite(), tsconfigPaths({ root: "." })],
+    plugins: [
+      qwikCity({
+        adapter: staticAdapter({
+          origin: "https://eduvalex.github.io",
+        }),
+        basePathname: "/qwik/",
+      }),
+      qwikVite(),
+      tsconfigPaths({ root: "." }),
+    ],
     resolve: {
       alias: {
         '@shared': '../../shared',

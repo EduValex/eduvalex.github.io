@@ -35,6 +35,17 @@ try {
   process.exit(1);
 }
 
+// Step 1c: Build Qwik
+console.log('📦 Building Qwik app...');
+try {
+  // Ensure deps are installed (especially on clean CI environments)
+  execSync('cd frameworks/qwik && npm install && npm run build', { stdio: 'inherit' });
+  console.log('✅ Qwik build completed\n');
+} catch (error) {
+  console.error('❌ Qwik build failed');
+  process.exit(1);
+}
+
 // Step 2: Create deploy directory
 const deployDir = path.join(__dirname, 'deploy-temp');
 if (fs.existsSync(deployDir)) {
@@ -55,6 +66,13 @@ const astroDist = path.join(__dirname, 'frameworks/astro/dist');
 const astroDeploy = path.join(deployDir, 'astro');
 if (fs.existsSync(astroDist)) {
   fs.cpSync(astroDist, astroDeploy, { recursive: true });
+}
+
+// Copy Qwik build to /qwik path
+const qwikDist = path.join(__dirname, 'frameworks/qwik/dist');
+const qwikDeploy = path.join(deployDir, 'qwik');
+if (fs.existsSync(qwikDist)) {
+  fs.cpSync(qwikDist, qwikDeploy, { recursive: true });
 }
 
 // Copy shared assets

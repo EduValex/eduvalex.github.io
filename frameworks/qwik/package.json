@@ -9,8 +9,9 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "build": "qwik build",
+    "build": "vite build -c adapters/static/vite.config.ts && node scripts/prerender.mjs",
     "build.client": "vite build",
+    "build.server": "vite build --ssr src/entry.ssr.tsx",
     "dev": "vite --mode ssr --port 5178",
     "preview": "vite preview"
   },
