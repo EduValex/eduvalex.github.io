@@ -93,6 +93,19 @@ jobs:
           npm run build
 
       #############################################
+      # BUILD NEXT.JS
+      #############################################
+      - name: Install Next.js dependencies
+        run: |
+          cd frameworks/next
+          npm ci
+
+      - name: Build Next.js
+        run: |
+          cd frameworks/next
+          npm run build
+
+      #############################################
       # MERGE BUILDS INTO DEPLOY STRUCTURE
       #############################################
       - name: Create deployment structure
@@ -119,6 +132,10 @@ jobs:
           mkdir -p deploy-output/vanilla
           cp -r frameworks/vanilla/dist/* deploy-output/vanilla/
 
+          # Copy Next.js build to /next subdirectory
+          mkdir -p deploy-output/next
+          cp -r frameworks/next/out/* deploy-output/next/
+
           # Copy Tech Lab page to /lab
           mkdir -p deploy-output/lab
           cp landing/index.html deploy-output/lab/
@@ -134,6 +151,7 @@ jobs:
           cp public/favicon.ico deploy-output/vue/ 2>/dev/null || true
           cp public/favicon.ico deploy-output/solid/ 2>/dev/null || true
           cp public/favicon.ico deploy-output/vanilla/ 2>/dev/null || true
+          cp public/favicon.ico deploy-output/next/ 2>/dev/null || true
 
           # Create .nojekyll to disable Jekyll processing (CRITICAL for SPAs)
           touch deploy-output/.nojekyll
@@ -154,6 +172,8 @@ jobs:
           ls -la deploy-output/solid/
           echo "Vanilla:"
           ls -la deploy-output/vanilla/
+          echo "Next.js:"
+          ls -la deploy-output/next/
           echo "Lab:"
           ls -la deploy-output/lab/
 

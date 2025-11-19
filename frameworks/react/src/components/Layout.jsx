@@ -59,6 +59,7 @@ export function Layout({ children }) {
     { id: 'vue', name: 'Vue', icon: '💚', url: '/vue/' },
     { id: 'solid', name: 'Solid', icon: '🔷', url: '/solid/' },
     { id: 'vanilla', name: 'Vanilla', icon: '⚡', url: '/vanilla/' },
+    { id: 'next', name: 'Next.js', icon: '▲', url: '/next/' },
     { id: 'lab', name: 'Lab', icon: '🧪', url: '/lab/' },
   ];
 
@@ -69,9 +70,13 @@ export function Layout({ children }) {
         {/* Fila 1: menú + toggles */}
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-3 flex items-center justify-between gap-4">
           <div className="flex items-center gap-3 md:gap-5">
-            <div className="w-8 h-8 md:w-9 md:h-9 rounded-full bg-primary text-white flex items-center justify-center font-bold" title={personal?.name}>
-              {initials}
-            </div>
+            <button 
+              onClick={() => window.scrollTo({top:0,behavior:'smooth'})}
+              className="text-2xl hover:scale-110 transition-transform"
+              title="Volver arriba"
+            >
+              👨‍💻
+            </button>
             <nav className="hidden sm:flex items-center flex-wrap gap-1.5 md:gap-2">
               <a href="#about" className="px-2.5 py-1.5 rounded-md text-xs md:text-sm text-slate-200 hover:bg-slate-700/60">👤 Sobre mí</a>
               <a href="#services" className="px-2.5 py-1.5 rounded-md text-xs md:text-sm text-slate-200 hover:bg-slate-700/60">🚀 Servicios</a>
@@ -82,9 +87,8 @@ export function Layout({ children }) {
             </nav>
           </div>
           <div className="flex items-center gap-2 md:gap-3">
-            <LanguageToggle />
             <ThemeToggle />
-            <TechLinksInline />
+            <LanguageToggle />
           </div>
         </div>
         {/* Fila 2: switcher de frameworks */}

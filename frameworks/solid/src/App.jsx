@@ -465,7 +465,8 @@ function App() {
             <a href="/" style={{ 'margin-right': '1rem' }}>⚛️ React</a>
             <a href="/astro/" style={{ 'margin-right': '1rem' }}>⭐ Astro</a>
             <a href="/vue/" style={{ 'margin-right': '1rem' }}>💚 Vue</a>
-            <a href="/vanilla/">⚡ Vanilla</a>
+            <a href="/vanilla/" style={{ 'margin-right': '1rem' }}>⚡ Vanilla</a>
+            <a href="/next/">▲ Next.js</a>
           </p>
         </footer>
       </main>

@@ -1,5 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useTranslation } from '../hooks/useTranslation.js';
+import { ThemeToggle } from './ThemeToggle.jsx';
+import { LanguageToggle } from './LanguageToggle.jsx';
 
 export function Navbar() {
   const [activeSection, setActiveSection] = useState('');
@@ -116,6 +118,12 @@ export function Navbar() {
                 aria-label={section.label}
               />
             ))}
+          </div>
+
+          {/* Controls: Theme + Language */}
+          <div className="flex items-center gap-2">
+            <ThemeToggle />
+            <LanguageToggle />
           </div>
         </div>
 

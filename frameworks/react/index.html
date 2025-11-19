@@ -4,6 +4,16 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     
+    <!-- Aplicar tema dark INMEDIATAMENTE para evitar flash (ANTES de CSS) -->
+    <script>
+      (function() {
+        const theme = localStorage.getItem('cv_theme') || 'dark';
+        if (theme === 'dark') {
+          document.documentElement.classList.add('dark');
+        }
+      })();
+    </script>
+    
     <!-- SEO Básico -->
     <title>Eduardo Valenzuela - Full Stack Developer | React, Node.js, Python</title>
     <meta name="description" content="Full Stack Developer especializado en React, Node.js, Python y WordPress. +8 años de experiencia en desarrollo web, e-commerce y soluciones digitales. Disponible para proyectos." />
@@ -35,16 +45,6 @@
     <!-- Preconnect para optimización -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    
-      <!-- Aplicar tema dark inmediatamente para evitar flash -->
-      <script>
-        (function() {
-          const theme = localStorage.getItem('cv_theme') || 'dark';
-          if (theme === 'dark') {
-            document.documentElement.classList.add('dark');
-          }
-        })();
-      </script>
     
     <!-- Theme color for mobile address bar -->
     <meta name="theme-color" content="#0f172a" />

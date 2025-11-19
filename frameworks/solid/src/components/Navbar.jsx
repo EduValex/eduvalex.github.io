@@ -53,6 +53,7 @@ function Navbar(props) {
           <a href="/vue/" title="Vue version">💚 <span class="hidden-mobile">Vue</span></a>
           <a href="/solid/" title="Solid version" class="active">🔷 <span class="hidden-mobile">Solid</span></a>
           <a href="/vanilla/" title="Vanilla JS version">⚡ <span class="hidden-mobile">Vanilla</span></a>
+          <a href="/next/" title="Next.js version">▲ <span class="hidden-mobile">Next.js</span></a>
           <a href="/lab/" title="Sobre este proyecto">🧪 <span class="hidden-mobile">Lab</span></a>
         </div>
       </div>
