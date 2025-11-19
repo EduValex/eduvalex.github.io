@@ -1,9 +1,7 @@
 'use client'
 
 import { useEffect, useState } from 'react'
-
-// Importar datos del CV
-const cvData = require('../../../shared/data/cv-data.json')
+import { cvData } from './data'
 
 export default function HomePage() {
   const [mounted, setMounted] = useState(false)
