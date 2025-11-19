@@ -66,8 +66,6 @@ jobs:
           cd frameworks/vue
           npm run build
 
-      # NOTE: Qwik build temporarily disabled to unblock deploy
-
       #############################################
       # BUILD SOLID
       #############################################
@@ -113,8 +111,6 @@ jobs:
           mkdir -p deploy-output/vue
           cp -r frameworks/vue/dist/* deploy-output/vue/
 
-          # Qwik copy disabled for now
-
           # Copy Solid build to /solid subdirectory
           mkdir -p deploy-output/solid
           cp -r frameworks/solid/dist/* deploy-output/solid/
@@ -136,7 +132,6 @@ jobs:
           # Copy favicon to all framework subdirectories
           cp public/favicon.ico deploy-output/astro/ 2>/dev/null || true
           cp public/favicon.ico deploy-output/vue/ 2>/dev/null || true
-          # favicon for Qwik disabled
           cp public/favicon.ico deploy-output/solid/ 2>/dev/null || true
           cp public/favicon.ico deploy-output/vanilla/ 2>/dev/null || true
 
@@ -155,7 +150,6 @@ jobs:
           ls -la deploy-output/astro/
           echo "Vue:"
           ls -la deploy-output/vue/
-          # Qwik listing disabled
           echo "Solid:"
           ls -la deploy-output/solid/
           echo "Vanilla:"

@@ -40,7 +40,6 @@
         <a href="/" title="React version">⚛️ <span class="hidden-mobile">React</span></a>
         <a href="/astro/" title="Astro version">🪐 <span class="hidden-mobile">Astro</span></a>
         <a href="/vue/" title="Vue version" class="active">💚 <span class="hidden-mobile">Vue</span></a>
-        <a href="/svelte/" title="Svelte version">🧡 <span class="hidden-mobile">Svelte</span></a>
         <a href="/solid/" title="Solid version">🔷 <span class="hidden-mobile">Solid</span></a>
         <a href="/vanilla/" title="Vanilla JS version">⚡ <span class="hidden-mobile">Vanilla</span></a>
         <a href="/lab/" title="Sobre este proyecto">🧪 <span class="hidden-mobile">Lab</span></a>

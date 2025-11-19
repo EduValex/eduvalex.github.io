@@ -360,7 +360,6 @@ function renderContent() {
         <a href="/" style="margin-right: 1rem;">⚛️ React</a>
         <a href="/astro/" style="margin-right: 1rem;">⭐ Astro</a>
         <a href="/vue/" style="margin-right: 1rem;">💚 Vue</a>
-        <a href="/svelte/" style="margin-right: 1rem;">🧡 Svelte</a>
         <a href="/solid/">🔷 Solid</a>
       </p>
     </footer>

@@ -57,7 +57,6 @@ export function Layout({ children }) {
     { id: 'react', name: 'React', icon: '⚛️', url: '/', active: true },
     { id: 'astro', name: 'Astro', icon: '🪐', url: '/astro/' },
     { id: 'vue', name: 'Vue', icon: '💚', url: '/vue/' },
-    { id: 'svelte', name: 'Svelte', icon: '🧡', url: '/svelte/' },
     { id: 'solid', name: 'Solid', icon: '🔷', url: '/solid/' },
     { id: 'vanilla', name: 'Vanilla', icon: '⚡', url: '/vanilla/' },
     { id: 'lab', name: 'Lab', icon: '🧪', url: '/lab/' },
