@@ -1,4 +1,5 @@
 import { useMemo, useState } from 'react';
+import { motion } from 'framer-motion';
 import data from '@data/cv-data.json';
 import { useTranslation } from '../../hooks/useTranslation.js';
 import {
@@ -189,12 +190,39 @@ export function ProjectsSection() {
       </div>
 
       {/* Lista de proyectos */}
-      <div className="grid gap-6 md:grid-cols-2">
+      <motion.div 
+        className="grid gap-6 md:grid-cols-2"
+        initial="hidden"
+        animate="visible"
+        variants={{
+          visible: {
+            transition: {
+              staggerChildren: 0.1
+            }
+          }
+        }}
+      >
         {filtered.map((project, index) => (
-          <article 
+          <motion.article 
             key={project.name} 
             className="panel p-6 flex flex-col gap-4 hover-lift transition-all"
-            style={{ animationDelay: `${index * 100}ms` }}
+            variants={{
+              hidden: { opacity: 0, y: 50, scale: 0.95 },
+              visible: { 
+                opacity: 1, 
+                y: 0, 
+                scale: 1,
+                transition: {
+                  type: "spring",
+                  stiffness: 100,
+                  damping: 15
+                }
+              }
+            }}
+            whileHover={{ 
+              scale: 1.02,
+              transition: { duration: 0.2 }
+            }}
           >
             <header>
               <div className="flex items-start justify-between gap-4">
@@ -264,9 +292,9 @@ export function ProjectsSection() {
                 </span>
               )}
             </div>
-          </article>
+          </motion.article>
         ))}
-      </div>
+      </motion.div>
     </section>
   );
 }

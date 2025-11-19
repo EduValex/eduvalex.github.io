@@ -1,3 +1,4 @@
+import { motion, useScroll, useTransform } from 'framer-motion';
 import data from '@data/cv-data.json';
 import { LazyImage } from './LazyImage.jsx';
 import { useTypingEffect } from '../hooks/useTypingEffect.js';
@@ -7,6 +8,11 @@ export function Hero() {
   const { personal } = data;
   const { t } = useTranslation();
   
+  // Parallax effect con scroll
+  const { scrollY } = useScroll();
+  const y = useTransform(scrollY, [0, 500], [0, 150]);
+  const opacity = useTransform(scrollY, [0, 300], [1, 0]);
+  
   // Efecto de typing para el título
   const roles = t('hero.roles');
   const typedText = useTypingEffect(roles, 100, 50, 2000);
@@ -14,7 +20,14 @@ export function Hero() {
   const cvUrl = '/CV-Eduardo-Valenzuela.pdf';
 
   return (
-  <section id="hero" className="panel p-6 mt-6 flex flex-col md:flex-row items-center gap-6 animate-fade-in relative overflow-hidden">
+  <motion.section 
+    id="hero" 
+    className="panel p-6 mt-6 flex flex-col md:flex-row items-center gap-6 relative overflow-hidden"
+    style={{ y, opacity }}
+    initial={{ opacity: 0, y: 20 }}
+    animate={{ opacity: 1, y: 0 }}
+    transition={{ duration: 0.6, ease: "easeOut" }}
+  >
       {/* Efecto de gradiente animado de fondo */}
       <div className="absolute inset-0 opacity-5 dark:opacity-10 pointer-events-none">
         <div className="absolute inset-0 bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 animate-gradient-shift" 
@@ -41,25 +54,29 @@ export function Hero() {
         <p className="mt-2 text-slate-600 dark:text-slate-300">{personal.tagline}</p>
         
         <div className="flex flex-wrap gap-3 mt-4 justify-center md:justify-start">
-          <a
+          <motion.a
             href={cvUrl}
             download="CV-Eduardo-Valenzuela.pdf"
-            className="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg bg-primary text-white font-medium hover:bg-primary-dark transition-all hover-lift shadow-md"
+            className="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg bg-primary text-white font-medium hover:bg-primary-dark transition-all shadow-md"
             title="Descargar CV"
+            whileHover={{ scale: 1.05, y: -2 }}
+            whileTap={{ scale: 0.95 }}
           >
             <span>📄</span>
             Descargar CV
-          </a>
+          </motion.a>
 
-          <a
+          <motion.a
             href="#contact"
-            className="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg border-2 border-primary text-primary font-medium hover:bg-primary hover:text-white transition-all hover-lift shadow-md"
+            className="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg border-2 border-primary text-primary font-medium hover:bg-primary hover:text-white transition-all shadow-md"
+            whileHover={{ scale: 1.05, y: -2 }}
+            whileTap={{ scale: 0.95 }}
           >
             <span>💬</span>
             {t('hero.contact')}
-          </a>
+          </motion.a>
         </div>
       </div>
-    </section>
+    </motion.section>
   );
 }
