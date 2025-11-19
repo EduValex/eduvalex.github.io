@@ -1,5 +1,6 @@
 ---
 import cv from '../../../../shared/data/cv-data.json';
+import { ViewTransitions } from 'astro:transitions';
 const personal = cv.personal;
 const projects = cv.projects;
 const experience = cv.experience;
@@ -113,6 +114,7 @@ const SERVICES = [
     <title>Eduardo Valenzuela — Full Stack Developer (Astro)</title>
     <meta name="description" content="Portfolio de Eduardo Valenzuela — Full Stack Developer especializado en React, Django, WordPress y SEO" />
     <link rel="icon" href={`${baseUrl}favicon.ico`} />
+    <ViewTransitions />
     <!-- EmailJS SDK desde CDN -->
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
     <style>
