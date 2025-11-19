@@ -1,7 +1,7 @@
 'use client'
 
 import { useEffect, useState } from 'react'
-import { cvData } from './data'
+import { cvData, getSkillIcon } from './data'
 
 export default function HomePage() {
   const [mounted, setMounted] = useState(false)
@@ -20,10 +20,18 @@ export default function HomePage() {
     }
     if (savedLang) setLang(savedLang)
 
-    // Load EmailJS
+    // Load EmailJS SDK
     const script = document.createElement('script')
     script.src = 'https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js'
     script.async = true
+    script.onload = () => {
+      // Initialize EmailJS after script loads
+      // @ts-ignore
+      if (window.emailjs) {
+        // @ts-ignore
+        window.emailjs.init('gUsfRoO2OYD5SKPHC')
+      }
+    }
     document.head.appendChild(script)
   }, [])
 
@@ -209,7 +217,7 @@ export default function HomePage() {
           <h2 style={{ textAlign: 'center', marginBottom: '2rem' }}>
             🚀 {t('Servicios', 'Services')}
           </h2>
-          <div className="grid">
+          <div className="grid-2">
             {services.map((service: any, idx: number) => (
               <div key={idx} className="service">
                 <div className="icon-box">{service.icon}</div>
@@ -305,9 +313,12 @@ export default function HomePage() {
             {Object.entries(skills).map(([category, skillList]: [string, any]) => (
               <div key={category} className="panel">
                 <h3 style={{ marginBottom: '1rem' }}>{category}</h3>
-                <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.5rem' }}>
+                <div className="skills-badges">
                   {skillList.map((skill: string) => (
-                    <span key={skill} className="badge">{skill}</span>
+                    <span key={skill} className="badge" style={{ display: 'flex', alignItems: 'center', gap: '0.4rem' }}>
+                      <span dangerouslySetInnerHTML={{ __html: getSkillIcon(skill) }} />
+                      {skill}
+                    </span>
                   ))}
                 </div>
               </div>
