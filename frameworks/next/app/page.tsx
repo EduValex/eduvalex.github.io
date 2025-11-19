@@ -25,11 +25,11 @@ export default function HomePage() {
     script.src = 'https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js'
     script.async = true
     script.onload = () => {
-      // Initialize EmailJS after script loads
+      // Initialize EmailJS with publicKey object (like React/Astro)
       // @ts-ignore
       if (window.emailjs) {
         // @ts-ignore
-        window.emailjs.init('gUsfRoO2OYD5SKPHC')
+        window.emailjs.init({ publicKey: 'gUsfRoO2OYD5SKPHC' })
       }
     }
     document.head.appendChild(script)
@@ -47,7 +47,6 @@ export default function HomePage() {
     setFormStatus('sending')
     
     const form = e.currentTarget
-    const formData = new FormData(form)
     
     try {
       // @ts-ignore
@@ -55,16 +54,12 @@ export default function HomePage() {
         throw new Error('EmailJS not loaded')
       }
       
-      // Use send() instead of sendForm() for better compatibility with static sites
+      // Use sendForm() like React and Astro versions
       // @ts-ignore
-      await window.emailjs.send(
+      await window.emailjs.sendForm(
         'service_nbv85wa',
         'template_rmbpd7d',
-        {
-          from_name: formData.get('from_name'),
-          from_email: formData.get('from_email'),
-          message: formData.get('message')
-        },
+        form,
         'gUsfRoO2OYD5SKPHC'
       )
       setFormStatus('success')
