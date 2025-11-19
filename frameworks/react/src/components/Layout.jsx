@@ -1,14 +1,10 @@
-import { useEffect, useMemo, useState } from 'react';
+import { useEffect } from 'react';
 import { initTheme } from '../lib/theme.js';
 import { initLanguage } from '../lib/i18n.js';
 import { useScrollReveal } from '../hooks/useScrollReveal.js';
 import { useTranslation } from '../hooks/useTranslation.js';
 import { ThemeToggle } from './ThemeToggle.jsx';
 import { LanguageToggle } from './LanguageToggle.jsx';
-import { TechLinksInline } from './TechLinksInline.jsx';
-import data from '@data/cv-data.json';
-
-// Eliminado FrameworkSwitcher: ahora usamos TechDropdown controlado
 
 export function Layout({ children }) {
   useEffect(() => {
@@ -19,39 +15,7 @@ export function Layout({ children }) {
   // Hook para animaciones de scroll
   useScrollReveal();
 
-  const personal = data.personal;
-  const initials = useMemo(() => {
-    if (!personal?.name) return 'EV';
-    return personal.name
-      .split(' ')
-      .filter(Boolean)
-      .map(n => n[0])
-      .slice(0, 2)
-      .join('')
-      .toUpperCase();
-  }, [personal?.name]);
-
-  const [techOpen, setTechOpen] = useState(false);
-  // Cierre por click fuera y tecla ESC (UX estándar)
-  useEffect(() => {
-    if (!techOpen) return;
-    const handleDocClick = (e) => {
-      const target = e.target;
-      if (target && target.closest && target.closest('[data-tech-dropdown]')) {
-        return; // click dentro del dropdown
-      }
-      setTechOpen(false);
-    };
-    const handleKey = (e) => {
-      if (e.key === 'Escape') setTechOpen(false);
-    };
-    document.addEventListener('click', handleDocClick);
-    document.addEventListener('keydown', handleKey);
-    return () => {
-      document.removeEventListener('click', handleDocClick);
-      document.removeEventListener('keydown', handleKey);
-    };
-  }, [techOpen]);
+  const { t } = useTranslation();
 
   const frameworks = [
     { id: 'react', name: 'React', icon: '⚛️', url: '/', active: true },
@@ -65,49 +29,65 @@ export function Layout({ children }) {
 
   return (
     <div className="min-h-screen flex flex-col">
-      {/* Header de dos filas con iconos (unificado) */}
-      <header className="sticky top-0 z-50 backdrop-blur-lg bg-slate-900/85 text-slate-100 border-b border-slate-700/60 shadow-md">
-        {/* Fila 1: menú + toggles */}
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-3 flex items-center justify-between gap-4">
-          <div className="flex items-center gap-3 md:gap-5">
-            <button 
-              onClick={() => window.scrollTo({top:0,behavior:'smooth'})}
-              className="text-2xl hover:scale-110 transition-transform"
+      {/* Navbar idéntico a Astro */}
+      <nav>
+        <div className="inner">
+          {/* Fila 1: Menu principal */}
+          <div className="menu-row">
+            <button
+              className="logo-btn"
+              onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
               title="Volver arriba"
             >
               👨‍💻
             </button>
-            <nav className="hidden sm:flex items-center flex-wrap gap-1.5 md:gap-2">
-              <a href="#about" className="px-2.5 py-1.5 rounded-md text-xs md:text-sm text-slate-200 hover:bg-slate-700/60">👤 Sobre mí</a>
-              <a href="#services" className="px-2.5 py-1.5 rounded-md text-xs md:text-sm text-slate-200 hover:bg-slate-700/60">🚀 Servicios</a>
-              <a href="#experience" className="px-2.5 py-1.5 rounded-md text-xs md:text-sm text-slate-200 hover:bg-slate-700/60">💼 Experiencia</a>
-              <a href="#projects" className="px-2.5 py-1.5 rounded-md text-xs md:text-sm text-slate-200 hover:bg-slate-700/60">🎨 Proyectos</a>
-              <a href="#skills" className="px-2.5 py-1.5 rounded-md text-xs md:text-sm text-slate-200 hover:bg-slate-700/60">⚡ Habilidades</a>
-              <a href="#contact" className="px-2.5 py-1.5 rounded-md text-xs md:text-sm text-slate-200 hover:bg-slate-700/60">📧 Contacto</a>
-            </nav>
+            <div className="menu-links">
+              <a href="#about">
+                <span className="icon">👤</span>
+                <span>{t('Sobre mí', 'About')}</span>
+              </a>
+              <a href="#services">
+                <span className="icon">🚀</span>
+                <span>{t('Servicios', 'Services')}</span>
+              </a>
+              <a href="#experience">
+                <span className="icon">💼</span>
+                <span>{t('Experiencia', 'Experience')}</span>
+              </a>
+              <a href="#projects">
+                <span className="icon">🎨</span>
+                <span>{t('Proyectos', 'Projects')}</span>
+              </a>
+              <a href="#skills">
+                <span className="icon">⚡</span>
+                <span>{t('Habilidades', 'Skills')}</span>
+              </a>
+              <a href="#contact">
+                <span className="icon">📧</span>
+                <span>{t('Contacto', 'Contact')}</span>
+              </a>
+            </div>
+            <div className="controls">
+              <ThemeToggle />
+              <LanguageToggle />
+            </div>
           </div>
-          <div className="flex items-center gap-2 md:gap-3">
-            <ThemeToggle />
-            <LanguageToggle />
-          </div>
-        </div>
-        {/* Fila 2: switcher de frameworks */}
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pb-3">
-          <div className="flex items-center justify-center gap-1 overflow-x-auto scrollbar-hide">
+
+          {/* Fila 2: Framework switcher */}
+          <div className="frameworks-row">
             {frameworks.map((fw) => (
               <a
                 key={fw.id}
                 href={fw.url}
-                className={`${fw.active ? 'bg-blue-600 text-white' : 'text-slate-200 hover:bg-slate-700/60'} px-3 py-1 rounded-md text-xs font-medium transition-all hover:scale-105 whitespace-nowrap`}
+                className={fw.active ? 'active' : ''}
                 title={`Ver en ${fw.name}`}
               >
-                <span className="mr-1">{fw.icon}</span>
-                <span className="hidden sm:inline">{fw.name}</span>
+                {fw.icon} <span className="hidden-mobile">{fw.name}</span>
               </a>
             ))}
           </div>
         </div>
-      </header>
+      </nav>
       {/* El contenido principal se envuelve (desde About en adelante) en App.jsx */}
       <main className="flex-1 py-10 flex flex-col gap-12">
         {children}

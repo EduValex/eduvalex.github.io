@@ -1,5 +1,6 @@
 /* Importar animaciones primero */
 @import './animations.css';
+@import './navbar.css';
 
 @tailwind base;
 @tailwind components;

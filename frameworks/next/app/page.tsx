@@ -43,161 +43,131 @@ export default function HomePage() {
   ]
 
   return (
-    <div className="min-h-screen bg-gray-50 dark:bg-slate-900">
-      {/* Navbar */}
-      <nav className="sticky top-0 z-50 backdrop-blur-lg bg-white/95 dark:bg-slate-900/95 border-b border-slate-200 dark:border-slate-700 shadow-lg">
-        {/* Fila 1: Logo + Menu + Controls */}
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-between h-14 border-b border-slate-200 dark:border-slate-700/50">
+    <>
+      {/* Navbar idéntico a Astro */}
+      <nav>
+        <div className="inner">
+          {/* Fila 1: Menu principal */}
+          <div className="menu-row">
             <button
+              className="logo-btn"
               onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-              className="text-2xl hover:scale-110 transition-transform"
+              title="Volver arriba"
             >
               👨‍💻
             </button>
-            <div className="hidden md:flex items-center gap-1">
-              <a href="#about" className="px-3 py-1.5 rounded-lg text-sm text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800">
-                <span className="mr-1.5">👤</span>
-                <span className="hidden lg:inline">{t('Sobre mí', 'About')}</span>
+            <div className="menu-links">
+              <a href="#about">
+                <span className="icon">👤</span>
+                <span>{t('Sobre mí', 'About')}</span>
               </a>
-              <a href="#services" className="px-3 py-1.5 rounded-lg text-sm text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800">
-                <span className="mr-1.5">🚀</span>
-                <span className="hidden lg:inline">{t('Servicios', 'Services')}</span>
+              <a href="#services">
+                <span className="icon">🚀</span>
+                <span>{t('Servicios', 'Services')}</span>
               </a>
-              <a href="#experience" className="px-3 py-1.5 rounded-lg text-sm text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800">
-                <span className="mr-1.5">💼</span>
-                <span className="hidden lg:inline">{t('Experiencia', 'Experience')}</span>
+              <a href="#experience">
+                <span className="icon">💼</span>
+                <span>{t('Experiencia', 'Experience')}</span>
               </a>
-              <a href="#projects" className="px-3 py-1.5 rounded-lg text-sm text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800">
-                <span className="mr-1.5">🎨</span>
-                <span className="hidden lg:inline">{t('Proyectos', 'Projects')}</span>
+              <a href="#projects">
+                <span className="icon">🎨</span>
+                <span>{t('Proyectos', 'Projects')}</span>
               </a>
-              <a href="#skills" className="px-3 py-1.5 rounded-lg text-sm text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800">
-                <span className="mr-1.5">⚡</span>
-                <span className="hidden lg:inline">{t('Habilidades', 'Skills')}</span>
+              <a href="#skills">
+                <span className="icon">⚡</span>
+                <span>{t('Habilidades', 'Skills')}</span>
               </a>
-              <a href="#contact" className="px-3 py-1.5 rounded-lg text-sm text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800">
-                <span className="mr-1.5">📧</span>
-                <span className="hidden lg:inline">{t('Contacto', 'Contact')}</span>
+              <a href="#contact">
+                <span className="icon">📧</span>
+                <span>{t('Contacto', 'Contact')}</span>
               </a>
             </div>
-            <div className="flex items-center gap-2">
-              <button
-                onClick={toggleTheme}
-                className="p-2 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800"
-                aria-label="Toggle theme"
-              >
-                {theme === 'dark' ? '☀️' : '🌙'}
+            <div className="controls">
+              <button className="theme-toggle" onClick={toggleTheme} title="Toggle theme">
+                <span>{theme === 'dark' ? '🌙' : '☀️'}</span>
               </button>
-              <button
-                onClick={toggleLang}
-                className="px-3 py-1 rounded-lg text-sm font-medium hover:bg-slate-100 dark:hover:bg-slate-800"
-              >
-                {lang === 'es' ? 'ES' : 'EN'}
-              </button>
+              <div className="lang-toggle">
+                <button
+                  className={lang === 'es' ? 'active' : ''}
+                  onClick={() => { setLang('es'); localStorage.setItem('lang', 'es'); }}
+                >
+                  ES
+                </button>
+                <button
+                  className={lang === 'en' ? 'active' : ''}
+                  onClick={() => { setLang('en'); localStorage.setItem('lang', 'en'); }}
+                >
+                  EN
+                </button>
+              </div>
             </div>
           </div>
+
           {/* Fila 2: Framework switcher */}
-          <div className="flex items-center justify-center h-10 gap-1 overflow-x-auto scrollbar-hide">
+          <div className="frameworks-row">
             {frameworks.map((fw) => (
               <a
                 key={fw.id}
                 href={fw.url}
-                className={`px-3 py-1 rounded-md text-xs font-medium transition-all hover:scale-105 whitespace-nowrap ${
-                  fw.active
-                    ? 'bg-gradient-to-r from-blue-600 to-purple-600 text-white shadow-md'
-                    : 'text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800'
-                }`}
+                className={fw.active ? 'active' : ''}
                 title={`Ver en ${fw.name}`}
               >
-                <span className="mr-1">{fw.icon}</span>
-                <span className="hidden sm:inline">{fw.name}</span>
+                {fw.icon} <span className="hidden-mobile">{fw.name}</span>
               </a>
             ))}
           </div>
         </div>
       </nav>
 
-      {/* Hero */}
-      <section className="py-20 px-4">
-        <div className="max-w-4xl mx-auto text-center">
-          <h1 className="text-5xl md:text-6xl font-bold mb-4 bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
-            Eduardo Valenzuela Milla
-          </h1>
-          <p className="text-xl md:text-2xl text-slate-600 dark:text-slate-400 mb-8">
+      <div className="container">
+        {/* Hero */}
+        <section className="panel">
+          <h1>{t('Hola, soy', 'Hi, I\'m')} Eduardo Valenzuela Milla</h1>
+          <p className="text-lg text-slate-700 dark:text-slate-300">
             {t('Desarrollador Full Stack', 'Full Stack Developer')}
           </p>
-          <p className="text-lg text-slate-700 dark:text-slate-300 max-w-2xl mx-auto">
+          <p>
             {t(
-              'Desarrollador Full Stack apasionado por la construcción de soluciones digitales. Especializado en WordPress, Django, React y más.',
-              'Full Stack Developer passionate about building digital solutions. Specialized in WordPress, Django, React and more.'
+              'Desarrollador Full Stack apasionado por la construcción de soluciones digitales.',
+              'Full Stack Developer passionate about building digital solutions.'
             )}
           </p>
-          <div className="mt-8 flex justify-center gap-4">
-            <a
-              href="#contact"
-              className="px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white rounded-lg font-medium transition-colors"
-            >
-              {t('Contactar', 'Contact')}
+          <div className="mt-4 flex gap-3">
+            <a href="#contact" className="btn">
+              {t('📧 Contactar', '📧 Contact')}
             </a>
-            <a
-              href="/CV-Eduardo-Valenzuela.pdf"
-              className="px-6 py-3 border border-slate-300 dark:border-slate-700 hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-700 dark:text-slate-300 rounded-lg font-medium transition-colors"
-              download
-            >
-              {t('Descargar CV', 'Download CV')}
+            <a href="/CV-Eduardo-Valenzuela.pdf" className="btn secondary" download>
+              {t('📄 Descargar CV', '📄 Download CV')}
             </a>
           </div>
-        </div>
-      </section>
+        </section>
 
-      {/* About */}
-      <section id="about" className="py-16 px-4 bg-white dark:bg-slate-800">
-        <div className="max-w-4xl mx-auto">
-          <h2 className="text-3xl font-bold mb-8 text-center">
-            👨‍💻 {t('Sobre mí', 'About Me')}
-          </h2>
-          <div className="prose dark:prose-invert max-w-none text-slate-700 dark:text-slate-300">
-            <p>
-              {t(
-                'Mi trayectoria en tecnología comenzó en la Universidad de La Frontera (UFRO) en Temuco, Chile, donde descubrí mi pasión por convertir ideas en soluciones digitales.',
-                'My journey in technology began at Universidad de La Frontera (UFRO) in Temuco, Chile, where I discovered my passion for turning ideas into digital solutions.'
-              )}
-            </p>
-            <p>
-              {t(
-                'Hoy combino lo mejor de ambos mundos: ayudo a las empresas a crecer digitalmente mientras mantengo mi conexión con el bienestar a través del yoga. Mi enfoque permanece constante: código limpio, soluciones escalables y compromiso genuino con cada proyecto.',
-                'Today I combine the best of both worlds: helping businesses grow digitally while maintaining my connection to wellness through yoga. My approach remains constant: clean code, scalable solutions, and genuine commitment to every project.'
-              )}
-            </p>
+        {/* About */}
+        <section id="about" className="panel">
+          <h2>👨‍💻 {t('Sobre mí', 'About Me')}</h2>
+          <p>
+            {t(
+              'Mi trayectoria en tecnología comenzó en la Universidad de La Frontera (UFRO) en Temuco, Chile, donde descubrí mi pasión por convertir ideas en soluciones digitales.',
+              'My journey in technology began at Universidad de La Frontera (UFRO) in Temuco, Chile, where I discovered my passion for turning ideas into digital solutions.'
+            )}
+          </p>
+        </section>
+
+        {/* Contact */}
+        <section id="contact" className="panel">
+          <h2>📧 {t('Contacto', 'Contact')}</h2>
+          <div className="flex flex-col gap-2">
+            <a href="mailto:valenzuela.edo@gmail.com">valenzuela.edo@gmail.com</a>
+            <a href="https://github.com/eduvalex">GitHub</a>
+            <a href="https://linkedin.com/in/eduardo-valenzuela-milla">LinkedIn</a>
           </div>
-        </div>
-      </section>
+        </section>
 
-      {/* Contact */}
-      <section id="contact" className="py-16 px-4">
-        <div className="max-w-4xl mx-auto text-center">
-          <h2 className="text-3xl font-bold mb-8">
-            📧 {t('Contacto', 'Contact')}
-          </h2>
-          <div className="flex flex-col items-center gap-4">
-            <a href="mailto:valenzuela.edo@gmail.com" className="text-blue-600 dark:text-blue-400 hover:underline">
-              valenzuela.edo@gmail.com
-            </a>
-            <a href="https://github.com/eduvalex" className="text-blue-600 dark:text-blue-400 hover:underline">
-              GitHub
-            </a>
-            <a href="https://linkedin.com/in/eduardo-valenzuela-milla" className="text-blue-600 dark:text-blue-400 hover:underline">
-              LinkedIn
-            </a>
-          </div>
-        </div>
-      </section>
-
-      {/* Footer */}
-      <footer className="py-8 text-center text-slate-600 dark:text-slate-400 border-t border-slate-200 dark:border-slate-700">
-        <p>© 2025 Eduardo Valenzuela — {t('Hecho con', 'Built with')} ▲ Next.js</p>
-      </footer>
-    </div>
+        {/* Footer */}
+        <footer style={{ textAlign: 'center', padding: '2rem 0', color: '#64748b', fontSize: '0.85rem' }}>
+          <p>© 2025 Eduardo Valenzuela — {t('Hecho con', 'Built with')} ▲ Next.js</p>
+        </footer>
+      </div>
+    </>
   )
 }
