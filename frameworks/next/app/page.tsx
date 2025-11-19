@@ -51,16 +51,27 @@ export default function HomePage() {
     
     try {
       // @ts-ignore
-      await window.emailjs.sendForm(
+      if (!window.emailjs) {
+        throw new Error('EmailJS not loaded')
+      }
+      
+      // Use send() instead of sendForm() for better compatibility with static sites
+      // @ts-ignore
+      await window.emailjs.send(
         'service_nbv85wa',
         'template_rmbpd7d',
-        form,
+        {
+          from_name: formData.get('from_name'),
+          from_email: formData.get('from_email'),
+          message: formData.get('message')
+        },
         'gUsfRoO2OYD5SKPHC'
       )
       setFormStatus('success')
       form.reset()
       setTimeout(() => setFormStatus('idle'), 5000)
     } catch (error) {
+      console.error('EmailJS error:', error)
       setFormStatus('error')
       setTimeout(() => setFormStatus('idle'), 5000)
     }
