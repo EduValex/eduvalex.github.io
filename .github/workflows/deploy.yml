@@ -67,16 +67,16 @@ jobs:
           npm run build
 
       #############################################
-      # BUILD SVELTE
+      # BUILD QWIK
       #############################################
-      - name: Install Svelte dependencies
+      - name: Install Qwik dependencies
         run: |
-          cd frameworks/svelte
+          cd frameworks/qwik
           npm ci
 
-      - name: Build Svelte
+      - name: Build Qwik (static + prerender)
         run: |
-          cd frameworks/svelte
+          cd frameworks/qwik
           npm run build
 
       #############################################
@@ -124,9 +124,15 @@ jobs:
           mkdir -p deploy-output/vue
           cp -r frameworks/vue/dist/* deploy-output/vue/
 
-          # Copy Svelte build to /svelte subdirectory
-          mkdir -p deploy-output/svelte
-          cp -r frameworks/svelte/dist/* deploy-output/svelte/
+          # Copy Qwik build to /qwik subdirectory (index.html + assets)
+          mkdir -p deploy-output/qwik
+          # Qwik prerender writes index.html to dist/qwik
+          cp -r frameworks/qwik/dist/qwik/* deploy-output/qwik/
+          # Qwik client assets live in dist/build (hashed files)
+          mkdir -p deploy-output/qwik/build
+          cp -r frameworks/qwik/dist/build/* deploy-output/qwik/build/ 2>/dev/null || true
+          # Optional: q-manifest is not required for client, but include if present
+          cp frameworks/qwik/dist/q-manifest.json deploy-output/qwik/ 2>/dev/null || true
 
           # Copy Solid build to /solid subdirectory
           mkdir -p deploy-output/solid
@@ -149,7 +155,7 @@ jobs:
           # Copy favicon to all framework subdirectories
           cp public/favicon.ico deploy-output/astro/ 2>/dev/null || true
           cp public/favicon.ico deploy-output/vue/ 2>/dev/null || true
-          cp public/favicon.ico deploy-output/svelte/ 2>/dev/null || true
+          cp public/favicon.ico deploy-output/qwik/ 2>/dev/null || true
           cp public/favicon.ico deploy-output/solid/ 2>/dev/null || true
           cp public/favicon.ico deploy-output/vanilla/ 2>/dev/null || true
 
@@ -168,8 +174,8 @@ jobs:
           ls -la deploy-output/astro/
           echo "Vue:"
           ls -la deploy-output/vue/
-          echo "Svelte:"
-          ls -la deploy-output/svelte/
+          echo "Qwik:"
+          ls -la deploy-output/qwik/
           echo "Solid:"
           ls -la deploy-output/solid/
           echo "Vanilla:"
