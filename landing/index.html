@@ -59,6 +59,27 @@
       margin-bottom: 0;
     }
 
+    .back-btn {
+      display: inline-block;
+      margin: 1.5rem 0 0.5rem;
+      padding: 0.75rem 1.5rem;
+      background: rgba(255, 255, 255, 0.2);
+      border: 2px solid rgba(255, 255, 255, 0.3);
+      border-radius: 999px;
+      color: white;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.95rem;
+      transition: all 0.3s ease;
+      animation: fadeIn 0.6s ease 0.5s both;
+    }
+
+    .back-btn:hover {
+      background: rgba(255, 255, 255, 0.3);
+      border-color: rgba(255, 255, 255, 0.5);
+      transform: translateX(-4px);
+    }
+
     .frameworks {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
@@ -84,6 +105,9 @@
     .framework-card:nth-child(2) { animation-delay: 0.6s; }
     .framework-card:nth-child(3) { animation-delay: 0.7s; }
     .framework-card:nth-child(4) { animation-delay: 0.8s; }
+    .framework-card:nth-child(5) { animation-delay: 0.9s; }
+    .framework-card:nth-child(6) { animation-delay: 1.0s; }
+    .framework-card:nth-child(7) { animation-delay: 1.1s; }
 
     .framework-card::before {
       content: '';
@@ -229,10 +253,12 @@
 
     <div class="intro">
       <p>
-        Este CV está implementado en <strong>6 frameworks modernos</strong> (React, Astro, Vue, Svelte, Solid, Vanilla JS) para demostrar diferentes enfoques técnicos y arquitecturas.
+        Este CV está implementado en <strong>7 frameworks modernos</strong> (React, Astro, Vue, Svelte, Solid, Next.js, Vanilla JS) para demostrar diferentes enfoques técnicos y arquitecturas.
         Cada versión usa la <strong>misma fuente de datos</strong> (JSON compartido) pero con su propia sintaxis y optimizaciones. <strong>Elige tu favorito:</strong>
       </p>
     </div>
+
+    <a href="/" class="back-btn">← Volver al CV</a>
 
     <div class="frameworks">
       <a href="/" class="framework-card">
@@ -276,6 +302,13 @@
         <div class="framework-desc">Pure JavaScript, DOM manipulation directa, sin dependencias</div>
         <span class="badge production">✓ Producción</span>
       </a>
+
+      <a href="/next/" class="framework-card">
+        <span class="framework-icon">▲</span>
+        <div class="framework-name">Next.js</div>
+        <div class="framework-desc">React framework con SSG, App Router, optimización automática</div>
+        <span class="badge production">✓ Producción</span>
+      </a>
     </div>
 
     <footer>
@@ -283,7 +316,7 @@
         💻 Proyecto educativo comparativo ·
         <a href="https://github.com/eduvalex/eduvalex.github.io" target="_blank" rel="noopener">Ver código en GitHub</a>
       </p>
-      <p style="margin-top: 0.5rem; opacity: 0.7;">© 2025 Eduardo Valenzuela · 6 frameworks, 1 portfolio</p>
+      <p style="margin-top: 0.5rem; opacity: 0.7;">© 2025 Eduardo Valenzuela · 7 frameworks, 1 portfolio</p>
     </footer>
   </div>
 </body>
