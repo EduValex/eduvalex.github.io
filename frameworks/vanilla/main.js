@@ -181,7 +181,7 @@ function renderContent() {
           ${t('Soluciones digitales completas para hacer crecer tu negocio', 'Complete digital solutions to grow your business')}
         </p>
       </div>
-      <div class="grid">
+      <div class="grid-2">
         ${services.map(service => `
           <div class="service">
             <div class="icon-box">${service.icon}</div>

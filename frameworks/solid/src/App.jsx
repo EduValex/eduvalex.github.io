@@ -230,7 +230,7 @@ function App() {
               {currentLang() === 'es' ? 'Soluciones digitales completas para hacer crecer tu negocio' : 'Complete digital solutions to grow your business'}
             </p>
           </div>
-          <div class="grid">
+          <div class="grid-2">
             <For each={services}>
               {(service) => (
                 <div class="service">
