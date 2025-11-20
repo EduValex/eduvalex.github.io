@@ -95,8 +95,10 @@
               v-for="cat in categories"
               :key="cat"
               @click="selectedCategory = cat"
+              @mousemove="handleFilterMagnet"
+              @mouseleave="handleFilterLeave"
               :aria-selected="selectedCategory === cat"
-              :class="['badge', selectedCategory === cat ? 'active' : '']"
+              :class="['badge', 'filter-btn', selectedCategory === cat ? 'active' : '']"
             >
               <span style="margin-right:.35rem;">{{ categoryIcons[cat] || '🏷️' }}</span>
               {{ cat }}
@@ -106,7 +108,13 @@
         </div>
 
         <div class="grid">
-          <div v-for="proj in filteredProjects" :key="proj.name" class="proj-card">
+          <div
+            v-for="proj in filteredProjects"
+            :key="proj.name"
+            class="proj-card tilt-card"
+            @mousemove="handleProjectTilt"
+            @mouseleave="handleProjectLeave"
+          >
             <h3>{{ proj.name }}</h3>
             <small>{{ proj.year }}</small>
             <p>{{ proj.description }}</p>
@@ -261,10 +269,11 @@
 </template>
 
 <script>
-import { ref, computed, onMounted } from 'vue';
+import { ref, computed, onMounted, nextTick } from 'vue';
 import Navbar from './components/Navbar.vue';
 import cvData from '@data/cv-data.json';
 import emailjs from '@emailjs/browser';
+import gsap from 'gsap';
 
 export default {
   name: 'App',
@@ -458,6 +467,52 @@ export default {
       document.querySelectorAll('.reveal').forEach((el) => observer.observe(el));
     });
 
+    // Magnetic effect for filters
+    const handleFilterMagnet = (e) => {
+      const btn = e.currentTarget;
+      const rect = btn.getBoundingClientRect();
+      const x = e.clientX - rect.left - rect.width / 2;
+      const y = e.clientY - rect.top - rect.height / 2;
+      gsap.to(btn, {
+        x: x * 0.3,
+        y: y * 0.3,
+        duration: 0.3,
+        ease: 'power2.out'
+      });
+    };
+
+    const handleFilterLeave = (e) => {
+      gsap.to(e.currentTarget, {
+        x: 0,
+        y: 0,
+        duration: 0.4,
+        ease: 'elastic.out(1, 0.3)'
+      });
+    };
+
+    // Tilt 3D effect for project cards
+    const handleProjectTilt = (e) => {
+      const card = e.currentTarget;
+      const rect = card.getBoundingClientRect();
+      const x = (e.clientX - rect.left - rect.width / 2) / rect.width;
+      const y = (e.clientY - rect.top - rect.height / 2) / rect.height;
+      gsap.to(card, {
+        rotateY: x * 15,
+        rotateX: -y * 15,
+        duration: 0.3,
+        ease: 'power2.out'
+      });
+    };
+
+    const handleProjectLeave = (e) => {
+      gsap.to(e.currentTarget, {
+        rotateY: 0,
+        rotateX: 0,
+        duration: 0.5,
+        ease: 'power2.out'
+      });
+    };
+
     return {
       cvData,
       currentLang,
@@ -476,7 +531,11 @@ export default {
       formLoading,
       setLanguage,
       toggleTheme,
-      handleSubmit
+      handleSubmit,
+      handleFilterMagnet,
+      handleFilterLeave,
+      handleProjectTilt,
+      handleProjectLeave
     };
   }
 };
@@ -677,5 +736,15 @@ body.light .textarea {
   background: rgba(239, 68, 68, 0.15);
   color: #f87171;
   border: 1px solid rgba(239, 68, 68, 0.35);
+}
+
+.filter-btn {
+  cursor: pointer;
+  position: relative;
+}
+
+.tilt-card {
+  transform-style: preserve-3d;
+  perspective: 1000px;
 }
 </style>
