@@ -1,4 +1,5 @@
-import { motion, useScroll, useTransform } from 'framer-motion';
+import { motion, useScroll, useTransform, useAnimation } from 'framer-motion';
+import { useEffect, useState } from 'react';
 import data from '@data/cv-data.json';
 import { LazyImage } from './LazyImage.jsx';
 import { useTypingEffect } from '../hooks/useTypingEffect.js';
@@ -18,6 +19,32 @@ export function Hero() {
   const typedText = useTypingEffect(roles, 100, 50, 2000);
   
   const cvUrl = '/CV-Eduardo-Valenzuela.pdf';
+
+  // Counters animados
+  const totalProjects = data.projects.length;
+  const yearsExperience = new Date().getFullYear() - 2014;
+  const techSet = new Set();
+  data.projects.forEach(p => (p.technologies || []).forEach(t => techSet.add(t)));
+  const uniqueTechs = techSet.size;
+
+  const useCountUp = (to, duration = 1.6) => {
+    const controls = useAnimation();
+    const [value, setValue] = useState(0);
+    useEffect(() => {
+      controls.start({ val: to, transition: { duration, ease: 'easeOut' } });
+    }, [to, controls, duration]);
+    useEffect(() => {
+      const unsub = controls.subscribe(latest => {
+        if (typeof latest.val === 'number') setValue(Math.round(latest.val));
+      });
+      return () => unsub();
+    }, [controls]);
+    return value;
+  };
+
+  const projectsCount = useCountUp(totalProjects);
+  const yearsCount = useCountUp(yearsExperience);
+  const techsCount = useCountUp(uniqueTechs);
 
   return (
   <motion.section 
@@ -52,6 +79,21 @@ export function Hero() {
           <span className="animate-pulse ml-1 text-primary">|</span>
         </p>
         <p className="mt-2 text-slate-600 dark:text-slate-300">{personal.tagline}</p>
+        
+        <div className="mt-4 grid grid-cols-3 gap-3 max-w-md mx-auto md:mx-0">
+          <div className="flex flex-col p-3 rounded-lg bg-slate-100 dark:bg-slate-800/70 border border-slate-200 dark:border-slate-700 shadow-sm text-center md:text-left">
+            <span className="text-2xl md:text-3xl font-extrabold text-primary">{projectsCount}</span>
+            <span className="text-[11px] uppercase font-medium text-slate-500 dark:text-slate-400">Proyectos</span>
+          </div>
+          <div className="flex flex-col p-3 rounded-lg bg-slate-100 dark:bg-slate-800/70 border border-slate-200 dark:border-slate-700 shadow-sm text-center md:text-left">
+            <span className="text-2xl md:text-3xl font-extrabold text-primary">{yearsCount}+</span>
+            <span className="text-[11px] uppercase font-medium text-slate-500 dark:text-slate-400">Años Exp.</span>
+          </div>
+          <div className="flex flex-col p-3 rounded-lg bg-slate-100 dark:bg-slate-800/70 border border-slate-200 dark:border-slate-700 shadow-sm text-center md:text-left">
+            <span className="text-2xl md:text-3xl font-extrabold text-primary">{techsCount}</span>
+            <span className="text-[11px] uppercase font-medium text-slate-500 dark:text-slate-400">Tecnologías</span>
+          </div>
+        </div>
         
         <div className="flex flex-wrap gap-3 mt-4 justify-center md:justify-start">
           <motion.a
