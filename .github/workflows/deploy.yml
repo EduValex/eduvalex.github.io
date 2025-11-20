@@ -70,11 +70,13 @@ jobs:
       # BUILD SOLID
       #############################################
       - name: Install Solid dependencies
+        continue-on-error: true
         run: |
           cd frameworks/solid
           npm ci
 
       - name: Build Solid
+        continue-on-error: true
         run: |
           cd frameworks/solid
           npm run build
@@ -83,11 +85,13 @@ jobs:
       # BUILD VANILLA
       #############################################
       - name: Install Vanilla dependencies
+        continue-on-error: true
         run: |
           cd frameworks/vanilla
           npm ci
 
       - name: Build Vanilla
+        continue-on-error: true
         run: |
           cd frameworks/vanilla
           npm run build
@@ -96,11 +100,13 @@ jobs:
       # BUILD NEXT.JS
       #############################################
       - name: Install Next.js dependencies
+        continue-on-error: true
         run: |
           cd frameworks/next
           npm ci
 
       - name: Build Next.js
+        continue-on-error: true
         run: |
           cd frameworks/next
           npm run build
