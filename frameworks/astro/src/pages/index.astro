@@ -244,6 +244,20 @@ const SERVICES = [
 
       .badge { background:#1e293b; border:1px solid rgba(148,163,184,.25); color:#e5e7eb; padding:.3rem .75rem; border-radius:999px; font-size:.8rem; white-space:nowrap; transition: background .2s }
       .badge:hover { background:#334155 }
+        .badge.mini-badge { padding:.2rem .5rem; font-size:.75rem; display:inline-flex; align-items:center; gap:.25rem }
+      
+        /* Metrics Grid */
+        .metrics-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:1rem; margin-bottom:2rem }
+        .metric-card { text-align:center; padding:1.5rem 1rem; transition:transform .3s }
+        .metric-card:hover { transform:translateY(-4px) }
+        .metric-number { font-size:2.5rem; font-weight:800; color:#3b82f6; line-height:1 }
+        .metric-label { margin-top:.5rem; font-size:.85rem; color:#94a3b8; text-transform:uppercase; letter-spacing:.5px }
+        @media (max-width:768px) { .metrics-grid { grid-template-columns:1fr } }
+      
+        /* Tilt 3D Cards */
+        .tilt-3d-card { transform-style:preserve-3d; perspective:1000px; transition:transform .3s ease }
+        .tilt-3d-card:hover { transform:scale(1.02) }
+      
       .lang-toggle { background:#1e293b; border:1px solid rgba(148,163,184,.3); border-radius:.5rem; padding:.25rem; display:flex; gap:.25rem }
       .lang-toggle button { background:transparent; border:none; color:#94a3b8; padding:.35rem .75rem; border-radius:.4rem; cursor:pointer; font-size:.85rem; transition: all .2s; font-weight:500 }
       .lang-toggle button.active { background:#3b82f6; color:white }
@@ -379,6 +393,31 @@ const SERVICES = [
         </p>
       </section>
 
+      <!-- Metrics -->
+      <section class="metrics-grid reveal" style="margin-top: -1rem;">
+        <div class="metric-card panel reveal">
+          <div class="metric-number" data-target="{projects.length}">0</div>
+          <div class="metric-label">
+            <span class="inline-lang active" data-lang="es">Proyectos</span>
+            <span class="inline-lang" data-lang="en">Projects</span>
+          </div>
+        </div>
+        <div class="metric-card panel reveal">
+          <div class="metric-number" data-target="{new Date().getFullYear() - 2020}">0</div>
+          <div class="metric-label">
+            <span class="inline-lang active" data-lang="es">Años</span>
+            <span class="inline-lang" data-lang="en">Years</span>
+          </div>
+        </div>
+        <div class="metric-card panel reveal">
+          <div class="metric-number" data-target="{[...new Set(projects.flatMap(p => p.technologies))].length}">0</div>
+          <div class="metric-label">
+            <span class="inline-lang active" data-lang="es">Tecnologías</span>
+            <span class="inline-lang" data-lang="en">Technologies</span>
+          </div>
+        </div>
+      </section>
+
       <!-- About -->
   <section id="about" class="panel reveal">
         <h2>
@@ -469,10 +508,19 @@ const SERVICES = [
         </div>
         <div class="grid">
           {projects.map(p => (
-            <article class="proj-card reveal" data-project-category={getCategory(p)}>
+            <article class="proj-card reveal tilt-3d-card" data-project-category={getCategory(p)}>
               <h3>{p.name}</h3>
               <small>{p.technologies?.slice(0,4).join(', ')}</small>
               <p>{p.description}</p>
+              <div class="badges" style="margin-top:.75rem">
+                {p.technologies.slice(0, 5).map(tech => (
+                  <span class="badge mini-badge" title={tech}>
+                    <span set:html={getSkillIcon(tech)} />
+                    {tech}
+                  </span>
+                ))}
+                {p.technologies.length > 5 && <span class="badge mini-badge" style="opacity:.7">+{p.technologies.length - 5}</span>}
+              </div>
               <div class="actions">
                 {p.github && <a href={p.github} target="_blank" rel="noreferrer" class="btn">
                   <span class="inline-lang active" data-lang="es">💻 Código</span>
@@ -645,6 +693,42 @@ const SERVICES = [
           });
         }, { threshold: 0.1 });
         reveals.forEach(el => io.observe(el));
+
+        // Counter Animation
+        const counters = document.querySelectorAll('.metric-number');
+        const counterIO = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              const target = parseInt(entry.target.dataset.target || '0');
+              let current = 0;
+              const increment = target / 50;
+              const timer = setInterval(() => {
+                current += increment;
+                if (current >= target) {
+                  entry.target.textContent = target;
+                  clearInterval(timer);
+                } else {
+                  entry.target.textContent = Math.ceil(current);
+                }
+              }, 30);
+              counterIO.unobserve(entry.target);
+            }
+          });
+        }, { threshold: 0.5 });
+        counters.forEach(counter => counterIO.observe(counter));
+
+        // Tilt 3D Effect
+        document.querySelectorAll('.tilt-3d-card').forEach(card => {
+          card.addEventListener('mousemove', (e) => {
+            const rect = card.getBoundingClientRect();
+            const x = (e.clientX - rect.left - rect.width / 2) / rect.width;
+            const y = (e.clientY - rect.top - rect.height / 2) / rect.height;
+            card.style.transform = `perspective(1000px) rotateY(${x * 15}deg) rotateX(${-y * 15}deg) scale(1.02)`;
+          });
+          card.addEventListener('mouseleave', () => {
+            card.style.transform = 'perspective(1000px) rotateY(0deg) rotateX(0deg) scale(1)';
+          });
+        });
 
       // EmailJS config inline
       const EMAILJS_CONFIG = {
