@@ -1,5 +1,5 @@
 import { useMemo, useState } from 'react';
-import { motion } from 'framer-motion';
+import { motion, useMotionValue, useSpring } from 'framer-motion';
 import data from '@data/cv-data.json';
 import { useTranslation } from '../../hooks/useTranslation.js';
 import {
@@ -129,6 +129,130 @@ function getCategory(project) {
   return 'Personal';
 }
 
+function ProjectCard({ project, index }) {
+  const mouseX = useMotionValue(0);
+  const mouseY = useMotionValue(0);
+  const rotateX = useSpring(useMotionValue(0), { stiffness: 300, damping: 30 });
+  const rotateY = useSpring(useMotionValue(0), { stiffness: 300, damping: 30 });
+
+  const handleMouseMove = (e) => {
+    const rect = e.currentTarget.getBoundingClientRect();
+    const x = (e.clientX - rect.left - rect.width / 2) / rect.width;
+    const y = (e.clientY - rect.top - rect.height / 2) / rect.height;
+    mouseX.set(x);
+    mouseY.set(y);
+    rotateX.set(-y * 15);
+    rotateY.set(x * 15);
+  };
+
+  const handleMouseLeave = () => {
+    mouseX.set(0);
+    mouseY.set(0);
+    rotateX.set(0);
+    rotateY.set(0);
+  };
+
+  return (
+    <motion.article 
+      className="panel p-6 flex flex-col gap-4 hover-lift transition-all"
+      style={{
+        perspective: '1000px',
+        rotateX,
+        rotateY,
+      }}
+      variants={{
+        hidden: { opacity: 0, y: 50, scale: 0.95 },
+        visible: { 
+          opacity: 1, 
+          y: 0, 
+          scale: 1,
+          transition: {
+            type: "spring",
+            stiffness: 100,
+            damping: 15
+          }
+        }
+      }}
+      whileHover={{ scale: 1.02 }}
+      whileDrag={{ scale: 1.05, cursor: 'grabbing' }}
+      drag
+      dragConstraints={{ left: 0, right: 0, top: 0, bottom: 0 }}
+      dragElastic={0.1}
+      onMouseMove={handleMouseMove}
+      onMouseLeave={handleMouseLeave}
+    >
+      <header>
+        <div className="flex items-start justify-between gap-4">
+          <div>
+            <h3 className="text-xl font-bold tracking-tight mb-1">{project.name}</h3>
+            <p className="text-sm text-slate-600 dark:text-slate-300 leading-relaxed">{project.description}</p>
+          </div>
+          <div className="flex items-center gap-2">
+            {project.featured && (
+              <span 
+                title="Destacado" 
+                className="inline-flex items-center px-2 py-1 rounded text-xs bg-amber-100 text-amber-700 dark:bg-amber-900/40 dark:text-amber-300 animate-pulse-glow"
+              >⭐</span>
+            )}
+            <span className="inline-flex items-center gap-1 px-2 py-1 rounded text-xs bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300">
+              <span>{categoryIcons[getCategory(project)] || '🏷️'}</span>
+              {getCategory(project)}
+            </span>
+            {project.client && (
+              <span className="inline-flex items-center px-2 py-1 rounded text-xs bg-emerald-100 text-emerald-700 dark:bg-emerald-900/40 dark:text-emerald-300" title="Proyecto para cliente">
+                Cliente
+              </span>
+            )}
+          </div>
+        </div>
+      </header>
+
+      <div className="flex flex-wrap gap-2">
+        {project.technologies.map(t => (
+          <span 
+            key={t} 
+            className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-slate-100 dark:bg-slate-800 text-xs font-medium text-slate-700 dark:text-slate-300 hover-scale transition-transform cursor-default"
+          >
+            <RenderTechIcon name={t} />
+            {t}
+          </span>
+        ))}
+      </div>
+
+      <div className="flex gap-4 text-sm mt-auto pt-2">
+        {project.github && (
+          <a
+            href={project.github}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-1 text-primary hover:text-primary-light font-medium transition-all hover-scale"
+          >
+            <span>💻</span> Código
+          </a>
+        )}
+        {project.demo && (
+          <a
+            href={project.demo}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-1 text-primary hover:text-primary-light font-medium transition-all hover-scale"
+          >
+            <span>🚀</span> Demo
+          </a>
+        )}
+        {!project.github && !project.demo && (
+          <span
+            className="inline-flex items-center gap-1 px-2 py-1 rounded bg-slate-200/60 dark:bg-slate-700/60 text-slate-700 dark:text-slate-300 cursor-default"
+            title="Repositorio privado"
+          >
+            <span>🔒</span> Privado
+          </span>
+        )}
+      </div>
+    </motion.article>
+  );
+}
+
 export function ProjectsSection() {
   const { t } = useTranslation();
   const categories = useMemo(() => {
@@ -203,96 +327,7 @@ export function ProjectsSection() {
         }}
       >
         {filtered.map((project, index) => (
-          <motion.article 
-            key={project.name} 
-            className="panel p-6 flex flex-col gap-4 hover-lift transition-all"
-            variants={{
-              hidden: { opacity: 0, y: 50, scale: 0.95 },
-              visible: { 
-                opacity: 1, 
-                y: 0, 
-                scale: 1,
-                transition: {
-                  type: "spring",
-                  stiffness: 100,
-                  damping: 15
-                }
-              }
-            }}
-            whileHover={{ 
-              scale: 1.02,
-              transition: { duration: 0.2 }
-            }}
-          >
-            <header>
-              <div className="flex items-start justify-between gap-4">
-                <div>
-                  <h3 className="text-xl font-bold tracking-tight mb-1">{project.name}</h3>
-                  <p className="text-sm text-slate-600 dark:text-slate-300 leading-relaxed">{project.description}</p>
-                </div>
-                <div className="flex items-center gap-2">
-                  {project.featured && (
-                    <span 
-                      title="Destacado" 
-                      className="inline-flex items-center px-2 py-1 rounded text-xs bg-amber-100 text-amber-700 dark:bg-amber-900/40 dark:text-amber-300 animate-pulse-glow"
-                    >⭐</span>
-                  )}
-                  <span className="inline-flex items-center gap-1 px-2 py-1 rounded text-xs bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300">
-                    <span>{categoryIcons[getCategory(project)] || '🏷️'}</span>
-                    {getCategory(project)}
-                  </span>
-                  {project.client && (
-                    <span className="inline-flex items-center px-2 py-1 rounded text-xs bg-emerald-100 text-emerald-700 dark:bg-emerald-900/40 dark:text-emerald-300" title="Proyecto para cliente">
-                      Cliente
-                    </span>
-                  )}
-                </div>
-              </div>
-            </header>
-
-            <div className="flex flex-wrap gap-2">
-              {project.technologies.map(t => (
-                <span 
-                  key={t} 
-                  className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-slate-100 dark:bg-slate-800 text-xs font-medium text-slate-700 dark:text-slate-300 hover-scale transition-transform cursor-default"
-                >
-                  <RenderTechIcon name={t} />
-                  {t}
-                </span>
-              ))}
-            </div>
-
-            <div className="flex gap-4 text-sm mt-auto pt-2">
-              {project.github && (
-                <a
-                  href={project.github}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-1 text-primary hover:text-primary-light font-medium transition-all hover-scale"
-                >
-                  <span>💻</span> Código
-                </a>
-              )}
-              {project.demo && (
-                <a
-                  href={project.demo}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-1 text-primary hover:text-primary-light font-medium transition-all hover-scale"
-                >
-                  <span>🚀</span> Demo
-                </a>
-              )}
-              {!project.github && !project.demo && (
-                <span
-                  className="inline-flex items-center gap-1 px-2 py-1 rounded bg-slate-200/60 dark:bg-slate-700/60 text-slate-700 dark:text-slate-300 cursor-default"
-                  title="Repositorio privado"
-                >
-                  <span>🔒</span> Privado
-                </span>
-              )}
-            </div>
-          </motion.article>
+          <ProjectCard key={project.name} project={project} index={index} />
         ))}
       </motion.div>
     </section>
