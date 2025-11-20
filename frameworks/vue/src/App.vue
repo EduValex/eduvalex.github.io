@@ -52,7 +52,7 @@
             {{ currentLang === 'es' ? 'Soluciones digitales completas para hacer crecer tu negocio' : 'Complete digital solutions to grow your business' }}
           </p>
         </div>
-        <div class="grid">
+        <div class="grid-2">
           <div v-for="service in services" :key="service.titleES" class="service">
             <div class="icon-box">{{ service.icon }}</div>
             <h3>{{ currentLang === 'es' ? service.titleES : service.titleEN }}</h3>
