@@ -9,6 +9,11 @@ const skills = cv.skills;
 // Astro base URL para resolver assets correctamente
 const baseUrl = import.meta.env.BASE_URL;
 
+// Calculate metrics for Hero counters
+const totalProjects = projects.length;
+const yearsExperience = new Date().getFullYear() - 2014;
+const uniqueTechs = [...new Set(projects.flatMap(p => p.technologies || []))].length;
+
 // --- Iconos SVG para skills (Simple Icons style) ---
 const SKILL_ICONS = {
   'HTML': { svg: '<svg role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M1.5 0h21l-1.91 21.563L11.977 24l-8.564-2.438L1.5 0zm7.031 9.75l-.232-2.718 10.059.003.23-2.622L5.412 4.41l.698 8.01h9.126l-.326 3.426-2.91.804-2.955-.81-.188-2.11H6.248l.33 4.171L12 19.351l5.379-1.443.744-8.157H8.531z" fill="#E34F26"/></svg>', color: '#E34F26' },
@@ -396,21 +401,21 @@ const SERVICES = [
       <!-- Metrics -->
       <section class="metrics-grid reveal" style="margin-top: -1rem;">
         <div class="metric-card panel reveal">
-          <div class="metric-number" data-target="{projects.length}">0</div>
+          <div class="metric-number" data-target={totalProjects}>0</div>
           <div class="metric-label">
             <span class="inline-lang active" data-lang="es">Proyectos</span>
             <span class="inline-lang" data-lang="en">Projects</span>
           </div>
         </div>
         <div class="metric-card panel reveal">
-          <div class="metric-number" data-target="{new Date().getFullYear() - 2020}">0</div>
+          <div class="metric-number" data-target={yearsExperience}>0</div>
           <div class="metric-label">
             <span class="inline-lang active" data-lang="es">Años</span>
             <span class="inline-lang" data-lang="en">Years</span>
           </div>
         </div>
         <div class="metric-card panel reveal">
-          <div class="metric-number" data-target="{[...new Set(projects.flatMap(p => p.technologies))].length}">0</div>
+          <div class="metric-number" data-target={uniqueTechs}>0</div>
           <div class="metric-label">
             <span class="inline-lang active" data-lang="es">Tecnologías</span>
             <span class="inline-lang" data-lang="en">Technologies</span>
@@ -700,15 +705,16 @@ const SERVICES = [
           entries.forEach(entry => {
             if (entry.isIntersecting) {
               const target = parseInt(entry.target.dataset.target || '0');
+                            const isYears = entry.target.parentElement.querySelector('[data-lang="es"]')?.textContent?.includes('Años');
               let current = 0;
               const increment = target / 50;
               const timer = setInterval(() => {
                 current += increment;
                 if (current >= target) {
-                  entry.target.textContent = target;
+                  entry.target.textContent = target + (isYears ? '+' : '');
                   clearInterval(timer);
                 } else {
-                  entry.target.textContent = Math.ceil(current);
+                  entry.target.textContent = Math.ceil(current) + (isYears ? '+' : '');
                 }
               }, 30);
               counterIO.unobserve(entry.target);
