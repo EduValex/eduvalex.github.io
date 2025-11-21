@@ -132,8 +132,8 @@ function getCategory(project) {
 function ProjectCard({ project, index }) {
   const mouseX = useMotionValue(0);
   const mouseY = useMotionValue(0);
-  const rotateX = useSpring(useMotionValue(0), { stiffness: 300, damping: 30 });
-  const rotateY = useSpring(useMotionValue(0), { stiffness: 300, damping: 30 });
+  const rotateX = useSpring(useMotionValue(0), { stiffness: 200, damping: 20 }); // Menos damping = más movimiento
+  const rotateY = useSpring(useMotionValue(0), { stiffness: 200, damping: 20 });
 
   const handleMouseMove = (e) => {
     const rect = e.currentTarget.getBoundingClientRect();
@@ -141,8 +141,8 @@ function ProjectCard({ project, index }) {
     const y = (e.clientY - rect.top - rect.height / 2) / rect.height;
     mouseX.set(x);
     mouseY.set(y);
-    rotateX.set(-y * 15);
-    rotateY.set(x * 15);
+    rotateX.set(-y * 25); // Aumentado de 15 a 25 grados
+    rotateY.set(x * 25); // Más rotación = efecto más notorio
   };
 
   const handleMouseLeave = () => {
@@ -156,9 +156,10 @@ function ProjectCard({ project, index }) {
     <motion.article 
       className="panel p-6 flex flex-col gap-4 hover-lift transition-all"
       style={{
-        perspective: '1000px',
+        perspective: '1200px', // Perspectiva más profunda
         rotateX,
         rotateY,
+        transformStyle: 'preserve-3d', // Preservar 3D
       }}
       variants={{
         hidden: { opacity: 0, y: 50, scale: 0.95 },
@@ -173,11 +174,15 @@ function ProjectCard({ project, index }) {
           }
         }
       }}
-      whileHover={{ scale: 1.02 }}
-      whileDrag={{ scale: 1.05, cursor: 'grabbing' }}
+      whileHover={{ 
+        scale: 1.05, // Aumentado de 1.02 a 1.05
+        boxShadow: "0 20px 50px rgba(0,0,0,0.3)", // Sombra más dramática
+        transition: { duration: 0.3 }
+      }}
+      whileDrag={{ scale: 1.08, cursor: 'grabbing' }} // Aumentado scale
       drag
       dragConstraints={{ left: 0, right: 0, top: 0, bottom: 0 }}
-      dragElastic={0.1}
+      dragElastic={0.2} // Más elástico para efecto más notorio
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
     >
