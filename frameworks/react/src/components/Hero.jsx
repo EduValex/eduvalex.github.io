@@ -27,18 +27,19 @@ export function Hero() {
   data.projects.forEach(p => (p.technologies || []).forEach(t => techSet.add(t)));
   const uniqueTechs = techSet.size;
 
-  const useCountUp = (to, duration = 1.6) => {
-    const controls = useAnimation();
+  const useCountUp = (to, duration = 1600) => {
     const [value, setValue] = useState(0);
     useEffect(() => {
-      controls.start({ val: to, transition: { duration, ease: 'easeOut' } });
-    }, [to, controls, duration]);
-    useEffect(() => {
-      const unsub = controls.subscribe(latest => {
-        if (typeof latest.val === 'number') setValue(Math.round(latest.val));
-      });
-      return () => unsub();
-    }, [controls]);
+      const startTime = Date.now();
+      const timer = setInterval(() => {
+        const elapsed = Date.now() - startTime;
+        const progress = Math.min(elapsed / duration, 1);
+        const easeOut = 1 - Math.pow(1 - progress, 3);
+        setValue(Math.round(to * easeOut));
+        if (progress >= 1) clearInterval(timer);
+      }, 16);
+      return () => clearInterval(timer);
+    }, [to, duration]);
     return value;
   };
 
