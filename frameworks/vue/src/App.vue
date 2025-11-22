@@ -275,15 +275,7 @@
         </div>
       </section>
 
-      <!-- Footer -->
-      <footer style="text-align: center; padding: 2rem 0; color: #64748b; font-size: 0.85rem;">
-        <p>© 2025 Eduardo Valenzuela — {{ currentLang === 'es' ? 'Hecho con' : 'Built with' }} 💚 Vue</p>
-        <p style="margin-top: 0.5rem;">
-          <a href="/" style="margin-right: 1rem;">⚛️ React</a>
-          <a href="/astro/" style="margin-right: 1rem;">⭐ Astro</a>
-          <a href="/angular/">🅰️ Angular</a>
-        </p>
-      </footer>
+      <Footer />
     </main>
   </div>
 </template>
@@ -291,13 +283,14 @@
 <script>
 import { ref, computed, onMounted, nextTick } from 'vue';
 import Navbar from './components/Navbar.vue';
+import Footer from './components/Footer.vue';
 import cvData from '@data/cv-data.json';
 import emailjs from '@emailjs/browser';
 import gsap from 'gsap';
 
 export default {
   name: 'App',
-  components: { Navbar },
+  components: { Navbar, Footer },
   setup() {
     const currentLang = ref('es');
     const theme = ref('dark');
