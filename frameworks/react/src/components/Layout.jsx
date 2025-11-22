@@ -54,6 +54,10 @@ export function Layout({ children }) {
                 <span className="icon">💼</span>
                 <span>{t('Experiencia', 'Experience')}</span>
               </a>
+              <a href="#education">
+                <span className="icon">🎓</span>
+                <span>{t('Educación', 'Education')}</span>
+              </a>
               <a href="#projects">
                 <span className="icon">🎨</span>
                 <span>{t('Proyectos', 'Projects')}</span>
