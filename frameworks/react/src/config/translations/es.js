@@ -28,6 +28,7 @@ export const es = {
   // Section titles
   sections: {
     about: 'Sobre mí',
+    services: 'Servicios',
     experience: 'Experiencia',
     education: 'Educación y Certificaciones',
     projects: 'Proyectos',

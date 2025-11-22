@@ -10,7 +10,7 @@ export function Navbar() {
 
   const sections = [
     { id: 'about', label: t('sections.about'), icon: '👤' },
-    { id: 'services', label: currentLang === 'es' ? 'Servicios' : 'Services', icon: '🚀' },
+    { id: 'services', label: t('sections.services'), icon: '🚀' },
     { id: 'experience', label: t('sections.experience'), icon: '💼' },
     { id: 'education', label: t('sections.education'), icon: '🎓' },
     { id: 'projects', label: t('sections.projects'), icon: '🎨' },
