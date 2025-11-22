@@ -2,6 +2,7 @@ import { Layout } from './components/Layout.jsx';
 import { Hero } from './components/Hero.jsx';
 import { AboutSection } from './components/sections/About.jsx';
 import { ExperienceSection } from './components/sections/Experience.jsx';
+import { EducationSection } from './components/sections/Education.jsx';
 import { ProjectsSection } from './components/sections/Projects.jsx';
 import { SkillsSection } from './components/sections/Skills.jsx';
 import { ServicesSection } from './components/sections/Services.jsx';
@@ -25,6 +26,7 @@ function App() {
           <AboutSection />
           <ServicesSection />
           <ExperienceSection />
+          <EducationSection />
           <ProjectsSection />
           <SkillsSection />
           <ContactSection />

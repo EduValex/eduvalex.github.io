@@ -82,6 +82,26 @@
         </div>
       </section>
 
+      <!-- Education -->
+      <section id="education" class="panel reveal">
+        <h2>
+          <span>🎓</span>
+          <span>{{ currentLang === 'es' ? 'Educación y Certificaciones' : 'Education & Certifications' }}</span>
+        </h2>
+        <div style="display: flex; flex-direction: column; gap: 1.5rem;">
+          <div v-for="(edu, index) in cvData.education" :key="index" class="exp-card" style="border-left: 4px solid var(--primary); padding-left: 1.5rem;">
+            <div style="display: flex; justify-content: space-between; align-items: start; gap: 1rem; flex-wrap: wrap; margin-bottom: 0.5rem;">
+              <div style="flex: 1;">
+                <h3>{{ edu.degree }}</h3>
+                <small style="color: var(--primary); font-weight: 600;">{{ edu.institution }}</small>
+              </div>
+              <span style="font-size: 0.875rem; color: var(--text-muted); white-space: nowrap;">{{ edu.period }}</span>
+            </div>
+            <p>{{ edu.description }}</p>
+          </div>
+        </div>
+      </section>
+
       <!-- Projects -->
       <section id="projects" class="panel reveal">
         <h2>

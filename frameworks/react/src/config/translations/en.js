@@ -29,6 +29,7 @@ export const en = {
   sections: {
     about: 'About Me',
     experience: 'Experience',
+    education: 'Education & Certifications',
     projects: 'Projects',
     skills: 'Skills',
     contact: 'Contact'

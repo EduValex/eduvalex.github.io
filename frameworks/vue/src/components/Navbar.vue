@@ -10,6 +10,7 @@
           <a href="#about"><span class="icon">👤</span><span>{{ currentLang === 'es' ? 'Sobre mí' : 'About' }}</span></a>
           <a href="#services"><span class="icon">🚀</span><span>{{ currentLang === 'es' ? 'Servicios' : 'Services' }}</span></a>
           <a href="#experience"><span class="icon">💼</span><span>{{ currentLang === 'es' ? 'Experiencia' : 'Experience' }}</span></a>
+          <a href="#education"><span class="icon">🎓</span><span>{{ currentLang === 'es' ? 'Educación' : 'Education' }}</span></a>
           <a href="#projects"><span class="icon">🎨</span><span>{{ currentLang === 'es' ? 'Proyectos' : 'Projects' }}</span></a>
           <a href="#skills"><span class="icon">⚡</span><span>{{ currentLang === 'es' ? 'Habilidades' : 'Skills' }}</span></a>
           <a href="#contact"><span class="icon">📧</span><span>{{ currentLang === 'es' ? 'Contacto' : 'Contact' }}</span></a>

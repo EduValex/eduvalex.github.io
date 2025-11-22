@@ -12,6 +12,7 @@ export function Navbar() {
     { id: 'about', label: t('sections.about'), icon: '👤' },
     { id: 'services', label: currentLang === 'es' ? 'Servicios' : 'Services', icon: '🚀' },
     { id: 'experience', label: t('sections.experience'), icon: '💼' },
+    { id: 'education', label: currentLang === 'es' ? 'Educación' : 'Education', icon: '🎓' },
     { id: 'projects', label: t('sections.projects'), icon: '🎨' },
     { id: 'skills', label: t('sections.skills'), icon: '⚡' },
     { id: 'contact', label: t('sections.contact'), icon: '📧' },
