@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from 'react'
 import { cvData, getSkillIcon } from './data'
+import Footer from './components/Footer'
 
 export default function HomePage() {
   const [mounted, setMounted] = useState(false)
@@ -444,9 +445,7 @@ export default function HomePage() {
         </section>
 
         {/* Footer */}
-        <footer style={{ textAlign: 'center', padding: '2rem 0', color: '#64748b', fontSize: '0.85rem' }}>
-          <p>© 2025 {personal.name} — {t('Hecho con', 'Built with')} ▲ Next.js</p>
-        </footer>
+        <Footer name={personal.name} t={t} />
       </div>
     </>
   )

@@ -1,6 +1,7 @@
 ---
 import cv from '../../../../shared/data/cv-data.json';
 import { ViewTransitions } from 'astro:transitions';
+import Footer from '../components/Footer.astro';
 const personal = cv.personal;
 const projects = cv.projects;
 const experience = cv.experience;
@@ -701,15 +702,7 @@ const SERVICES = [
       </section>
 
       <!-- Footer -->
-      <footer style="text-align:center; padding:2rem 0; color:#64748b; font-size:.85rem">
-        <p>© 2025 Eduardo Valenzuela — <span class="inline-lang active" data-lang="es">Hecho con</span><span class="inline-lang" data-lang="en">Built with</span> ⭐ Astro</p>
-        <p style="margin-top:.5rem">
-          <a href="/" style="color:#60a5fa">
-            <span class="inline-lang active" data-lang="es">Ver versión React</span>
-            <span class="inline-lang" data-lang="en">View React version</span>
-          </a>
-        </p>
-      </footer>
+      <Footer />
     </main>
       <script>
         // Reveal-on-scroll
