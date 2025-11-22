@@ -4,6 +4,7 @@ import { ViewTransitions } from 'astro:transitions';
 const personal = cv.personal;
 const projects = cv.projects;
 const experience = cv.experience;
+const education = cv.education;
 const skills = cv.skills;
 
 // Astro base URL para resolver assets correctamente
@@ -341,6 +342,7 @@ const SERVICES = [
             <a href="#about"><span class="icon">👤</span><span data-nav-es="Sobre mí" data-nav-en="About">Sobre mí</span></a>
             <a href="#services"><span class="icon">🚀</span><span data-nav-es="Servicios" data-nav-en="Services">Servicios</span></a>
             <a href="#experience"><span class="icon">💼</span><span data-nav-es="Experiencia" data-nav-en="Experience">Experiencia</span></a>
+            <a href="#education"><span class="icon">🎓</span><span data-nav-es="Educación" data-nav-en="Education">Educación</span></a>
             <a href="#projects"><span class="icon">🎨</span><span data-nav-es="Proyectos" data-nav-en="Projects">Proyectos</span></a>
             <a href="#skills"><span class="icon">⚡</span><span data-nav-es="Habilidades" data-nav-en="Skills">Habilidades</span></a>
             <a href="#contact"><span class="icon">📧</span><span data-nav-es="Contacto" data-nav-en="Contact">Contacto</span></a>
@@ -483,6 +485,29 @@ const SERVICES = [
                   {exp.technologies.map(t => <span class="badge">{t}</span>)}
                 </div>
               )}
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <!-- Education -->
+  <section id="education" class="reveal">
+        <h2>
+          <span>🎓</span>
+          <span class="inline-lang active" data-lang="es">Educación y Certificaciones</span>
+          <span class="inline-lang" data-lang="en">Education & Certifications</span>
+        </h2>
+        <div style="display: flex; flex-direction: column; gap: 1.5rem;">
+          {education.map(edu => (
+            <article class="exp-card reveal" style="border-left: 4px solid var(--primary); padding-left: 1.5rem;">
+              <div style="display: flex; justify-content: space-between; align-items: start; gap: 1rem; flex-wrap: wrap; margin-bottom: 0.5rem;">
+                <div style="flex: 1;">
+                  <h3>{edu.degree}</h3>
+                  <small style="color: var(--primary); font-weight: 600;">{edu.institution}</small>
+                </div>
+                <span style="font-size: 0.875rem; color: var(--text-muted); white-space: nowrap;">{edu.period}</span>
+              </div>
+              <p>{edu.description}</p>
             </article>
           ))}
         </div>

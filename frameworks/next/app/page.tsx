@@ -86,7 +86,7 @@ export default function HomePage() {
     { id: 'lab', name: 'Lab', icon: '🧪', url: '/lab/' },
   ]
 
-  const { personal, about, experience, projects, skills, services } = cvData
+  const { personal, about, experience, education, projects, skills, services } = cvData
 
   // Filtros de proyectos
   const FULLSTACK_KEYS = ['Django','Python','Node.js','Express','Ruby on Rails','PostgreSQL','JWT','Celery','Redis','Nuxt.js']
@@ -129,6 +129,10 @@ export default function HomePage() {
               <a href="#experience">
                 <span className="icon">💼</span>
                 <span>{t('Experiencia', 'Experience')}</span>
+              </a>
+              <a href="#education">
+                <span className="icon">🎓</span>
+                <span>{t('Educación', 'Education')}</span>
               </a>
               <a href="#projects">
                 <span className="icon">🎨</span>
@@ -263,6 +267,34 @@ export default function HomePage() {
                     <span key={tech} className="badge">{tech}</span>
                   ))}
                 </div>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        {/* Education */}
+        <section id="education">
+          <h2 style={{ textAlign: 'center', marginBottom: '2rem' }}>
+            🎓 {t('Educación y Certificaciones', 'Education & Certifications')}
+          </h2>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
+            {education.map((edu: any, idx: number) => (
+              <div key={idx} className="exp-card" style={{ borderLeft: '4px solid var(--primary)', paddingLeft: '1.5rem' }}>
+                <div style={{ display: 'flex', justifyContent: 'space-between', flexWrap: 'wrap', gap: '0.5rem', marginBottom: '0.75rem' }}>
+                  <div style={{ flex: 1 }}>
+                    <h3>{edu.degree}</h3>
+                    <small style={{ color: 'var(--primary)', fontWeight: 600 }}>{edu.institution}</small>
+                  </div>
+                  <span style={{ fontSize: '0.875rem', color: 'var(--text-muted)', whiteSpace: 'nowrap' }}>{edu.period}</span>
+                </div>
+                <p>{edu.description}</p>
+                {edu.skills && (
+                  <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.5rem', marginTop: '1rem' }}>
+                    {edu.skills.map((skill: string) => (
+                      <span key={skill} className="badge">{skill}</span>
+                    ))}
+                  </div>
+                )}
               </div>
             ))}
           </div>

@@ -171,6 +171,31 @@ export const cvData = {
     }
   ],
 
+  education: [
+    {
+      institution: "Fondo Talento Digital para Chile",
+      degree: "Desarrollo Ruby on Rails para Emprendimientos de Tipo Start-Up",
+      field: "Ingeniería Informática",
+      period: "Abr 2023 - Ago 2024",
+      description: "Programa intensivo de desarrollo Full Stack con Ruby on Rails."
+    },
+    {
+      institution: "edutecno",
+      degree: "Desarrollo de Aplicaciones Full Stack Python Trainee",
+      field: "Desarrollo Web",
+      period: "May 2023 - Oct 2023",
+      description: "Curso de capacitación de 393 horas en desarrollo Full Stack con Python, Django, PostgreSQL."
+    },
+    {
+      institution: "Universidad de La Frontera",
+      degree: "Licenciatura en Ingeniería Informática",
+      field: "Ingeniería Informática",
+      period: "2009 - 2014",
+      description: "Formación universitaria en ingeniería de software, arquitectura de sistemas y desarrollo de aplicaciones.",
+      skills: ["Java", "Java Spring", "MVC", "Git", "Microservicios"]
+    }
+  ],
+
   skills: {
     "Frontend": ["React", "Next.js", "Vue", "Astro", "TypeScript", "Tailwind CSS", "HTML5", "CSS3"],
     "Backend": ["Node.js", "Django", "Python", "PHP", "Ruby on Rails"],
