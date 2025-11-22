@@ -1,5 +1,6 @@
 import { createSignal, onMount, For, Show } from 'solid-js';
 import Navbar from './components/Navbar';
+import Footer from './components/Footer';
 import cvData from '@data/cv-data.json';
 import emailjs from '@emailjs/browser';
 
@@ -482,17 +483,7 @@ function App() {
           </div>
         </section>
 
-        {/* Footer */}
-        <footer style={{ 'text-align': 'center', padding: '2rem 0', color: '#64748b', 'font-size': '0.85rem' }}>
-          <p>© 2025 Eduardo Valenzuela — {currentLang() === 'es' ? 'Hecho con' : 'Built with'} 🔷 Solid</p>
-          <p style={{ 'margin-top': '0.5rem' }}>
-            <a href="/" style={{ 'margin-right': '1rem' }}>⚛️ React</a>
-            <a href="/astro/" style={{ 'margin-right': '1rem' }}>⭐ Astro</a>
-            <a href="/vue/" style={{ 'margin-right': '1rem' }}>💚 Vue</a>
-            <a href="/vanilla/" style={{ 'margin-right': '1rem' }}>⚡ Vanilla</a>
-            <a href="/next/">▲ Next.js</a>
-          </p>
-        </footer>
+        <Footer />
       </main>
     </>
   );
