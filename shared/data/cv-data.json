@@ -51,7 +51,7 @@
     {
       "company": "Enlanubelab",
       "position": "Desarrollador de WordPress",
-      "period": "Abr 2015 - Dic 2015",
+      "period": "Abr 2015 - Sep 2016",
       "location": "Temuco, Araucanía, Chile",
       "description": "Desarrollo de aplicación web full-stack con Ruby on Rails para catálogo de hierbas medicinales y mantenimiento de sitios WordPress.",
       "technologies": ["Ruby on Rails", "WordPress", "PHP", "MySQL"],
@@ -59,6 +59,19 @@
         "Desarrollé aplicación web full-stack con Ruby on Rails desde concepto hasta despliegue",
         "Mantuve más de 12 sitios de clientes basados en WordPress",
         "Aseguré correcto funcionamiento y actualización de plataformas"
+      ]
+    },
+    {
+      "company": "Freelance",
+      "position": "Desarrollador Full Stack",
+      "period": "Oct 2016 - Mar 2018",
+      "location": "Temuco, Chile",
+      "description": "Desarrollo de aplicaciones web personalizadas para clientes locales, trabajando de forma independiente en proyectos Full Stack.",
+      "technologies": ["Python", "Django", "WordPress", "PHP", "MySQL", "JavaScript"],
+      "achievements": [
+        "Desarrollé aplicación de gestión completa para estudio de abogados con Python y Django",
+        "Mantención y desarrollo de sitios WordPress para clientes corporativos",
+        "Gestión directa de proyectos desde concepto hasta deployment"
       ]
     },
     {
