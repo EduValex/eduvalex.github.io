@@ -30,7 +30,7 @@ export const es = {
     about: 'Sobre mí',
     services: 'Servicios',
     experience: 'Experiencia',
-    education: 'Educación y Certificaciones',
+    education: 'Educación',
     projects: 'Proyectos',
     skills: 'Skills',
     contact: 'Contacto'

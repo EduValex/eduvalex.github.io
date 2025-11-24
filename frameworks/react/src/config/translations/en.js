@@ -30,7 +30,7 @@ export const en = {
     about: 'About Me',
     services: 'Services',
     experience: 'Experience',
-    education: 'Education & Certifications',
+    education: 'Education',
     projects: 'Projects',
     skills: 'Skills',
     contact: 'Contact'

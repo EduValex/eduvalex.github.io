@@ -17,7 +17,7 @@ export function Layout({ children }) {
   return (
     <div className="min-h-screen flex flex-col">
       <Navbar />
-      <main className="flex-1 py-10 flex flex-col gap-12">
+      <main className="flex-1 pt-28 pb-10 flex flex-col gap-12">
         {children}
       </main>
       <Footer />
