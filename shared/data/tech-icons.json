@@ -1,0 +1,287 @@
+{
+  "HTML": {
+    "emoji": "🌐",
+    "color": "#E34F26",
+    "category": "frontend"
+  },
+  "CSS": {
+    "emoji": "🎨",
+    "color": "#1572B6",
+    "category": "frontend"
+  },
+  "JavaScript": {
+    "emoji": "⚡",
+    "color": "#F7DF1E",
+    "category": "frontend"
+  },
+  "TypeScript": {
+    "emoji": "📘",
+    "color": "#3178C6",
+    "category": "frontend"
+  },
+  "React": {
+    "emoji": "⚛️",
+    "color": "#61DAFB",
+    "category": "frontend"
+  },
+  "React.js": {
+    "emoji": "⚛️",
+    "color": "#61DAFB",
+    "category": "frontend"
+  },
+  "Vue.js": {
+    "emoji": "💚",
+    "color": "#41B883",
+    "category": "frontend"
+  },
+  "Angular": {
+    "emoji": "🅰️",
+    "color": "#DD0031",
+    "category": "frontend"
+  },
+  "Tailwind CSS": {
+    "emoji": "🎐",
+    "color": "#06B6D4",
+    "category": "frontend"
+  },
+  "Bootstrap": {
+    "emoji": "🅱️",
+    "color": "#7952B3",
+    "category": "frontend"
+  },
+  "SCSS": {
+    "emoji": "💅",
+    "color": "#CC6699",
+    "category": "frontend"
+  },
+  "Node.js": {
+    "emoji": "🟢",
+    "color": "#339933",
+    "category": "backend"
+  },
+  "Express": {
+    "emoji": "🚂",
+    "color": "#000000",
+    "category": "backend"
+  },
+  "Python": {
+    "emoji": "🐍",
+    "color": "#3776AB",
+    "category": "backend"
+  },
+  "Django": {
+    "emoji": "🎸",
+    "color": "#092E20",
+    "category": "backend"
+  },
+  "Flask": {
+    "emoji": "🧪",
+    "color": "#000000",
+    "category": "backend"
+  },
+  "Ruby": {
+    "emoji": "💎",
+    "color": "#CC342D",
+    "category": "backend"
+  },
+  "Ruby on Rails": {
+    "emoji": "🛤️",
+    "color": "#CC0000",
+    "category": "backend"
+  },
+  "PHP": {
+    "emoji": "🐘",
+    "color": "#777BB4",
+    "category": "backend"
+  },
+  "WordPress": {
+    "emoji": "📝",
+    "color": "#21759B",
+    "category": "backend"
+  },
+  "WooCommerce": {
+    "emoji": "🛒",
+    "color": "#96588A",
+    "category": "backend"
+  },
+  "Shopify": {
+    "emoji": "🛍️",
+    "color": "#7AB55C",
+    "category": "backend"
+  },
+  "Nuxt.js": {
+    "emoji": "🔺",
+    "color": "#00DC82",
+    "category": "frontend"
+  },
+  "Next.js": {
+    "emoji": "▲",
+    "color": "#000000",
+    "category": "frontend"
+  },
+  "PostgreSQL": {
+    "emoji": "🐘",
+    "color": "#4169E1",
+    "category": "database"
+  },
+  "MySQL": {
+    "emoji": "🐬",
+    "color": "#4479A1",
+    "category": "database"
+  },
+  "MongoDB": {
+    "emoji": "🍃",
+    "color": "#47A248",
+    "category": "database"
+  },
+  "Redis": {
+    "emoji": "🔴",
+    "color": "#DC382D",
+    "category": "database"
+  },
+  "Git": {
+    "emoji": "📦",
+    "color": "#F05032",
+    "category": "tools"
+  },
+  "GitHub": {
+    "emoji": "🐙",
+    "color": "#181717",
+    "category": "tools"
+  },
+  "Docker": {
+    "emoji": "🐳",
+    "color": "#2496ED",
+    "category": "tools"
+  },
+  "Vite": {
+    "emoji": "⚡",
+    "color": "#646CFF",
+    "category": "tools"
+  },
+  "Webpack": {
+    "emoji": "📦",
+    "color": "#8DD6F9",
+    "category": "tools"
+  },
+  "JWT": {
+    "emoji": "🔐",
+    "color": "#000000",
+    "category": "backend"
+  },
+  "OAuth 2.0": {
+    "emoji": "🔑",
+    "color": "#000000",
+    "category": "backend"
+  },
+  "REST API": {
+    "emoji": "🔌",
+    "color": "#009688",
+    "category": "backend"
+  },
+  "GraphQL": {
+    "emoji": "◼️",
+    "color": "#E10098",
+    "category": "backend"
+  },
+  "Celery": {
+    "emoji": "🌿",
+    "color": "#37814A",
+    "category": "backend"
+  },
+  "SEO": {
+    "emoji": "🔍",
+    "color": "#4285F4",
+    "category": "tools"
+  },
+  "Google Analytics": {
+    "emoji": "📊",
+    "color": "#E37400",
+    "category": "tools"
+  },
+  "Google Drive API": {
+    "emoji": "☁️",
+    "color": "#4285F4",
+    "category": "tools"
+  },
+  "Instagram API": {
+    "emoji": "📸",
+    "color": "#E4405F",
+    "category": "tools"
+  },
+  "Vercel": {
+    "emoji": "▲",
+    "color": "#000000",
+    "category": "tools"
+  },
+  "Heroku": {
+    "emoji": "🟣",
+    "color": "#430098",
+    "category": "tools"
+  },
+  "Render": {
+    "emoji": "🎨",
+    "color": "#46E3B7",
+    "category": "tools"
+  },
+  "Railway": {
+    "emoji": "🚂",
+    "color": "#0B0D0E",
+    "category": "tools"
+  },
+  "GitHub Pages": {
+    "emoji": "📄",
+    "color": "#222222",
+    "category": "tools"
+  },
+  "CORS": {
+    "emoji": "🌐",
+    "color": "#000000",
+    "category": "backend"
+  },
+  "Postman": {
+    "emoji": "📮",
+    "color": "#FF6C37",
+    "category": "tools"
+  },
+  "Yii Framework": {
+    "emoji": "🎯",
+    "color": "#0073AA",
+    "category": "backend"
+  },
+  "Zoho CRM": {
+    "emoji": "📇",
+    "color": "#E42527",
+    "category": "tools"
+  },
+  "React Router": {
+    "emoji": "🔀",
+    "color": "#CA4245",
+    "category": "frontend"
+  },
+  "Framer Motion": {
+    "emoji": "🎬",
+    "color": "#0055FF",
+    "category": "frontend"
+  },
+  "SweetAlert2": {
+    "emoji": "🍬",
+    "color": "#8E44AD",
+    "category": "frontend"
+  },
+  "Astro": {
+    "emoji": "🚀",
+    "color": "#FF5D01",
+    "category": "frontend"
+  },
+  "Solid": {
+    "emoji": "🔷",
+    "color": "#2C4F7C",
+    "category": "frontend"
+  },
+  "GSAP": {
+    "emoji": "🎯",
+    "color": "#88CE02",
+    "category": "frontend"
+  }
+}
