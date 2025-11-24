@@ -16,7 +16,7 @@
     "preview": "cd frameworks/react && npm run preview",
     "deploy": "node deploy.js",
     "assemble": "node scripts/assemble.js",
-  "preview:all": "npm run assemble && node scripts/preview.js"
+    "preview:all": "npm run assemble && node scripts/preview.js"
   },
   "repository": {
     "type": "git",
@@ -31,8 +31,11 @@
   "author": "Eduardo Valenzuela",
   "license": "MIT",
   "devDependencies": {
-    "gh-pages": "^6.1.1",
     "concurrently": "^8.2.2",
+    "gh-pages": "^6.1.1",
     "serve": "^14.2.4"
+  },
+  "dependencies": {
+    "pdfkit": "^0.17.2"
   }
 }
