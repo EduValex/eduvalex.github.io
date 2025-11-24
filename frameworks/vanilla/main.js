@@ -152,7 +152,7 @@ function renderContent() {
         ${t('Desarrollador Full‑Stack. Aquí tienes mi CV en PDF listo para descargar.', 'Full‑Stack Developer. Here\'s my resume in PDF ready to download.')}
       </p>
       <p style="margin-top: 1.25rem;">
-        <a class="btn" href="/CV-Eduardo-Valenzuela.pdf" download>
+        <a class="btn" href="/shared/assets/cv-eduardo-valenzuela.pdf" download>
           ${t('📄 Descargar CV', '📄 Download Resume')}
         </a>
         <a class="btn secondary" href="#contact" style="margin-left: 0.75rem;">

@@ -19,7 +19,7 @@ export function Hero() {
   const roles = t('hero.roles');
   const typedText = useTypingEffect(roles, 100, 50, 2000);
   
-  const cvUrl = '/CV-Eduardo-Valenzuela.pdf';
+  const cvUrl = '/shared/assets/cv-eduardo-valenzuela.pdf';
 
   // Counters animados
   const totalProjects = data.projects.length;
