@@ -2,6 +2,7 @@ import { useMemo, useState } from 'react';
 import { motion, useMotionValue, useSpring } from 'framer-motion';
 import data from '@data/cv-data.json';
 import { useTranslation } from '../../hooks/useTranslation.js';
+import { getCategory, CATEGORIES } from '../../../../../shared/utils/projectUtils.js';
 import {
   SiHtml5,
   SiCss3,
@@ -112,22 +113,11 @@ function RenderTechIcon({ name }) {
 
 // Iconos por categoría
 const categoryIcons = {
-  'Todos': '🗂️',
-  'WordPress': '🧩',
-  'Full Stack': '🧰',
-  'Personal': '⭐',
+  [CATEGORIES.ALL]: '🗂️',
+  [CATEGORIES.WORDPRESS]: '🧩',
+  [CATEGORIES.FULLSTACK]: '🧰',
+  [CATEGORIES.PERSONAL]: '⭐',
 };
-
-function getCategory(project) {
-  if (project.category) return project.category;
-  const tech = project.technologies || [];
-  if (tech.includes('WordPress') || tech.includes('WooCommerce')) return 'WordPress';
-  const isFullStack = [
-    'Django','Python','Node.js','Express','Ruby on Rails','PostgreSQL','JWT','Celery','Redis','Nuxt.js'
-  ].some(t => tech.includes(t));
-  if (isFullStack) return 'Full Stack';
-  return 'Personal';
-}
 
 function ProjectCard({ project, index }) {
   const mouseX = useMotionValue(0);
@@ -261,27 +251,31 @@ function ProjectCard({ project, index }) {
 export function ProjectsSection() {
   const { t } = useTranslation();
   const categories = useMemo(() => {
-    const counts = { [t('projects.filters.all')]: data.projects.length };
+    const counts = { [CATEGORIES.ALL]: data.projects.length };
     for (const p of data.projects) {
       const cat = getCategory(p);
       counts[cat] = (counts[cat] || 0) + 1;
     }
     // Mostrar Full Stack primero en los filtros
-    const ordered = ['Todos', 'Full Stack', 'WordPress', 'Personal'];
+    const ordered = [CATEGORIES.ALL, CATEGORIES.FULLSTACK, CATEGORIES.WORDPRESS, CATEGORIES.PERSONAL];
     const extras = Object.keys(counts).filter(k => !ordered.includes(k));
     return [...ordered, ...extras].filter(k => counts[k]);
   }, []);
 
-  const [selected, setSelected] = useState('Todos');
+  const [selected, setSelected] = useState(CATEGORIES.ALL);
 
   const filtered = useMemo(() => {
-    const list = selected === 'Todos'
+    const list = selected === CATEGORIES.ALL
       ? data.projects
       : data.projects.filter(p => getCategory(p) === selected);
     // Priorizar categorías: Full Stack primero, luego WordPress y luego el resto
-    const CATEGORY_PRIORITY = { 'Full Stack': 0, 'WordPress': 1, 'Personal': 2 };
+    const CATEGORY_PRIORITY = {
+      [CATEGORIES.FULLSTACK]: 0,
+      [CATEGORIES.WORDPRESS]: 1,
+      [CATEGORIES.PERSONAL]: 2
+    };
     return [...list].sort((a, b) => {
-      if (selected === 'Todos') {
+      if (selected === CATEGORIES.ALL) {
         const pa = CATEGORY_PRIORITY[getCategory(a)] ?? 99;
         const pb = CATEGORY_PRIORITY[getCategory(b)] ?? 99;
         if (pa !== pb) return pa - pb;
@@ -311,7 +305,7 @@ export function ProjectsSection() {
               <span className="mr-1">{categoryIcons[cat] || '🏷️'}</span>
               <span className="align-middle">{cat}</span>
               <span className="ml-2 inline-flex items-center justify-center min-w-[1.5rem] h-6 px-1 rounded-full text-[11px] bg-black/10 dark:bg-white/10">
-                {cat === 'Todos' ? data.projects.length : data.projects.filter(p => getCategory(p) === cat).length}
+                {cat === CATEGORIES.ALL ? data.projects.length : data.projects.filter(p => getCategory(p) === cat).length}
               </span>
             </button>
           ))}
