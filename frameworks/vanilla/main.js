@@ -1,45 +1,10 @@
 // Import CV data
 import cvData from '@data/cv-data.json';
+import { getCategory, CATEGORIES } from '../../shared/utils/projectUtils.js';
 
 // State
 let currentLang = 'es';
 let theme = 'dark';
-
-// Services data
-const services = [
-  {
-    icon: '🛠️',
-    titleES: 'Desarrollo Web & Apps',
-    titleEN: 'Web & App Development',
-    descES: 'Sitios web corporativos, e-commerce, landing pages y aplicaciones web full-stack con React, Django, Rails y WordPress.',
-    descEN: 'Corporate websites, e-commerce, landing pages and full-stack web applications with React, Django, Rails and WordPress.',
-    tags: ['React', 'WordPress', 'Django', 'E-Commerce', 'SaaS']
-  },
-  {
-    icon: '🔍',
-    titleES: 'Auditorías SEO',
-    titleEN: 'SEO Audits',
-    descES: 'Análisis técnico completo de SEO on-page, velocidad de carga, estructura del sitio y Core Web Vitals.',
-    descEN: 'Complete technical SEO on-page analysis, page speed, site structure and Core Web Vitals.',
-    tags: ['SEO On-Page', 'PageSpeed', 'Analytics', 'SEMrush']
-  },
-  {
-    icon: '🤖',
-    titleES: 'Asistentes IA Personalizados',
-    titleEN: 'Custom AI Assistants',
-    descES: 'Diseño e integración de chatbots inteligentes con ChatGPT, Claude AI y modelos custom para automatización.',
-    descEN: 'Design and integration of intelligent chatbots with ChatGPT, Claude AI and custom models for automation.',
-    tags: ['ChatGPT', 'Claude AI', 'Automation', 'Webhooks']
-  },
-  {
-    icon: '🔌',
-    titleES: 'Integraciones & Plugins',
-    titleEN: 'Integrations & Plugins',
-    descES: 'Desarrollo de plugins WordPress personalizados, conexiones con APIs externas y pasarelas de pago.',
-    descEN: 'Custom WordPress plugin development, external API connections and payment gateways.',
-    tags: ['WordPress Plugins', 'APIs', 'Google Drive', 'Webhooks']
-  }
-];
 
 // Iconos para skills
 const SKILL_ICONS = {
@@ -399,22 +364,20 @@ function renderContent() {
 }
 
 // Setup contact form
-// Project filters (same logic as React)
+// Project filters usando shared utilities
 function setupProjectFilters() {
-  const FULLSTACK_KEYS = ['Django','Python','Node.js','Express','Ruby on Rails','PostgreSQL','JWT','Celery','Redis','Nuxt.js'];
-  const getCategory = (p) => {
-    if (p.category) return p.category;
-    const tech = p.technologies || [];
-    if (tech.includes('WordPress') || tech.includes('WooCommerce')) return 'WordPress';
-    return FULLSTACK_KEYS.some(t => tech.includes(t)) ? 'Full Stack' : 'Personal';
-  };
-  const categories = ['Todos','Full Stack','WordPress','Personal'].filter(k => {
-    if (k === 'Todos') return cvData.projects.length > 0;
+  const categories = [CATEGORIES.ALL, CATEGORIES.FULLSTACK, CATEGORIES.WORDPRESS, CATEGORIES.PERSONAL].filter(k => {
+    if (k === CATEGORIES.ALL) return cvData.projects.length > 0;
     return cvData.projects.some(p => getCategory(p) === k);
   });
-  const categoryIcons = { 'Todos': '🗂️', 'WordPress': '🧩', 'Full Stack': '🧰', 'Personal': '⭐' };
-  const countFor = (cat) => cat === 'Todos' ? cvData.projects.length : cvData.projects.filter(p => getCategory(p) === cat).length;
-  let selected = 'Todos';
+  const categoryIcons = {
+    [CATEGORIES.ALL]: '🗂️',
+    [CATEGORIES.WORDPRESS]: '🧩',
+    [CATEGORIES.FULLSTACK]: '🧰',
+    [CATEGORIES.PERSONAL]: '⭐'
+  };
+  const countFor = (cat) => cat === CATEGORIES.ALL ? cvData.projects.length : cvData.projects.filter(p => getCategory(p) === cat).length;
+  let selected = CATEGORIES.ALL;
 
   const filtersEl = document.getElementById('proj-filters');
   const renderFilters = () => {
@@ -426,11 +389,16 @@ function setupProjectFilters() {
       </button>`).join('');
   };
   const renderList = () => {
-    const list = selected === 'Todos' ? cvData.projects : cvData.projects.filter(p => getCategory(p) === selected);
-    const priority = { 'Full Stack': 0, 'WordPress': 1, 'Personal': 2 };
+    const list = selected === CATEGORIES.ALL ? cvData.projects : cvData.projects.filter(p => getCategory(p) === selected);
+    const priority = {
+      [CATEGORIES.FULLSTACK]: 0,
+      [CATEGORIES.WORDPRESS]: 1,
+      [CATEGORIES.PERSONAL]: 2
+    };
     const sorted = [...list].sort((a,b) => {
-      if (selected === 'Todos') {
-        const pa = priority[getCategory(a)] ?? 99; const pb = priority[getCategory(b)] ?? 99;
+      if (selected === CATEGORIES.ALL) {
+        const pa = priority[getCategory(a)] ?? 99;
+        const pb = priority[getCategory(b)] ?? 99;
         if (pa !== pb) return pa - pb;
       }
       return Number(b.featured) - Number(a.featured);
