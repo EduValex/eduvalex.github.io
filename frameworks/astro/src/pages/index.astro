@@ -1,5 +1,6 @@
 ---
 import cv from '../../../../shared/data/cv-data.json';
+import { getCategory, CATEGORIES } from '../../../../shared/utils/projectUtils.js';
 import { ViewTransitions } from 'astro:transitions';
 import Footer from '../components/Footer.astro';
 const personal = cv.personal;
@@ -7,6 +8,7 @@ const projects = cv.projects;
 const experience = cv.experience;
 const education = cv.education;
 const skills = cv.skills;
+const services = cv.services;
 
 // Astro base URL para resolver assets correctamente
 const baseUrl = import.meta.env.BASE_URL;
@@ -59,59 +61,22 @@ function getSkillIcon(name) {
   return emoji ? `<span aria-hidden="true" style="font-size:12px">${emoji}</span>` : '';
 }
 
-// --- Filtros de proyectos (igual a React) ---
-const FULLSTACK_KEYS = ['Django','Python','Node.js','Express','Ruby on Rails','PostgreSQL','JWT','Celery','Redis','Nuxt.js'];
-const getCategory = (p) => {
-  if (p.category) return p.category;
-  const tech = p.technologies || [];
-  if (tech.includes('WordPress') || tech.includes('WooCommerce')) return 'WordPress';
-  const isFull = FULLSTACK_KEYS.some(t => tech.includes(t));
-  return isFull ? 'Full Stack' : 'Personal';
-};
-const categories = ['Todos','Full Stack','WordPress','Personal'].filter(k => {
-  if (k === 'Todos') return projects.length > 0;
+// --- Filtros de proyectos usando shared utilities ---
+const categories = [CATEGORIES.ALL, CATEGORIES.FULLSTACK, CATEGORIES.WORDPRESS, CATEGORIES.PERSONAL].filter(k => {
+  if (k === CATEGORIES.ALL) return projects.length > 0;
   return projects.some(p => getCategory(p) === k);
 });
-const categoryIcons = { 'Todos': '🗂️', 'WordPress': '🧩', 'Full Stack': '🧰', 'Personal': '⭐' };
+const categoryIcons = {
+  [CATEGORIES.ALL]: '🗂️',
+  [CATEGORIES.WORDPRESS]: '🧩',
+  [CATEGORIES.FULLSTACK]: '🧰',
+  [CATEGORIES.PERSONAL]: '⭐'
+};
 const categoryCounts = {};
 categories.forEach(cat => {
-  categoryCounts[cat] = cat === 'Todos' ? projects.length : projects.filter(p => getCategory(p) === cat).length;
+  categoryCounts[cat] = cat === CATEGORIES.ALL ? projects.length : projects.filter(p => getCategory(p) === cat).length;
 });
 
-const SERVICES = [
-  {
-    icon: '🛠️',
-    titleES: 'Desarrollo Web & Apps',
-    titleEN: 'Web & App Development',
-    descES: 'Sitios web corporativos, e-commerce, landing pages y aplicaciones web full-stack con React, Django, Rails y WordPress. Responsive, rápidos y optimizados para conversión.',
-    descEN: 'Corporate websites, e-commerce, landing pages and full-stack web applications with React, Django, Rails and WordPress. Responsive, fast and conversion-optimized.',
-    tags: ['React', 'WordPress', 'Django', 'E-Commerce', 'SaaS']
-  },
-  {
-    icon: '🔍',
-    titleES: 'Auditorías SEO',
-    titleEN: 'SEO Audits',
-    descES: 'Análisis técnico completo de SEO on-page, velocidad de carga, estructura del sitio, Core Web Vitals y estrategia de keywords con reportes detallados y plan de acción.',
-    descEN: 'Complete technical SEO on-page analysis, page speed, site structure, Core Web Vitals and keyword strategy with detailed reports and action plan.',
-    tags: ['SEO On-Page', 'PageSpeed', 'Analytics', 'SEMrush']
-  },
-  {
-    icon: '🤖',
-    titleES: 'Asistentes IA Personalizados',
-    titleEN: 'Custom AI Assistants',
-    descES: 'Diseño e integración de chatbots inteligentes con ChatGPT, Claude AI y modelos custom para automatización, atención al cliente 24/7 y workflows empresariales.',
-    descEN: 'Design and integration of intelligent chatbots with ChatGPT, Claude AI and custom models for automation, 24/7 customer service and business workflows.',
-    tags: ['ChatGPT', 'Claude AI', 'Automation', 'Webhooks']
-  },
-  {
-    icon: '🔌',
-    titleES: 'Integraciones & Plugins',
-    titleEN: 'Integrations & Plugins',
-    descES: 'Desarrollo de plugins WordPress personalizados, conexiones con APIs externas (Google, Instagram, Drive), pasarelas de pago y automatizaciones con webhooks.',
-    descEN: 'Custom WordPress plugin development, external API connections (Google, Instagram, Drive), payment gateways and webhook automations.',
-    tags: ['WordPress Plugins', 'APIs', 'Google Drive', 'Webhooks']
-  }
-];
 ---
 <!DOCTYPE html>
 <html lang="es" id="html-root">
@@ -453,13 +418,13 @@ const SERVICES = [
           <p data-lang="en" style="display:none">Development and digital consulting services for businesses and entrepreneurs</p>
         </div>
         <div class="grid-2">
-          {SERVICES.map(service => (
+          {services.map(service => (
             <article class="service reveal">
               <div class="icon-box">{service.icon}</div>
-              <h3 data-lang="es" class="active" style="display:block">{service.titleES}</h3>
-              <h3 data-lang="en" style="display:none">{service.titleEN}</h3>
-              <p data-lang="es" class="active" style="display:block">{service.descES}</p>
-              <p data-lang="en" style="display:none">{service.descEN}</p>
+              <h3 data-lang="es" class="active" style="display:block">{service.title.es}</h3>
+              <h3 data-lang="en" style="display:none">{service.title.en}</h3>
+              <p data-lang="es" class="active" style="display:block">{service.description.es}</p>
+              <p data-lang="en" style="display:none">{service.description.en}</p>
               <div class="badges">
                 {service.tags.map(tag => <span class="badge">{tag}</span>)}
               </div>
