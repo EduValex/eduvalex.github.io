@@ -53,10 +53,10 @@
           </p>
         </div>
         <div class="grid-2">
-          <div v-for="service in services" :key="service.titleES" class="service">
+          <div v-for="service in services" :key="service.id" class="service">
             <div class="icon-box">{{ service.icon }}</div>
-            <h3>{{ currentLang === 'es' ? service.titleES : service.titleEN }}</h3>
-            <p>{{ currentLang === 'es' ? service.descES : service.descEN }}</p>
+            <h3>{{ currentLang === 'es' ? service.title.es : service.title.en }}</h3>
+            <p>{{ currentLang === 'es' ? service.description.es : service.description.en }}</p>
             <div style="display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 1rem;">
               <span v-for="tag in service.tags" :key="tag" class="badge">{{ tag }}</span>
             </div>
@@ -285,6 +285,7 @@ import { ref, computed, onMounted, nextTick } from 'vue';
 import Navbar from './components/Navbar.vue';
 import Footer from './components/Footer.vue';
 import cvData from '@data/cv-data.json';
+import { getCategory, CATEGORIES } from '../../../shared/utils/projectUtils.js';
 import emailjs from '@emailjs/browser';
 import gsap from 'gsap';
 
@@ -320,17 +321,9 @@ export default {
     
     const getSkillIcon = (name) => SKILL_ICONS[name] || '';
 
-    // --- Filtros de proyectos (igual a React) ---
-    const FULLSTACK_KEYS = ['Django','Python','Node.js','Express','Ruby on Rails','PostgreSQL','JWT','Celery','Redis','Nuxt.js'];
-    const getCategory = (p) => {
-      if (p.category) return p.category;
-      const tech = p.technologies || [];
-      if (tech.includes('WordPress') || tech.includes('WooCommerce')) return 'WordPress';
-      const isFull = FULLSTACK_KEYS.some(t => tech.includes(t));
-      return isFull ? 'Full Stack' : 'Personal';
-    };
+    // --- Filtros de proyectos usando shared utilities ---
     const counts = computed(() => {
-      const map = { 'Todos': cvData.projects.length };
+      const map = { [CATEGORIES.ALL]: cvData.projects.length };
       cvData.projects.forEach(p => {
         const c = getCategory(p);
         map[c] = (map[c] || 0) + 1;
@@ -338,58 +331,36 @@ export default {
       return map;
     });
     const categories = computed(() => {
-      const ordered = ['Todos', 'Full Stack', 'WordPress', 'Personal'];
+      const ordered = [CATEGORIES.ALL, CATEGORIES.FULLSTACK, CATEGORIES.WORDPRESS, CATEGORIES.PERSONAL];
       const extra = Object.keys(counts.value).filter(k => !ordered.includes(k));
       return [...ordered, ...extra].filter(k => counts.value[k]);
     });
-    const selectedCategory = ref('Todos');
+    const selectedCategory = ref(CATEGORIES.ALL);
     const filteredProjects = computed(() => {
-      const list = selectedCategory.value === 'Todos' ? cvData.projects : cvData.projects.filter(p => getCategory(p) === selectedCategory.value);
-      const priority = { 'Full Stack': 0, 'WordPress': 1, 'Personal': 2 };
+      const list = selectedCategory.value === CATEGORIES.ALL ? cvData.projects : cvData.projects.filter(p => getCategory(p) === selectedCategory.value);
+      const priority = {
+        [CATEGORIES.FULLSTACK]: 0,
+        [CATEGORIES.WORDPRESS]: 1,
+        [CATEGORIES.PERSONAL]: 2
+      };
       return [...list].sort((a,b) => {
-        if (selectedCategory.value === 'Todos') {
-          const pa = priority[getCategory(a)] ?? 99; const pb = priority[getCategory(b)] ?? 99;
+        if (selectedCategory.value === CATEGORIES.ALL) {
+          const pa = priority[getCategory(a)] ?? 99;
+          const pb = priority[getCategory(b)] ?? 99;
           if (pa !== pb) return pa - pb;
         }
         return Number(b.featured) - Number(a.featured);
       });
     });
-    const categoryIcons = { 'Todos': '🗂️', 'WordPress': '🧩', 'Full Stack': '🧰', 'Personal': '⭐' };
+    const categoryIcons = {
+      [CATEGORIES.ALL]: '🗂️',
+      [CATEGORIES.WORDPRESS]: '🧩',
+      [CATEGORIES.FULLSTACK]: '🧰',
+      [CATEGORIES.PERSONAL]: '⭐'
+    };
 
-    const services = [
-      {
-        icon: '🛠️',
-        titleES: 'Desarrollo Web & Apps',
-        titleEN: 'Web & App Development',
-        descES: 'Sitios web corporativos, e-commerce, landing pages y aplicaciones web full-stack con React, Django, Rails y WordPress.',
-        descEN: 'Corporate websites, e-commerce, landing pages and full-stack web applications with React, Django, Rails and WordPress.',
-        tags: ['React', 'WordPress', 'Django', 'E-Commerce', 'SaaS']
-      },
-      {
-        icon: '🔍',
-        titleES: 'Auditorías SEO',
-        titleEN: 'SEO Audits',
-        descES: 'Análisis técnico completo de SEO on-page, velocidad de carga, estructura del sitio y Core Web Vitals.',
-        descEN: 'Complete technical SEO on-page analysis, page speed, site structure and Core Web Vitals.',
-        tags: ['SEO On-Page', 'PageSpeed', 'Analytics', 'SEMrush']
-      },
-      {
-        icon: '🤖',
-        titleES: 'Asistentes IA Personalizados',
-        titleEN: 'Custom AI Assistants',
-        descES: 'Diseño e integración de chatbots inteligentes con ChatGPT, Claude AI y modelos custom para automatización.',
-        descEN: 'Design and integration of intelligent chatbots with ChatGPT, Claude AI and custom models for automation.',
-        tags: ['ChatGPT', 'Claude AI', 'Automation', 'Webhooks']
-      },
-      {
-        icon: '🔌',
-        titleES: 'Integraciones & Plugins',
-        titleEN: 'Integrations & Plugins',
-        descES: 'Desarrollo de plugins WordPress personalizados, conexiones con APIs externas y pasarelas de pago.',
-        descEN: 'Custom WordPress plugin development, external API connections and payment gateways.',
-        tags: ['WordPress Plugins', 'APIs', 'Google Drive', 'Webhooks']
-      }
-    ];
+    // Services desde cv-data.json
+    const services = cvData.services;
 
     const aboutText = computed(() => {
       const text = currentLang.value === 'es' ? (cvData.about?.es || '') : (cvData.about?.en || '');
