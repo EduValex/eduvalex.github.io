@@ -105,6 +105,19 @@
     },
     {
       "company": "Freelance",
+      "position": "Desarrollador Web Full Stack",
+      "period": "Mar 2018 - Mar 2022",
+      "location": "Temuco, Chile",
+      "description": "Desarrollo web freelance especializado en WordPress, e-commerce y soluciones digitales para clientes corporativos y emprendedores. Trabajo previo a la fundación de Valex Marketing.",
+      "technologies": ["WordPress", "WooCommerce", "PHP", "JavaScript", "MySQL", "SEO"],
+      "achievements": [
+        "Desarrollé múltiples sitios web WordPress y tiendas e-commerce para clientes locales",
+        "Implementé soluciones de comercio electrónico con WooCommerce",
+        "Gestión completa de proyectos desde diseño hasta deployment y mantención"
+      ]
+    },
+    {
+      "company": "Freelance",
       "position": "Desarrollador Full Stack",
       "period": "Oct 2016 - Mar 2018",
       "location": "Temuco, Chile",
