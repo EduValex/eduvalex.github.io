@@ -147,11 +147,11 @@ function renderContent() {
         </p>
       </div>
       <div class="grid-2">
-        ${services.map(service => `
+        ${cvData.services.map(service => `
           <div class="service">
             <div class="icon-box">${service.icon}</div>
-            <h3>${currentLang === 'es' ? service.titleES : service.titleEN}</h3>
-            <p>${currentLang === 'es' ? service.descES : service.descEN}</p>
+            <h3>${currentLang === 'es' ? service.title.es : service.title.en}</h3>
+            <p>${currentLang === 'es' ? service.description.es : service.description.en}</p>
             <div style="display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 1rem;">
               ${service.tags.map(tag => `<span class="badge">${tag}</span>`).join('')}
             </div>
