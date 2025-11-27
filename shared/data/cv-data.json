@@ -77,6 +77,19 @@
 
   "experience": [
     {
+      "company": "Grant Solutions",
+      "position": "Desarrollo Web",
+      "period": "Feb 2025 - Jul 2025",
+      "location": "España (Remoto)",
+      "description": "Desarrollé y mantuve múltiples sitios web para clientes utilizando WordPress, integrando Zoho CRM para mejorar la gestión de relaciones con clientes.",
+      "technologies": ["WordPress", "Zoho CRM", "SEO", "PHP"],
+      "achievements": [
+        "Integración exitosa de Zoho CRM en múltiples sitios web",
+        "Optimización SEO On-Page para aumentar visibilidad de clientes",
+        "Mantenimiento y actualización de portafolio de sitios corporativos"
+      ]
+    },
+    {
       "company": "Valex Marketing",
       "position": "Co-Fundador & Desarrollador Web Full Stack",
       "period": "Abr 2022 - Actualidad",
@@ -91,16 +104,16 @@
       ]
     },
     {
-      "company": "Grant Solutions",
-      "position": "Desarrollo Web",
-      "period": "Feb 2025 - Jul 2025",
-      "location": "España (Remoto)",
-      "description": "Desarrollé y mantuve múltiples sitios web para clientes utilizando WordPress, integrando Zoho CRM para mejorar la gestión de relaciones con clientes.",
-      "technologies": ["WordPress", "Zoho CRM", "SEO", "PHP"],
+      "company": "Freelance",
+      "position": "Desarrollador Full Stack",
+      "period": "Oct 2016 - Mar 2018",
+      "location": "Temuco, Chile",
+      "description": "Desarrollo de aplicaciones web personalizadas para clientes locales, trabajando de forma independiente en proyectos Full Stack.",
+      "technologies": ["Python", "Django", "WordPress", "PHP", "MySQL", "JavaScript"],
       "achievements": [
-        "Integración exitosa de Zoho CRM en múltiples sitios web",
-        "Optimización SEO On-Page para aumentar visibilidad de clientes",
-        "Mantenimiento y actualización de portafolio de sitios corporativos"
+        "Desarrollé aplicación de gestión completa para estudio de abogados con Python y Django",
+        "Mantención y desarrollo de sitios WordPress para clientes corporativos",
+        "Gestión directa de proyectos desde concepto hasta deployment"
       ]
     },
     {
@@ -114,19 +127,6 @@
         "Desarrollé aplicación web full-stack con Ruby on Rails desde concepto hasta despliegue",
         "Mantuve más de 12 sitios de clientes basados en WordPress",
         "Aseguré correcto funcionamiento y actualización de plataformas"
-      ]
-    },
-    {
-      "company": "Freelance",
-      "position": "Desarrollador Full Stack",
-      "period": "Oct 2016 - Mar 2018",
-      "location": "Temuco, Chile",
-      "description": "Desarrollo de aplicaciones web personalizadas para clientes locales, trabajando de forma independiente en proyectos Full Stack.",
-      "technologies": ["Python", "Django", "WordPress", "PHP", "MySQL", "JavaScript"],
-      "achievements": [
-        "Desarrollé aplicación de gestión completa para estudio de abogados con Python y Django",
-        "Mantención y desarrollo de sitios WordPress para clientes corporativos",
-        "Gestión directa de proyectos desde concepto hasta deployment"
       ]
     },
     {
