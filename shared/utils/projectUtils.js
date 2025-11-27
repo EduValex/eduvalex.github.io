@@ -68,6 +68,32 @@ export function getCategory(project) {
 }
 
 /**
+ * Verifica si un proyecto pertenece a una categoría
+ * Permite que un proyecto esté en múltiples categorías (ej: Full Stack + Personal)
+ * @param {Object} project - Objeto proyecto
+ * @param {string} category - Categoría a verificar
+ * @returns {boolean} true si el proyecto pertenece a la categoría
+ */
+export function matchesCategory(project, category) {
+  if (category === CATEGORIES.ALL) {
+    return true;
+  }
+
+  // Verificar categoría principal
+  const mainCategory = getCategory(project);
+  if (mainCategory === category) {
+    return true;
+  }
+
+  // Si la categoría es Personal, verificar si tiene client: false
+  if (category === CATEGORIES.PERSONAL && project.client === false) {
+    return true;
+  }
+
+  return false;
+}
+
+/**
  * Filtra proyectos por categoría
  * @param {Array} projects - Array de proyectos
  * @param {string} category - Categoría a filtrar ('Todos', 'WordPress', 'Full Stack', 'Personal')
@@ -82,7 +108,7 @@ export function filterByCategory(projects, category) {
     return projects;
   }
 
-  return projects.filter(project => getCategory(project) === category);
+  return projects.filter(project => matchesCategory(project, category));
 }
 
 /**
@@ -135,10 +161,16 @@ export function countByCategory(projects) {
     [CATEGORIES.PERSONAL]: 0
   };
 
+  // Contar cuántos proyectos matchean cada categoría
   projects.forEach(project => {
-    const category = getCategory(project);
-    if (counts[category] !== undefined) {
-      counts[category]++;
+    if (matchesCategory(project, CATEGORIES.WORDPRESS)) {
+      counts[CATEGORIES.WORDPRESS]++;
+    }
+    if (matchesCategory(project, CATEGORIES.FULLSTACK)) {
+      counts[CATEGORIES.FULLSTACK]++;
+    }
+    if (matchesCategory(project, CATEGORIES.PERSONAL)) {
+      counts[CATEGORIES.PERSONAL]++;
     }
   });
 
