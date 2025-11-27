@@ -216,7 +216,6 @@ function renderContent() {
         ${cvData.projects.map(proj => `
           <div class="proj-card">
             <h3>${proj.name}</h3>
-            <small>${proj.year}</small>
             <p>${proj.description}</p>
             <div style="display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 0.75rem;">
               ${proj.technologies.map(tech => `<span class="badge">${tech}</span>`).join('')}
