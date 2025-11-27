@@ -751,24 +751,24 @@ categories.forEach(cat => {
       const langButtons = document.querySelectorAll('[data-lang-btn]');
       const langContents = document.querySelectorAll('[data-lang]');
       const inlineLangs = document.querySelectorAll('.inline-lang');
-      const navLinks = document.querySelectorAll('nav a[data-nav-es]');
+      const navLinks = document.querySelectorAll('nav a span[data-nav-es]');
 
       function setLanguage(lang) {
         currentLang = lang;
         localStorage.setItem('astro-lang', lang);
-        
+
         // Toggle buttons
         langButtons.forEach(btn => {
           btn.classList.toggle('active', btn.dataset.langBtn === lang);
         });
-        
+
         // Toggle content blocks - usar style.display para SSR
         langContents.forEach(el => {
           const isActive = el.dataset.lang === lang;
           el.classList.toggle('active', isActive);
           el.style.display = isActive ? 'block' : 'none';
         });
-        
+
         // Toggle inline spans
         inlineLangs.forEach(el => {
           const isActive = el.dataset.lang === lang;
@@ -777,9 +777,9 @@ categories.forEach(cat => {
         });
 
         // Update nav links
-        navLinks.forEach(link => {
-          const text = lang === 'es' ? link.dataset.navEs : link.dataset.navEn;
-          if (text) link.textContent = text;
+        navLinks.forEach(el => {
+          const text = lang === 'es' ? el.dataset.navEs : el.dataset.navEn;
+          if (text) el.textContent = text;
         });
 
         // Update form placeholders
