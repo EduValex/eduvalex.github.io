@@ -184,6 +184,18 @@
 
   "projects": [
     {
+      "name": "Mash Foods - E-Commerce Alimenticio",
+      "description": "Tienda online WordPress + WooCommerce para venta de productos alimenticios con carrito de compras y gestión de pedidos",
+      "longDescription": "Desarrollo completo de e-commerce para Mash Foods utilizando WordPress, WooCommerce, Elementor y tema Astra. Implementé sistema de carrito de compras con panel lateral deslizable, catálogo de productos en grid, búsqueda avanzada, diseño responsive, y esquema de colores personalizado rosa/blanco. Incluye gestión de inventario, procesamiento de pedidos y optimización SEO para productos.",
+      "image": "/shared/assets/images/projects/mashfoods.jpg",
+      "technologies": ["WordPress", "WooCommerce", "Elementor", "PHP", "MySQL", "SEO"],
+      "github": "",
+      "demo": "https://mashfoods.cl",
+      "featured": true,
+      "category": "WordPress",
+      "client": true
+    },
+    {
       "name": "CV Multi-Framework Portfolio",
       "description": "Portfolio interactivo que se puede visualizar en múltiples frameworks (React, Vue, Vanilla JS) con una única fuente de datos",
       "longDescription": "Proyecto arquitectónico que demuestra versatilidad técnica mediante la implementación del mismo CV en diferentes tecnologías. Utiliza principio de Single Source of Truth con datos centralizados en JSON, deploy automatizado con GitHub Actions y diseño responsive con Tailwind CSS.",
